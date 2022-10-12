@@ -3,10 +3,41 @@
 
 #include <iostream>
 
+#include "SFML/Graphics.hpp"
+
 int main()
 {
-    std::cout << "Hello 7!\n";
-    std::cout << "Leoanrd sagt: Moin moin\n";
+
+    sf::RenderWindow window(sf::VideoMode(1600, 900),"Test", sf::Style::Default);
+    window.setFramerateLimit(30);
+
+    sf::Event ev;
+
+    while (window.isOpen()) {
+
+        while (window.pollEvent(ev) ) {
+            switch (ev.type)
+            {
+            case sf::Event::Closed:
+                window.close();
+                break;
+            case sf::Event::KeyPressed:
+                if (ev.key.code == sf::Keyboard::Escape) {
+                    window.close();
+                }
+                break;
+
+            default:
+                break;
+            }
+        }
+
+        window.clear();
+
+        window.display();
+
+    }
+
 }
 
 // Programm ausführen: STRG+F5 oder Menüeintrag "Debuggen" > "Starten ohne Debuggen starten"
