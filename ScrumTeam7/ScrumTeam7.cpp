@@ -2,41 +2,46 @@
 //
 
 #include <iostream>
-
+#include "Schlange.h"
 #include "SFML/Graphics.hpp"
+using namespace std;
 
 int main()
 {
+    Schlange obj;
+    obj.setName("Juergen Hurenson");
+    cout << "Jontes mom ist fett!!!";
+    cout << "Die Schlange heißt: " << obj.getName();
 
-    sf::RenderWindow window(sf::VideoMode(1600, 900),"Test", sf::Style::Default);
-    window.setFramerateLimit(30);
+    //sf::RenderWindow window(sf::VideoMode(1600, 900),"Test", sf::Style::Default);
+    //window.setFramerateLimit(30);
 
-    sf::Event ev;
+    //sf::Event ev;
 
-    while (window.isOpen()) {
+    //while (window.isOpen()) {
 
-        while (window.pollEvent(ev) ) {
-            switch (ev.type)
-            {
-            case sf::Event::Closed:
-                window.close();
-                break;
-            case sf::Event::KeyPressed:
-                if (ev.key.code == sf::Keyboard::Escape) {
-                    window.close();
-                }
-                break;
+    //    while (window.pollEvent(ev) ) {
+    //        switch (ev.type)
+    //        {
+    //        case sf::Event::Closed:
+    //            window.close();
+    //            break;
+    //        case sf::Event::KeyPressed:
+    //            if (ev.key.code == sf::Keyboard::Escape) {
+    //                window.close();
+    //            }
+    //            break;
 
-            default:
-                break;
-            }
-        }
+    //        default:
+    //            break;
+    //        }
+    //    }
 
-        window.clear();
+    //    window.clear();
 
-        window.display();
+    //    window.display();
 
-    }
+    //}
 
 }
 
