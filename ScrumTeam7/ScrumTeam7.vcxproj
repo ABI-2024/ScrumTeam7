@@ -133,7 +133,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ScrumTeam7.cpp" />
+    <ClCompile Include="BaseAmmo.cpp" />
+    <ClCompile Include="BaseEnemy.cpp" />
+    <ClCompile Include="BaseTower.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="TestAmmo.cpp" />
+    <ClCompile Include="TestEnemy.cpp" />
+    <ClCompile Include="TestTower.cpp" />
+    <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BaseAmmo.h" />
+    <ClInclude Include="BaseEnemy.h" />
+    <ClInclude Include="BaseTower.h" />
+    <ClInclude Include="TestAmmo.h" />
+    <ClInclude Include="TestEnemy.h" />
+    <ClInclude Include="TestTower.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,25 +5,34 @@
 
 #include "SFML/Graphics.hpp"
 
+#include "Window.h"
+#include "TestTower.h"
+#include "TestEnemy.h"
+
+
 int main()
 {
-
-    sf::RenderWindow window(sf::VideoMode(1600, 900),"Test", sf::Style::Default);
-    window.setFramerateLimit(30);
-
+    GameWindow window;
     sf::Event ev;
 
-    while (window.isOpen()) {
+    TestAmmo::LoadTexture();
+    TestTower::LoadTexture();
+    TestEnemy::LoadTexture();
 
-        while (window.pollEvent(ev) ) {
+    TestTower tower(sf::Vector2f(0.f,0.f));
+    TestEnemy enemy(0.f);
+
+    while (GameWindow::getWindow().isOpen()) {
+
+        while (GameWindow::getWindow().pollEvent(ev) ) {
             switch (ev.type)
             {
             case sf::Event::Closed:
-                window.close();
+                GameWindow::getWindow().close();
                 break;
             case sf::Event::KeyPressed:
                 if (ev.key.code == sf::Keyboard::Escape) {
-                    window.close();
+                    GameWindow::getWindow().close();
                 }
                 break;
 
@@ -32,12 +41,25 @@ int main()
             }
         }
 
-        window.clear();
 
-        window.display();
+        tower.update();
+        enemy.update();
+
+
+        GameWindow::getWindow().clear();
+
+        tower.render();
+        enemy.render();
+
+        GameWindow::getWindow().display();
 
     }
 
+    TestAmmo::unLoadTexture();
+    TestTower::unLoadTexture();
+    TestEnemy::unLoadTexture();
+
+    return 0;
 }
 
 // Programm ausführen: STRG+F5 oder Menüeintrag "Debuggen" > "Starten ohne Debuggen starten"
