@@ -36,6 +36,14 @@ unsigned int GameWindow::getFramerateLimit()
     return framerateLimit;
 }
 
+void GameWindow::setFramerateLimit(unsigned int FramerateLimit)
+{
+    if (window != nullptr) {
+        window->setFramerateLimit(FramerateLimit);
+        framerateLimit = FramerateLimit;
+    }
+}
+
 void GameWindow::setWindowSettings()
 {
 }

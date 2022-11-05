@@ -1,29 +1,34 @@
 #pragma once
 
-#include <iostream>
-
 #include "SFML/Graphics.hpp"
 
-#include "Window.h"
 
-using namespace sf;
-using namespace std;
 
 class BaseAmmo
 {
 protected:
+	int AmmoType;
 
 	bool hit;
+	float damage;
 
 	sf::RectangleShape Body;
 
-	void initBaseVariables(sf::Vector2f TowerPosition, sf::Texture* texture);
+	void initBaseVariables(int ammoType, float damage , sf::Vector2f TowerPosition, sf::Texture* texture);
 public:
 	BaseAmmo();
-	BaseAmmo(sf::Vector2f TowerPosition);
 	~BaseAmmo();
 
 	bool isHit();
+	int getType();
+	float getDamage();
+
+	void hasHit();
+
+	virtual bool CollisionWithEnemy(sf::FloatRect& Enemy) = 0;
+
+	virtual void update() = 0;
+	void render();
 };
 
 

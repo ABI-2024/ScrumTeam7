@@ -1,9 +1,12 @@
 #include "TestTower.h"
 
-// static Variablen
+#include <iostream>
 
-int TestTower::towerCost = 0;
-float TestTower::towerHealth = 200;
+
+// static Variablen
+int TestTower::TowerType = 1;
+int TestTower::Cost = 0;
+float TestTower::Health = 200;
 sf::Time TestTower::fireRate = sf::milliseconds(1500);
 sf::Texture* TestTower::texture = nullptr;
 
@@ -31,10 +34,6 @@ void TestTower::unLoadTexture()
 }
 
 // private Methden
-void TestTower::initVariables(sf::Vector2f tilePosition)
-{
-	this->initBaseVariables(this->towerHealth, tilePosition, texture);
-}
 
 // Constructur & Destructur
 TestTower::TestTower()
@@ -43,7 +42,7 @@ TestTower::TestTower()
 
 TestTower::TestTower(sf::Vector2f tilePosition)
 {
-	this->initVariables(tilePosition);
+	this->initBaseVariables(this->TowerType, this->Health ,tilePosition, texture);
 }
 
 TestTower::~TestTower()
@@ -51,39 +50,12 @@ TestTower::~TestTower()
 }
 
 //public Methoden
-void TestTower::shoot()
-{
-	if (this->clock.getElapsedTime() >= this->fireRate) {
-		ammo.push_back(new TestAmmo(this->Body.getPosition()));
-		clock.restart();
-	}
-}
 
-void TestTower::ammoDelete()
-{
-	int pos = 0;
-	for (auto i = ammo.begin(); i != ammo.end(); ++i, pos++) {
-		if ((*i)->isHit()) {
-			delete ammo[pos];
-			i = ammo.erase(ammo.begin()+pos);
-			break;			
-		}
-	}
-}
 
 void TestTower::update()
 {
-	this->shoot();
-	this->ammoDelete(); 
-	for (auto i = ammo.begin(); i != ammo.end(); ++i) {
-		(*i)->move();
+	if (this->fireRate <= this->clock.getElapsedTime()) {
+		this->ReadyToAttack = true;
 	}
 }
 
-void TestTower::render()
-{
-	GameWindow::getWindow().draw(this->Body);
-	for (auto i = ammo.begin(); i != ammo.end(); ++i) {
-		(*i)->render();
-	}
-}

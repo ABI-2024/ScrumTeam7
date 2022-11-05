@@ -2,12 +2,19 @@
 //
 
 #include <iostream>
+#include <vector>
 
 #include "SFML/Graphics.hpp"
-
 #include "Window.h"
+#include "Actors.h"
+
+/*#include "TestAmmo.h"
 #include "TestTower.h"
-#include "TestEnemy.h"
+#include "TestEnemy.h"*/
+
+
+
+
 
 
 int main()
@@ -19,9 +26,10 @@ int main()
     TestTower::LoadTexture();
     TestEnemy::LoadTexture();
 
-    TestTower tower(sf::Vector2f(0.f,0.f));
-    TestEnemy enemy(0.f);
+    Actors actors;
 
+    actors.initializeEnemy(1, { 0.f , 0.f });
+    
     while (GameWindow::getWindow().isOpen()) {
 
         while (GameWindow::getWindow().pollEvent(ev) ) {
@@ -35,21 +43,44 @@ int main()
                     GameWindow::getWindow().close();
                 }
                 break;
+            case sf::Event::MouseButtonPressed:
 
+                if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+                    // Ermittlung der TilePosition
+                    sf::Vector2i mousePos = sf::Mouse::getPosition(GameWindow::getWindow());
+
+                    std::cout << mousePos.x << "\t" << mousePos.y << "\t";
+                    if (mousePos.x % 160 >= 80 ) {
+                        mousePos.x += 80;
+                    }
+                    if (mousePos.y % 135 >= 68) {
+                        mousePos.y += 67;
+                    }
+
+                    std::cout << mousePos.x << "\t" << mousePos.y << "\t";
+
+                    mousePos.x = mousePos.x / 160 - 1;
+                    mousePos.y = mousePos.y / 135 - 1;
+
+                    // Spawnt Tower
+                    actors.initializeTower(1, sf::Vector2f(mousePos));
+                }
+
+                break;
             default:
                 break;
             }
         }
+        
+        actors.updateActors();
 
-
-        tower.update();
-        enemy.update();
+        actors.Collisions();
 
 
         GameWindow::getWindow().clear();
 
-        tower.render();
-        enemy.render();
+        actors.renderActors();
 
         GameWindow::getWindow().display();
 

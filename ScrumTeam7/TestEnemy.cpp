@@ -1,21 +1,19 @@
 #include "TestEnemy.h"
 
+#include <iostream>
+
 // static Variables
-float TestEnemy::EnemyHealth = 200;
-float TestEnemy::damage = 20;
+
+int TestEnemy::EnemyType = 1;
+
+float TestEnemy::Health = 200;
+float TestEnemy::Damage = 20;
 
 sf::Vector2f TestEnemy::dir = sf::Vector2f(-0.5, 0);
 
 sf::Texture* TestEnemy::texture = nullptr;
 
-sf::Time TestEnemy::attackSpeed = seconds(3);
-
-
-// private Methoden
-void TestEnemy::initVariables(float linePosition)
-{
-	this->initBaseVariables(this->EnemyHealth, linePosition, this->texture);
-}
+sf::Time TestEnemy::attackSpeed = sf::seconds(3);
 
 
 // static Methoden
@@ -45,26 +43,31 @@ TestEnemy::TestEnemy()
 
 TestEnemy::TestEnemy(float linePosition)
 {
-	this->initVariables(linePosition);
+	this->initBaseVariables(EnemyType, Damage, Health, linePosition, texture);
 }
 
 TestEnemy::~TestEnemy()
 {
 }
 
+bool TestEnemy::CollisionWithTower(sf::FloatRect& Tower)
+{
+	return sf::FloatRect(this->Body.getGlobalBounds()).intersects(Tower);
+}
 
-// public Methoden
 void TestEnemy::move()
 {
-	this->Body.move(dir);
+	this->Body.move(this->dir);
 }
 
 void TestEnemy::update()
 {
-	move();
+	if (this->attackSpeed >= this->clock.getElapsedTime()) {
+		ReadyToAttack = true;
+	}
+	this->move();
 }
 
-void TestEnemy::render()
-{
-	GameWindow::getWindow().draw( this->Body);
-}
+
+// public Methoden
+

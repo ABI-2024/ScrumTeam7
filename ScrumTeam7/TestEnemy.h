@@ -5,15 +5,16 @@
 class TestEnemy : public BaseEnemy
 {
 private:
-	static float EnemyHealth;
-	static float damage;
+	static int EnemyType;
+
+	static float Health;
+	static float Damage;
 
 	static sf::Vector2f dir;
 	static sf::Texture* texture;
 
 	static sf::Time attackSpeed;
 
-	void initVariables(float linePosition);
 public:
 	static void LoadTexture();
 	static void unLoadTexture();
@@ -23,9 +24,10 @@ public:
 
 	~TestEnemy();
 
+	bool CollisionWithTower(sf::FloatRect& Tower) override;
+
 	void move();
 
-	void update();
-	void render();
+	void update() override;
 };
 

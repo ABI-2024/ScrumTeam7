@@ -1,32 +1,45 @@
 #pragma once
 
-#include <vector>
-
 #include "SFML/Graphics.hpp"
 
-#include "Window.h"
-#include "TestAmmo.h"
-
-using namespace sf;
-using namespace std;
 
 class BaseTower
 {
 protected:
+	int towerType;
+
 	sf::RectangleShape Body;
 	
 	bool alive;
-	float Health;
+	bool ReadyToAttack;
+
+	float health;
 
 	sf::Vector2f tilePosition;
 
 	sf::Clock clock;
 
-	void initBaseVariables(float towerHealth, sf::Vector2f tilePosition, sf::Texture *texture);
+	void initBaseVariables(int TowerType ,float Health, sf::Vector2f tilePosition, sf::Texture *texture);
 public:
 
 	BaseTower();
 	~BaseTower();
+
+	int getType();
+
+	bool isAlive();
+	bool isReadyToAttack();
+
+	sf::FloatRect getFloaRect();
+	sf::Vector2f getPosition();
+	sf::Vector2f getTilePosition();
+
+	void HasAttacked();
+	void wasAttacked(float damage);
+
+	void render();
+
+	virtual void update() = 0;
 };
 
 
