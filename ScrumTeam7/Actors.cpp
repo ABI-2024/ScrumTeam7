@@ -9,6 +9,7 @@ void Actors::updateTowers()
     Towers.clear();
 
     for (auto i = testTower.begin(); i != testTower.end(); i++) {
+
         if (!i->isAlive()) {
             i = testTower.erase(i);
             if (i == testTower.end()) {
@@ -159,9 +160,8 @@ void Actors::updateActors()
 
 void Actors::Collisions() 
 {
-    this->CollisionEnemyWithTower(); {
-
-    }
+    this->CollisionEnemyWithTower();
+    this->CollisionAmmoWithEnemy();
 }
 
 void Actors::renderActors()

@@ -8,14 +8,6 @@
 #include "Window.h"
 #include "Actors.h"
 
-/*#include "TestAmmo.h"
-#include "TestTower.h"
-#include "TestEnemy.h"*/
-
-
-
-
-
 
 int main()
 {
@@ -28,6 +20,7 @@ int main()
 
     Actors actors;
 
+    // Spawnt Enemy
     actors.initializeEnemy(1, { 0.f , 0.f });
     
     while (GameWindow::getWindow().isOpen()) {
@@ -50,7 +43,6 @@ int main()
                     // Ermittlung der TilePosition
                     sf::Vector2i mousePos = sf::Mouse::getPosition(GameWindow::getWindow());
 
-                    std::cout << mousePos.x << "\t" << mousePos.y << "\t";
                     if (mousePos.x % 160 >= 80 ) {
                         mousePos.x += 80;
                     }
@@ -58,10 +50,8 @@ int main()
                         mousePos.y += 67;
                     }
 
-                    std::cout << mousePos.x << "\t" << mousePos.y << "\t";
-
-                    mousePos.x = mousePos.x / 160 - 1;
-                    mousePos.y = mousePos.y / 135 - 1;
+                    mousePos.x = (mousePos.x - 160) / 160 ;
+                    mousePos.y = (mousePos.y - 135) / 135 ;
 
                     // Spawnt Tower
                     actors.initializeTower(1, sf::Vector2f(mousePos));

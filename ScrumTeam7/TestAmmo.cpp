@@ -4,10 +4,10 @@
 
 #include "Window.h"
 
-int TestAmmo::Total = 0;
 int TestAmmo::ammoType = 1;
 
 float TestAmmo::damage = 20.f;
+
 sf::Vector2f TestAmmo::dir = sf::Vector2f(14.f,0);
 
 sf::Texture* TestAmmo::texture = nullptr;
