@@ -13,6 +13,9 @@ int main()
     cout << "Jontes mom ist fett!!!";
     cout << "Die Schlange heißt: " << obj.getName();
 
+    cout << "Oh Nobus war hier!" << endl;
+    return 0;
+
     //sf::RenderWindow window(sf::VideoMode(1600, 900),"Test", sf::Style::Default);
     //window.setFramerateLimit(30);
 
