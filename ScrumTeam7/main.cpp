@@ -2,50 +2,85 @@
 //
 
 #include <iostream>
-#include "Schlange.h"
+#include <vector>
+
 #include "SFML/Graphics.hpp"
-using namespace std;
+#include "Window.h"
+#include "Actors.h"
+
 
 int main()
 {
-    Schlange obj;
-    obj.setName("Juergen Hurenson");
-    cout << "Jontes mom ist fett!!!";
-    cout << "Die Schlange heißt: " << obj.getName();
+    GameWindow window;
+    sf::Event ev;
 
-    cout << "Oh Nobus war hier!" << endl;
+    TestAmmo::LoadTexture();
+    TestTower::LoadTexture();
+    TestEnemy::LoadTexture();
+
+    Actors actors;
+
+    // Spawnt Enemy
+    actors.initializeEnemy(1, { 0.f , 0.f });
+    
+    while (GameWindow::getWindow().isOpen()) {
+
+        while (GameWindow::getWindow().pollEvent(ev) ) {
+            switch (ev.type)
+            {
+            case sf::Event::Closed:
+                GameWindow::getWindow().close();
+                break;
+            case sf::Event::KeyPressed:
+                if (ev.key.code == sf::Keyboard::Escape) {
+                    GameWindow::getWindow().close();
+                }
+                break;
+            case sf::Event::MouseButtonPressed:
+
+                if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+                    // Ermittlung der TilePosition
+                    sf::Vector2i mousePos = sf::Mouse::getPosition(GameWindow::getWindow());
+
+                    if (mousePos.x % 160 >= 80 ) {
+                        mousePos.x += 80;
+                    }
+                    if (mousePos.y % 135 >= 68) {
+                        mousePos.y += 67;
+                    }
+
+                    mousePos.x = (mousePos.x - 160) / 160 ;
+                    mousePos.y = (mousePos.y - 135) / 135 ;
+
+                    // Spawnt Tower
+                    actors.initializeTower(1, sf::Vector2f(mousePos));
+                }
+
+                break;
+            default:
+                break;
+            }
+        }
+        
+        actors.updateActors();
+
+        actors.Collisions();
+
+
+        GameWindow::getWindow().clear();
+
+        actors.renderActors();
+
+        GameWindow::getWindow().display();
+
+    }
+
+    TestAmmo::unLoadTexture();
+    TestTower::unLoadTexture();
+    TestEnemy::unLoadTexture();
+
     return 0;
-
-    //sf::RenderWindow window(sf::VideoMode(1600, 900),"Test", sf::Style::Default);
-    //window.setFramerateLimit(30);
-
-    //sf::Event ev;
-
-    //while (window.isOpen()) {
-
-    //    while (window.pollEvent(ev) ) {
-    //        switch (ev.type)
-    //        {
-    //        case sf::Event::Closed:
-    //            window.close();
-    //            break;
-    //        case sf::Event::KeyPressed:
-    //            if (ev.key.code == sf::Keyboard::Escape) {
-    //                window.close();
-    //            }
-    //            break;
-
-    //        default:
-    //            break;
-    //        }
-    //    }
-
-    //    window.clear();
-
-    //    window.display();
-
-    //}
-
 }
 
 // Programm ausführen: STRG+F5 oder Menüeintrag "Debuggen" > "Starten ohne Debuggen starten"
