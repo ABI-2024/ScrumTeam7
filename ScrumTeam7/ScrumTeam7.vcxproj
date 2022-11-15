@@ -137,6 +137,7 @@
     <ClCompile Include="BaseAmmo.cpp" />
     <ClCompile Include="BaseEnemy.cpp" />
     <ClCompile Include="BaseTower.cpp" />
+    <ClCompile Include="Geld.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TestAmmo.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="BaseAmmo.h" />
     <ClInclude Include="BaseEnemy.h" />
     <ClInclude Include="BaseTower.h" />
+    <ClInclude Include="Geld.h" />
     <ClInclude Include="TestAmmo.h" />
     <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="TestTower.h" />

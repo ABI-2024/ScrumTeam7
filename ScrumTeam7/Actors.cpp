@@ -128,10 +128,22 @@ void Actors::renderEnemies()
     }
 }
 
+void Actors::renderMoney()
+{
+    text.setString(std::to_string((int)testGeld.getKontostand()));
+    GameWindow::getWindow().draw(text);
+}
+
 
 // Constructur & Destructur
 Actors::Actors()
 {
+    // Font und Text Initialisierung
+    font.loadFromFile("arial.ttf");
+    text.setFont(font);
+    text.setCharacterSize(20);
+    text.setPosition(1500, 30);
+    text.setFillColor(sf::Color::Red);
 }
 
 Actors::~Actors()
@@ -148,7 +160,6 @@ Actors::~Actors()
     Ammos.clear();
     Enemies.clear();
 }
-
 
 //public Methoden
 void Actors::updateActors()
@@ -169,6 +180,7 @@ void Actors::renderActors()
     this->renderTowers();
     this->renderAmmos();
     this->renderEnemies();
+    this->renderMoney();
 }
 
 

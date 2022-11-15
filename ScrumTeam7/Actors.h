@@ -1,5 +1,5 @@
 #pragma once
-
+#include <string>
 #include <vector>
 
 
@@ -11,6 +11,9 @@
 
 // Enemies / Gegener
 #include "TestEnemy.h"
+
+// Money / Geld
+#include "Geld.h"
 
 /*
 	Diese Klasse enthält alle Tower-,Enemies- und Ammotypen
@@ -28,6 +31,9 @@
 class Actors
 {
 private:
+
+	sf::Font font;
+	sf::Text text;
 	// Speicher alle Klassentypnummern
 	enum TowerType
 	{
@@ -41,6 +47,9 @@ private:
 	{
 		TypeTestEnemy = 1
 	};
+
+	// Money / Geld
+	Geld testGeld;
 
 	// Alle vectoren von Tower / Lehrer
 	std::vector<TestTower> testTower;
@@ -70,10 +79,10 @@ private:
 	void renderTowers();
 	void renderAmmos();
 	void renderEnemies();
+	void renderMoney();
 public:
 	Actors();
 	~Actors();
-
 	// Ruft alle Update-Methoden
 	void updateActors();
 
