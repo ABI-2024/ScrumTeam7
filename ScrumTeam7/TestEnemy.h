@@ -10,6 +10,8 @@ private:
 	static float Health;
 	static float Damage;
 
+	static int revenue;
+
 	static sf::Vector2f dir;
 	static sf::Texture* texture;
 
@@ -23,6 +25,8 @@ public:
 	TestEnemy(float linePosition);
 
 	~TestEnemy();
+
+	static int getRevenue();
 
 	bool CollisionWithTower(sf::FloatRect& Tower) override;
 

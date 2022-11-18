@@ -5,7 +5,7 @@
 
 // static Variablen
 int TestTower::TowerType = 1;
-int TestTower::Cost = 0;
+int TestTower::Cost = 20;
 float TestTower::Health = 200;
 sf::Time TestTower::fireRate = sf::milliseconds(1500);
 sf::Texture* TestTower::texture = nullptr;

@@ -60,9 +60,12 @@ void Actors::updateEnemies()
     for (auto i = testEnemy.begin(); i != testEnemy.end(); i++) {
 
         if (!i->isAlive()) {
+            testGeld.addKontostand(i->getRevenue());
+            
             i = testEnemy.erase(i);
             if (i == testEnemy.end()) {
                 break;
+            
             }
         }
 
@@ -128,22 +131,13 @@ void Actors::renderEnemies()
     }
 }
 
-void Actors::renderMoney()
-{
-    text.setString(std::to_string((int)testGeld.getKontostand()));
-    GameWindow::getWindow().draw(text);
-}
+
 
 
 // Constructur & Destructur
 Actors::Actors()
 {
     // Font und Text Initialisierung
-    font.loadFromFile("arial.ttf");
-    text.setFont(font);
-    text.setCharacterSize(20);
-    text.setPosition(1500, 30);
-    text.setFillColor(sf::Color::Red);
 }
 
 Actors::~Actors()
@@ -180,7 +174,7 @@ void Actors::renderActors()
     this->renderTowers();
     this->renderAmmos();
     this->renderEnemies();
-    this->renderMoney();
+    testGeld.render();
 }
 
 

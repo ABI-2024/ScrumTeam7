@@ -1,16 +1,21 @@
 #pragma once
+#include "SFML/Graphics.hpp"
+
 class Geld
 {
 private:
 	static double Startgeld;
-	double Kontostand;
+	int Kontostand;
+	sf::Font font;
+	sf::Text text;
 public:
 	Geld();
 	~Geld();
 
 	
-	double getKontostand();
-	void addKontostand(double);
+	int getKontostand();
+	void addKontostand(int);
 	void clearKontostand();
+	void render();
 };
 

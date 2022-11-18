@@ -9,6 +9,8 @@ int TestEnemy::EnemyType = 1;
 float TestEnemy::Health = 200;
 float TestEnemy::Damage = 20;
 
+int TestEnemy::revenue = 5;
+
 sf::Vector2f TestEnemy::dir = sf::Vector2f(-0.5, 0);
 
 sf::Texture* TestEnemy::texture = nullptr;
@@ -48,6 +50,10 @@ TestEnemy::TestEnemy(float linePosition)
 
 TestEnemy::~TestEnemy()
 {
+}
+
+int TestEnemy::getRevenue() {
+	return revenue;
 }
 
 bool TestEnemy::CollisionWithTower(sf::FloatRect& Tower)

@@ -32,7 +32,7 @@ class Actors
 {
 private:
 
-	sf::Font font;
+
 	sf::Text text;
 	// Speicher alle Klassentypnummern
 	enum TowerType
