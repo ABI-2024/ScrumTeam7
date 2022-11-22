@@ -20,14 +20,8 @@ void Actors::updateTowers()
         i->update();
 
         if (i->isReadyToAttack()) {
-            switch (i->getType()) {
-            case 1:
                 i->HasAttacked();
                 testAmmo.push_back(i->getPosition());
-                break;
-            default:
-                break;
-            }
         }
 
         this->Towers.push_back( &(*i) );
@@ -85,7 +79,7 @@ void Actors::CollisionEnemyWithTower()
 
             sf::FloatRect tmp = (*i)->getFloaRect();
 
-            if ((*j)->CollisionWithTower(tmp)) {
+            if ((*j)->CollisionWithTower(tmp) && (*j)->isReadyToAttack()) {
                 (*i)->wasAttacked((*j)->getDamage());
                 (*j)->hasAttacked();
             }

@@ -42,7 +42,7 @@ bool BaseTower::isReadyToAttack()
 
 void BaseTower::wasAttacked(float damage)
 {
-	this->health += damage;
+	this->health -= damage;
 	if (health <= 0) {
 		this->alive = false;
 	}

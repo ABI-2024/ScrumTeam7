@@ -6,6 +6,7 @@ void BaseEnemy::initBaseVariables(int EnemyType, float Damage,float Health, floa
 {
 	this->enemyType = EnemyType;
 	this->alive = true;
+	this->Movable = true;
 	this->health = Health;
 	this->damage = Damage;
 	this->linePosition = linePosition;
@@ -21,6 +22,7 @@ BaseEnemy::BaseEnemy()
 	this->enemyType = 0;
 	this->alive = false;
 	this->ReadyToAttack = false;
+	this->Movable = false;
 	this->health = 0;
 	this->damage = 0;
 	this->linePosition = 0;

@@ -11,7 +11,7 @@ protected:
 
 	bool alive;
 	bool ReadyToAttack;
-
+	bool Movable;
 	float health;
 	float damage;
 
