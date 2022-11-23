@@ -25,7 +25,7 @@ void TestEnemy::LoadTexture()
 		texture = new sf::Texture();
 	}
 
-	if (!texture->loadFromFile("Textures/DefaultTexture.png")) {
+	if (!texture->loadFromFile("Textures/StandartSchüler.png")) {
 		std::cout << "\tFail: Textur not loaded!\n\n";
 	}
 
