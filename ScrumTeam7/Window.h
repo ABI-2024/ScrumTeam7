@@ -1,25 +1,34 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "SFML/Window.hpp"
 
-// Es darf nur ein Objekt dieser Klasse geben
+#define Window GameWindow::getWindow()
+#define GameEvent GameWindow::getEvent()
 
 class GameWindow
 {
 private:
 
+	static sf::ContextSettings* settings;
+
 	static sf::RenderWindow* window;
 	static unsigned int framerateLimit;
 
+	static sf::Event* ev;
+
 public:
 
-	GameWindow();
-	~GameWindow();
+	static void createWindow();
+	static void deleteWindow();
 
 	static sf::RenderWindow& getWindow();
 
 	static unsigned int getFramerateLimit();
 	static void setFramerateLimit(unsigned int FramerateLimit);
 
-	static void setWindowSettings(); // für Options Änderungen
+	static void setWindowSize(sf::Vector2u& WindowSize);
+	static sf::ContextSettings* getWindowSettings();
+
+	static sf::Event& getEvent();
 };
