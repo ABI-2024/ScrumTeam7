@@ -14,7 +14,7 @@ void BaseEnemy::initBaseVariables(int EnemyType, float Damage,float Health, floa
 	this->Body.setPosition(GameWindow::getWindow().getSize().x , 135.f + 135.f * this->linePosition);
 	this->Body.setSize(sf::Vector2f(70.f, 140.f));
 	this->Body.setOrigin(sf::Vector2f(this->Body.getSize().x / 2, this->Body.getSize().y / 2));
-	this->Body.setTexture(texture, true);
+	this->Body.setTexture(texture, 0);
 }
 
 BaseEnemy::BaseEnemy()

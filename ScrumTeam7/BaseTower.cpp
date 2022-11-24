@@ -13,7 +13,7 @@ void BaseTower::initBaseVariables(int TowerType ,float Health, sf::Vector2f tile
 	this->Body.setPosition(160 + 160*this->tilePosition.x ,135 + 135*this->tilePosition.y);
 	this->Body.setSize(sf::Vector2f(70.f , 140.f));
 	this->Body.setOrigin(sf::Vector2f(this->Body.getSize().x/2, this->Body.getSize().y / 2));
-	this->Body.setTexture(texture, true);
+	this->Body.setTexture(texture, 0);
 
 }
 

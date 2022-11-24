@@ -4,7 +4,7 @@
 
 using namespace std;
 
-double Geld::Startgeld = 200;
+int Geld::Startgeld = 200;
 Geld::Geld() {
 	Kontostand = Startgeld;
 	font.loadFromFile("arial.ttf");

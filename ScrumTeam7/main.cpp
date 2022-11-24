@@ -6,17 +6,22 @@
 
 #include "SFML/Graphics.hpp"
 #include "Window.h"
+
+#include "Menu.h"
+
 #include "Actors.h"
 
 
 int main()
 {
-    GameWindow window;
-    sf::Event ev;
+    GameWindow::createWindow();
 
     TestAmmo::LoadTexture();
     TestTower::LoadTexture();
     TestEnemy::LoadTexture();
+
+
+    Menu::openMenu();
 
     Actors actors;
 
@@ -25,14 +30,14 @@ int main()
     
     while (GameWindow::getWindow().isOpen()) {
 
-        while (GameWindow::getWindow().pollEvent(ev) ) {
-            switch (ev.type)
+        while (GameWindow::getWindow().pollEvent(GameEvent) ) {
+            switch (GameEvent.type)
             {
             case sf::Event::Closed:
                 GameWindow::getWindow().close();
                 break;
             case sf::Event::KeyPressed:
-                if (ev.key.code == sf::Keyboard::Escape) {
+                if (GameEvent.key.code == sf::Keyboard::Escape) {
                     GameWindow::getWindow().close();
                 }
                 break;
@@ -80,6 +85,7 @@ int main()
     TestTower::unLoadTexture();
     TestEnemy::unLoadTexture();
 
+    GameWindow::deleteWindow();
     return 0;
 }
 
