@@ -7,10 +7,15 @@ class Menu
 private:
 
 	bool open;
+	static int ans;
 
-	sf::Texture* buttonTexture[3]; // 0 Start	1 Options	2 Exit
-	sf::RectangleShape button[3];
+	sf::Font* font;
+	sf::Text* buttonText;
 
+	sf::Texture* buttonTexture;
+	sf::RectangleShape* button;
+
+	void buttonVisuals();
 	void buttonEvents();
 
 	void render();
@@ -19,6 +24,6 @@ private:
 	~Menu();
 public:
 
-	static void openMenu();
+	static int openMenu();
 };
 

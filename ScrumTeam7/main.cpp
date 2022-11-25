@@ -20,66 +20,112 @@ int main()
     TestTower::LoadTexture();
     TestEnemy::LoadTexture();
 
+    Actors* actors;
 
-    Menu::openMenu();
 
-    Actors actors;
+    bool active = 0;
+    bool paused = 1;
 
-    // Spawnt Enemy
-    actors.initializeEnemy(1, { 0.f , 0.f });
-    
-    while (GameWindow::getWindow().isOpen()) {
+    while (Window.isOpen()) {
+        switch (Menu::openMenu()) {
+        case 1:
 
-        while (GameWindow::getWindow().pollEvent(GameEvent) ) {
-            switch (GameEvent.type)
-            {
-            case sf::Event::Closed:
-                GameWindow::getWindow().close();
-                break;
-            case sf::Event::KeyPressed:
-                if (GameEvent.key.code == sf::Keyboard::Escape) {
-                    GameWindow::getWindow().close();
-                }
-                break;
-            case sf::Event::MouseButtonPressed:
+            active = 1;
+            paused = 0;
 
-                if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            actors = new Actors();
 
-                    // Ermittlung der TilePosition
-                    sf::Vector2i mousePos = sf::Mouse::getPosition(GameWindow::getWindow());
+            actors->initializeEnemy(1, { 0.f , 0.f });
 
-                    if (mousePos.x % 160 >= 80 ) {
-                        mousePos.x += 80;
+            while (GameWindow::getWindow().isOpen() && active) {
+
+                while (GameWindow::getWindow().pollEvent(GameEvent)) {
+                    switch (GameEvent.type)
+                    {
+
+                    case sf::Event::Closed:
+                        GameWindow::getWindow().close();
+                        break;
+
+                    case sf::Event::KeyPressed:
+                        if (GameEvent.key.code == sf::Keyboard::Escape) {
+                            //paused = !paused;
+                            active = false;
+                        }
+                        break;
+
+                    case sf::Event::MouseButtonPressed:
+
+                        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+
+                            // Ermittlung der TilePosition
+                            sf::Vector2i mousePos = sf::Mouse::getPosition(GameWindow::getWindow());
+
+                            if (mousePos.x % 160 >= 80) {
+                                mousePos.x += 80;
+                            }
+                            if (mousePos.y % 135 >= 68) {
+                                mousePos.y += 67;
+                            }
+
+                            mousePos.x = (mousePos.x - 160) / 160;
+                            mousePos.y = (mousePos.y - 135) / 135;
+
+                            // Spawnt Tower
+                            actors->initializeTower(1, sf::Vector2f(mousePos));
+                        }
+                        if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+
+                            // Ermittlung der TilePosition
+                            sf::Vector2i mousePos = sf::Mouse::getPosition(GameWindow::getWindow());
+
+                            if (mousePos.x % 160 >= 80) {
+                                mousePos.x += 80;
+                            }
+                            if (mousePos.y % 135 >= 68) {
+                                mousePos.y += 67;
+                            }
+
+                            mousePos.x = (mousePos.x - 160) / 160;
+                            mousePos.y = (mousePos.y - 135) / 135;
+
+                            // Spawnt Enemy
+                            actors->initializeEnemy(1, sf::Vector2f(mousePos));
+                        }
+
+                        break;
+
+                    default:
+                        break;
                     }
-                    if (mousePos.y % 135 >= 68) {
-                        mousePos.y += 67;
-                    }
-
-                    mousePos.x = (mousePos.x - 160) / 160 ;
-                    mousePos.y = (mousePos.y - 135) / 135 ;
-
-                    // Spawnt Tower
-                    actors.initializeTower(1, sf::Vector2f(mousePos));
                 }
 
-                break;
-            default:
-                break;
+                if (!paused) {
+                    actors->updateActors();
+
+                    actors->Collisions();
+                }
+
+                GameWindow::getWindow().clear();
+
+                actors->renderActors();
+
+                GameWindow::getWindow().display();
+
             }
+
+            delete actors;
+
+        case 2:
+            break;
+        case 0: default:
+            Window.close();
+            break;
         }
-        
-        actors.updateActors();
-
-        actors.Collisions();
-
-
-        GameWindow::getWindow().clear();
-
-        actors.renderActors();
-
-        GameWindow::getWindow().display();
-
     }
+
+
+    
 
     TestAmmo::unLoadTexture();
     TestTower::unLoadTexture();

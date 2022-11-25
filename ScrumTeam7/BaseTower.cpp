@@ -2,6 +2,8 @@
 
 #include "Window.h"
 
+#include <iostream>
+
 // protected Methoden
 void BaseTower::initBaseVariables(int TowerType ,float Health, sf::Vector2f tilePosition, sf::Texture *texture)
 {
@@ -56,7 +58,10 @@ int BaseTower::getType()
 
 sf::FloatRect BaseTower::getFloaRect()
 {
-	return sf::FloatRect(this->Body.getGlobalBounds());
+	sf::FloatRect hitbox = this->Body.getGlobalBounds();
+	hitbox.top += 20;
+	hitbox.height -= 40;
+	return hitbox;
 }
 
 void BaseTower::HasAttacked()

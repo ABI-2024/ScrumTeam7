@@ -17,10 +17,10 @@ void TestTower::LoadTexture()
 		texture = new sf::Texture();
 	}
 
-	if (!texture->loadFromFile("Textures/SportLehre1.png")) {
+	if (!texture->loadFromFile("resource/Textures/SportLehre1.png")) {
 		std::cout << "\tFail: Textur not loaded!\n\n";
 
-		if (!texture->loadFromFile("Textures/DefaultTexture.png")) {
+		if (!texture->loadFromFile("resource/Textures/DefaultTexture.png")) {
 			std::cout << "\tFail: Textur not loaded!\n\n";
 		}
 	}

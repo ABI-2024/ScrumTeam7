@@ -28,7 +28,8 @@ public:
 	static void setFramerateLimit(unsigned int FramerateLimit);
 
 	static void setWindowSize(sf::Vector2u& WindowSize);
-	static sf::ContextSettings* getWindowSettings();
+	static sf::ContextSettings getWindowSettings();
+	static void setWindowSettings(sf::ContextSettings Settings);
 
 	static sf::Event& getEvent();
 };

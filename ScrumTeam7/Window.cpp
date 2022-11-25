@@ -68,9 +68,14 @@ void GameWindow::setWindowSize(sf::Vector2u& WindowSize)
    
 }
 
-sf::ContextSettings* GameWindow::getWindowSettings()
+sf::ContextSettings GameWindow::getWindowSettings()
 {
-    return settings;
+    return *settings;
+}
+
+void GameWindow::setWindowSettings(sf::ContextSettings Settings)
+{
+    *settings = Settings;
 }
 
 sf::Event& GameWindow::getEvent()

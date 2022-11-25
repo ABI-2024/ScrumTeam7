@@ -17,10 +17,10 @@ void TestAmmo::LoadTexture()
 	if (texture == nullptr) {
 		texture = new sf::Texture();	
 	}
-	if (!texture->loadFromFile("Textures/Basketball.png")) {
+	if (!texture->loadFromFile("resource/Textures/Basketball.png")) {
 		std::cout << "\tFail: Textur not loaded!\n\n";
 
-		if (!texture->loadFromFile("Textures/DefaultTexture.png")) {
+		if (!texture->loadFromFile("resource/Textures/DefaultTexture.png")) {
 			std::cout << "\tFail: Textur not loaded!\n\n";
 		}
 	}

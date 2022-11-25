@@ -7,7 +7,7 @@ using namespace std;
 int Geld::Startgeld = 200;
 Geld::Geld() {
 	Kontostand = Startgeld;
-	font.loadFromFile("arial.ttf");
+	font.loadFromFile("resource/fonts/arial.ttf");
 	text.setFont(font);
 	text.setCharacterSize(20);
 	text.setPosition(1500, 30);

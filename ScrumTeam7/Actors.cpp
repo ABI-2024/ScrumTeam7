@@ -94,7 +94,7 @@ void Actors::CollisionAmmoWithEnemy()
 
             sf::FloatRect tmp = (*i)->getFloaRect();
 
-            if ((*j)->CollisionWithEnemy(tmp)) {
+            if ((*j)->CollisionWithEnemy(tmp) && !(*j)->isHit()) {
                 (*i)->wasAttacked((*j)->getDamage());
                 (*j)->hasHit();
             }
@@ -131,7 +131,7 @@ void Actors::renderEnemies()
 // Constructur & Destructur
 Actors::Actors()
 {
-    // Font und Text Initialisierung
+
 }
 
 Actors::~Actors()
