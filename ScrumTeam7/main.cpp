@@ -6,6 +6,7 @@
 
 #include "SFML/Graphics.hpp"
 #include "Window.h"
+#include "enums.h"
 
 #include "Menu.h"
 
@@ -20,7 +21,7 @@ int main()
     TestTower::LoadTexture();
     TestEnemy::LoadTexture();
 
-    Actors* actors;
+    Actors* actors = nullptr;
 
 
     bool active = 0;
@@ -35,7 +36,8 @@ int main()
 
             actors = new Actors();
 
-            actors->initializeEnemy(1, { 0.f , 0.f });
+            for (int i=0; i<1; i++)
+                actors->initializeEnemy(EnemyType::TestEnemy, { 0.f , 0.f });
 
             while (GameWindow::getWindow().isOpen() && active) {
 
@@ -72,7 +74,7 @@ int main()
                             mousePos.y = (mousePos.y - 135) / 135;
 
                             // Spawnt Tower
-                            actors->initializeTower(1, sf::Vector2f(mousePos));
+                            actors->initializeTower(TowerType::TestTower, sf::Vector2f(mousePos));
                         }
                         if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 
@@ -90,7 +92,7 @@ int main()
                             mousePos.y = (mousePos.y - 135) / 135;
 
                             // Spawnt Enemy
-                            actors->initializeEnemy(1, sf::Vector2f(mousePos));
+                            actors->initializeEnemy(EnemyType::TestEnemy, sf::Vector2f(mousePos));
                         }
 
                         break;
@@ -100,11 +102,10 @@ int main()
                     }
                 }
 
-                if (!paused) {
-                    actors->updateActors();
+                actors->updateActors();
 
-                    actors->Collisions();
-                }
+                actors->Collisions();
+
 
                 GameWindow::getWindow().clear();
 

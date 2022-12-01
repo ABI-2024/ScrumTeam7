@@ -2,6 +2,7 @@
 
 #include "Window.h"
 
+#include <iostream>
 
 // private Methoden
 void Actors::updateTowers()
@@ -9,7 +10,7 @@ void Actors::updateTowers()
     Towers.clear();
 
     for (auto i = testTower.begin(); i != testTower.end(); i++) {
-
+        
         if (!i->isAlive()) {
             i = testTower.erase(i);
             if (i == testTower.end()) {
@@ -21,7 +22,7 @@ void Actors::updateTowers()
 
         if (i->isReadyToAttack()) {
                 i->HasAttacked();
-                testAmmo.push_back(i->getPosition());
+                testAmmo.push_back( i->getPosition() );
         }
 
         this->Towers.push_back( &(*i) );
@@ -137,6 +138,7 @@ Actors::Actors()
 Actors::~Actors()
 {
     // Löschung aller Gespeicherten Klassentypen
+
     testTower.clear();
 
     testAmmo.clear();
@@ -168,12 +170,13 @@ void Actors::renderActors()
     this->renderTowers();
     this->renderAmmos();
     this->renderEnemies();
+
     testGeld.render();
 }
 
 
 
-void Actors::initializeTower(int TowerType, sf::Vector2f TilePosition)
+void Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
 {
     for (auto i = Towers.begin(); i != Towers.end(); i++) {
         if ((*i)->getTilePosition() == TilePosition) {
@@ -183,7 +186,7 @@ void Actors::initializeTower(int TowerType, sf::Vector2f TilePosition)
 
     switch (TowerType)
     {
-    case TypeTestTower:
+    case TowerType::TestTower:
         testTower.push_back(TilePosition);
         break;
 
@@ -192,12 +195,12 @@ void Actors::initializeTower(int TowerType, sf::Vector2f TilePosition)
     }
 }
 
-void Actors::initializeAmmo(int AmmoType, sf::Vector2f TilePosition)
+void Actors::initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition )
 {
-    switch (AmmoType)
+    switch (EnemyType)
     {
-    case TypeTestAmmo:
-        testAmmo.push_back(TilePosition);
+    case EnemyType::TestEnemy:
+        testEnemy.push_back(TilePosition.y);
         break;
 
     default:
@@ -205,12 +208,12 @@ void Actors::initializeAmmo(int AmmoType, sf::Vector2f TilePosition)
     }
 }
 
-void Actors::initializeEnemy(int EnemyType, sf::Vector2f TowerPosition)
+void Actors::initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition)
 {
-    switch (EnemyType)
+    switch (AmmoType)
     {
-    case TypeTestEnemy:
-        testEnemy.push_back(TowerPosition.y);
+    case AmmoType::TestAmmo:
+        testAmmo.push_back(TowerPosition);
         break;
 
     default:

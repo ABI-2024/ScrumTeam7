@@ -151,6 +151,7 @@
     <ClInclude Include="BaseAmmo.h" />
     <ClInclude Include="BaseEnemy.h" />
     <ClInclude Include="BaseTower.h" />
+    <ClInclude Include="enums.h" />
     <ClInclude Include="Geld.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Menu_Options.h" />

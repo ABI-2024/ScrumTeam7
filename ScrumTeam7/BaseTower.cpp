@@ -5,9 +5,8 @@
 #include <iostream>
 
 // protected Methoden
-void BaseTower::initBaseVariables(int TowerType ,float Health, sf::Vector2f tilePosition, sf::Texture *texture)
+void BaseTower::initBaseVariables(float Health, sf::Vector2f tilePosition, sf::Texture *texture)
 {
-	this->towerType = TowerType;
 	this->alive = true;
 	this->health = Health;
 	this->tilePosition = tilePosition;
@@ -22,7 +21,6 @@ void BaseTower::initBaseVariables(int TowerType ,float Health, sf::Vector2f tile
 // Constructur & Destructur
 BaseTower::BaseTower()
 {
-	this->towerType = 0;
 	this->ReadyToAttack = false;
 	this->alive = false;
 	this->health = 0;
@@ -49,11 +47,6 @@ void BaseTower::wasAttacked(float damage)
 		this->alive = false;
 	}
 
-}
-
-int BaseTower::getType()
-{
-	return this->towerType;
 }
 
 sf::FloatRect BaseTower::getFloaRect()

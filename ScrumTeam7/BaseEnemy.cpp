@@ -2,13 +2,11 @@
 
 #include "Window.h"
 
-void BaseEnemy::initBaseVariables(int EnemyType, float Damage,float Health, float linePosition, sf::Texture* texture)
+void BaseEnemy::initBaseVariables( float Health, float linePosition, sf::Texture* texture)
 {
-	this->enemyType = EnemyType;
 	this->alive = true;
 	this->Movable = true;
 	this->health = Health;
-	this->damage = Damage;
 	this->linePosition = linePosition;
 
 	this->Body.setPosition(GameWindow::getWindow().getSize().x , 135.f + 135.f * this->linePosition);
@@ -19,12 +17,10 @@ void BaseEnemy::initBaseVariables(int EnemyType, float Damage,float Health, floa
 
 BaseEnemy::BaseEnemy()
 {
-	this->enemyType = 0;
 	this->alive = false;
 	this->ReadyToAttack = false;
 	this->Movable = false;
 	this->health = 0;
-	this->damage = 0;
 	this->linePosition = 0;
 }
 
@@ -40,16 +36,6 @@ bool BaseEnemy::isAlive()
 bool BaseEnemy::isReadyToAttack()
 {
 	return this->ReadyToAttack;
-}
-
-int BaseEnemy::getType()
-{
-	return this->enemyType;
-}
-
-float BaseEnemy::getDamage()
-{
-	return this->damage;
 }
 
 void BaseEnemy::hasAttacked()

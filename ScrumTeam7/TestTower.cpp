@@ -4,7 +4,7 @@
 
 
 // static Variablen
-int TestTower::TowerType = 1;
+TowerType TestTower::towerType = TowerType::TestTower;
 int TestTower::Cost = 20;
 float TestTower::Health = 200;
 sf::Time TestTower::fireRate = sf::milliseconds(1500);
@@ -42,11 +42,16 @@ TestTower::TestTower()
 
 TestTower::TestTower(sf::Vector2f tilePosition)
 {
-	this->initBaseVariables(this->TowerType, this->Health ,tilePosition, texture);
+	this->initBaseVariables( this->Health ,tilePosition, texture);
 }
 
 TestTower::~TestTower()
 {
+}
+
+TowerType TestTower::getTowerType()
+{
+	return this->towerType;
 }
 
 //public Methoden

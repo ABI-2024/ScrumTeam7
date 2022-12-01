@@ -4,7 +4,7 @@
 
 // static Variables
 
-int TestEnemy::EnemyType = 1;
+EnemyType TestEnemy::enemyType = EnemyType::TestEnemy;
 
 float TestEnemy::Health = 200;
 float TestEnemy::Damage = 20;
@@ -49,7 +49,7 @@ TestEnemy::TestEnemy()
 
 TestEnemy::TestEnemy(float linePosition)
 {
-	this->initBaseVariables(EnemyType, Damage, Health, linePosition, texture);
+	this->initBaseVariables( Health, linePosition, texture);
 }
 
 TestEnemy::~TestEnemy()
@@ -58,6 +58,16 @@ TestEnemy::~TestEnemy()
 
 int TestEnemy::getRevenue() {
 	return revenue;
+}
+
+EnemyType TestEnemy::getEnemyType()
+{
+	return this->enemyType;
+}
+
+float TestEnemy::getDamage()
+{
+	return this->Damage;
 }
 
 bool TestEnemy::CollisionWithTower(sf::FloatRect& Tower)

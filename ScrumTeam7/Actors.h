@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 
+#include "enums.h"
 
 // Tower / Lehrer
 #include "TestTower.h"
@@ -34,19 +35,6 @@ private:
 
 
 	sf::Text text;
-	// Speicher alle Klassentypnummern
-	enum TowerType
-	{
-		TypeTestTower = 1
-	};
-	enum AmmoType
-	{
-		TypeTestAmmo = 1
-	};
-	enum EnemyType
-	{
-		TypeTestEnemy = 1
-	};
 
 	// Money / Geld
 	Geld testGeld;
@@ -79,7 +67,6 @@ private:
 	void renderTowers();
 	void renderAmmos();
 	void renderEnemies();
-	void renderMoney();
 public:
 	Actors();
 	~Actors();
@@ -93,10 +80,10 @@ public:
 	void renderActors();
 
 	// Initialisiert die Klassen
-	void initializeTower(int TowerType, sf::Vector2f TilePosition);
-	void initializeEnemy(int EnemyType, sf::Vector2f TilePosition);
+	void initializeTower(TowerType TowerType, sf::Vector2f TilePosition);
+	void initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition);
 
-	void initializeAmmo(int AmmoType, sf::Vector2f TowerPosition); // Beachte Parametername des Vectors
+	void initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition); // Beachte Parametername des Vectors
 
 };
 

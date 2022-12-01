@@ -4,7 +4,7 @@
 
 #include "Window.h"
 
-int TestAmmo::ammoType = 1;
+AmmoType TestAmmo::ammoType = AmmoType::TestAmmo;
 
 float TestAmmo::damage = 20.f;
 
@@ -37,12 +37,22 @@ void TestAmmo::unLoadTexture()
 TestAmmo::TestAmmo(sf::Vector2f TowerPosition)
 {
 
-	this->initBaseVariables(this->AmmoType, this->damage ,TowerPosition, texture);
+	this->initBaseVariables( TowerPosition, texture);
 }
 
 TestAmmo::~TestAmmo()
 {
 	
+}
+
+AmmoType TestAmmo::getAmmoType()
+{
+	return this->ammoType;
+}
+
+float TestAmmo::getDamage()
+{
+	return this->damage;
 }
 
 bool TestAmmo::CollisionWithEnemy(sf::FloatRect& Enemy)
