@@ -11,6 +11,8 @@
 
 #include "Actors.h"
 
+#include "Rectangle.h"
+
 
 int main()
 {
@@ -32,6 +34,9 @@ int main()
 
             active = 1;
             paused = 0;
+
+            Rectangle* pRectangle;
+            pRectangle = new Rectangle(80, 48);
 
             actors = new Actors();
 
@@ -64,12 +69,12 @@ int main()
                             if (mousePos.x % 160 >= 80) {
                                 mousePos.x += 80;
                             }
-                            if (mousePos.y % 135 >= 68) {
+                            if (mousePos.y % 142 >= 71) {
                                 mousePos.y += 67;
                             }
 
                             mousePos.x = (mousePos.x - 160) / 160;
-                            mousePos.y = (mousePos.y - 135) / 135;
+                            mousePos.y = (mousePos.y - 135) / 142;
 
                             // Spawnt Tower
                             actors->initializeTower(1, sf::Vector2f(mousePos));
@@ -82,12 +87,12 @@ int main()
                             if (mousePos.x % 160 >= 80) {
                                 mousePos.x += 80;
                             }
-                            if (mousePos.y % 135 >= 68) {
+                            if (mousePos.y % 142 >= 71) {
                                 mousePos.y += 67;
                             }
 
                             mousePos.x = (mousePos.x - 160) / 160;
-                            mousePos.y = (mousePos.y - 135) / 135;
+                            mousePos.y = (mousePos.y - 135) / 142;
 
                             // Spawnt Enemy
                             actors->initializeEnemy(1, sf::Vector2f(mousePos));
@@ -109,7 +114,12 @@ int main()
                 GameWindow::getWindow().clear();
 
                 actors->renderActors();
-
+                for (int yA = 1; yA <= 5; yA++) {
+                    for (int xA = 1; xA <= 8; xA++) {
+                        pRectangle->setRectanglePosition(xA, yA);
+                        pRectangle->render();
+                    }
+                }
                 GameWindow::getWindow().display();
 
             }

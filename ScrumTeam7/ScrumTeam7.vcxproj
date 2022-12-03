@@ -141,6 +141,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Menu_Options.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="TestAmmo.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="TestTower.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Geld.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Menu_Options.h" />
+    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="TestAmmo.h" />
     <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="TestTower.h" />
