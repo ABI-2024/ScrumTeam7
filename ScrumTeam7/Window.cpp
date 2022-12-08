@@ -4,40 +4,50 @@
 
 // Static Variablen
 
-sf::ContextSettings* GameWindow::settings = nullptr;
+sf::ContextSettings GameWindow::settings;
 
 sf::RenderWindow* GameWindow::window = nullptr;
 unsigned int GameWindow::framerateLimit = 30;
 
-sf::Event* GameWindow::ev = nullptr;
+sf::Event GameWindow::ev;
+sf::View GameWindow::mainView;
 
 
 
 
 
-
-void GameWindow::createWindow()
+void GameWindow::openWindow()
 {
-    if (window == nullptr) {
-        settings = new sf::ContextSettings;
-
-        window = new sf::RenderWindow(sf::VideoMode(1600, 900), "Game", sf::Style::Titlebar | sf::Style::Close, *settings);
-        window->setFramerateLimit(framerateLimit);
-
-        ev = new sf::Event;
+    if (window != nullptr) {
+        delete window;
     }
+    window = new sf::RenderWindow(sf::VideoMode(1600, 900), "Game", sf::Style::Titlebar | sf::Style::Close, settings);
+    window->setFramerateLimit(framerateLimit);
 }
 
-void GameWindow::deleteWindow()
+void GameWindow::openWindow(const sf::Vector2u& WindowSize)
+{
+
+    if (window != nullptr) {
+        delete window;
+    }
+    window = new sf::RenderWindow(sf::VideoMode(WindowSize.x,WindowSize.y), "Game", sf::Style::Titlebar | sf::Style::Close, settings);
+    window->setFramerateLimit(framerateLimit);
+}
+
+void GameWindow::openFullscreen()
+{
+    if (window != nullptr) {
+        delete window;
+    }
+    window = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "Game", sf::Style::Fullscreen, settings);
+    window->setFramerateLimit(framerateLimit);
+}
+
+void GameWindow::closeWindow()
 {
     delete window;
     window = nullptr;
-
-    delete settings;
-    settings = nullptr;
-
-    delete ev;
-    ev = nullptr;
 }
 
 // static Methoden
@@ -51,7 +61,7 @@ unsigned int GameWindow::getFramerateLimit()
     return framerateLimit;
 }
 
-void GameWindow::setFramerateLimit(unsigned int FramerateLimit)
+void GameWindow::setFramerateLimit(const unsigned int& FramerateLimit)
 {
     if (window != nullptr) {
         window->setFramerateLimit(FramerateLimit);
@@ -59,27 +69,23 @@ void GameWindow::setFramerateLimit(unsigned int FramerateLimit)
     }
 }
 
-void GameWindow::setWindowSize(sf::Vector2u& WindowSize)
-{
-    if (window != nullptr) {
-        delete window;
-    } 
-    window = new sf::RenderWindow(sf::VideoMode(WindowSize.x, WindowSize.y), "Game", sf::Style::Titlebar | sf::Style::Close, *settings);
-   
-}
-
 sf::ContextSettings GameWindow::getWindowSettings()
 {
-    return *settings;
+    return settings;
 }
 
-void GameWindow::setWindowSettings(sf::ContextSettings Settings)
+void GameWindow::setWindowSettings(const sf::ContextSettings& Settings)
 {
-    *settings = Settings;
+    settings = Settings;
 }
 
 sf::Event& GameWindow::getEvent()
 {
-    return *ev;
+    return ev;
+}
+
+sf::View& GameWindow::getMainView()
+{
+    return mainView;
 }
 

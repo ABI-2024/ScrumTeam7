@@ -57,6 +57,16 @@ sf::FloatRect BaseEnemy::getFloaRect()
 	return sf::FloatRect(this->Body.getGlobalBounds());
 }
 
+void BaseEnemy::paused()
+{
+	this->remainingAttackTime = this->clock.restart() + this->remainingAttackTime ;
+}
+
+void BaseEnemy::Continue()
+{
+	this->clock.restart();
+}
+
 void BaseEnemy::render()
 {
 	GameWindow::getWindow().draw(this->Body);

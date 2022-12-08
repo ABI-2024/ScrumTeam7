@@ -59,7 +59,7 @@ TowerType TestTower::getTowerType()
 
 void TestTower::update()
 {
-	if (this->fireRate <= this->clock.getElapsedTime()) {
+	if (this->fireRate <= this->clock.getElapsedTime() + this->remainingAttackTime) {
 		this->ReadyToAttack = true;
 	}
 }

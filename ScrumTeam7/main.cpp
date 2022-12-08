@@ -10,112 +10,27 @@
 
 #include "Menu.h"
 
-#include "Actors.h"
+#include "Test_Level.h"
 
 
 int main()
 {
-    GameWindow::createWindow();
+    GameWindow::openWindow();
 
     TestAmmo::LoadTexture();
     TestTower::LoadTexture();
     TestEnemy::LoadTexture();
 
-    Actors* actors = nullptr;
+    Test_Level* level;
 
-
-    bool active = 0;
-    bool paused = 1;
 
     while (Window.isOpen()) {
         switch (Menu::openMenu()) {
         case 1:
 
-            active = 1;
-            paused = 0;
+            level = new Test_Level;
 
-            actors = new Actors();
-
-            for (int i=0; i<1; i++)
-                actors->initializeEnemy(EnemyType::TestEnemy, { 0.f , 0.f });
-
-            while (GameWindow::getWindow().isOpen() && active) {
-
-                while (GameWindow::getWindow().pollEvent(GameEvent)) {
-                    switch (GameEvent.type)
-                    {
-
-                    case sf::Event::Closed:
-                        GameWindow::getWindow().close();
-                        break;
-
-                    case sf::Event::KeyPressed:
-                        if (GameEvent.key.code == sf::Keyboard::Escape) {
-                            //paused = !paused;
-                            active = false;
-                        }
-                        break;
-
-                    case sf::Event::MouseButtonPressed:
-
-                        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-                            // Ermittlung der TilePosition
-                            sf::Vector2i mousePos = sf::Mouse::getPosition(GameWindow::getWindow());
-
-                            if (mousePos.x % 160 >= 80) {
-                                mousePos.x += 80;
-                            }
-                            if (mousePos.y % 135 >= 68) {
-                                mousePos.y += 67;
-                            }
-
-                            mousePos.x = (mousePos.x - 160) / 160;
-                            mousePos.y = (mousePos.y - 135) / 135;
-
-                            // Spawnt Tower
-                            actors->initializeTower(TowerType::TestTower, sf::Vector2f(mousePos));
-                        }
-                        if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
-
-                            // Ermittlung der TilePosition
-                            sf::Vector2i mousePos = sf::Mouse::getPosition(GameWindow::getWindow());
-
-                            if (mousePos.x % 160 >= 80) {
-                                mousePos.x += 80;
-                            }
-                            if (mousePos.y % 135 >= 68) {
-                                mousePos.y += 67;
-                            }
-
-                            mousePos.x = (mousePos.x - 160) / 160;
-                            mousePos.y = (mousePos.y - 135) / 135;
-
-                            // Spawnt Enemy
-                            actors->initializeEnemy(EnemyType::TestEnemy, sf::Vector2f(mousePos));
-                        }
-
-                        break;
-
-                    default:
-                        break;
-                    }
-                }
-
-                actors->updateActors();
-
-                actors->Collisions();
-
-
-                GameWindow::getWindow().clear();
-
-                actors->renderActors();
-
-                GameWindow::getWindow().display();
-
-            }
-
-            delete actors;
+            level->startLevel();
 
         case 2:
             break;
@@ -132,7 +47,7 @@ int main()
     TestTower::unLoadTexture();
     TestEnemy::unLoadTexture();
 
-    GameWindow::deleteWindow();
+    GameWindow::closeWindow();
     return 0;
 }
 

@@ -130,10 +130,7 @@ void Actors::renderEnemies()
 
 
 // Constructur & Destructur
-Actors::Actors()
-{
-
-}
+Actors::Actors() {}
 
 Actors::~Actors()
 {
@@ -149,6 +146,27 @@ Actors::~Actors()
     Towers.clear();
     Ammos.clear();
     Enemies.clear();
+}
+
+
+void Actors::pauseActors()
+{
+    for (auto i = Towers.begin(); i != Towers.end(); i++) {
+        (*i)->paused();
+    }
+    for (auto i = Enemies.begin(); i != Enemies.end(); i++) {
+        (*i)->paused();
+    }
+}
+
+void Actors::ContinueActors()
+{
+    for (auto i = Towers.begin(); i != Towers.end(); i++) {
+        (*i)->Continue();
+    }
+    for (auto i = Enemies.begin(); i != Enemies.end(); i++) {
+        (*i)->Continue();
+    }
 }
 
 //public Methoden

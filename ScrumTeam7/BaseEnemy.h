@@ -16,6 +16,8 @@ protected:
 	float linePosition;
 
 	sf::Clock clock;
+	sf::Time remainingAttackTime;
+
 
 	void initBaseVariables(float Health , float linePosition, sf::Texture *texture);
 public:
@@ -35,6 +37,9 @@ public:
 	sf::FloatRect getFloaRect();
 
 	virtual bool CollisionWithTower(sf::FloatRect& Tower) =0;
+
+	void paused();
+	void Continue();
 
 	virtual void update() =0;
 	void render();

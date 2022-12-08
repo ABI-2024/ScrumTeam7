@@ -17,6 +17,7 @@ protected:
 	sf::Vector2f tilePosition;
 
 	sf::Clock clock;
+	sf::Time remainingAttackTime;
 
 	void initBaseVariables(float Health, sf::Vector2f tilePosition, sf::Texture *texture);
 public:
@@ -36,6 +37,10 @@ public:
 
 	void HasAttacked();
 	void wasAttacked(float damage);
+
+
+	void paused();
+	void Continue();
 
 	void render();
 

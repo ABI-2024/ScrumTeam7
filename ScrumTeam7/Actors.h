@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "enums.h"
+#include "Geld.h"
 
 // Tower / Lehrer
 #include "TestTower.h"
@@ -13,8 +14,6 @@
 // Enemies / Gegener
 #include "TestEnemy.h"
 
-// Money / Geld
-#include "Geld.h"
 
 /*
 	Diese Klasse enthält alle Tower-,Enemies- und Ammotypen
@@ -54,6 +53,8 @@ private:
 	std::vector<BaseAmmo*> Ammos;
 	std::vector<BaseEnemy*> Enemies;
 
+
+
 	// Updaten alle vectoren und ihre zugehörigen BasisTypen*
 	void updateTowers();
 	void updateAmmos();
@@ -70,6 +71,10 @@ private:
 public:
 	Actors();
 	~Actors();
+
+	void pauseActors();
+	void ContinueActors();
+
 	// Ruft alle Update-Methoden
 	void updateActors();
 

@@ -61,6 +61,7 @@ void BaseTower::HasAttacked()
 {
 	this->ReadyToAttack = false;
 	this->clock.restart();
+	this->remainingAttackTime = sf::milliseconds(0);
 }
 
 sf::Vector2f BaseTower::getPosition()
@@ -73,7 +74,15 @@ sf::Vector2f BaseTower::getTilePosition()
 	return this->tilePosition;
 }
 
-// public Methoden
+void BaseTower::paused()
+{
+	this->remainingAttackTime = this->clock.restart() + this->remainingAttackTime;
+}
+
+void BaseTower::Continue()
+{
+	this->clock.restart();
+}
 
 void BaseTower::render()
 {

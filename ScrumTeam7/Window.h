@@ -10,26 +10,28 @@ class GameWindow
 {
 private:
 
-	static sf::ContextSettings* settings;
+	static sf::ContextSettings settings;
 
 	static sf::RenderWindow* window;
 	static unsigned int framerateLimit;
 
-	static sf::Event* ev;
-
+	static sf::Event ev;
+	static sf::View mainView;
 public:
 
-	static void createWindow();
-	static void deleteWindow();
+	static void openWindow();
+	static void openWindow(const sf::Vector2u& WindowSize);
+	static void openFullscreen();
+	static void closeWindow();
 
 	static sf::RenderWindow& getWindow();
 
 	static unsigned int getFramerateLimit();
-	static void setFramerateLimit(unsigned int FramerateLimit);
+	static void setFramerateLimit(const unsigned int& FramerateLimit);
 
-	static void setWindowSize(sf::Vector2u& WindowSize);
 	static sf::ContextSettings getWindowSettings();
-	static void setWindowSettings(sf::ContextSettings Settings);
+	static void setWindowSettings(const sf::ContextSettings& Settings);
 
 	static sf::Event& getEvent();
+	static sf::View& getMainView();
 };
