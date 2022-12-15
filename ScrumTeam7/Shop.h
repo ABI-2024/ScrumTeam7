@@ -8,7 +8,7 @@ class Shop
 private:
 	
 	int anzahlKarten;
-	Karte** karten; // int cost , int Type ,Texture
+	Karte** karten; // int cost, int Type, Texture
 
 	sf::Font font;
 	sf::Text* text;
