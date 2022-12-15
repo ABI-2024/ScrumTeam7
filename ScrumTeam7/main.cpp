@@ -17,6 +17,9 @@ int main()
 {
     GameWindow::openWindow();
 
+    GameWindow::getMainView().setSize(1600,900);
+    GameWindow::getMainView().setViewport({0,0,1,1});
+
     TestAmmo::LoadTexture();
     TestTower::LoadTexture();
     TestEnemy::LoadTexture();

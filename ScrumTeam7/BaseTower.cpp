@@ -11,7 +11,7 @@ void BaseTower::initBaseVariables(float Health, sf::Vector2f tilePosition, sf::T
 	this->health = Health;
 	this->tilePosition = tilePosition;
 
-	this->Body.setPosition(160 + 160*this->tilePosition.x ,135 + 135*this->tilePosition.y);
+	this->Body.setPosition(320 + 160*this->tilePosition.x ,135 + 135*this->tilePosition.y);
 	this->Body.setSize(sf::Vector2f(70.f , 140.f));
 	this->Body.setOrigin(sf::Vector2f(this->Body.getSize().x/2, this->Body.getSize().y / 2));
 	this->Body.setTexture(texture, 0);

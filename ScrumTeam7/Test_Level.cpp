@@ -7,7 +7,7 @@ void Test_Level::buttonEvents()
     switch ( this->menu.mouseClick()) {
     case 0:
         paused = false;
-        actors.Collisions();
+        actors.ContinueActors();
         break;
     case 1:
         break;
@@ -61,6 +61,8 @@ void Test_Level::startLevel()
                         // Ermittlung der TilePosition
                         sf::Vector2i mousePos = sf::Mouse::getPosition(GameWindow::getWindow());
 
+                        mousePos -= {320, 135};
+
                         if (mousePos.x % 160 >= 80) {
                             mousePos.x += 80;
                         }
@@ -68,8 +70,8 @@ void Test_Level::startLevel()
                             mousePos.y += 67;
                         }
 
-                        mousePos.x = (mousePos.x - 160) / 160;
-                        mousePos.y = (mousePos.y - 135) / 135;
+                        mousePos.x = (mousePos.x) / 160;
+                        mousePos.y = (mousePos.y) / 135;
 
                         // Spawnt Tower
                         actors.initializeTower(TowerType::TestTower, sf::Vector2f(mousePos));
@@ -98,6 +100,15 @@ void Test_Level::startLevel()
                         this->buttonEvents();
                     }
                 }
+                break;
+
+
+            case sf::Event::LostFocus:
+                if (!paused) {
+                    actors.pauseActors();
+                }
+                paused = 1;
+
                 break;
 
             default:

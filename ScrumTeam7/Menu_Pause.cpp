@@ -23,11 +23,11 @@ Menu_Pause::Menu_Pause()
 	buttonText = new std::string[Anzahl_Button];
 	buttonText[0] = "Continue";
 	buttonText[1] = "Options";
-	buttonText[2] = "Exit";
+	buttonText[2] = "Back to Menu";
 
 	button = new Button[Anzahl_Button];
 	for (int i = 0; i < Anzahl_Button; i++) {
-		button[i] = Button(font, sf::Color(34, 32, 52), buttonText[i], buttonTexture, { (float)Window.getSize().x / 2 , 240.f + 200.f * i }, { 500.f, 120.f });
+		button[i] = Button(font, sf::Color(34, 32, 52), buttonText[i], buttonTexture, { (float)Window.getSize().x / 2 , 240.f + 200.f * i }, { 500.f, 100.f });
 	}
 }
 

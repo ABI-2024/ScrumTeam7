@@ -5,23 +5,26 @@
 class Menu_Options
 {
 private:
-	sf::Font* font;
+	bool open;
+
+	sf::Font font;
 	sf::Texture* buttonTexture;
 	std::string* buttonText;
 	Button* button;
 
-	sf::Texture backgroundTexture;
+	sf::Texture* backgroundTexture;
 	sf::RectangleShape background;
 
-public:
 	Menu_Options();
 	~Menu_Options();
-
 
 	void buttonEvents();
 	void updateButtom();
 	void render();
 
+public:
+
+	static void openOptions();
 
 };
 

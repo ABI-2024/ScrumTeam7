@@ -196,6 +196,14 @@ void Actors::renderActors()
 
 void Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
 {
+    if (TilePosition.x < 0 || TilePosition.x >7) {
+        return;
+    }
+
+    if (TilePosition.y < 0 || TilePosition.y > 5) {
+        return;
+    }
+
     for (auto i = Towers.begin(); i != Towers.end(); i++) {
         if ((*i)->getTilePosition() == TilePosition) {
             return;

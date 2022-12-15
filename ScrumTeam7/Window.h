@@ -17,6 +17,7 @@ private:
 
 	static sf::Event ev;
 	static sf::View mainView;
+
 public:
 
 	static void openWindow();
