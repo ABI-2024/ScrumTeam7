@@ -64,7 +64,7 @@ void Test_Level::startLevel()
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
                         // Ermittlung der TilePosition
-                        sf::Vector2i mousePos = sf::Mouse::getPosition(GameWindow::getWindow());
+                        sf::Vector2i mousePos = sf::Vector2i( Window.mapPixelToCoords(sf::Mouse::getPosition(Window)));
 
                         mousePos -= {320, 135};
 
@@ -84,7 +84,7 @@ void Test_Level::startLevel()
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 
                         // Ermittlung der TilePosition
-                        sf::Vector2i mousePos = sf::Mouse::getPosition(GameWindow::getWindow());
+                        sf::Vector2i mousePos = sf::Vector2i(Window.mapPixelToCoords(sf::Mouse::getPosition(Window)));
 
                         if (mousePos.x % 160 >= 80) {
                             mousePos.x += 80;

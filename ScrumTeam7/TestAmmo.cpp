@@ -64,7 +64,7 @@ void TestAmmo::move()
 {
 	this->Body.move(this->dir * dt);
 
-	if (this->Body.getPosition().x >= GameWindow::getWindow().getSize().x) {
+	if (this->Body.getPosition().x >= GameWindow::getMainView().getSize().x) {
 		this->hit = true;
 	}
 }
