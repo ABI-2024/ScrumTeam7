@@ -1,5 +1,4 @@
 #include "BaseEnemy.h"
-
 #include "Window.h"
 
 void BaseEnemy::initBaseVariables( float Health, float linePosition, sf::Texture* texture)
@@ -9,7 +8,7 @@ void BaseEnemy::initBaseVariables( float Health, float linePosition, sf::Texture
 	this->health = Health;
 	this->linePosition = linePosition;
 
-	this->Body.setPosition(GameWindow::getWindow().getSize().x , 135.f + 135.f * this->linePosition);
+	this->Body.setPosition(GameWindow::getMainView().getSize().x , 135.f + 135.f * this->linePosition);
 	this->Body.setSize(sf::Vector2f(70.f, 140.f));
 	this->Body.setOrigin(sf::Vector2f(this->Body.getSize().x / 2, this->Body.getSize().y / 2));
 	this->Body.setTexture(texture, 0);

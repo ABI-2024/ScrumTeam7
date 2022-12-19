@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Window.h"
 #include "Button.h"
 
 class Menu_Options
@@ -14,6 +14,9 @@ private:
 
 	sf::Texture* backgroundTexture;
 	sf::RectangleShape background;
+
+	Settings settings;
+	sf::Vector2u aufloesung[6];
 
 	Menu_Options();
 	~Menu_Options();

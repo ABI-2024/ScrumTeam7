@@ -8,7 +8,7 @@ AmmoType TestAmmo::ammoType = AmmoType::TestAmmo;
 
 float TestAmmo::damage = 20.f;
 
-sf::Vector2f TestAmmo::dir = sf::Vector2f(14.f,0);
+sf::Vector2f TestAmmo::dir = sf::Vector2f(400.f,0);
 
 sf::Texture* TestAmmo::texture = nullptr;
 
@@ -62,7 +62,8 @@ bool TestAmmo::CollisionWithEnemy(sf::FloatRect& Enemy)
 
 void TestAmmo::move()
 {
-	this->Body.move(this->dir);
+	this->Body.move(this->dir * dt);
+
 	if (this->Body.getPosition().x >= GameWindow::getWindow().getSize().x) {
 		this->hit = true;
 	}

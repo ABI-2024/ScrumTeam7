@@ -9,6 +9,7 @@
 #include "enums.h"
 
 #include "Menu.h"
+#include "Menu_Options.h"
 
 #include "Test_Level.h"
 
@@ -17,14 +18,13 @@ int main()
 {
     GameWindow::openWindow();
 
-    GameWindow::getMainView().setSize(1600,900);
     GameWindow::getMainView().setViewport({0,0,1,1});
 
     TestAmmo::LoadTexture();
     TestTower::LoadTexture();
     TestEnemy::LoadTexture();
 
-    Test_Level* level;
+    Test_Level* level = nullptr;
 
 
     while (Window.isOpen()) {
@@ -35,7 +35,11 @@ int main()
 
             level->startLevel();
 
+            delete level;
+            level = nullptr;
+            break;
         case 2:
+            Menu_Options::openOptions();
             break;
         case 0: default:
             Window.close();

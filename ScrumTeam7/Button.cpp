@@ -61,10 +61,16 @@ const bool& Button::isHovered()
 	return this->hovered;
 }
 
+void Button::setText(const std::string& text)
+{
+	this->text.setString(text);
+	this->text.setOrigin(this->text.getGlobalBounds().width / 2, this->hitBox.height / 4 + this->hitBox.width / 64);
+}
+
 void Button::update()
 {
-	sf::FloatRect mouse = {sf::Vector2f( sf::Mouse::getPosition(Window) ), {1,1} };
-
+	sf::FloatRect mouse = {sf::Vector2f( Window.mapPixelToCoords(sf::Mouse::getPosition(Window) )), {1,1} };
+	
 	if (hitBox.intersects(mouse)) {
 		for (int i = 0; i < 3; i++) {
 			Body[i].setFillColor(sf::Color(200, 200, 200));

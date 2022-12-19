@@ -64,12 +64,12 @@ Menu::Menu()
 	//Button-text
 	buttonText = new std::string[Anzahl_Button];
 	buttonText[0] = "Start";
-	buttonText[1] = "Options";
+	buttonText[1] = "Optionen";
 	buttonText[2] = "Exit";
 
 	button = new Button[Anzahl_Button];
 	for (int i = 0; i < Anzahl_Button; i++) {
-		button[i] = Button(font[0], sf::Color(34, 32, 52), buttonText[i], buttonTexture, { (float)Window.getSize().x / 2 , 240.f+ 200.f*i }, { 360.f, 120.f });
+		button[i] = Button(font[0], sf::Color(34, 32, 52), buttonText[i], buttonTexture, { GameWindow::getMainView().getSize().x / 2 , 240.f+ 200.f*i }, { 400.f, 120.f });
 	}
 
 
@@ -90,7 +90,7 @@ int Menu::openMenu()
 
 	sf::RectangleShape background;
 	background.setPosition(0,0);
-	background.setSize(sf::Vector2f( Window.getSize() ));
+	background.setSize( GameWindow::getMainView().getSize() );
 	background.setTexture(background_Texture,0);
 
 
@@ -124,6 +124,8 @@ int Menu::openMenu()
 		}
 
 		Window.clear();
+
+		Window.setView(GameWindow::getMainView());
 
 		Window.draw(background);
 

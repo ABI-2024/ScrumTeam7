@@ -10,6 +10,7 @@ void Test_Level::buttonEvents()
         actors.ContinueActors();
         break;
     case 1:
+
         break;
     case 2:
         active = false;
@@ -31,8 +32,12 @@ void Test_Level::startLevel()
     for (int i = 0; i < 1; i++)
         actors.initializeEnemy(EnemyType::TestEnemy, { 0.f , 0.f });
 
+    GameWindow::updateDeltaTime();
+
     while (GameWindow::getWindow().isOpen() && active) {
 
+        GameWindow::updateDeltaTime();
+        
         while (GameWindow::getWindow().pollEvent(GameEvent)) {
             switch (GameEvent.type)
             {

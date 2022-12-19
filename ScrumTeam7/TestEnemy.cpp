@@ -1,4 +1,5 @@
 #include "TestEnemy.h"
+#include "Window.h"
 
 #include <iostream>
 
@@ -11,7 +12,7 @@ float TestEnemy::Damage = 20;
 
 int TestEnemy::revenue = 5;
 
-sf::Vector2f TestEnemy::dir = sf::Vector2f(-1, 0);
+sf::Vector2f TestEnemy::dir = sf::Vector2f(-10, 0);
 
 sf::Texture* TestEnemy::texture = nullptr;
 
@@ -84,7 +85,7 @@ bool TestEnemy::CollisionWithTower(sf::FloatRect& Tower)
 void TestEnemy::move()
 {
 	if (Movable) {
-		this->Body.move(this->dir);
+		this->Body.move(this->dir * dt);
 	}
 	else {
 		Movable = true;

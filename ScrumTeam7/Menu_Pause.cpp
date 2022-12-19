@@ -7,7 +7,7 @@
 Menu_Pause::Menu_Pause()
 {
 	background.setPosition(0, 0);
-	background.setSize(sf::Vector2f(Window.getSize()));
+	background.setSize(sf::Vector2f(GameWindow::getMainView().getSize()));
 	background.setFillColor(sf::Color(0,0,0,200));
 
 	// Font
@@ -21,13 +21,13 @@ Menu_Pause::Menu_Pause()
 
 	//Button-text
 	buttonText = new std::string[Anzahl_Button];
-	buttonText[0] = "Continue";
-	buttonText[1] = "Options";
-	buttonText[2] = "Back to Menu";
+	buttonText[0] = "Weiter";
+	buttonText[1] = "Optionen";
+	buttonText[2] = "Hauptmenu";
 
 	button = new Button[Anzahl_Button];
 	for (int i = 0; i < Anzahl_Button; i++) {
-		button[i] = Button(font, sf::Color(34, 32, 52), buttonText[i], buttonTexture, { (float)Window.getSize().x / 2 , 240.f + 200.f * i }, { 500.f, 100.f });
+		button[i] = Button(font, sf::Color(34, 32, 52), buttonText[i], buttonTexture, { GameWindow::getMainView().getSize().x / 2 , 240.f + 200.f * i }, { 500.f, 100.f });
 	}
 }
 

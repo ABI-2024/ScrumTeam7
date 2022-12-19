@@ -24,6 +24,8 @@ public:
 
 	const bool& isHovered();
 
+	void setText(const std::string& text);
+
 	void update();
 	
 	void render();
