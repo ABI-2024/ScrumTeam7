@@ -13,36 +13,75 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Quelldateien\Entities">
+      <UniqueIdentifier>{563a6bab-32ba-4c5c-845b-1c1bc27a7009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Entities\Ammo">
+      <UniqueIdentifier>{549e915d-1e6e-4d31-8182-c76fd6b2b358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Entities\Enemy">
+      <UniqueIdentifier>{d8785771-56f7-4364-bfb8-5062905bc32b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Entities\Tower">
+      <UniqueIdentifier>{312a4397-2f62-4ded-9ebb-724cbddad15b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Header Entities">
+      <UniqueIdentifier>{1c0a2d9b-0b69-45f1-8cb4-d48ee0ba1639}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Header Entities\Header Ammo">
+      <UniqueIdentifier>{f67cde80-421e-4e29-b2a0-c03e52146a06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Header Entities\Header Enemy">
+      <UniqueIdentifier>{36127a92-778f-4643-9bbc-298dbe3f4efc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Header Entities\Header Tower">
+      <UniqueIdentifier>{5f358e07-6966-411e-abe5-05348da78c7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="BaseTower.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseAmmo.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Window.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="TestAmmo.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="TestTower.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseEnemy.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="TestEnemy.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Actors.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Geld.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_Options.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="TestAmmo.cpp">
+      <Filter>Quelldateien\Entities\Ammo</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseAmmo.cpp">
+      <Filter>Quelldateien\Entities\Ammo</Filter>
+    </ClCompile>
+    <ClCompile Include="TestTower.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseTower.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseEnemy.cpp">
+      <Filter>Quelldateien\Entities\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="TestEnemy.cpp">
+      <Filter>Quelldateien\Entities\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu_Pause.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Test_Level.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Shop.cpp">
@@ -53,31 +92,49 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BaseTower.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseAmmo.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Window.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="TestAmmo.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="TestTower.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseEnemy.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="TestEnemy.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Actors.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Geld.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu_Options.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="enums.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseAmmo.h">
+      <Filter>Headerdateien\Header Entities\Header Ammo</Filter>
+    </ClInclude>
+    <ClInclude Include="TestAmmo.h">
+      <Filter>Headerdateien\Header Entities\Header Ammo</Filter>
+    </ClInclude>
+    <ClInclude Include="TestEnemy.h">
+      <Filter>Headerdateien\Header Entities\Header Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseEnemy.h">
+      <Filter>Headerdateien\Header Entities\Header Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseTower.h">
+      <Filter>Headerdateien\Header Entities\Header Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="TestTower.h">
+      <Filter>Headerdateien\Header Entities\Header Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu_Pause.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Test_Level.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Shop.h">

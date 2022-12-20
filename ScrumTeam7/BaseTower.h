@@ -1,12 +1,11 @@
 #pragma once
-
+#include "enums.h"
 #include "SFML/Graphics.hpp"
 
 
 class BaseTower
 {
 protected:
-	int towerType;
 
 	sf::RectangleShape Body;
 	
@@ -18,14 +17,13 @@ protected:
 	sf::Vector2f tilePosition;
 
 	sf::Clock clock;
+	sf::Time remainingAttackTime;
 
-	void initBaseVariables(int TowerType ,float Health, sf::Vector2f tilePosition, sf::Texture *texture);
+	void initBaseVariables(float Health, sf::Vector2f tilePosition, sf::Texture *texture);
 public:
 
 	BaseTower();
 	~BaseTower();
-
-	int getType();
 
 	bool isAlive();
 	bool isReadyToAttack();
@@ -34,8 +32,15 @@ public:
 	sf::Vector2f getPosition();
 	sf::Vector2f getTilePosition();
 
+
+	virtual TowerType getTowerType() = 0;
+
 	void HasAttacked();
 	void wasAttacked(float damage);
+
+
+	void paused();
+	void Continue();
 
 	void render();
 

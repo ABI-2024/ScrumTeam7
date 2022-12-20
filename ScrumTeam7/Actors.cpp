@@ -2,6 +2,7 @@
 
 #include "Window.h"
 
+#include <iostream>
 
 // private Methoden
 void Actors::updateTowers()
@@ -9,7 +10,7 @@ void Actors::updateTowers()
     Towers.clear();
 
     for (auto i = testTower.begin(); i != testTower.end(); i++) {
-
+        
         if (!i->isAlive()) {
             i = testTower.erase(i);
             if (i == testTower.end()) {
@@ -20,14 +21,8 @@ void Actors::updateTowers()
         i->update();
 
         if (i->isReadyToAttack()) {
-            switch (i->getType()) {
-            case 1:
                 i->HasAttacked();
-                testAmmo.push_back(i->getPosition());
-                break;
-            default:
-                break;
-            }
+                testAmmo.push_back( i->getPosition() );
         }
 
         this->Towers.push_back( &(*i) );
@@ -85,7 +80,7 @@ void Actors::CollisionEnemyWithTower()
 
             sf::FloatRect tmp = (*i)->getFloaRect();
 
-            if ((*j)->CollisionWithTower(tmp)) {
+            if ((*j)->CollisionWithTower(tmp) && (*j)->isReadyToAttack()) {
                 (*i)->wasAttacked((*j)->getDamage());
                 (*j)->hasAttacked();
             }
@@ -100,7 +95,7 @@ void Actors::CollisionAmmoWithEnemy()
 
             sf::FloatRect tmp = (*i)->getFloaRect();
 
-            if ((*j)->CollisionWithEnemy(tmp)) {
+            if ((*j)->CollisionWithEnemy(tmp) && !(*j)->isHit()) {
                 (*i)->wasAttacked((*j)->getDamage());
                 (*j)->hasHit();
             }
@@ -135,14 +130,12 @@ void Actors::renderEnemies()
 
 
 // Constructur & Destructur
-Actors::Actors()
-{
-    // Font und Text Initialisierung
-}
+Actors::Actors() {}
 
 Actors::~Actors()
 {
     // Löschung aller Gespeicherten Klassentypen
+
     testTower.clear();
 
     testAmmo.clear();
@@ -153,6 +146,27 @@ Actors::~Actors()
     Towers.clear();
     Ammos.clear();
     Enemies.clear();
+}
+
+
+void Actors::pauseActors()
+{
+    for (auto i = Towers.begin(); i != Towers.end(); i++) {
+        (*i)->paused();
+    }
+    for (auto i = Enemies.begin(); i != Enemies.end(); i++) {
+        (*i)->paused();
+    }
+}
+
+void Actors::ContinueActors()
+{
+    for (auto i = Towers.begin(); i != Towers.end(); i++) {
+        (*i)->Continue();
+    }
+    for (auto i = Enemies.begin(); i != Enemies.end(); i++) {
+        (*i)->Continue();
+    }
 }
 
 //public Methoden
@@ -174,13 +188,22 @@ void Actors::renderActors()
     this->renderTowers();
     this->renderAmmos();
     this->renderEnemies();
+
     testGeld.render();
 }
 
 
 
-void Actors::initializeTower(int TowerType, sf::Vector2f TilePosition)
+void Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
 {
+    if (TilePosition.x < 0 || TilePosition.x >7) {
+        return;
+    }
+
+    if (TilePosition.y < 0 || TilePosition.y > 5) {
+        return;
+    }
+
     for (auto i = Towers.begin(); i != Towers.end(); i++) {
         if ((*i)->getTilePosition() == TilePosition) {
             return;
@@ -189,7 +212,7 @@ void Actors::initializeTower(int TowerType, sf::Vector2f TilePosition)
 
     switch (TowerType)
     {
-    case TypeTestTower:
+    case TowerType::TestTower:
         testTower.push_back(TilePosition);
         break;
 
@@ -198,12 +221,12 @@ void Actors::initializeTower(int TowerType, sf::Vector2f TilePosition)
     }
 }
 
-void Actors::initializeAmmo(int AmmoType, sf::Vector2f TilePosition)
+void Actors::initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition )
 {
-    switch (AmmoType)
+    switch (EnemyType)
     {
-    case TypeTestAmmo:
-        testAmmo.push_back(TilePosition);
+    case EnemyType::TestEnemy:
+        testEnemy.push_back(TilePosition.y);
         break;
 
     default:
@@ -211,12 +234,12 @@ void Actors::initializeAmmo(int AmmoType, sf::Vector2f TilePosition)
     }
 }
 
-void Actors::initializeEnemy(int EnemyType, sf::Vector2f TowerPosition)
+void Actors::initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition)
 {
-    switch (EnemyType)
+    switch (AmmoType)
     {
-    case TypeTestEnemy:
-        testEnemy.push_back(TowerPosition.y);
+    case AmmoType::TestAmmo:
+        testAmmo.push_back(TowerPosition);
         break;
 
     default:

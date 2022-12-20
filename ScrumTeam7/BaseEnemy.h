@@ -1,33 +1,35 @@
 #pragma once
-
+#include "enums.h"
 #include "SFML/Graphics.hpp"
 
 class BaseEnemy
 {
 protected:
 
-	int enemyType;
 	sf::RectangleShape Body;
 
 	bool alive;
 	bool ReadyToAttack;
-
+	bool Movable;
 	float health;
-	float damage;
 
 	float linePosition;
 
 	sf::Clock clock;
+	sf::Time remainingAttackTime;
 
-	void initBaseVariables(int EnemyType ,float Damage ,float Health , float linePosition, sf::Texture *texture);
+
+	void initBaseVariables(float Health , float linePosition, sf::Texture *texture);
 public:
 	BaseEnemy();
 	~BaseEnemy();
 
 	bool isAlive();
 	bool isReadyToAttack();
-	int getType();
-	float getDamage();
+
+
+	virtual EnemyType getEnemyType() = 0;
+	virtual float getDamage() = 0;
 
 	void hasAttacked();
 	void wasAttacked(float damage);
@@ -35,6 +37,9 @@ public:
 	sf::FloatRect getFloaRect();
 
 	virtual bool CollisionWithTower(sf::FloatRect& Tower) =0;
+
+	void paused();
+	void Continue();
 
 	virtual void update() =0;
 	void render();
