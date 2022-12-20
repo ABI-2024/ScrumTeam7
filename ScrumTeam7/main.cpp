@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <vector>
+#include <stdio.h>
+#include <fstream>
 
 #include "SFML/Graphics.hpp"
 #include "Window.h"
@@ -27,7 +29,10 @@ int main()
 
     // Spawnt Enemy
     actors.initializeEnemy(1, { 0.f , 0.f });
-    
+
+    std::ofstream wellenDaten;
+    wellenDaten.open("Datenwellen.csv");
+
     while (GameWindow::getWindow().isOpen()) {
 
         while (GameWindow::getWindow().pollEvent(GameEvent) ) {
@@ -86,6 +91,7 @@ int main()
     TestEnemy::unLoadTexture();
 
     GameWindow::deleteWindow();
+    wellenDaten.close();
     return 0;
 }
 
