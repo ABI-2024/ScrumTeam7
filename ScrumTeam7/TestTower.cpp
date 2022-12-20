@@ -35,7 +35,7 @@ void TestTower::unLoadTexture()
 
 // private Methden
 
-// Constructur & Destructur
+// Konstructur & Destructur
 TestTower::TestTower()
 {
 }

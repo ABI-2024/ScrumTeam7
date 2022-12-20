@@ -84,6 +84,12 @@
     <ClCompile Include="Test_Level.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Shop.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Karte.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -129,6 +135,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Test_Level.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Shop.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Karte.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
