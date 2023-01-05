@@ -1,5 +1,6 @@
 #include "Test_Level.h"
 #include "Window.h"
+#include "Raster.h"
 
 
 void Test_Level::buttonEvents()
@@ -31,6 +32,9 @@ void Test_Level::startLevel()
 {
     for (int i = 0; i < 1; i++)
         actors.initializeEnemy(EnemyType::TestEnemy, { 0.f , 0.f });
+
+    Raster raster(80,48);
+
 
     GameWindow::updateDeltaTime();
 
@@ -71,12 +75,12 @@ void Test_Level::startLevel()
                         if (mousePos.x % 160 >= 80) {
                             mousePos.x += 80;
                         }
-                        if (mousePos.y % 135 >= 68) {
-                            mousePos.y += 67;
+                        if (mousePos.y % 142 >= 71) {
+                            mousePos.y += 71;
                         }
 
                         mousePos.x = (mousePos.x) / 160;
-                        mousePos.y = (mousePos.y) / 135;
+                        mousePos.y = (mousePos.y) / 142;
 
                         // Spawnt Tower
                         actors.initializeTower(TowerType::TestTower, sf::Vector2f(mousePos));
@@ -86,15 +90,17 @@ void Test_Level::startLevel()
                         // Ermittlung der TilePosition
                         sf::Vector2i mousePos = sf::Vector2i(Window.mapPixelToCoords(sf::Mouse::getPosition(Window)));
 
+                        mousePos -= {320, 135};
+
                         if (mousePos.x % 160 >= 80) {
                             mousePos.x += 80;
                         }
-                        if (mousePos.y % 135 >= 68) {
-                            mousePos.y += 67;
+                        if (mousePos.y % 142 >= 71) {
+                            mousePos.y += 71;
                         }
 
-                        mousePos.x = (mousePos.x - 160) / 160;
-                        mousePos.y = (mousePos.y - 135) / 135;
+                        mousePos.x = (mousePos.x) / 160;
+                        mousePos.y = (mousePos.y) / 142;
 
                         // Spawnt Enemy
                         actors.initializeEnemy(EnemyType::TestEnemy, sf::Vector2f(mousePos));
@@ -133,6 +139,13 @@ void Test_Level::startLevel()
 
 
         Window.clear();
+
+        for (int yA = 1; yA <= 5; yA++) {
+            for (int xA = 2; xA <= 8; xA++) {
+                raster.setRasterPosition(xA, yA);
+                raster.render();
+            }
+        }
 
         actors.renderActors();
 

@@ -143,6 +143,7 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Menu_Options.cpp" />
     <ClCompile Include="Menu_Pause.cpp" />
+    <ClCompile Include="Raster.cpp" />
     <ClCompile Include="TestAmmo.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="TestTower.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Menu_Options.h" />
     <ClInclude Include="Menu_Pause.h" />
+    <ClInclude Include="Raster.h" />
     <ClInclude Include="TestAmmo.h" />
     <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="TestTower.h" />
