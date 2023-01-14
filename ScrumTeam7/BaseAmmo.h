@@ -1,5 +1,6 @@
 #pragma once
 
+#include "enums.h"
 #include "SFML/Graphics.hpp"
 
 
@@ -7,21 +8,20 @@
 class BaseAmmo
 {
 protected:
-	int AmmoType;
 
 	bool hit;
-	float damage;
 
 	sf::RectangleShape Body;
 
-	void initBaseVariables(int ammoType, float damage , sf::Vector2f TowerPosition, sf::Texture* texture);
+	void initBaseVariables( sf::Vector2f TowerPosition, sf::Texture* texture);
 public:
 	BaseAmmo();
 	~BaseAmmo();
 
 	bool isHit();
-	int getType();
-	float getDamage();
+
+	virtual AmmoType getAmmoType() = 0;
+	virtual float getDamage() = 0;
 
 	void hasHit();
 

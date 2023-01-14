@@ -4,7 +4,7 @@
 
 
 // static Variablen
-int TestTower::TowerType = 1;
+TowerType TestTower::towerType = TowerType::TestTower;
 int TestTower::Cost = 20;
 float TestTower::Health = 200;
 sf::Time TestTower::fireRate = sf::milliseconds(1500);
@@ -17,10 +17,10 @@ void TestTower::LoadTexture()
 		texture = new sf::Texture();
 	}
 
-	if (!texture->loadFromFile("Textures/SportLehre1.png")) {
+	if (!texture->loadFromFile("resource/Textures/SportLehre1.png")) {
 		std::cout << "\tFail: Textur not loaded!\n\n";
 
-		if (!texture->loadFromFile("Textures/DefaultTexture.png")) {
+		if (!texture->loadFromFile("resource/Textures/DefaultTexture.png")) {
 			std::cout << "\tFail: Textur not loaded!\n\n";
 		}
 	}
@@ -42,11 +42,16 @@ TestTower::TestTower()
 
 TestTower::TestTower(sf::Vector2f tilePosition)
 {
-	this->initBaseVariables(this->TowerType, this->Health ,tilePosition, texture);
+	this->initBaseVariables( this->Health ,tilePosition, texture);
 }
 
 TestTower::~TestTower()
 {
+}
+
+TowerType TestTower::getTowerType()
+{
+	return this->towerType;
 }
 
 //public Methoden
@@ -54,7 +59,7 @@ TestTower::~TestTower()
 
 void TestTower::update()
 {
-	if (this->fireRate <= this->clock.getElapsedTime()) {
+	if (this->fireRate <= this->clock.getElapsedTime() + this->remainingAttackTime) {
 		this->ReadyToAttack = true;
 	}
 }

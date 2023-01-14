@@ -4,7 +4,7 @@
 class Geld
 {
 private:
-	static double Startgeld;
+	static int Startgeld;
 	int Kontostand;
 	sf::Font font;
 	sf::Text text;

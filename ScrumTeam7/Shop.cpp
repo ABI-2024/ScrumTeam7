@@ -25,6 +25,19 @@ Shop::~Shop() {
 }
 
 
+int Shop::getSellection() {
+	return this->sellection;
+}
+
+
+void Shop::setSellection(int s) {
+	if (s > 0 && s < 6) {
+		this->sellection = s;
+	}
+	else this->sellection = 0;
+}
+
+
 void Shop::render() {
 	for (int i = 0; i < anzahlKarten; i++) {
 		(*karten)[i].render();

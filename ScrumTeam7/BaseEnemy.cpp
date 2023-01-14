@@ -1,28 +1,25 @@
 #include "BaseEnemy.h"
-
 #include "Window.h"
 
-void BaseEnemy::initBaseVariables(int EnemyType, float Damage,float Health, float linePosition, sf::Texture* texture)
+void BaseEnemy::initBaseVariables( float Health, float linePosition, sf::Texture* texture)
 {
-	this->enemyType = EnemyType;
 	this->alive = true;
+	this->Movable = true;
 	this->health = Health;
-	this->damage = Damage;
 	this->linePosition = linePosition;
 
-	this->Body.setPosition(GameWindow::getWindow().getSize().x , 135.f + 135.f * this->linePosition);
+	this->Body.setPosition(GameWindow::getMainView().getSize().x , 135.f + 135.f * this->linePosition);
 	this->Body.setSize(sf::Vector2f(70.f, 140.f));
 	this->Body.setOrigin(sf::Vector2f(this->Body.getSize().x / 2, this->Body.getSize().y / 2));
-	this->Body.setTexture(texture, true);
+	this->Body.setTexture(texture, 0);
 }
 
 BaseEnemy::BaseEnemy()
 {
-	this->enemyType = 0;
 	this->alive = false;
 	this->ReadyToAttack = false;
+	this->Movable = false;
 	this->health = 0;
-	this->damage = 0;
 	this->linePosition = 0;
 }
 
@@ -38,16 +35,6 @@ bool BaseEnemy::isAlive()
 bool BaseEnemy::isReadyToAttack()
 {
 	return this->ReadyToAttack;
-}
-
-int BaseEnemy::getType()
-{
-	return this->enemyType;
-}
-
-float BaseEnemy::getDamage()
-{
-	return this->damage;
 }
 
 void BaseEnemy::hasAttacked()
@@ -67,6 +54,16 @@ void BaseEnemy::wasAttacked(float damage)
 sf::FloatRect BaseEnemy::getFloaRect()
 {
 	return sf::FloatRect(this->Body.getGlobalBounds());
+}
+
+void BaseEnemy::paused()
+{
+	this->remainingAttackTime = this->clock.restart() + this->remainingAttackTime ;
+}
+
+void BaseEnemy::Continue()
+{
+	this->clock.restart();
 }
 
 void BaseEnemy::render()

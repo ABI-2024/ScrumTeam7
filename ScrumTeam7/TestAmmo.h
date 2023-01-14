@@ -5,7 +5,7 @@
 class TestAmmo : public BaseAmmo
 {
 private:
-	static int ammoType;
+	static AmmoType ammoType;
 
 	static float damage;
 
@@ -20,6 +20,8 @@ public:
 	~TestAmmo();
 
 
+	AmmoType getAmmoType() override;
+	float getDamage() override;
 
 	bool CollisionWithEnemy(sf::FloatRect& Enemy) override;
 
