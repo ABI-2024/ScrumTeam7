@@ -84,14 +84,13 @@
     <ClCompile Include="Test_Level.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="Raster.cpp">
-=======
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
     <ClCompile Include="Shop.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Karte.cpp">
->>>>>>> fc63e980b9a27a7aaf4aeac33d13143d9658ea77
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -141,14 +140,13 @@
     <ClInclude Include="Test_Level.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Raster.h">
-=======
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
     <ClInclude Include="Shop.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Karte.h">
->>>>>>> fc63e980b9a27a7aaf4aeac33d13143d9658ea77
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
