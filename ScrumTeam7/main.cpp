@@ -30,8 +30,8 @@ int main()
     // Spawnt Enemy
     actors.initializeEnemy(1, { 0.f , 0.f });
 
-    std::ofstream wellenDaten;
-    wellenDaten.open("Datenwellen.csv");
+    std::ofstream Wellen;
+
 
     while (GameWindow::getWindow().isOpen()) {
 

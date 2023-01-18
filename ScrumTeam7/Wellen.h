@@ -4,23 +4,37 @@
 #include "Actors.h"
 #include "SFML/Graphics.hpp"
 #include <stdlib.h>
+#include <list>
 class Wellen
 {
 	private:
-		static short welleAnz;
-		sf::Clock WellenTimer;
-		sf::Clock EnemyTimer;
-
-		/*bool WelleStatus;*/
-		int welleDaten[3];
+		static int welleAnz;
+		bool WelleLesenStatus = true;
+		bool firstSpawn = true;
+		int welleDaten[2];
+		std::list <int>* schuelerDaten = new std::list <int>;
+		int** pSchueler;
+		sf::Clock* spawnclock;
+		sf::Clock warteclock;
 	public:
 		Wellen();
 
-		void setWellenDaten();
+		void WellenDaten();
+
+		std::list <int>* getSchuelerDaten();
 		int* getWellenDaten();
 
-		void SpawnEnemy();
-		void Time(Actors& test);
+		int** SortListeSchueler();
+
+		void Wartefunktion();
+
+
+
+		void SpawnEnemy(Actors&);
+		/*void Time(Actors& test);*/
+
+		void setFalse();
+		void setTrue();
 
 		void addWelle();
 		short getWelle();
