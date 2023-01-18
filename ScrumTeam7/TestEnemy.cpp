@@ -1,17 +1,18 @@
 #include "TestEnemy.h"
+#include "Window.h"
 
 #include <iostream>
 
 // static Variables
 
-int TestEnemy::EnemyType = 1;
+EnemyType TestEnemy::enemyType = EnemyType::TestEnemy;
 
 float TestEnemy::Health = 200;
 float TestEnemy::Damage = 20;
 
 int TestEnemy::revenue = 5;
 
-sf::Vector2f TestEnemy::dir = sf::Vector2f(-1, 0);
+sf::Vector2f TestEnemy::dir = sf::Vector2f(-10, 0);
 
 sf::Texture* TestEnemy::texture = nullptr;
 
@@ -43,21 +44,24 @@ void TestEnemy::unLoadTexture()
 
 
 // Constructur & Destructur
-TestEnemy::TestEnemy()
-{
-}
-
 TestEnemy::TestEnemy(float linePosition)
-{
-	this->initBaseVariables(EnemyType, Damage, Health, linePosition, texture);
-}
+	:BaseEnemy(Health, linePosition, texture)
+{}
 
-TestEnemy::~TestEnemy()
-{
-}
+TestEnemy::~TestEnemy() {}
 
 int TestEnemy::getRevenue() {
 	return revenue;
+}
+
+EnemyType TestEnemy::getEnemyType()
+{
+	return this->enemyType;
+}
+
+float TestEnemy::getDamage()
+{
+	return this->Damage;
 }
 
 bool TestEnemy::CollisionWithTower(sf::FloatRect& Tower)
@@ -74,7 +78,7 @@ bool TestEnemy::CollisionWithTower(sf::FloatRect& Tower)
 void TestEnemy::move()
 {
 	if (Movable) {
-		this->Body.move(this->dir);
+		this->Body.move(this->dir * dt);
 	}
 	else {
 		Movable = true;

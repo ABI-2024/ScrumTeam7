@@ -4,11 +4,11 @@
 
 #include "Window.h"
 
-int TestAmmo::ammoType = 1;
+AmmoType TestAmmo::ammoType = AmmoType::TestAmmo;
 
 float TestAmmo::damage = 20.f;
 
-sf::Vector2f TestAmmo::dir = sf::Vector2f(14.f,0);
+sf::Vector2f TestAmmo::dir = sf::Vector2f(400.f,0);
 
 sf::Texture* TestAmmo::texture = nullptr;
 
@@ -35,14 +35,19 @@ void TestAmmo::unLoadTexture()
 
 
 TestAmmo::TestAmmo(sf::Vector2f TowerPosition)
-{
+	:BaseAmmo(TowerPosition, texture)
+{}
 
-	this->initBaseVariables(this->AmmoType, this->damage ,TowerPosition, texture);
+TestAmmo::~TestAmmo() {}
+
+AmmoType TestAmmo::getAmmoType()
+{
+	return this->ammoType;
 }
 
-TestAmmo::~TestAmmo()
+float TestAmmo::getDamage()
 {
-	
+	return this->damage;
 }
 
 bool TestAmmo::CollisionWithEnemy(sf::FloatRect& Enemy)
@@ -52,8 +57,9 @@ bool TestAmmo::CollisionWithEnemy(sf::FloatRect& Enemy)
 
 void TestAmmo::move()
 {
-	this->Body.move(this->dir);
-	if (this->Body.getPosition().x >= GameWindow::getWindow().getSize().x) {
+	this->Body.move(this->dir * dt);
+
+	if (this->Body.getPosition().x >= GameWindow::getMainView().getSize().x) {
 		this->hit = true;
 	}
 }

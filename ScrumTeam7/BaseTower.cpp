@@ -4,32 +4,28 @@
 
 #include <iostream>
 
-// protected Methoden
-void BaseTower::initBaseVariables(int TowerType ,float Health, sf::Vector2f tilePosition, sf::Texture *texture)
-{
-	this->towerType = TowerType;
-	this->alive = true;
-	this->health = Health;
-	this->tilePosition = tilePosition;
-
-	this->Body.setPosition(160 + 160*this->tilePosition.x ,135 + 142*this->tilePosition.y);
-	this->Body.setSize(sf::Vector2f(70.f , 140.f));
-	this->Body.setOrigin(sf::Vector2f(this->Body.getSize().x/2, this->Body.getSize().y / 2));
-	this->Body.setTexture(texture, 0);
-
-}
+std::vector<BaseTower*> BaseTower::Towers;
 
 // Constructur & Destructur
-BaseTower::BaseTower()
+BaseTower::BaseTower(float Health, sf::Vector2f tilePosition, sf::Texture* texture)
+	: alive(true), ReadyToAttack(false), health(Health), tilePosition(tilePosition)
 {
-	this->towerType = 0;
-	this->ReadyToAttack = false;
-	this->alive = false;
-	this->health = 0;
+	this->Body.setPosition(400 + 150 * this->tilePosition.x, 150 + 150 * this->tilePosition.y);
+	this->Body.setSize(sf::Vector2f(75.f, 150.f));
+	this->Body.setOrigin(sf::Vector2f(this->Body.getSize().x / 2, this->Body.getSize().y / 2));
+	this->Body.setTexture(texture, 0);
+
+	Towers.push_back(this);
 }
 
 BaseTower::~BaseTower()
 {
+	for (auto i = Towers.begin(); i != Towers.end(); ++i) {
+		if ((*i) == this) {
+			Towers.erase(i);
+			break;
+		}
+	}
 }
 
 bool BaseTower::isAlive()
@@ -51,11 +47,6 @@ void BaseTower::wasAttacked(float damage)
 
 }
 
-int BaseTower::getType()
-{
-	return this->towerType;
-}
-
 sf::FloatRect BaseTower::getFloaRect()
 {
 	sf::FloatRect hitbox = this->Body.getGlobalBounds();
@@ -68,6 +59,7 @@ void BaseTower::HasAttacked()
 {
 	this->ReadyToAttack = false;
 	this->clock.restart();
+	this->remainingAttackTime = sf::milliseconds(0);
 }
 
 sf::Vector2f BaseTower::getPosition()
@@ -80,7 +72,15 @@ sf::Vector2f BaseTower::getTilePosition()
 	return this->tilePosition;
 }
 
-// public Methoden
+void BaseTower::paused()
+{
+	this->remainingAttackTime = this->clock.restart() + this->remainingAttackTime;
+}
+
+void BaseTower::Continue()
+{
+	this->clock.restart();
+}
 
 void BaseTower::render()
 {

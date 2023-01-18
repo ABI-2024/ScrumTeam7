@@ -2,6 +2,8 @@
 
 #include "SFML/Graphics.hpp"
 
+#include "Button.h"
+
 class Menu
 {
 private:
@@ -10,12 +12,11 @@ private:
 	static int ans;
 
 	sf::Font* font;
-	sf::Text* buttonText;
-
 	sf::Texture* buttonTexture;
-	sf::RectangleShape* button;
+	std::string* buttonText;
+	Button* button;
 
-	void buttonVisuals();
+
 	void buttonEvents();
 
 	void render();

@@ -5,7 +5,7 @@
 class TestEnemy : public BaseEnemy
 {
 private:
-	static int EnemyType;
+	static EnemyType enemyType;
 
 	static float Health;
 	static float Damage;
@@ -21,12 +21,14 @@ public:
 	static void LoadTexture();
 	static void unLoadTexture();
 
-	TestEnemy();
 	TestEnemy(float linePosition);
-
 	~TestEnemy();
 
 	static int getRevenue();
+
+
+	EnemyType getEnemyType() override;
+	float getDamage() override;
 
 	bool CollisionWithTower(sf::FloatRect& Tower) override;
 

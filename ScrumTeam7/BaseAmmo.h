@@ -1,27 +1,32 @@
 #pragma once
 
+#include <vector>
+
 #include "SFML/Graphics.hpp"
+
+#include "enums.h"
 
 
 
 class BaseAmmo
 {
+public:
+	static std::vector<BaseAmmo*> Ammos;
+
 protected:
-	int AmmoType;
 
 	bool hit;
-	float damage;
 
 	sf::RectangleShape Body;
 
-	void initBaseVariables(int ammoType, float damage , sf::Vector2f TowerPosition, sf::Texture* texture);
 public:
-	BaseAmmo();
+	BaseAmmo(sf::Vector2f TowerPosition, sf::Texture* texture);
 	~BaseAmmo();
 
 	bool isHit();
-	int getType();
-	float getDamage();
+
+	virtual AmmoType getAmmoType() = 0;
+	virtual float getDamage() = 0;
 
 	void hasHit();
 

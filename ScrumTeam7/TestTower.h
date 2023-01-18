@@ -5,7 +5,7 @@
 class TestTower : public BaseTower
 {
 private:
-	static int TowerType;
+	static TowerType towerType;
 	static int Cost;
 
 	static float Health;
@@ -17,10 +17,10 @@ public:
 	static void LoadTexture();
 	static void unLoadTexture();
 
-	TestTower();
 	TestTower(sf::Vector2f tilePosition);
-
 	~TestTower();
+
+	TowerType getTowerType() override;
 
 	void update() override;
 };

@@ -4,7 +4,7 @@
 
 
 // static Variablen
-int TestTower::TowerType = 1;
+TowerType TestTower::towerType = TowerType::TestTower;
 int TestTower::Cost = 20;
 float TestTower::Health = 200;
 sf::Time TestTower::fireRate = sf::milliseconds(1500);
@@ -35,18 +35,26 @@ void TestTower::unLoadTexture()
 
 // private Methden
 
+<<<<<<< HEAD
 // Constructur & Destructur
+=======
+// Konstructur & Destructur
 TestTower::TestTower()
 {
 }
 
+>>>>>>> fc63e980b9a27a7aaf4aeac33d13143d9658ea77
 TestTower::TestTower(sf::Vector2f tilePosition)
-{
-	this->initBaseVariables(this->TowerType, this->Health ,tilePosition, texture);
-}
+	: BaseTower(this->Health, tilePosition, texture) 
+{}
 
 TestTower::~TestTower()
 {
+}
+
+TowerType TestTower::getTowerType()
+{
+	return this->towerType;
 }
 
 //public Methoden
@@ -54,7 +62,7 @@ TestTower::~TestTower()
 
 void TestTower::update()
 {
-	if (this->fireRate <= this->clock.getElapsedTime()) {
+	if (this->fireRate <= this->clock.getElapsedTime() + this->remainingAttackTime) {
 		this->ReadyToAttack = true;
 	}
 }

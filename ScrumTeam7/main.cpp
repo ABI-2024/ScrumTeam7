@@ -6,127 +6,43 @@
 
 #include "SFML/Graphics.hpp"
 #include "Window.h"
+#include "enums.h"
 
 #include "Menu.h"
+#include "Menu_Options.h"
 
-#include "Actors.h"
+#include "Test_Level.h"
 
 #include "Rectangle.h"
 
 
 int main()
 {
-    GameWindow::createWindow();
+    GameWindow::openWindow();
+
+    GameWindow::getMainView().setViewport({0,0,1,1});
 
     TestAmmo::LoadTexture();
     TestTower::LoadTexture();
     TestEnemy::LoadTexture();
 
-    Actors* actors;
+    Test_Level* level = nullptr;
 
-
-    bool active = 0;
-    bool paused = 1;
 
     while (Window.isOpen()) {
         switch (Menu::openMenu()) {
         case 1:
 
-            active = 1;
-            paused = 0;
+            level = new Test_Level;
 
-            Rectangle* pRectangle;
-            pRectangle = new Rectangle(80, 48);
+            level->startLevel();
 
-            actors = new Actors();
 
-            actors->initializeEnemy(1, { 0.f , 0.f });
-
-            while (GameWindow::getWindow().isOpen() && active) {
-
-                while (GameWindow::getWindow().pollEvent(GameEvent)) {
-                    switch (GameEvent.type)
-                    {
-
-                    case sf::Event::Closed:
-                        GameWindow::getWindow().close();
-                        break;
-
-                    case sf::Event::KeyPressed:
-                        if (GameEvent.key.code == sf::Keyboard::Escape) {
-                            //paused = !paused;
-                            active = false;
-                        }
-                        break;
-
-                    case sf::Event::MouseButtonPressed:
-
-                        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-                            // Ermittlung der TilePosition
-                            sf::Vector2i mousePos = sf::Mouse::getPosition(GameWindow::getWindow());
-
-                            if (mousePos.x % 160 >= 80) {
-                                mousePos.x += 80;
-                            }
-                            if (mousePos.y % 142 >= 71) {
-                                mousePos.y += 67;
-                            }
-
-                            mousePos.x = (mousePos.x - 160) / 160;
-                            mousePos.y = (mousePos.y - 135) / 142;
-
-                            // Spawnt Tower
-                            actors->initializeTower(1, sf::Vector2f(mousePos));
-                        }
-                        if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
-
-                            // Ermittlung der TilePosition
-                            sf::Vector2i mousePos = sf::Mouse::getPosition(GameWindow::getWindow());
-
-                            if (mousePos.x % 160 >= 80) {
-                                mousePos.x += 80;
-                            }
-                            if (mousePos.y % 142 >= 71) {
-                                mousePos.y += 67;
-                            }
-
-                            mousePos.x = (mousePos.x - 160) / 160;
-                            mousePos.y = (mousePos.y - 135) / 142;
-
-                            // Spawnt Enemy
-                            actors->initializeEnemy(1, sf::Vector2f(mousePos));
-                        }
-
-                        break;
-
-                    default:
-                        break;
-                    }
-                }
-
-                if (!paused) {
-                    actors->updateActors();
-
-                    actors->Collisions();
-                }
-
-                GameWindow::getWindow().clear();
-
-                actors->renderActors();
-                for (int yA = 1; yA <= 5; yA++) {
-                    for (int xA = 1; xA <= 8; xA++) {
-                        pRectangle->setRectanglePosition(xA, yA);
-                        pRectangle->render();
-                    }
-                }
-                GameWindow::getWindow().display();
-
-            }
-
-            delete actors;
-
+            delete level;
+            level = nullptr;
+            break;
         case 2:
+            Menu_Options::openOptions();
             break;
         case 0: default:
             Window.close();
@@ -141,7 +57,7 @@ int main()
     TestTower::unLoadTexture();
     TestEnemy::unLoadTexture();
 
-    GameWindow::deleteWindow();
+    GameWindow::closeWindow();
     return 0;
 }
 
