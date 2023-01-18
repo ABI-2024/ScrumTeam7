@@ -139,11 +139,16 @@
     <ClCompile Include="BaseTower.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Geld.cpp" />
+    <ClCompile Include="Karte.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Menu_Options.cpp" />
     <ClCompile Include="Menu_Pause.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Raster.cpp" />
+=======
+    <ClCompile Include="Shop.cpp" />
+>>>>>>> fc63e980b9a27a7aaf4aeac33d13143d9658ea77
     <ClCompile Include="TestAmmo.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="TestTower.cpp" />
@@ -161,7 +166,12 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Menu_Options.h" />
     <ClInclude Include="Menu_Pause.h" />
+<<<<<<< HEAD
     <ClInclude Include="Raster.h" />
+=======
+    <ClInclude Include="Karte.h" />
+    <ClInclude Include="Shop.h" />
+>>>>>>> fc63e980b9a27a7aaf4aeac33d13143d9658ea77
     <ClInclude Include="TestAmmo.h" />
     <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="TestTower.h" />
