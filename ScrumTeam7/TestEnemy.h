@@ -21,9 +21,7 @@ public:
 	static void LoadTexture();
 	static void unLoadTexture();
 
-	TestEnemy();
 	TestEnemy(float linePosition);
-
 	~TestEnemy();
 
 	static int getRevenue();

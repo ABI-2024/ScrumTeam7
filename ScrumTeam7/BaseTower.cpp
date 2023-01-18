@@ -4,30 +4,28 @@
 
 #include <iostream>
 
-// protected Methoden
-void BaseTower::initBaseVariables(float Health, sf::Vector2f tilePosition, sf::Texture *texture)
-{
-	this->alive = true;
-	this->health = Health;
-	this->tilePosition = tilePosition;
-
-	this->Body.setPosition(320 + 160*this->tilePosition.x ,135 + 142*this->tilePosition.y);
-	this->Body.setSize(sf::Vector2f(70.f , 140.f));
-	this->Body.setOrigin(sf::Vector2f(this->Body.getSize().x/2, this->Body.getSize().y / 2));
-	this->Body.setTexture(texture, 0);
-
-}
+std::vector<BaseTower*> BaseTower::Towers;
 
 // Constructur & Destructur
-BaseTower::BaseTower()
+BaseTower::BaseTower(float Health, sf::Vector2f tilePosition, sf::Texture* texture)
+	: alive(true), ReadyToAttack(false), health(Health), tilePosition(tilePosition)
 {
-	this->ReadyToAttack = false;
-	this->alive = false;
-	this->health = 0;
+	this->Body.setPosition(400 + 150 * this->tilePosition.x, 150 + 150 * this->tilePosition.y);
+	this->Body.setSize(sf::Vector2f(75.f, 150.f));
+	this->Body.setOrigin(sf::Vector2f(this->Body.getSize().x / 2, this->Body.getSize().y / 2));
+	this->Body.setTexture(texture, 0);
+
+	Towers.push_back(this);
 }
 
 BaseTower::~BaseTower()
 {
+	for (auto i = Towers.begin(); i != Towers.end(); ++i) {
+		if ((*i) == this) {
+			Towers.erase(i);
+			break;
+		}
+	}
 }
 
 bool BaseTower::isAlive()

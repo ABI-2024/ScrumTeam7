@@ -5,6 +5,8 @@
 
 class Raster
 {
+public:
+	static float offset;
 private:
 	sf::RectangleShape rectangle;
 public:

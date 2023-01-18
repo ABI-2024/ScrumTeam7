@@ -1,9 +1,15 @@
 #pragma once
-#include "enums.h"
+
+#include <vector>
+
 #include "SFML/Graphics.hpp"
+
+#include "enums.h"
 
 class BaseEnemy
 {
+public:
+	static std::vector<BaseEnemy*> Enemies;
 protected:
 
 	sf::RectangleShape Body;
@@ -18,10 +24,9 @@ protected:
 	sf::Clock clock;
 	sf::Time remainingAttackTime;
 
-
-	void initBaseVariables(float Health , float linePosition, sf::Texture *texture);
 public:
-	BaseEnemy();
+
+	BaseEnemy(float Health, float linePosition, sf::Texture* texture);
 	~BaseEnemy();
 
 	bool isAlive();

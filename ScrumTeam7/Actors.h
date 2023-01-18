@@ -22,9 +22,6 @@
 		- updaten
 		- Collidieren
 		- rendern
-
-	ToDo:
-
 */
 
 
@@ -39,21 +36,13 @@ private:
 	Geld testGeld;
 
 	// Alle vectoren von Tower / Lehrer
-	std::vector<TestTower> testTower;
+	std::vector<TestTower*> testTower;
 
 	// Alle vectoren von Ammo / Geschosse
-	std::vector<TestAmmo> testAmmo;
+	std::vector<TestAmmo*> testAmmo;
 
 	// Alle vectoren von Enemies / Gegener
-	std::vector<TestEnemy> testEnemy;
-
-
-	// Alle vectoren mit den BasisTypen* der Klassen
-	std::vector<BaseTower*> Towers;
-	std::vector<BaseAmmo*> Ammos;
-	std::vector<BaseEnemy*> Enemies;
-
-
+	std::vector<TestEnemy*> testEnemy;
 
 	// Updaten alle vectoren und ihre zugehörigen BasisTypen*
 	void updateTowers();

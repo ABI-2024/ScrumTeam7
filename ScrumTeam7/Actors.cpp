@@ -7,56 +7,50 @@
 // private Methoden
 void Actors::updateTowers()
 {
-    Towers.clear();
 
     for (auto i = testTower.begin(); i != testTower.end(); i++) {
         
-        if (!i->isAlive()) {
+        if (!(*i)->isAlive()) {
+            delete (*i);
             i = testTower.erase(i);
             if (i == testTower.end()) {
                 break;
             }
         }
 
-        i->update();
+        (*i)->update();
 
-        if (i->isReadyToAttack()) {
-                i->HasAttacked();
-                testAmmo.push_back( i->getPosition() );
+        if ((*i)->isReadyToAttack()) {
+                (*i)->HasAttacked();
+                testAmmo.push_back(new TestAmmo( (*i)->getPosition() ));
         }
-
-        this->Towers.push_back( &(*i) );
     }
 }
 
 void Actors::updateAmmos()
 {
-    Ammos.clear();
-
     for (auto i = testAmmo.begin(); i != testAmmo.end(); i++) {
 
-        if (i->isHit()) {
+        if ((*i)->isHit()) {
+            delete (*i);
             i = testAmmo.erase(i);
             if (i == testAmmo.end()) {
                 break;
             }
         }
-        i->update();
-
-        this->Ammos.push_back(&(*i));
+        (*i)->update();
     }
 
 }
 
 void Actors::updateEnemies()
 {
-    Enemies.clear();
-
     for (auto i = testEnemy.begin(); i != testEnemy.end(); i++) {
 
-        if (!i->isAlive()) {
-            testGeld.addKontostand(i->getRevenue());
-            
+        if (!(*i)->isAlive()) {
+            testGeld.addKontostand((*i)->getRevenue());
+
+            delete (*i);
             i = testEnemy.erase(i);
             if (i == testEnemy.end()) {
                 break;
@@ -64,9 +58,7 @@ void Actors::updateEnemies()
             }
         }
 
-        i->update();
-
-        this->Enemies.push_back(&(*i));
+        (*i)->update();
     }
 
 }
@@ -75,14 +67,14 @@ void Actors::updateEnemies()
 
 void Actors::CollisionEnemyWithTower()
 {
-    for (auto i = this->Towers.begin(); i != this->Towers.end(); i++) {
-        for (auto j = this->Enemies.begin(); j != this->Enemies.end(); j++) {
+    for (BaseTower* i : BaseTower::Towers) {
+        for (BaseEnemy* j : BaseEnemy::Enemies) {
 
-            sf::FloatRect tmp = (*i)->getFloaRect();
+            sf::FloatRect tmp = i->getFloaRect();
 
-            if ((*j)->CollisionWithTower(tmp) && (*j)->isReadyToAttack()) {
-                (*i)->wasAttacked((*j)->getDamage());
-                (*j)->hasAttacked();
+            if (j->CollisionWithTower(tmp) && j->isReadyToAttack()) {
+                i->wasAttacked(j->getDamage());
+                j->hasAttacked();
             }
         }
     }
@@ -90,14 +82,14 @@ void Actors::CollisionEnemyWithTower()
 
 void Actors::CollisionAmmoWithEnemy()
 {
-    for (auto i = this->Enemies.begin(); i != this->Enemies.end(); i++) {
-        for (auto j = this->Ammos.begin(); j != this->Ammos.end(); j++) {
+    for (BaseEnemy* i : BaseEnemy::Enemies) {
+        for (BaseAmmo* j : BaseAmmo::Ammos) {
 
-            sf::FloatRect tmp = (*i)->getFloaRect();
+            sf::FloatRect tmp = i->getFloaRect();
 
-            if ((*j)->CollisionWithEnemy(tmp) && !(*j)->isHit()) {
-                (*i)->wasAttacked((*j)->getDamage());
-                (*j)->hasHit();
+            if (j->CollisionWithEnemy(tmp) && !j->isHit()) {
+                i->wasAttacked(j->getDamage());
+                j->hasHit();
             }
         }
     }
@@ -107,22 +99,22 @@ void Actors::CollisionAmmoWithEnemy()
 
 void Actors::renderTowers()
 {
-    for (auto i = Towers.begin(); i != Towers.end(); i++) {
-        (*i)->render();
+    for (BaseTower* i : BaseTower::Towers) {
+        i->render();
     }
 }
 
 void Actors::renderAmmos()
 {
-    for (auto i = Ammos.begin(); i != Ammos.end(); i++) {
-        (*i)->render();
+    for (BaseAmmo* i : BaseAmmo::Ammos) {
+        i->render();
     }
 }
 
 void Actors::renderEnemies()
 {
-    for (auto i = Enemies.begin(); i != Enemies.end(); i++) {
-        (*i)->render();
+    for (BaseEnemy* i : BaseEnemy::Enemies) {
+        i->render();
     }
 }
 
@@ -142,30 +134,30 @@ Actors::~Actors()
 
     testEnemy.clear();
 
-    // löschung aller gespicherten BasisTypen*
-    Towers.clear();
-    Ammos.clear();
-    Enemies.clear();
+    //// löschung aller gespicherten BasisTypen*
+    //Towers.clear();
+    //Ammos.clear();
+    //Enemies.clear();
 }
 
 
 void Actors::pauseActors()
 {
-    for (auto i = Towers.begin(); i != Towers.end(); i++) {
-        (*i)->paused();
+    for (BaseTower* i : BaseTower::Towers) {
+        i->paused();
     }
-    for (auto i = Enemies.begin(); i != Enemies.end(); i++) {
-        (*i)->paused();
+    for (BaseEnemy* i : BaseEnemy::Enemies) {
+        i->paused();
     }
 }
 
 void Actors::ContinueActors()
 {
-    for (auto i = Towers.begin(); i != Towers.end(); i++) {
-        (*i)->Continue();
+    for (BaseTower* i : BaseTower::Towers) {
+        i->Continue();
     }
-    for (auto i = Enemies.begin(); i != Enemies.end(); i++) {
-        (*i)->Continue();
+    for (BaseEnemy* i : BaseEnemy::Enemies) {
+        i->Continue();
     }
 }
 
@@ -196,16 +188,12 @@ void Actors::renderActors()
 
 void Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
 {
-    if (TilePosition.x < 0 || TilePosition.x >7) {
+    if (TilePosition.x < 0 || TilePosition.x >7  ||  TilePosition.y < 0 || TilePosition.y > 4) {
         return;
     }
 
-    if (TilePosition.y < 0 || TilePosition.y > 5) {
-        return;
-    }
-
-    for (auto i = Towers.begin(); i != Towers.end(); i++) {
-        if ((*i)->getTilePosition() == TilePosition) {
+    for (BaseTower* i : BaseTower::Towers) {
+        if ( i->getTilePosition() == TilePosition) {
             return;
         }
     }
@@ -213,7 +201,7 @@ void Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
     switch (TowerType)
     {
     case TowerType::TestTower:
-        testTower.push_back(TilePosition);
+        testTower.push_back(new TestTower(TilePosition));
         break;
 
     default:
@@ -226,7 +214,7 @@ void Actors::initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition )
     switch (EnemyType)
     {
     case EnemyType::TestEnemy:
-        testEnemy.push_back(TilePosition.y);
+        testEnemy.push_back(new TestEnemy(TilePosition.y));
         break;
 
     default:
@@ -239,7 +227,7 @@ void Actors::initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition)
     switch (AmmoType)
     {
     case AmmoType::TestAmmo:
-        testAmmo.push_back(TowerPosition);
+        testAmmo.push_back(new TestAmmo(TowerPosition));
         break;
 
     default:

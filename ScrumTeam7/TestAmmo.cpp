@@ -35,15 +35,10 @@ void TestAmmo::unLoadTexture()
 
 
 TestAmmo::TestAmmo(sf::Vector2f TowerPosition)
-{
+	:BaseAmmo(TowerPosition, texture)
+{}
 
-	this->initBaseVariables( TowerPosition, texture);
-}
-
-TestAmmo::~TestAmmo()
-{
-	
-}
+TestAmmo::~TestAmmo() {}
 
 AmmoType TestAmmo::getAmmoType()
 {

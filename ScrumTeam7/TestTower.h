@@ -17,9 +17,7 @@ public:
 	static void LoadTexture();
 	static void unLoadTexture();
 
-	TestTower();
 	TestTower(sf::Vector2f tilePosition);
-
 	~TestTower();
 
 	TowerType getTowerType() override;
