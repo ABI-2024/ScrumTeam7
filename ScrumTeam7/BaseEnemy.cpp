@@ -4,10 +4,10 @@
 
 std::vector<BaseEnemy*> BaseEnemy::Enemies;
 
-BaseEnemy::BaseEnemy(float Health, float linePosition, sf::Texture* texture)
-	: alive(true), ReadyToAttack(false) , Movable(true), health(Health), linePosition(linePosition)
+BaseEnemy::BaseEnemy(float Health,	sf::Vector2f tilePosition, sf::Texture* texture)
+	: alive(true), ReadyToAttack(false) , Movable(true), health(Health), tilePosition(tilePosition)
 {
-	this->Body.setPosition(GameWindow::getMainView().getSize().x, 150.f + 150.f * this->linePosition);
+	this->Body.setPosition(GameWindow::getMainView().getSize().x, 150.f + 150.f * this->tilePosition.y);
 	this->Body.setSize(sf::Vector2f(75.f, 150.f));
 	this->Body.setOrigin(sf::Vector2f(this->Body.getSize().x / 2, this->Body.getSize().y / 2));
 	this->Body.setTexture(texture, 0);
@@ -33,6 +33,11 @@ bool BaseEnemy::isAlive()
 bool BaseEnemy::isReadyToAttack()
 {
 	return this->ReadyToAttack;
+}
+
+const sf::Vector2f& BaseEnemy::getTilePosition()
+{
+	return tilePosition;
 }
 
 void BaseEnemy::hasAttacked()

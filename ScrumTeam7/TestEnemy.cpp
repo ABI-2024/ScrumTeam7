@@ -44,8 +44,8 @@ void TestEnemy::unLoadTexture()
 
 
 // Constructur & Destructur
-TestEnemy::TestEnemy(float linePosition)
-	:BaseEnemy(Health, linePosition, texture)
+TestEnemy::TestEnemy(const sf::Vector2f& tilePosition)
+	:BaseEnemy(Health, tilePosition, texture)
 {}
 
 TestEnemy::~TestEnemy() {}

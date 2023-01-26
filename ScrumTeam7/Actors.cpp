@@ -4,6 +4,17 @@
 
 #include <iostream>
 
+template<class BaseT> 
+void deleteEntities(std::vector<BaseT*> T) {
+
+    for (auto i = T.begin(); i != T.end(); i++) {
+        delete (*i);
+        (*i) = nullptr;
+    }
+}
+
+
+
 // private Methoden
 void Actors::updateTowers()
 {
@@ -20,7 +31,7 @@ void Actors::updateTowers()
 
         (*i)->update();
 
-        if ((*i)->isReadyToAttack()) {
+        if ((*i)->isReadyToAttack() && onLine[(int)(*i)->getTilePosition().y]) {
                 (*i)->HasAttacked();
                 testAmmo.push_back(new TestAmmo( (*i)->getPosition() ));
         }
@@ -45,7 +56,13 @@ void Actors::updateAmmos()
 
 void Actors::updateEnemies()
 {
+    for (int i = 0; i < 5; i++) {
+        onLine[i] = false;
+    }
+
     for (auto i = testEnemy.begin(); i != testEnemy.end(); i++) {
+
+        onLine[(int)(*i)->getTilePosition().y] = true;
 
         if (!(*i)->isAlive()) {
             testGeld.addKontostand((*i)->getRevenue());
@@ -122,16 +139,23 @@ void Actors::renderEnemies()
 
 
 // Constructur & Destructur
-Actors::Actors() {}
+Actors::Actors()
+{
+    for (int i = 0; i < 5; i++) {
+        onLine[i] = false;
+    }
+}
 
 Actors::~Actors()
 {
     // Löschung aller Gespeicherten Klassentypen
-
+    deleteEntities(testTower);
     testTower.clear();
 
+    deleteEntities(testAmmo);
     testAmmo.clear();
 
+    deleteEntities(testEnemy);
     testEnemy.clear();
 
     //// löschung aller gespicherten BasisTypen*
@@ -214,7 +238,7 @@ void Actors::initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition )
     switch (EnemyType)
     {
     case EnemyType::TestEnemy:
-        testEnemy.push_back(new TestEnemy(TilePosition.y));
+        testEnemy.push_back(new TestEnemy(TilePosition));
         break;
 
     default:

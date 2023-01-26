@@ -29,6 +29,8 @@ class Actors
 {
 private:
 
+	// Gibt an ob ein gegner auf dem Feld ist
+	bool onLine[5];
 
 	sf::Text text;
 
