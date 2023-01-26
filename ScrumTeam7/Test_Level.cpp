@@ -1,5 +1,6 @@
 #include "Test_Level.h"
 #include "Window.h"
+#include <list>
 
 
 void Test_Level::buttonEvents()
@@ -136,9 +137,12 @@ void Test_Level::startLevel()
 
         actors.renderActors();
 
+        testShop.render();
+
         if (paused) {
             menu.render();
         }
+
 
         Window.display();
 
