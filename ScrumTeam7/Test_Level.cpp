@@ -1,6 +1,7 @@
 #include "Test_Level.h"
 #include "Window.h"
 #include "Raster.h"
+#include <list>
 
 #include <iostream>
 
@@ -206,11 +207,11 @@ void Test_Level::startLevel()
 
         actors.renderActors();
 
+        testShop.render();
+
         if (paused) {
             menu.render();
         }
-
-        
 
 
         Window.display();
