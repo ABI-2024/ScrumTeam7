@@ -21,9 +21,7 @@ public:
 	static void LoadTexture();
 	static void unLoadTexture();
 
-	TestEnemy();
-	TestEnemy(float linePosition);
-
+	TestEnemy(const sf::Vector2f& tilePosition);
 	~TestEnemy();
 
 	static int getRevenue();

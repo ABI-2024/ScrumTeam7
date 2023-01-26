@@ -44,18 +44,11 @@ void TestEnemy::unLoadTexture()
 
 
 // Constructur & Destructur
-TestEnemy::TestEnemy()
-{
-}
+TestEnemy::TestEnemy(const sf::Vector2f& tilePosition)
+	:BaseEnemy(Health, tilePosition, texture)
+{}
 
-TestEnemy::TestEnemy(float linePosition)
-{
-	this->initBaseVariables( Health, linePosition, texture);
-}
-
-TestEnemy::~TestEnemy()
-{
-}
+TestEnemy::~TestEnemy() {}
 
 int TestEnemy::getRevenue() {
 	return revenue;

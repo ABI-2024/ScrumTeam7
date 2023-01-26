@@ -1,10 +1,17 @@
 #pragma once
-#include "enums.h"
+
+#include <vector>
+
 #include "SFML/Graphics.hpp"
+
+#include "enums.h"
+
 
 
 class BaseTower
 {
+public:
+	static std::vector<BaseTower*> Towers;
 protected:
 
 	sf::RectangleShape Body;
@@ -19,10 +26,9 @@ protected:
 	sf::Clock clock;
 	sf::Time remainingAttackTime;
 
-	void initBaseVariables(float Health, sf::Vector2f tilePosition, sf::Texture *texture);
 public:
 
-	BaseTower();
+	BaseTower(float Health, sf::Vector2f tilePosition, sf::Texture* texture);
 	~BaseTower();
 
 	bool isAlive();

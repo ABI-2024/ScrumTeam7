@@ -13,6 +13,8 @@
 
 #include "Test_Level.h"
 
+#include "Rectangle.h"
+
 
 int main()
 {
@@ -34,6 +36,7 @@ int main()
             level = new Test_Level;
 
             level->startLevel();
+
 
             delete level;
             level = nullptr;

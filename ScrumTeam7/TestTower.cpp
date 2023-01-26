@@ -33,17 +33,10 @@ void TestTower::unLoadTexture()
 	texture = nullptr;
 }
 
-// private Methden
-
 // Konstructur & Destructur
-TestTower::TestTower()
-{
-}
-
 TestTower::TestTower(sf::Vector2f tilePosition)
-{
-	this->initBaseVariables( this->Health ,tilePosition, texture);
-}
+	: BaseTower(this->Health, tilePosition, texture) 
+{}
 
 TestTower::~TestTower()
 {

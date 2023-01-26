@@ -14,6 +14,8 @@ private:
 	bool paused;
 	Menu_Pause menu;
 
+
+	sf::Vector2f TileSelection();
 	void buttonEvents();
 public:
 	Test_Level();

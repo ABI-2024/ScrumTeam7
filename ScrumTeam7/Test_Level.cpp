@@ -1,7 +1,41 @@
 #include "Test_Level.h"
 #include "Window.h"
+#include "Raster.h"
 #include <list>
 
+#include <iostream>
+
+sf::Vector2f Test_Level::TileSelection()
+{
+    sf::Vector2i mousePos = sf::Vector2i(Window.mapPixelToCoords(sf::Mouse::getPosition(Window)));
+
+    mousePos -= {400, 200};
+
+    if (mousePos.x > 0) {
+        if (mousePos.x % 150 >= 150 / 2) {
+            mousePos.x += 150;
+        }
+    }
+    else {
+        if (mousePos.x % 150 <= -150 / 2) {
+            mousePos.x -= 150;
+        }
+    }
+
+    if (mousePos.y % 150 >= 150 / 2) {
+        mousePos.y += 150;
+    }
+    else {
+        if (mousePos.y % 150 <= -150 / 2) {
+            mousePos.y -= 150;
+        }
+    }
+
+    mousePos.x = (mousePos.x) / 150;
+    mousePos.y = (mousePos.y) / 150;
+
+    return sf::Vector2f(mousePos);
+}
 
 void Test_Level::buttonEvents()
 {
@@ -33,6 +67,36 @@ void Test_Level::startLevel()
     for (int i = 0; i < 1; i++)
         actors.initializeEnemy(EnemyType::TestEnemy, { 0.f , 0.f });
 
+    Raster raster(80,48);
+
+    sf::Vector2f pos;
+
+    int b = 0;
+    sf::Texture back[4];
+    back[0].loadFromFile("resource/Textures/Background_Test_Sporthalle1.png");
+    back[1].loadFromFile("resource/Textures/Background_Test_Sporthalle2.png");
+    back[2].loadFromFile("resource/Textures/Background_Test_Sporthalle3.png");
+    back[3].loadFromFile("resource/Textures/Background_Test_Sporthalle4.png");
+
+    sf::RectangleShape background;
+    background.setSize(GameWindow::getMainView().getSize());
+    background.setPosition(0.f , 0.f);
+    background.setTexture(&back[0] ,0);
+
+    raster.offset = 50;
+    
+
+    sf::RectangleShape selecteionRectangle[2];
+    selecteionRectangle[0].setSize({ GameWindow::getMainView().getSize().x, 150.f });
+    selecteionRectangle[0].setOrigin( 0.f,selecteionRectangle[0].getSize().y/2.f);
+    selecteionRectangle[1].setSize({ 150.f, GameWindow::getMainView().getSize().y });
+    selecteionRectangle[1].setOrigin( selecteionRectangle[1].getSize().x / 2.f, 0.f );
+    for (int i = 0; i < 2; i++) {
+        selecteionRectangle[i].setFillColor(sf::Color(127, 127, 127, 64));
+    }
+
+
+
     GameWindow::updateDeltaTime();
 
     while (GameWindow::getWindow().isOpen() && active) {
@@ -49,6 +113,14 @@ void Test_Level::startLevel()
 
             case sf::Event::KeyPressed:
                 
+                if (GameEvent.key.code == sf::Keyboard::Space) {
+                    b++;
+                    if (b == 4) b = 0;
+                    background.setTexture(&back[b], 0);
+
+
+                }
+
                 if (GameEvent.key.code == sf::Keyboard::Escape) {
                     if (paused) {
                         actors.ContinueActors();
@@ -62,43 +134,15 @@ void Test_Level::startLevel()
 
             case sf::Event::MouseButtonPressed:
                 if (!paused) {
-                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-                        // Ermittlung der TilePosition
-                        sf::Vector2i mousePos = sf::Vector2i( Window.mapPixelToCoords(sf::Mouse::getPosition(Window)));
-
-                        mousePos -= {320, 135};
-
-                        if (mousePos.x % 160 >= 80) {
-                            mousePos.x += 80;
-                        }
-                        if (mousePos.y % 135 >= 68) {
-                            mousePos.y += 67;
-                        }
-
-                        mousePos.x = (mousePos.x) / 160;
-                        mousePos.y = (mousePos.y) / 135;
+                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {                      
 
                         // Spawnt Tower
-                        actors.initializeTower(TowerType::TestTower, sf::Vector2f(mousePos));
+                        actors.initializeTower(TowerType::TestTower, this->TileSelection());
                     }
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 
-                        // Ermittlung der TilePosition
-                        sf::Vector2i mousePos = sf::Vector2i(Window.mapPixelToCoords(sf::Mouse::getPosition(Window)));
-
-                        if (mousePos.x % 160 >= 80) {
-                            mousePos.x += 80;
-                        }
-                        if (mousePos.y % 135 >= 68) {
-                            mousePos.y += 67;
-                        }
-
-                        mousePos.x = (mousePos.x - 160) / 160;
-                        mousePos.y = (mousePos.y - 135) / 135;
-
                         // Spawnt Enemy
-                        actors.initializeEnemy(EnemyType::TestEnemy, sf::Vector2f(mousePos));
+                        actors.initializeEnemy(EnemyType::TestEnemy, this->TileSelection());
                     }
                 }
                 else {
@@ -108,6 +152,19 @@ void Test_Level::startLevel()
                 }
                 break;
 
+            case sf::Event::MouseMoved:
+
+                pos = this->TileSelection();
+                if (pos.y >= 0 && pos.y <5 && pos.x >= 0 && pos.x <8) {
+                    selecteionRectangle[0].setPosition(0.f, this->TileSelection().y * 150 + 200);
+                    selecteionRectangle[1].setPosition(this->TileSelection().x * 150 + 400, 0.f);
+                }
+                else {
+
+                    selecteionRectangle[0].setPosition(4000.f,4000.f);
+                    selecteionRectangle[1].setPosition(4000.f,4000.f);
+                }
+                break;
 
             case sf::Event::LostFocus:
                 if (!paused) {
@@ -134,6 +191,19 @@ void Test_Level::startLevel()
 
 
         Window.clear();
+
+        Window.draw(background);
+
+        for (int yA = 0; yA < 5; yA++) {
+            for (int xA = 0; xA < 8; xA++) {
+                raster.setRasterPosition(xA, yA);
+                //raster.render();
+            }
+        }
+
+        for (int i = 0; i < 2; i++) {
+            Window.draw(selecteionRectangle[i]);
+        }
 
         actors.renderActors();
 

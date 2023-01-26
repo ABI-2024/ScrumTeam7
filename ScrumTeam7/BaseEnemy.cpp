@@ -1,30 +1,28 @@
 #include "BaseEnemy.h"
+
 #include "Window.h"
 
-void BaseEnemy::initBaseVariables( float Health, float linePosition, sf::Texture* texture)
-{
-	this->alive = true;
-	this->Movable = true;
-	this->health = Health;
-	this->linePosition = linePosition;
+std::vector<BaseEnemy*> BaseEnemy::Enemies;
 
-	this->Body.setPosition(GameWindow::getMainView().getSize().x , 135.f + 135.f * this->linePosition);
-	this->Body.setSize(sf::Vector2f(70.f, 140.f));
+BaseEnemy::BaseEnemy(float Health,	sf::Vector2f tilePosition, sf::Texture* texture)
+	: alive(true), ReadyToAttack(false) , Movable(true), health(Health), tilePosition(tilePosition)
+{
+	this->Body.setPosition(GameWindow::getMainView().getSize().x, 150.f + 150.f * this->tilePosition.y);
+	this->Body.setSize(sf::Vector2f(75.f, 150.f));
 	this->Body.setOrigin(sf::Vector2f(this->Body.getSize().x / 2, this->Body.getSize().y / 2));
 	this->Body.setTexture(texture, 0);
-}
 
-BaseEnemy::BaseEnemy()
-{
-	this->alive = false;
-	this->ReadyToAttack = false;
-	this->Movable = false;
-	this->health = 0;
-	this->linePosition = 0;
+	Enemies.push_back(this);
 }
 
 BaseEnemy::~BaseEnemy()
 {
+	for (auto i = Enemies.begin(); i != Enemies.end(); ++i) {
+		if ((*i) == this) {
+			Enemies.erase(i);
+			break;
+		}
+	}
 }
 
 bool BaseEnemy::isAlive()
@@ -35,6 +33,11 @@ bool BaseEnemy::isAlive()
 bool BaseEnemy::isReadyToAttack()
 {
 	return this->ReadyToAttack;
+}
+
+const sf::Vector2f& BaseEnemy::getTilePosition()
+{
+	return tilePosition;
 }
 
 void BaseEnemy::hasAttacked()
