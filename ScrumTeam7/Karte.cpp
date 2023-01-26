@@ -7,7 +7,7 @@ Karte::Karte(int cost, int type, sf::Texture* texture, sf::Vector2f pos) {
 
 	this->Body.setPosition(pos);
 	this->Body.setSize({ 70.f , 140.f});
-	this->Body.setTexture(texture , 1);
+	this->Body.setTexture(texture , 0);
 }
 
 Karte::~Karte() {
