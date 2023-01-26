@@ -71,11 +71,8 @@ void Test_Level::startLevel()
     sf::Vector2f pos;
 
     int b = 0;
-    sf::Texture back[4];
-    back[0].loadFromFile("resource/Textures/Background_Test_Sporthalle1.png");
-    back[1].loadFromFile("resource/Textures/Background_Test_Sporthalle2.png");
-    back[2].loadFromFile("resource/Textures/Background_Test_Sporthalle3.png");
-    back[3].loadFromFile("resource/Textures/Background_Test_Sporthalle4.png");
+    sf::Texture back[1];
+    back[0].loadFromFile("resource/Textures/Background_Test_Sporthalle4.png");
 
     sf::RectangleShape background;
     background.setSize(GameWindow::getMainView().getSize());
@@ -112,13 +109,6 @@ void Test_Level::startLevel()
 
             case sf::Event::KeyPressed:
                 
-                if (GameEvent.key.code == sf::Keyboard::Space) {
-                    b++;
-                    if (b == 4) b = 0;
-                    background.setTexture(&back[b], 0);
-
-
-                }
 
                 if (GameEvent.key.code == sf::Keyboard::Escape) {
                     if (paused) {
