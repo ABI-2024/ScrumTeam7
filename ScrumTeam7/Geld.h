@@ -15,6 +15,7 @@ public:
 	
 	int getKontostand();
 	void addKontostand(int);
+	void subKontostand(int);
 	void clearKontostand();
 	void render();
 };

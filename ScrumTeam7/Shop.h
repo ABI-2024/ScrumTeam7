@@ -7,11 +7,9 @@ class Shop
 {
 private:
 	
-	sf::RectangleShape Body;
-
 	int anzahlKarten;
 	sf::Texture t;
-	Karte* karten; // int cost, int Type, Body, Texture
+	Karte** karten; // int cost, int Type, Body, Texture
 	int sellection;
 
 	sf::Font font;
@@ -19,12 +17,13 @@ private:
 
 public:
 	Shop();
-	Shop(int anzahlKarten, Karte* karten);
+	Shop(int anzahlKarten, Karte** karten);
 	~Shop();
 
 	int getSellection();
-
 	void setSellection(int s);
+
+	void buttonEvents(Actors& actors, sf::Vector2f tilePos);
 
 	void render();
 };
