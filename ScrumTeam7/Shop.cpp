@@ -7,7 +7,7 @@ Shop::Shop() {/*
 	Body.setSize({ 200.f, 600.f });
 	Body.setPosition({ 20.f, 80.f });*/
 
-	font.loadFromFile("arial.ttf");
+	font.loadFromFile("resource/fonts/arial.ttf");
 
 	t.loadFromFile("resource/Textures/SportLehre1.png");
 

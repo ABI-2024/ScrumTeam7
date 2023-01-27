@@ -2,30 +2,34 @@
 
 #include "Window.h"
 
-std::vector<BaseAmmo*> BaseAmmo::Ammos;
+// public static Variables
+std::vector<BaseAmmo*> BaseAmmo::ammos;
+
 
 // Constructur & Destructur
 BaseAmmo::BaseAmmo(sf::Vector2f TowerPosition, sf::Texture* texture)
-	: hit(false)
+	: Entity() ,hit(false)
 {
-	this->Body.setPosition(TowerPosition);
-	this->Body.setSize(sf::Vector2f(70.f, 70.f));
-	this->Body.setOrigin(this->Body.getSize().x / 2, this->Body.getSize().y / 2);
-	this->Body.setTexture(texture, true);
+	this->body.setPosition(TowerPosition);
+	this->body.setSize(sf::Vector2f(70.f, 70.f));
+	this->body.setOrigin(this->body.getSize().x / 2, this->body.getSize().y / 2);
+	this->body.setTexture(texture, true);
 
-	Ammos.push_back(this);
+	ammos.push_back(this);
 }
 
-BaseAmmo::~BaseAmmo() 
+BaseAmmo::~BaseAmmo()
 {
-	for (auto i = Ammos.begin(); i != Ammos.end(); ++i) {
+	for (auto i = ammos.begin(); i != ammos.end(); ++i) {
 		if ((*i) == this) {
-			Ammos.erase(i);
+			ammos.erase(i);
 			break;
 		}
 	}
 }
 
+
+// public Methoden
 bool BaseAmmo::isHit()
 {
 	return this->hit;
@@ -38,6 +42,6 @@ void BaseAmmo::hasHit()
 
 void BaseAmmo::render()
 {
-	GameWindow::getWindow().draw(this->Body);
+	GameWindow::getWindow().draw(this->body);
 }
 

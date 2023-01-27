@@ -84,8 +84,8 @@ void Actors::updateEnemies()
 
 void Actors::CollisionEnemyWithTower()
 {
-    for (BaseTower* i : BaseTower::Towers) {
-        for (BaseEnemy* j : BaseEnemy::Enemies) {
+    for (BaseTower* i : BaseTower::towers) {
+        for (BaseEnemy* j : BaseEnemy::enemies) {
 
             sf::FloatRect tmp = i->getFloaRect();
 
@@ -99,8 +99,8 @@ void Actors::CollisionEnemyWithTower()
 
 void Actors::CollisionAmmoWithEnemy()
 {
-    for (BaseEnemy* i : BaseEnemy::Enemies) {
-        for (BaseAmmo* j : BaseAmmo::Ammos) {
+    for (BaseEnemy* i : BaseEnemy::enemies) {
+        for (BaseAmmo* j : BaseAmmo::ammos) {
 
             sf::FloatRect tmp = i->getFloaRect();
 
@@ -116,21 +116,21 @@ void Actors::CollisionAmmoWithEnemy()
 
 void Actors::renderTowers()
 {
-    for (BaseTower* i : BaseTower::Towers) {
+    for (BaseTower* i : BaseTower::towers) {
         i->render();
     }
 }
 
 void Actors::renderAmmos()
 {
-    for (BaseAmmo* i : BaseAmmo::Ammos) {
+    for (BaseAmmo* i : BaseAmmo::ammos) {
         i->render();
     }
 }
 
 void Actors::renderEnemies()
 {
-    for (BaseEnemy* i : BaseEnemy::Enemies) {
+    for (BaseEnemy* i : BaseEnemy::enemies) {
         i->render();
     }
 }
@@ -159,7 +159,7 @@ Actors::~Actors()
     testEnemy.clear();
 
     //// löschung aller gespicherten BasisTypen*
-    //Towers.clear();
+    //towers.clear();
     //Ammos.clear();
     //Enemies.clear();
 }
@@ -167,20 +167,20 @@ Actors::~Actors()
 
 void Actors::pauseActors()
 {
-    for (BaseTower* i : BaseTower::Towers) {
+    for (BaseTower* i : BaseTower::towers) {
         i->paused();
     }
-    for (BaseEnemy* i : BaseEnemy::Enemies) {
+    for (BaseEnemy* i : BaseEnemy::enemies) {
         i->paused();
     }
 }
 
 void Actors::ContinueActors()
 {
-    for (BaseTower* i : BaseTower::Towers) {
+    for (BaseTower* i : BaseTower::towers) {
         i->Continue();
     }
-    for (BaseEnemy* i : BaseEnemy::Enemies) {
+    for (BaseEnemy* i : BaseEnemy::enemies) {
         i->Continue();
     }
 }
@@ -216,7 +216,7 @@ void Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
         return;
     }
 
-    for (BaseTower* i : BaseTower::Towers) {
+    for (BaseTower* i : BaseTower::towers) {
         if ( i->getTilePosition() == TilePosition) {
             return;
         }

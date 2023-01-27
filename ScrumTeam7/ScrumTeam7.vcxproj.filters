@@ -99,6 +99,9 @@
     <ClCompile Include="Menu.cpp">
       <Filter>Quelldateien\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Quelldateien\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -154,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="Menu_Options.h">
       <Filter>Headerdateien\Header Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Headerdateien\Header Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
