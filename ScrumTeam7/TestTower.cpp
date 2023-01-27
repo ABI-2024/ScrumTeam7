@@ -1,5 +1,5 @@
 #include "TestTower.h"
-#include "SFML/Config.hpp"
+#include "Randomizer.h"
 
 // public static Variables 
 TowerType TestTower::towerType = TowerType::TestTower;
@@ -9,7 +9,7 @@ TowerType TestTower::towerType = TowerType::TestTower;
 int TestTower::Cost = 20;
 float TestTower::Health = 200;
 sf::Time TestTower::fireRate = sf::milliseconds(1500);
-sf::Time TestTower::maximumFireRateDiviation = sf::milliseconds(100);
+sf::Time TestTower::maximumFireRateDiviation = sf::milliseconds(150);
 sf::Texture* TestTower::texture = nullptr;
 
 
@@ -53,12 +53,13 @@ void TestTower::HasAttacked()
 	this->readyToAttack = false;
 	this->clock.restart();
 	this->remainingAttackTime = sf::milliseconds(0);
+	this->fireRateDiviation = sf::milliseconds(Randomizer::randomize( (int)this->maximumFireRateDiviation.asMilliseconds()*2 , -(int)this->maximumFireRateDiviation.asMilliseconds()) );
 }
 
 //public Methoden
 void TestTower::update()
 {
-	if (this->fireRate <= this->clock.getElapsedTime() + this->remainingAttackTime) {
+	if (this->fireRate + this->fireRateDiviation <= this->clock.getElapsedTime() + this->remainingAttackTime) {
 		this->readyToAttack = true;
 	}
 }
