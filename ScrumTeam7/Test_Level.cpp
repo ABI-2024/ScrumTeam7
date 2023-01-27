@@ -109,7 +109,7 @@ void Test_Level::startLevel()
                 break;
 
             case sf::Event::KeyPressed:
-                
+
 
                 if (GameEvent.key.code == sf::Keyboard::Escape) {
                     if (paused) {
