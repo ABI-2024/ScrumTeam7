@@ -56,6 +56,7 @@ private:
 	void CollisionAmmoWithEnemy();
 
 	// Rendert alle Klassen
+	void renderShadows();
 	void renderTowers();
 	void renderAmmos();
 	void renderEnemies();

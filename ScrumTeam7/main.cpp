@@ -22,6 +22,7 @@ int main()
 
     GameWindow::getMainView().setViewport({0,0,1,1});
 
+    Entity::loadTexture();
     TestAmmo::LoadTexture();
     TestTower::LoadTexture();
     TestEnemy::LoadTexture();
@@ -52,7 +53,7 @@ int main()
 
 
     
-
+    Entity::unloadTexture();
     TestAmmo::unLoadTexture();
     TestTower::unLoadTexture();
     TestEnemy::unLoadTexture();

@@ -21,6 +21,6 @@ public:
 	static void loadTexture();
 	static void unloadTexture();
 
-	void renderShadow();
+	virtual void renderShadow();
 };
 

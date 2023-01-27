@@ -1,4 +1,5 @@
 #include "TestTower.h"
+#include "SFML/Config.hpp"
 
 // public static Variables 
 TowerType TestTower::towerType = TowerType::TestTower;
@@ -8,6 +9,7 @@ TowerType TestTower::towerType = TowerType::TestTower;
 int TestTower::Cost = 20;
 float TestTower::Health = 200;
 sf::Time TestTower::fireRate = sf::milliseconds(1500);
+sf::Time TestTower::maximumFireRateDiviation = sf::milliseconds(100);
 sf::Texture* TestTower::texture = nullptr;
 
 
@@ -45,6 +47,13 @@ TowerType TestTower::getTowerType()
 	return this->towerType;
 }
 
+
+void TestTower::HasAttacked()
+{
+	this->readyToAttack = false;
+	this->clock.restart();
+	this->remainingAttackTime = sf::milliseconds(0);
+}
 
 //public Methoden
 void TestTower::update()

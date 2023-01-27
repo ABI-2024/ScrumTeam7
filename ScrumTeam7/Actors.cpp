@@ -114,6 +114,13 @@ void Actors::CollisionAmmoWithEnemy()
 
 
 
+void Actors::renderShadows()
+{
+    for (Entity* i : Entity::entities) {
+        i->renderShadow();
+    }
+}
+
 void Actors::renderTowers()
 {
     for (BaseTower* i : BaseTower::towers) {
@@ -201,6 +208,8 @@ void Actors::Collisions()
 
 void Actors::renderActors()
 {
+    this->renderShadows();
+
     this->renderTowers();
     this->renderAmmos();
     this->renderEnemies();

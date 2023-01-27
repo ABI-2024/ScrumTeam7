@@ -72,13 +72,13 @@ void Test_Level::startLevel()
     sf::Vector2f pos;
 
     int b = 0;
-    sf::Texture back[1];
-    back[0].loadFromFile("resource/Textures/Background_Test_Sporthalle4.png");
+    sf::Texture back;
+    back.loadFromFile("resource/Textures/Background_Sporthalle.png");
 
     sf::RectangleShape background;
     background.setSize(GameWindow::getMainView().getSize());
     background.setPosition(0.f , 0.f);
-    background.setTexture(&back[0] ,0);
+    background.setTexture(&back ,0);
 
     raster.offset = 50;
     

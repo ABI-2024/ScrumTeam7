@@ -30,6 +30,7 @@ public:
 
 	virtual void update() = 0;
 	void render();
+	void renderShadow() override;
 };
 
 

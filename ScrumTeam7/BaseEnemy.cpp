@@ -15,6 +15,11 @@ BaseEnemy::BaseEnemy(float Health, sf::Vector2f tilePosition, sf::Texture* textu
 	this->body.setOrigin(sf::Vector2f(this->body.getSize().x / 2, this->body.getSize().y / 2));
 	this->body.setTexture(texture, 0);
 
+	this->shadow.setPosition(this->body.getPosition().x - this->body.getSize().x / 8.f, this->body.getPosition().y + this->body.getSize().y / 2);
+	this->shadow.setSize(sf::Vector2f(this->body.getSize().x, 37.5f));
+	this->shadow.setOrigin(sf::Vector2f(this->shadow.getSize().x / 2, this->shadow.getSize().y / 2));
+	this->shadow.setTexture(this->shadowTexture, 0);
+
 	enemies.push_back(this);
 }
 
@@ -78,5 +83,7 @@ void BaseEnemy::Continue()
 
 void BaseEnemy::render()
 {
+	this->shadow.setPosition(this->body.getPosition().x - this->body.getSize().x / 8.f, this->body.getPosition().y + this->body.getSize().y / 2);
+
 	Window.draw(this->body);
 }

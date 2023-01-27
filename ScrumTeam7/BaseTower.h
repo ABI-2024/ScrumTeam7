@@ -21,6 +21,7 @@ protected:
 
 	sf::Clock clock;
 	sf::Time remainingAttackTime;
+	sf::Time fireRateDiviation;
 
 public:
 
@@ -38,7 +39,7 @@ public:
 	virtual TowerType getTowerType() = 0;
 
 
-	void HasAttacked();
+	virtual void HasAttacked();
 	void wasAttacked(float damage);
 
 	void paused();
