@@ -110,6 +110,7 @@ void Test_Level::startLevel()
 
             case sf::Event::KeyPressed:
 
+
                 if (GameEvent.key.code == sf::Keyboard::Escape) {
                     if (paused) {
                         actors.ContinueActors();
