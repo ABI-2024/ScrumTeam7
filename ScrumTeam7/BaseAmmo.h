@@ -16,7 +16,7 @@ protected:
 	bool hit;
 
 public:
-	BaseAmmo(sf::Vector2f TowerPosition, sf::Texture* texture);
+	BaseAmmo(const sf::Vector2f& TowerPosition, sf::Texture * texture);
 	~BaseAmmo();
 
 	bool isHit();

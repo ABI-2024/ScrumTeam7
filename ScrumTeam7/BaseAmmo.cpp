@@ -7,7 +7,7 @@ std::vector<BaseAmmo*> BaseAmmo::ammos;
 
 
 // Constructur & Destructur
-BaseAmmo::BaseAmmo(sf::Vector2f TowerPosition, sf::Texture* texture)
+BaseAmmo::BaseAmmo(const sf::Vector2f& TowerPosition, sf::Texture* texture)
 	: Entity() ,hit(false)
 {
 	this->body.setPosition(TowerPosition);
