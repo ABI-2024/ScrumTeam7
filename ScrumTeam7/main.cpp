@@ -30,7 +30,7 @@ int main()
     // Spawnt Enemy
     actors.initializeEnemy(1, { 0.f , 0.f });
 
-    std::ofstream Wellen;
+
 
 
     while (GameWindow::getWindow().isOpen()) {
@@ -91,7 +91,6 @@ int main()
     TestEnemy::unLoadTexture();
 
     GameWindow::deleteWindow();
-    wellenDaten.close();
     return 0;
 }
 

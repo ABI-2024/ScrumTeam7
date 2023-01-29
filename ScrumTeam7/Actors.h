@@ -92,6 +92,9 @@ public:
 	// Ruft alle Render-Methoden
 	void renderActors();
 
+	// Gibt die Liste der Enemys zurück
+	std::vector<BaseEnemy*>* getEnemy();
+
 	// Initialisiert die Klassen
 	void initializeTower(int TowerType, sf::Vector2f TilePosition);
 	void initializeEnemy(int EnemyType, sf::Vector2f TilePosition);
