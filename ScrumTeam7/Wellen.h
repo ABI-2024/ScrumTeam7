@@ -10,7 +10,6 @@ class Wellen
 	private:
 		static int welleAnz;
 
-		bool WelleLesenStatus = true;
 		bool firstSpawn = true;
 		bool wellenEnde = false;
 		bool spawnEnde = false;
@@ -28,8 +27,8 @@ class Wellen
 
 		int** SortListeSchueler(); // Sortiert die Schüler aus der random Liste in ein Array
 		
-		void WellenEnde(Actors&); // Checkt ob alle Schüler in der Welle gespawnt wurden
-		void SpawnEnde();
+		void WellenEnde(Actors&); // Checkt ob alle Schüler in der Welle getötet wurden
+		void SpawnEnde(); // Checkt ob alle Schüler in der Welle gespawnt wurden
 
 		void Wartefunktion(); //Setzt den Wellenspawn auf Pause
 		void startWartetimer();
@@ -41,11 +40,8 @@ class Wellen
 		int* getWellenDaten();
 		std::list <int>* getSchuelerDaten();
 
-		void setFalse();
-		void setTrue();
-
 		void addWelle();
-		short getWelle();
+		int getWelle();
 
 
 };

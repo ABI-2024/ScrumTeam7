@@ -7,6 +7,7 @@ int Wellen::welleAnz = 0;
 Wellen::Wellen() {
 	welleDaten[0] = 0;
 	welleDaten[1] = 0;
+	spawnclock = nullptr;
 }
 
 void Wellen::WellenDaten() {
@@ -18,6 +19,7 @@ void Wellen::WellenDaten() {
 
 	firstSpawn = true;
 	spawnEnde = false;
+	wellenEnde = false;
 
 	for (int n = 0; n < welleAnz; n++) { //Skippt bis zur relevanten Teil im Dokument
 		std::getline(Datei, tmp, '\n');
@@ -35,7 +37,6 @@ void Wellen::WellenDaten() {
 	} while (debug != '\n');
 	/*std::getline(wellenDaten, tmp, '\n');*/
 	addWelle();
-	setFalse();
 	Datei.close();
 }
 
@@ -51,7 +52,7 @@ void Wellen::addWelle() {
 	welleAnz++;
 }
 
-short Wellen::getWelle() {
+int Wellen::getWelle() {
 	return this->welleAnz;
 }
 
@@ -73,27 +74,19 @@ int** Wellen::SortListeSchueler() {
 	return this->pSchueler;
 }
 
-void Wellen::WellenEnde(Actors& EnemyAlive) {
-	if (EnemyAlive.getEnemy()->size() == 0) {
-		wellenEnde = false;
+void Wellen::WellenEnde(Actors& EnemyAlive) { // Checkt ob alle Schüler in der Welle getötet wurden
+	if (EnemyAlive.getEnemy()->size() == 0) { // Ließt die Anzahl der lebenden Schüler aus
+		wellenEnde = true;
 	}
 }
 
-void Wellen::SpawnEnde() {
+void Wellen::SpawnEnde() { // Checkt ob alle Schüler in der Welle gespawnt wurden
 	this->spawnEnde = true;
 	for (int i = 0; i < *pSchueler[0]; i++) {
-		if (pSchueler[i][1] > 0) {
+		if (pSchueler[i][1] > 0) { // Falls noch Schüler nicht gespawnt wurden wird spawnEnde wieder auf false gesetzt
 			this->spawnEnde = false;
 		}
 	}
-}
-
-void Wellen::setFalse() {
-	WelleLesenStatus = false;
-}
-
-void Wellen::setTrue() {
-	WelleLesenStatus = true;
 }
 
 void Wellen::SpawnEnemy(Actors& test) {
@@ -123,8 +116,8 @@ void Wellen::startWartetimer() {
 }
 
 void Wellen::Wartefunktion() {
-	WelleLesenStatus = true;
 	if ((int)warteclock.getElapsedTime().asSeconds() - welleDaten[1]) {
+		this->warteTimer = true;
 		WellenDaten();
 	}
 }
@@ -133,6 +126,7 @@ void Wellen::Wartefunktion() {
 /*
 Wellen testwelle;
 testwelle.WelleDaten();
+testwelle.SortListeSchueler(); //geht nicht: Frage an Leo ist Rückgabewert int** wichtig?
 
 belibige schleife(){
 	maybe wird alles folgende eine eigene Funktion in der Klasse der Schleife?
@@ -146,17 +140,8 @@ belibige schleife(){
 		if (warteTimer == true) {
 			startWartetimer();
 		}
+		Wartefunktion();
 	}
-
-
-	
-	
-
 }
-
-
-
-
-
 
 */
