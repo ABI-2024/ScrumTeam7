@@ -24,6 +24,10 @@ void Geld::addKontostand(int betrag) {
 	Kontostand += betrag;
 }
 
+void Geld::subKontostand(int betrag) {
+	Kontostand -= betrag;
+}
+
 void Geld::clearKontostand (){
 	Kontostand = 0;
 }
