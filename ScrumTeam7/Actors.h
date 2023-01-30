@@ -56,6 +56,7 @@ private:
 	void CollisionAmmoWithEnemy();
 
 	// Rendert alle Klassen
+	void renderShadows();
 	void renderTowers();
 	void renderAmmos();
 	void renderEnemies();
@@ -76,8 +77,8 @@ public:
 	void renderActors();
 
 	// Initialisiert die Klassen
-	void initializeTower(TowerType TowerType, sf::Vector2f TilePosition);
-	void initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition);
+	bool initializeTower(TowerType TowerType, sf::Vector2f TilePosition);
+	bool initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition);
 
 	void initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition); // Beachte Parametername des Vectors
 

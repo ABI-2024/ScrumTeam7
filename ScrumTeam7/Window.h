@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
 
 #define Window GameWindow::getWindow()
@@ -37,13 +37,13 @@ struct Settings {
 class GameWindow
 {
 private:
-
+	// Window
 	static Settings settings;
-
 	static sf::RenderWindow* window;
 	static sf::Event ev;
 	static sf::View mainView;
 
+	// DeltaTime
 	static sf::Clock deltaTimer;
 	static float deltaTime;
 

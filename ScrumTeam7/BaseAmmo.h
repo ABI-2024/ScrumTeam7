@@ -1,26 +1,22 @@
 #pragma once
 
-#include <vector>
-
-#include "SFML/Graphics.hpp"
+#include "Entity.h"
 
 #include "enums.h"
 
 
 
-class BaseAmmo
+class BaseAmmo : public Entity
 {
 public:
-	static std::vector<BaseAmmo*> Ammos;
+	static std::vector<BaseAmmo*> ammos;
 
 protected:
 
 	bool hit;
 
-	sf::RectangleShape Body;
-
 public:
-	BaseAmmo(sf::Vector2f TowerPosition, sf::Texture* texture);
+	BaseAmmo(const sf::Vector2f& TowerPosition, sf::Texture * texture);
 	~BaseAmmo();
 
 	bool isHit();
@@ -34,6 +30,7 @@ public:
 
 	virtual void update() = 0;
 	void render();
+	void renderShadow() override;
 };
 
 

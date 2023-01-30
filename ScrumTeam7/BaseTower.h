@@ -1,23 +1,19 @@
 #pragma once
 
-#include <vector>
-
-#include "SFML/Graphics.hpp"
+#include "Entity.h"
 
 #include "enums.h"
 
 
 
-class BaseTower
+class BaseTower : public Entity
 {
 public:
-	static std::vector<BaseTower*> Towers;
+	static std::vector<BaseTower*> towers;
 protected:
-
-	sf::RectangleShape Body;
-	
+		
 	bool alive;
-	bool ReadyToAttack;
+	bool readyToAttack;
 
 	float health;
 
@@ -25,11 +21,13 @@ protected:
 
 	sf::Clock clock;
 	sf::Time remainingAttackTime;
+	sf::Time fireRateDiviation;
 
 public:
 
 	BaseTower(float Health, sf::Vector2f tilePosition, sf::Texture* texture);
 	~BaseTower();
+
 
 	bool isAlive();
 	bool isReadyToAttack();
@@ -38,19 +36,17 @@ public:
 	sf::Vector2f getPosition();
 	sf::Vector2f getTilePosition();
 
-
 	virtual TowerType getTowerType() = 0;
 
-	void HasAttacked();
-	void wasAttacked(float damage);
 
+	virtual void HasAttacked();
+	void wasAttacked(float damage);
 
 	void paused();
 	void Continue();
 
-	void render();
-
 	virtual void update() = 0;
+	void render();
 };
 
 

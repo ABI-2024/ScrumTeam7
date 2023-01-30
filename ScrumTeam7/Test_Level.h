@@ -11,6 +11,11 @@ private:
 	Shop testShop;
 	Actors actors;
 
+	sf::Texture back;
+	sf::RectangleShape background;
+
+	sf::RectangleShape selecteionRectangle[2];
+
 	bool paused;
 	Menu_Pause menu;
 
