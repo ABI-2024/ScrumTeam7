@@ -219,15 +219,15 @@ void Actors::renderActors()
 
 
 
-void Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
+bool Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
 {
     if (TilePosition.x < 0 || TilePosition.x >7  ||  TilePosition.y < 0 || TilePosition.y > 4) {
-        return;
+        return false;
     }
 
     for (BaseTower* i : BaseTower::towers) {
         if ( i->getTilePosition() == TilePosition) {
-            return;
+            return false;
         }
     }
 
@@ -238,12 +238,18 @@ void Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
         break;
 
     default:
+        return false;
         break;
     }
+    return true;
 }
 
-void Actors::initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition )
+bool Actors::initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition )
 {
+    if (TilePosition.x < 0 || TilePosition.x >7 || TilePosition.y < 0 || TilePosition.y > 4) {
+        return false;
+    }
+
     switch (EnemyType)
     {
     case EnemyType::TestEnemy:
@@ -251,8 +257,10 @@ void Actors::initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition )
         break;
 
     default:
+        return false;
         break;
     }
+    return true;
 }
 
 void Actors::initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition)
