@@ -126,8 +126,10 @@ void Test_Level::startLevel()
                 if (!paused) {
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {                      
 
-                        // Spawnt Tower
-                        actors.initializeTower(TowerType::TestTower, this->TileSelection());
+                        testShop.buttonEvents(actors, TileSelection());
+
+                        //// Spawnt Tower
+                        //actors.initializeTower(TowerType::TestTower, this->TileSelection());
                     }
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 
