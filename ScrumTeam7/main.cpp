@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <vector>
+#include <stdio.h>
+#include <fstream>
 
 #include "SFML/Graphics.hpp"
 #include "Window.h"

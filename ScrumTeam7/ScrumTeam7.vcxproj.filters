@@ -105,6 +105,9 @@
     <ClCompile Include="Randomizer.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Wellen.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -165,6 +168,9 @@
       <Filter>Headerdateien\Header Entities</Filter>
     </ClInclude>
     <ClInclude Include="Randomizer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Wellen.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
