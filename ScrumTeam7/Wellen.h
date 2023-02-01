@@ -25,7 +25,7 @@ class Wellen
 
 		void WellenDaten(); // Ließt die Daten aus der Datei aus
 
-		int** SortListeSchueler(); // Sortiert die Schüler aus der random Liste in ein Array
+		void SortListeSchueler(); // Sortiert die Schüler aus der random Liste in ein Array
 		
 		void WellenEnde(Actors&); // Checkt ob alle Schüler in der Welle getötet wurden
 		void SpawnEnde(); // Checkt ob alle Schüler in der Welle gespawnt wurden

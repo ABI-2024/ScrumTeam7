@@ -56,7 +56,7 @@ int Wellen::getWelle() {
 	return this->welleAnz;
 }
 
-int** Wellen::SortListeSchueler() {
+void Wellen::SortListeSchueler() {
 	int j = 0;
 	pSchueler = new int* [schuelerDaten->size() / 3 + 1];
 
@@ -71,7 +71,6 @@ int** Wellen::SortListeSchueler() {
 			if (j == 2) break;
 		}
 	}
-	return this->pSchueler;
 }
 
 void Wellen::WellenEnde(Actors& EnemyAlive) { // Checkt ob alle Schüler in der Welle getötet wurden
