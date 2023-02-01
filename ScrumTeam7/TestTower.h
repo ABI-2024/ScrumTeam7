@@ -5,22 +5,24 @@
 class TestTower : public BaseTower
 {
 private:
-	static int TowerType;
+	static TowerType towerType;
 	static int Cost;
 
 	static float Health;
 
 	static sf::Time fireRate;
+	static sf::Time maximumFireRateDiviation;
 	static sf::Texture* texture;
 
 public:
 	static void LoadTexture();
 	static void unLoadTexture();
 
-	TestTower();
 	TestTower(sf::Vector2f tilePosition);
-
 	~TestTower();
 
+	TowerType getTowerType() override;
+
+	void HasAttacked() override;
 	void update() override;
 };

@@ -8,89 +8,59 @@
 
 #include "SFML/Graphics.hpp"
 #include "Window.h"
+#include "enums.h"
 
 #include "Menu.h"
+#include "Menu_Options.h"
 
-#include "Actors.h"
+#include "Test_Level.h"
+
+#include "Rectangle.h"
 
 
 int main()
 {
-    GameWindow::createWindow();
+    GameWindow::openWindow();
 
+    GameWindow::getMainView().setViewport({0,0,1,1});
+
+    Entity::loadTexture();
     TestAmmo::LoadTexture();
     TestTower::LoadTexture();
     TestEnemy::LoadTexture();
 
-
-    Menu::openMenu();
-
-    Actors actors;
-
-    // Spawnt Enemy
-    actors.initializeEnemy(1, { 0.f , 0.f });
+    Test_Level* level = nullptr;
 
 
+    while (Window.isOpen()) {
+        switch (Menu::openMenu()) {
+        case 1:
+
+            level = new Test_Level;
+
+            level->startLevel();
 
 
-    while (GameWindow::getWindow().isOpen()) {
-
-        while (GameWindow::getWindow().pollEvent(GameEvent) ) {
-            switch (GameEvent.type)
-            {
-            case sf::Event::Closed:
-                GameWindow::getWindow().close();
-                break;
-            case sf::Event::KeyPressed:
-                if (GameEvent.key.code == sf::Keyboard::Escape) {
-                    GameWindow::getWindow().close();
-                }
-                break;
-            case sf::Event::MouseButtonPressed:
-
-                if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-                    // Ermittlung der TilePosition
-                    sf::Vector2i mousePos = sf::Mouse::getPosition(GameWindow::getWindow());
-
-                    if (mousePos.x % 160 >= 80 ) {
-                        mousePos.x += 80;
-                    }
-                    if (mousePos.y % 135 >= 68) {
-                        mousePos.y += 67;
-                    }
-
-                    mousePos.x = (mousePos.x - 160) / 160 ;
-                    mousePos.y = (mousePos.y - 135) / 135 ;
-
-                    // Spawnt Tower
-                    actors.initializeTower(1, sf::Vector2f(mousePos));
-                }
-
-                break;
-            default:
-                break;
-            }
+            delete level;
+            level = nullptr;
+            break;
+        case 2:
+            Menu_Options::openOptions();
+            break;
+        case 0: default:
+            Window.close();
+            break;
         }
-        
-        actors.updateActors();
-
-        actors.Collisions();
-
-
-        GameWindow::getWindow().clear();
-
-        actors.renderActors();
-
-        GameWindow::getWindow().display();
-
     }
 
+
+    
+    Entity::unloadTexture();
     TestAmmo::unLoadTexture();
     TestTower::unLoadTexture();
     TestEnemy::unLoadTexture();
 
-    GameWindow::deleteWindow();
+    GameWindow::closeWindow();
     return 0;
 }
 

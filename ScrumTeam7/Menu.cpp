@@ -1,20 +1,31 @@
 #include "Menu.h"
 #include "Window.h"
 
+#include <string>
+
+
+#define Anzahl_Button 3
+
+
+int Menu::ans = 0;
+
+
 void Menu::buttonEvents()
 {
-	sf::FloatRect mouse(sf::Vector2f(sf::Mouse::getPosition(Window)), { 1,1 });
 
-	for (int i = 0; i < 3; i++) {
-		if (button[i].getGlobalBounds().intersects(mouse)) {
+	for (int i = 0; i < Anzahl_Button; i++) {
+		if (button[i].isHovered()) {
 			switch (i) {
 			case 0:
+				Menu::ans = 1;
 				this->open = false;
 				break;
 			case 1:
-
+				Menu::ans = 2;
+				this->open = false;
 				break;
 			case 2:
+				Menu::ans = 0;
 				Window.close();
 				break;
 			default:
@@ -26,67 +37,102 @@ void Menu::buttonEvents()
 
 void Menu::render()
 {
-	for (int i = 0; i < 3; i++) {
-		Window.draw(button[i]);
+
+	for (int i = 0; i < Anzahl_Button; i++) {
+		button[i].render();
 	}
+
 }
 
 Menu::Menu()
 {
 
+
 	this->open = true;
 
-	for (int i = 0; i < 3; i++)
-		buttonTexture[i] = new sf::Texture();
+	
+	// Font
+	font = new sf::Font[1];
+	font[0].loadFromFile("resource/fonts/Broken Console Bold.otf");
 
-		buttonTexture[0]->loadFromFile("Textures/Button_Start.png");
-		buttonTexture[1]->loadFromFile("Textures/Button_Options.png");
-		buttonTexture[2]->loadFromFile("Textures/Button_Exit.png");
+	// Button-Texture
+	buttonTexture = new sf::Texture[3];
+	buttonTexture[0].loadFromFile("resource/Textures/Button_Side1.png");
+	buttonTexture[1].loadFromFile("resource/Textures/Button_Middle.png");
+	buttonTexture[2].loadFromFile("resource/Textures/Button_Side2.png");
 
-	for (int i = 0; i < 3; i++) {
-		button[i].setPosition(((float)Window.getSize().x*3)/4, 240.f*(i+1));
-		button[i].setSize({360,120});
-		button[i].setOrigin( button[i].getSize().x/2 , button[i].getSize().y / 2);
-		button[i].setTexture(buttonTexture[i], 1);
+	//Button-text
+	buttonText = new std::string[Anzahl_Button];
+	buttonText[0] = "Start";
+	buttonText[1] = "Optionen";
+	buttonText[2] = "Exit";
+
+	button = new Button[Anzahl_Button];
+	for (int i = 0; i < Anzahl_Button; i++) {
+		button[i] = Button(font[0], sf::Color(34, 32, 52), buttonText[i], buttonTexture, { GameWindow::getMainView().getSize().x / 2 , 240.f+ 200.f*i }, { 400.f, 120.f });
 	}
+
+
 }
 
 Menu::~Menu()
 {
+	delete[] button;
+	delete[] buttonTexture;
 }
 
-void Menu::openMenu()
+int Menu::openMenu()
 {
-	Menu* menu = new Menu();
+	Menu menu;
 
-	while (Window.isOpen() && menu->open)
+	sf::Texture* background_Texture = new sf::Texture();
+	background_Texture->loadFromFile("resource/Textures/DefaultTexture.png");
+
+	sf::RectangleShape background;
+	background.setPosition(0,0);
+	background.setSize( GameWindow::getMainView().getSize() );
+	background.setTexture(background_Texture,0);
+
+
+	while (Window.isOpen() && menu.open)
 	{
 		while ( Window.pollEvent(GameEvent)) {
 			switch (GameEvent.type)
 			{
+
+			case sf::Event::Closed:
+				GameWindow::getWindow().close();
+				break;
+
 			case sf::Event::KeyPressed:
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 					Window.close();
 				}
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-					menu->open = false;
-				}
 				break;
+
 			case sf::Event::MouseButtonPressed:
-				menu->buttonEvents();
+				menu.buttonEvents();
 				break;
+
 			default:
 				break;
 			}
 		}
 
-		Window.clear(sf::Color(63,63,63));
+		for (int i = 0; i < Anzahl_Button; i++) {
+			menu.button[i].update();
+		}
 
-		menu->render();
+		Window.clear();
+
+		Window.setView(GameWindow::getMainView());
+
+		Window.draw(background);
+
+		menu.render();
 
 		Window.display();
 	}
 
-	delete menu;
-
+	return Menu::ans;
 }

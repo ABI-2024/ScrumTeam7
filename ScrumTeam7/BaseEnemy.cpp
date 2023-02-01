@@ -2,36 +2,39 @@
 
 #include "Window.h"
 
-void BaseEnemy::initBaseVariables(int EnemyType, float Damage,float Health, float linePosition, sf::Texture* texture)
-{
-	this->enemyType = EnemyType;
-	this->alive = true;
-	this->Movable = true;
-	this->health = Health;
-	this->damage = Damage;
-	this->linePosition = linePosition;
+// public static Variables
+std::vector<BaseEnemy*> BaseEnemy::enemies;
 
-	this->Body.setPosition(GameWindow::getWindow().getSize().x , 135.f + 135.f * this->linePosition);
-	this->Body.setSize(sf::Vector2f(70.f, 140.f));
-	this->Body.setOrigin(sf::Vector2f(this->Body.getSize().x / 2, this->Body.getSize().y / 2));
-	this->Body.setTexture(texture, 0);
-}
 
-BaseEnemy::BaseEnemy()
+// Constructur & Destructur
+BaseEnemy::BaseEnemy(float Health, sf::Vector2f tilePosition, sf::Texture* texture)
+	: Entity(), alive(true), readyToAttack(false), movable(true), health(Health), tilePosition(tilePosition)
 {
-	this->enemyType = 0;
-	this->alive = false;
-	this->ReadyToAttack = false;
-	this->Movable = false;
-	this->health = 0;
-	this->damage = 0;
-	this->linePosition = 0;
+	this->body.setPosition(GameWindow::getMainView().getSize().x, 150.f + 150.f * this->tilePosition.y);
+	this->body.setSize(sf::Vector2f(75.f, 150.f));
+	this->body.setOrigin(sf::Vector2f(this->body.getSize().x / 2, this->body.getSize().y / 2));
+	this->body.setTexture(texture, 0);
+
+	this->shadow.setPosition(this->body.getPosition().x - this->body.getSize().x / 8.f, this->body.getPosition().y + this->body.getSize().y / 2);
+	this->shadow.setSize(sf::Vector2f(this->body.getSize().x, 37.5f));
+	this->shadow.setOrigin(sf::Vector2f(this->shadow.getSize().x / 2, this->shadow.getSize().y / 2));
+	this->shadow.setTexture(this->shadowTexture, 0);
+
+	enemies.push_back(this);
 }
 
 BaseEnemy::~BaseEnemy()
 {
+	for (auto i = enemies.begin(); i != enemies.end(); ++i) {
+		if ((*i) == this) {
+			enemies.erase(i);
+			break;
+		}
+	}
 }
 
+
+// public get-Methoden
 bool BaseEnemy::isAlive()
 {
 	return this->alive;
@@ -39,22 +42,24 @@ bool BaseEnemy::isAlive()
 
 bool BaseEnemy::isReadyToAttack()
 {
-	return this->ReadyToAttack;
+	return this->readyToAttack;
 }
 
-int BaseEnemy::getType()
+const sf::Vector2f& BaseEnemy::getTilePosition()
 {
-	return this->enemyType;
+	return tilePosition;
 }
 
-float BaseEnemy::getDamage()
+sf::FloatRect BaseEnemy::getFloaRect()
 {
-	return this->damage;
+	return sf::FloatRect(this->body.getGlobalBounds());
 }
 
+
+// public Methoden
 void BaseEnemy::hasAttacked()
 {
-	this->ReadyToAttack = false;
+	this->readyToAttack = false;
 	this->clock.restart();
 }
 
@@ -66,12 +71,19 @@ void BaseEnemy::wasAttacked(float damage)
 	}
 }
 
-sf::FloatRect BaseEnemy::getFloaRect()
+void BaseEnemy::paused()
 {
-	return sf::FloatRect(this->Body.getGlobalBounds());
+	this->remainingAttackTime = this->clock.restart() + this->remainingAttackTime ;
+}
+
+void BaseEnemy::Continue()
+{
+	this->clock.restart();
 }
 
 void BaseEnemy::render()
 {
-	GameWindow::getWindow().draw(this->Body);
+	this->shadow.setPosition(this->body.getPosition().x - this->body.getSize().x / 8.f, this->body.getPosition().y + this->body.getSize().y / 2);
+
+	Window.draw(this->body);
 }

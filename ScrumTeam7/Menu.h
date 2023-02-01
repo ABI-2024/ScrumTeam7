@@ -2,14 +2,20 @@
 
 #include "SFML/Graphics.hpp"
 
+#include "Button.h"
+
 class Menu
 {
 private:
 
 	bool open;
+	static int ans;
 
-	sf::Texture* buttonTexture[3]; // 0 Start	1 Options	2 Exit
-	sf::RectangleShape button[3];
+	sf::Font* font;
+	sf::Texture* buttonTexture;
+	std::string* buttonText;
+	Button* button;
+
 
 	void buttonEvents();
 
@@ -19,6 +25,6 @@ private:
 	~Menu();
 public:
 
-	static void openMenu();
+	static int openMenu();
 };
 

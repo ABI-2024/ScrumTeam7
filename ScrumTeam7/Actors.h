@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 
+#include "enums.h"
+#include "Geld.h"
 
 // Tower / Lehrer
 #include "TestTower.h"
@@ -12,8 +14,6 @@
 // Enemies / Gegener
 #include "TestEnemy.h"
 
-// Money / Geld
-#include "Geld.h"
 
 /*
 	Diese Klasse enthält alle Tower-,Enemies- und Ammotypen
@@ -22,9 +22,6 @@
 		- updaten
 		- Collidieren
 		- rendern
-
-	ToDo:
-
 */
 
 
@@ -32,39 +29,22 @@ class Actors
 {
 private:
 
+	// Gibt an ob ein gegner auf dem Feld ist
+	bool onLine[5];
 
 	sf::Text text;
-	// Speicher alle Klassentypnummern
-	enum TowerType
-	{
-		TypeTestTower = 1
-	};
-	enum AmmoType
-	{
-		TypeTestAmmo = 1
-	};
-	enum EnemyType
-	{
-		TypeTestEnemy = 1
-	};
 
 	// Money / Geld
 	Geld testGeld;
 
 	// Alle vectoren von Tower / Lehrer
-	std::vector<TestTower> testTower;
+	std::vector<TestTower*> testTower;
 
 	// Alle vectoren von Ammo / Geschosse
-	std::vector<TestAmmo> testAmmo;
+	std::vector<TestAmmo*> testAmmo;
 
 	// Alle vectoren von Enemies / Gegener
-	std::vector<TestEnemy> testEnemy;
-
-
-	// Alle vectoren mit den BasisTypen* der Klassen
-	std::vector<BaseTower*> Towers;
-	std::vector<BaseAmmo*> Ammos;
-	std::vector<BaseEnemy*> Enemies;
+	std::vector<TestEnemy*> testEnemy;
 
 	// Updaten alle vectoren und ihre zugehörigen BasisTypen*
 	void updateTowers();
@@ -76,13 +56,17 @@ private:
 	void CollisionAmmoWithEnemy();
 
 	// Rendert alle Klassen
+	void renderShadows();
 	void renderTowers();
 	void renderAmmos();
 	void renderEnemies();
-	void renderMoney();
 public:
 	Actors();
 	~Actors();
+
+	void pauseActors();
+	void ContinueActors();
+
 	// Ruft alle Update-Methoden
 	void updateActors();
 
@@ -96,10 +80,10 @@ public:
 	std::vector<BaseEnemy*>* getEnemy();
 
 	// Initialisiert die Klassen
-	void initializeTower(int TowerType, sf::Vector2f TilePosition);
-	void initializeEnemy(int EnemyType, sf::Vector2f TilePosition);
+	bool initializeTower(TowerType TowerType, sf::Vector2f TilePosition);
+	bool initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition);
 
-	void initializeAmmo(int AmmoType, sf::Vector2f TowerPosition); // Beachte Parametername des Vectors
+	void initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition); // Beachte Parametername des Vectors
 
 };
 

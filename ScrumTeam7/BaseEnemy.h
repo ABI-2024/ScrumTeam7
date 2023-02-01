@@ -1,40 +1,48 @@
 #pragma once
 
-#include "SFML/Graphics.hpp"
+#include "Entity.h"
 
-class BaseEnemy
+#include "enums.h"
+
+class BaseEnemy : public Entity
 {
+public:
+	static std::vector<BaseEnemy*> enemies;
 protected:
 
-	int enemyType;
-	sf::RectangleShape Body;
-
 	bool alive;
-	bool ReadyToAttack;
-	bool Movable;
+	bool readyToAttack;
+	bool movable;
 	float health;
-	float damage;
 
-	float linePosition;
+	sf::Vector2f tilePosition;
 
 	sf::Clock clock;
+	sf::Time remainingAttackTime;
 
-	void initBaseVariables(int EnemyType ,float Damage ,float Health , float linePosition, sf::Texture *texture);
 public:
-	BaseEnemy();
+
+	BaseEnemy(float Health,	sf::Vector2f tilePosition, sf::Texture* texture);
 	~BaseEnemy();
+
 
 	bool isAlive();
 	bool isReadyToAttack();
-	int getType();
-	float getDamage();
+
+	const sf::Vector2f& getTilePosition();
+	virtual EnemyType getEnemyType() = 0;
+	virtual float getDamage() = 0;
+
+	sf::FloatRect getFloaRect();
+
 
 	void hasAttacked();
 	void wasAttacked(float damage);
 
-	sf::FloatRect getFloaRect();
-
 	virtual bool CollisionWithTower(sf::FloatRect& Tower) =0;
+
+	void paused();
+	void Continue();
 
 	virtual void update() =0;
 	void render();

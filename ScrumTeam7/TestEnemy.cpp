@@ -1,34 +1,34 @@
 #include "TestEnemy.h"
+#include "Window.h"
 
 #include <iostream>
 
 // static Variables
 
-int TestEnemy::EnemyType = 1;
+EnemyType TestEnemy::enemyType = EnemyType::TestEnemy;
 
 float TestEnemy::Health = 200;
 float TestEnemy::Damage = 20;
 
 int TestEnemy::revenue = 5;
 
-sf::Vector2f TestEnemy::dir = sf::Vector2f(-1, 0);
+sf::Vector2f TestEnemy::dir = sf::Vector2f(-10, 0);
 
 sf::Texture* TestEnemy::texture = nullptr;
 
 sf::Time TestEnemy::attackSpeed = sf::milliseconds(750);
 
 
-// static Methoden
+// public static Methoden
 void TestEnemy::LoadTexture()
 {
 	if (texture == nullptr) {
 		texture = new sf::Texture();
-	}
 
-	if (!texture->loadFromFile("Textures/StandartSchüler.png")) {
-		std::cout << "\tFail: Textur not loaded!\n\n";
+		if (!texture->loadFromFile("resource/Textures/StandartSchüler.png")) {
+			texture->loadFromFile("resource/Textures/DefaultTexture.png");
+		}
 	}
-
 }
 
 void TestEnemy::unLoadTexture()
@@ -39,27 +39,32 @@ void TestEnemy::unLoadTexture()
 
 
 // Constructur & Destructur
-TestEnemy::TestEnemy()
-{
-}
+TestEnemy::TestEnemy(const sf::Vector2f& tilePosition)
+	:BaseEnemy(Health, tilePosition, texture)
+{}
 
-TestEnemy::TestEnemy(float linePosition)
-{
-	this->initBaseVariables(EnemyType, Damage, Health, linePosition, texture);
-}
+TestEnemy::~TestEnemy() {}
 
-TestEnemy::~TestEnemy()
-{
-}
-
+// public get-Methoden
 int TestEnemy::getRevenue() {
 	return revenue;
 }
 
+EnemyType TestEnemy::getEnemyType()
+{
+	return this->enemyType;
+}
+
+float TestEnemy::getDamage()
+{
+	return this->Damage;
+}
+
+// public Methoden
 bool TestEnemy::CollisionWithTower(sf::FloatRect& Tower)
 {
-	if (sf::FloatRect(this->Body.getGlobalBounds()).intersects(Tower)) {
-		Movable = false;
+	if (sf::FloatRect(this->body.getGlobalBounds()).intersects(Tower)) {
+		movable = false;
 		return 1;
 	}
 	else {
@@ -69,30 +74,29 @@ bool TestEnemy::CollisionWithTower(sf::FloatRect& Tower)
 
 void TestEnemy::move()
 {
-	if (Movable) {
-		this->Body.move(this->dir);
+	if (movable) {
+		this->body.move(this->dir * dt);
 	}
 	else {
-		Movable = true;
+		movable = true;
 	}
 }
 
 void TestEnemy::update()
 {
 	if (health<= Health/5 ) {
-		Body.setFillColor({ 255,0,0 });
+		body.setFillColor({ 255,0,0 });
 	}
 	else if (health <= Health/2) {
-		Body.setFillColor({ 127,32,32 });
+		body.setFillColor({ 127,32,32 });
 
 	}
 
 	if (this->attackSpeed <= this->clock.getElapsedTime()) {
-		ReadyToAttack = true;
+		readyToAttack = true;
 	}
 	this->move();
 }
 
 
-// public Methoden
 
