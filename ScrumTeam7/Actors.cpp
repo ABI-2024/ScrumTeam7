@@ -143,7 +143,7 @@ void Actors::renderEnemies()
 }
 
 std::vector<BaseEnemy*>* Actors::getEnemy() {
-    return &Enemies;
+    return &BaseEnemy::enemies;
 }
 
 

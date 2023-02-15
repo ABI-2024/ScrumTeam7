@@ -95,7 +95,7 @@ void Wellen::SpawnEnemy(Actors& test) {
 	}
 	if (firstSpawn == true) { //Plichtspawn und Erstellung des Timers
 		for (int i = 0; i < *pSchueler[0]; i++) {
-			test.initializeEnemy(pSchueler[i][0], { 0, (float)(rand() % 5) });
+			test.initializeEnemy((EnemyType)pSchueler[i][0], { 0, (float)(rand() % 5) });
 			pSchueler[i][1] = pSchueler[i][1] - 1;
 			spawnclock[i].restart();
 		}
@@ -103,7 +103,7 @@ void Wellen::SpawnEnemy(Actors& test) {
 	}
 	for (int b = 0; b < *pSchueler[0]; b++) { //Kontinuierlicher Spawn
 		if (pSchueler[b][1] > 0 and (int)spawnclock[b].getElapsedTime().asSeconds() - pSchueler[b][2] >= 0) { //Überprüfung ob noch Schüler gespawnt werden müssen und ob die notwendige Ziet vergangen ist
-			test.initializeEnemy(pSchueler[b][0], { 0, (float)(rand() % 5) });
+			test.initializeEnemy((EnemyType)pSchueler[b][0], { 0, (float)(rand() % 5) });
 			spawnclock[b].restart();
 		}
 	}
