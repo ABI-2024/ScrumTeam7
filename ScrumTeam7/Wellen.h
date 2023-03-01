@@ -14,6 +14,8 @@ class Wellen
 		bool wellenEnde = false;
 		bool spawnEnde = false;
 		bool warteTimer = true;
+		bool eof = false;
+
 
 		int welleDaten[2];
 		std::list <int>* schuelerDaten = new std::list <int>;
@@ -42,6 +44,10 @@ class Wellen
 
 		void addWelle();
 		int getWelle();
+		bool getspawnEnde();
+		bool getwellenEnde();
+		bool getwarteTimer();
+		bool geteof();
 
 
 };

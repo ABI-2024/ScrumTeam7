@@ -21,11 +21,17 @@ void Wellen::WellenDaten() {
 	spawnEnde = false;
 	wellenEnde = false;
 
+	schuelerDaten->clear();
+
 	for (int n = 0; n < welleAnz; n++) { //Skippt bis zur relevanten Teil im Dokument
-		std::getline(Datei, tmp, '\n');
+		std::getline(Datei, tmp, '0');
 	}
 	for (int i = 0; i < 2; i++) { //Ließt Wellendaten aus
 		std::getline(Datei, tmp, ';');
+		if (Datei.eof()) {
+			eof = true;
+			return;
+		}
 		welleDaten[i] = stoi(tmp);
 	}
 	do { //Ließt Schülerdaten aus
@@ -34,7 +40,7 @@ void Wellen::WellenDaten() {
 		dateiposition = Datei.tellg();
 		Datei.get(debug);
 		Datei.seekg(dateiposition);
-	} while (debug != '\n');
+	} while (debug != '0');
 	/*std::getline(wellenDaten, tmp, '\n');*/
 	addWelle();
 	Datei.close();
@@ -66,9 +72,8 @@ void Wellen::SortListeSchueler() {
 	for (int i = 1; i < schuelerDaten->size() / 3 + 1; i++) {
 		pSchueler[i] = new int[3];
 		j = 0;
-		for (auto IList = schuelerDaten->begin(); IList != schuelerDaten->end(); j++, IList++) {
+		for (auto IList = schuelerDaten->begin(); j == 2 or IList != schuelerDaten->end(); j++, IList++) {
 			pSchueler[i][j] = *IList;
-			if (j == 2) break;
 		}
 	}
 }
@@ -81,7 +86,7 @@ void Wellen::WellenEnde(Actors& EnemyAlive) { // Checkt ob alle Schüler in der W
 
 void Wellen::SpawnEnde() { // Checkt ob alle Schüler in der Welle gespawnt wurden
 	this->spawnEnde = true;
-	for (int i = 0; i < *pSchueler[0]; i++) {
+	for (int i = 1; i <= *pSchueler[0]; i++) {
 		if (pSchueler[i][1] > 0) { // Falls noch Schüler nicht gespawnt wurden wird spawnEnde wieder auf false gesetzt
 			this->spawnEnde = false;
 		}
@@ -94,16 +99,17 @@ void Wellen::SpawnEnemy(Actors& test) {
 		return;
 	}
 	if (firstSpawn == true) { //Plichtspawn und Erstellung des Timers
-		for (int i = 0; i < *pSchueler[0]; i++) {
-			test.initializeEnemy((EnemyType)pSchueler[i][0], { 0, (float)(rand() % 5) });
-			pSchueler[i][1] = pSchueler[i][1] - 1;
+		for (int i = 1; i <= *pSchueler[0]; i++) {
+			/*test.initializeEnemy((EnemyType)pSchueler[i][0], { 0, (float)(rand() % 5) });
+			pSchueler[i][1] = pSchueler[i][1] - 1;*/
 			spawnclock[i].restart();
 		}
-		firstSpawn == false;
+		firstSpawn = false;
 	}
-	for (int b = 0; b < *pSchueler[0]; b++) { //Kontinuierlicher Spawn
-		if (pSchueler[b][1] > 0 and (int)spawnclock[b].getElapsedTime().asSeconds() - pSchueler[b][2] >= 0) { //Überprüfung ob noch Schüler gespawnt werden müssen und ob die notwendige Ziet vergangen ist
+	for (int b = 1; b <= *pSchueler[0]; b++) { //Kontinuierlicher Spawn
+		if (pSchueler[b][1] > 0 and spawnclock[b].getElapsedTime() >= sf::seconds(pSchueler[b][2])) { //Überprüfung ob noch Schüler gespawnt werden müssen und ob die notwendige Ziet vergangen ist
 			test.initializeEnemy((EnemyType)pSchueler[b][0], { 0, (float)(rand() % 5) });
+			pSchueler[b][1]--;
 			spawnclock[b].restart();
 		}
 	}
@@ -115,10 +121,27 @@ void Wellen::startWartetimer() {
 }
 
 void Wellen::Wartefunktion() {
-	if ((int)warteclock.getElapsedTime().asSeconds() - welleDaten[1]) {
+	if ((int)warteclock.getElapsedTime().asSeconds() > welleDaten[1]) {
 		this->warteTimer = true;
 		WellenDaten();
+		SortListeSchueler();
 	}
+}
+
+bool Wellen::getspawnEnde() {
+	return this->spawnEnde;
+}
+
+bool Wellen::getwellenEnde() {
+	return this->wellenEnde;
+}
+
+bool Wellen::getwarteTimer() {
+	return this->warteTimer;
+}
+
+bool Wellen::geteof() {
+	return this->eof;
 }
 
 

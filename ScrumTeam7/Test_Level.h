@@ -2,6 +2,7 @@
 #include "Actors.h"
 #include "Shop.h"
 #include "Menu_Pause.h"
+#include "Wellen.h"
 
 class Test_Level
 {
@@ -19,12 +20,16 @@ private:
 	bool paused;
 	Menu_Pause menu;
 
+	Wellen testwelle;
+
 
 	sf::Vector2f TileSelection();
 	void buttonEvents();
 public:
 	Test_Level();
 	~Test_Level();
+
+	void Wellenfunktion();
 
 	void startLevel();
 };
