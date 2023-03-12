@@ -120,12 +120,17 @@ void Wellen::startWartetimer() {
 	this->warteTimer = false;
 }
 
-void Wellen::Wartefunktion() {
+void Wellen::Wartefunktion(Actors& testactor) {
 	if ((int)warteclock.getElapsedTime().asSeconds() > welleDaten[1]) {
 		this->warteTimer = true;
+		GeldproWelle(testactor);
 		WellenDaten();
 		SortListeSchueler();
 	}
+}
+
+void Wellen::GeldproWelle(Actors& testactor) {
+	testactor.getGeld().addKontostand(200*(1+0.1*getWelle()));
 }
 
 bool Wellen::getspawnEnde() {

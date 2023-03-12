@@ -50,7 +50,7 @@ void Test_Level::Wellenfunktion() {
     if (testwelle.getwellenEnde() == true) {
         if (testwelle.getwarteTimer() == true)
             testwelle.startWartetimer();
-        testwelle.Wartefunktion();
+        testwelle.Wartefunktion(actors);
     }
 }
 

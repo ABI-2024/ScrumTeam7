@@ -1,13 +1,16 @@
 #pragma once
 #include <stdio.h>
 #include <fstream>
-#include "Actors.h"
-#include "SFML/Graphics.hpp"
 #include <stdlib.h>
 #include <list>
+
+#include "Actors.h"
+#include "SFML/Graphics.hpp"
+#include "Geld.h"
 class Wellen
 {
 	private:
+		Geld testgeld;
 		static int welleAnz;
 
 		bool firstSpawn = true;
@@ -32,9 +35,10 @@ class Wellen
 		void WellenEnde(Actors&); // Checkt ob alle Schüler in der Welle getötet wurden
 		void SpawnEnde(); // Checkt ob alle Schüler in der Welle gespawnt wurden
 
-		void Wartefunktion(); //Setzt den Wellenspawn auf Pause
+		void Wartefunktion(Actors&); //Setzt den Wellenspawn auf Pause
 		void startWartetimer();
 
+		void GeldproWelle(Actors&);
 
 		void SpawnEnemy(Actors&);
 		/*void Time(Actors& test);*/
