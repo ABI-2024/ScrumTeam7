@@ -86,4 +86,3 @@ public:
 	void initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition); // Beachte Parametername des Vectors
 
 };
-

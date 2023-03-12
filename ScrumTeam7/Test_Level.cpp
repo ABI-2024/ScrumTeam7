@@ -38,6 +38,22 @@ sf::Vector2f Test_Level::TileSelection()
     return sf::Vector2f(mousePos);
 }
 
+void Test_Level::Wellenfunktion() {
+    if (testwelle.geteof() == true) return;
+    testwelle.SpawnEnde();
+    if (testwelle.getspawnEnde() == false) {
+        testwelle.SpawnEnemy(actors);
+    }
+    else {
+        testwelle.WellenEnde(actors);
+    }
+    if (testwelle.getwellenEnde() == true) {
+        if (testwelle.getwarteTimer() == true)
+            testwelle.startWartetimer();
+        testwelle.Wartefunktion();
+    }
+}
+
 void Test_Level::buttonEvents()
 {
     switch ( this->menu.mouseClick()) {
@@ -85,13 +101,14 @@ Test_Level::~Test_Level()
 
 void Test_Level::startLevel()
 {
-    for (int i = 0; i < 1; i++)
-        actors.initializeEnemy(EnemyType::TestEnemy, { 0.f , 0.f });
 
     sf::Vector2f pos;
 
     /*Raster raster(80, 48);
     raster.offset = 50;*/
+
+    testwelle.WellenDaten();
+    testwelle.SortListeSchueler();
     
     GameWindow::updateDeltaTime();
 
@@ -99,6 +116,7 @@ void Test_Level::startLevel()
 
         GameWindow::updateDeltaTime();
         
+        Wellenfunktion();
         // Events
         while (Window.pollEvent(GameEvent)) {
             switch (GameEvent.type)
