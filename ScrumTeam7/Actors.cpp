@@ -13,6 +13,10 @@ void deleteEntities(std::vector<BaseT*> T) {
     }
 }
 
+// get Methoden
+Geld* Actors::getGeld() {
+    return &testGeld;
+}
 
 
 // private Methoden

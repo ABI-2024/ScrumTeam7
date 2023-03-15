@@ -2,8 +2,9 @@
 #include "Window.h"
 #include <iostream>
 
-Shop::Shop() {
+Shop::Shop(Actors& actors) {
 
+	this->actors = &actors;
 	sellection = -1;
 
 	font.loadFromFile("resource/fonts/arial.ttf");
@@ -24,16 +25,17 @@ Shop::Shop() {
 		text[i].setFont(font);
 		text[i].setCharacterSize(20);
 		text[i].setPosition(karten[i]->getPosition());
-		text[i].setFillColor(sf::Color::Green);
+		text[i].setFillColor(sf::Color::Red);
 		text[i].setString(std::to_string(karten[i]->getCost()));
 
 	}
 
 }
 
-Shop::Shop(int anzahlKarten, Karte** karten) {
+Shop::Shop(Actors& actors, int anzahlKarten, Karte** karten) {
 
 	font.loadFromFile("resource/fonts/arial.ttf");
+	this->actors = &actors,
 	this->anzahlKarten = anzahlKarten;
 	this->karten = karten;
 	this->sellection = -1;
@@ -70,10 +72,13 @@ void Shop::setSellection(int s) {
 
 
 
-void Shop::buttonEvents(Actors& actors, sf::Vector2f tilePos)
+void Shop::buttonEvents(sf::Vector2f tilePos)
 {
 	if (sellection != -1) {
-		actors.initializeTower(karten[sellection]->getType(), tilePos);
+		if (karten[sellection]->getCost() <= actors->getGeld()->getKontostand()) {
+			actors->initializeTower(karten[sellection]->getType(), tilePos);
+			actors->getGeld()->subKontostand(karten[sellection]->getCost());
+		}
 	}
 	this->sellection = -1;
 	for (int i = 0; i < anzahlKarten; i++) {
@@ -86,12 +91,13 @@ void Shop::buttonEvents(Actors& actors, sf::Vector2f tilePos)
 
 void Shop::render() {
 	for (int i = 0; i < anzahlKarten; i++) {
+		
 		karten[i]->render();
 
-		
-
-
+		if (actors->getGeld()->getKontostand() >= karten[i]->getCost()) {
+			text[i].setFillColor(sf::Color::Green);
+		}
+		else text[i].setFillColor(sf::Color::Red);
 		GameWindow::getWindow().draw(text[i]);
 	}
-
 }

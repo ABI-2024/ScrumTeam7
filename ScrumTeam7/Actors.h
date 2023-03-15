@@ -63,6 +63,9 @@ public:
 	Actors();
 	~Actors();
 
+	// get Methoden
+	Geld* getGeld();
+
 	void pauseActors();
 	void ContinueActors();
 
