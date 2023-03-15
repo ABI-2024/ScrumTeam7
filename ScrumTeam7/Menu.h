@@ -11,6 +11,9 @@ private:
 	bool open;
 	static int ans;
 
+	sf::Texture titelTexture;
+	sf::RectangleShape titel;
+
 	sf::Font* font;
 	sf::Texture* buttonTexture;
 	std::string* buttonText;

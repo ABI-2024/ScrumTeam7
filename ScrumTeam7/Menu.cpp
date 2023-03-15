@@ -39,6 +39,7 @@ void Menu::render()
 {
 
 	for (int i = 0; i < Anzahl_Button; i++) {
+		Window.draw(titel);
 		button[i].render();
 	}
 
@@ -51,6 +52,13 @@ Menu::Menu()
 	this->open = true;
 
 	
+
+	titelTexture.loadFromFile("resource/Textures/titel.png");
+
+	titel.setPosition({ 100,100 });
+	titel.setSize({ 800,200 });
+	titel.setTexture(&titelTexture,0);
+
 	// Font
 	font = new sf::Font[1];
 	font[0].loadFromFile("resource/fonts/Broken Console Bold.otf");
@@ -69,7 +77,7 @@ Menu::Menu()
 
 	button = new Button[Anzahl_Button];
 	for (int i = 0; i < Anzahl_Button; i++) {
-		button[i] = Button(font[0], sf::Color(34, 32, 52), buttonText[i], buttonTexture, { GameWindow::getMainView().getSize().x / 2 , 240.f+ 200.f*i }, { 400.f, 120.f });
+		button[i] = Button(font[0], sf::Color(34, 32, 52), buttonText[i], buttonTexture, { GameWindow::getMainView().getSize().x / 4 , 440.f+ 150.f*i }, { 400.f, 120.f });
 	}
 
 
@@ -86,7 +94,7 @@ int Menu::openMenu()
 	Menu menu;
 
 	sf::Texture* background_Texture = new sf::Texture();
-	background_Texture->loadFromFile("resource/Textures/DefaultTexture.png");
+	background_Texture->loadFromFile("resource/Textures/Menu_Options.png");
 
 	sf::RectangleShape background;
 	background.setPosition(0,0);
@@ -128,7 +136,6 @@ int Menu::openMenu()
 		Window.setView(GameWindow::getMainView());
 
 		Window.draw(background);
-
 		menu.render();
 
 		Window.display();
