@@ -35,7 +35,7 @@ public:
 
 	sf::FloatRect getFloaRect();
 
-
+	sf::Vector2f getPosition();
 	void hasAttacked();
 	void wasAttacked(float damage);
 

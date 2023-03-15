@@ -56,6 +56,11 @@ sf::FloatRect BaseEnemy::getFloaRect()
 }
 
 
+sf::Vector2f BaseEnemy::getPosition()
+{
+	return body.getPosition();
+}
+
 // public Methoden
 void BaseEnemy::hasAttacked()
 {

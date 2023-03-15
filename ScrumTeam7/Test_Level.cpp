@@ -118,6 +118,10 @@ void Test_Level::startLevel()
         
         Wellenfunktion();
         // Events
+
+        for (BaseEnemy* test : BaseEnemy::enemies) {
+            if (test->getPosition().x < 400) active = false;
+        }
         while (Window.pollEvent(GameEvent)) {
             switch (GameEvent.type)
             {
