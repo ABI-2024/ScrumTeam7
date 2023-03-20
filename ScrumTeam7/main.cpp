@@ -15,8 +15,6 @@
 
 #include "Test_Level.h"
 
-#include "Rectangle.h"
-
 
 int main()
 {

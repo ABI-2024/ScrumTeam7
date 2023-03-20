@@ -25,23 +25,35 @@
     <Filter Include="Quelldateien\Entities\Tower">
       <UniqueIdentifier>{312a4397-2f62-4ded-9ebb-724cbddad15b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Header Entities">
-      <UniqueIdentifier>{1c0a2d9b-0b69-45f1-8cb4-d48ee0ba1639}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Header Entities\Header Ammo">
-      <UniqueIdentifier>{f67cde80-421e-4e29-b2a0-c03e52146a06}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Header Entities\Header Enemy">
-      <UniqueIdentifier>{36127a92-778f-4643-9bbc-298dbe3f4efc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Header Entities\Header Tower">
-      <UniqueIdentifier>{5f358e07-6966-411e-abe5-05348da78c7a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Header Menu">
-      <UniqueIdentifier>{4183ebdd-07a9-4823-9275-0de1bf5679f2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Quelldateien\Menu">
       <UniqueIdentifier>{ebe8daaf-687e-4874-8501-c2b83cbecb98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Game Logik">
+      <UniqueIdentifier>{0ce0db24-977e-4a22-a212-e62894054393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Game Logik\Shop">
+      <UniqueIdentifier>{d0cede6e-4d2c-4919-976d-9745a3736534}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Menu">
+      <UniqueIdentifier>{4183ebdd-07a9-4823-9275-0de1bf5679f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Entities">
+      <UniqueIdentifier>{1c0a2d9b-0b69-45f1-8cb4-d48ee0ba1639}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Entities\Header Ammo">
+      <UniqueIdentifier>{f67cde80-421e-4e29-b2a0-c03e52146a06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Entities\Header Enemy">
+      <UniqueIdentifier>{36127a92-778f-4643-9bbc-298dbe3f4efc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Entities\Header Tower">
+      <UniqueIdentifier>{5f358e07-6966-411e-abe5-05348da78c7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Game Logik">
+      <UniqueIdentifier>{2bc96f8f-ecbc-4609-b4bc-246a8a66c643}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Game Logik\Shop">
+      <UniqueIdentifier>{4233db4d-d281-4cec-bf18-fdbb93d594ed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -49,12 +61,6 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Actors.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Geld.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="TestAmmo.cpp">
@@ -75,19 +81,7 @@
     <ClCompile Include="TestEnemy.cpp">
       <Filter>Quelldateien\Entities\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Test_Level.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Raster.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Shop.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Karte.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Menu_Options.cpp">
@@ -102,76 +96,88 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Quelldateien\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="Actors.cpp">
+      <Filter>Quelldateien\Game Logik</Filter>
+    </ClCompile>
+    <ClCompile Include="Geld.cpp">
+      <Filter>Quelldateien\Game Logik</Filter>
+    </ClCompile>
     <ClCompile Include="Randomizer.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Game Logik</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Quelldateien\Menu</Filter>
     </ClCompile>
     <ClCompile Include="Wellen.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Game Logik</Filter>
+    </ClCompile>
+    <ClCompile Include="Karte.cpp">
+      <Filter>Quelldateien\Game Logik\Shop</Filter>
+    </ClCompile>
+    <ClCompile Include="Shop.cpp">
+      <Filter>Quelldateien\Game Logik\Shop</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Actors.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Geld.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="enums.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="BaseAmmo.h">
-      <Filter>Headerdateien\Header Entities\Header Ammo</Filter>
+      <Filter>Headerdateien\Entities\Header Ammo</Filter>
     </ClInclude>
     <ClInclude Include="TestAmmo.h">
-      <Filter>Headerdateien\Header Entities\Header Ammo</Filter>
+      <Filter>Headerdateien\Entities\Header Ammo</Filter>
     </ClInclude>
     <ClInclude Include="TestEnemy.h">
-      <Filter>Headerdateien\Header Entities\Header Enemy</Filter>
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
     </ClInclude>
     <ClInclude Include="BaseEnemy.h">
-      <Filter>Headerdateien\Header Entities\Header Enemy</Filter>
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
     </ClInclude>
     <ClInclude Include="BaseTower.h">
-      <Filter>Headerdateien\Header Entities\Header Tower</Filter>
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
     </ClInclude>
     <ClInclude Include="TestTower.h">
-      <Filter>Headerdateien\Header Entities\Header Tower</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
     </ClInclude>
     <ClInclude Include="Test_Level.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Raster.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Shop.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Karte.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Menu_Pause.h">
-      <Filter>Headerdateien\Header Menu</Filter>
+      <Filter>Headerdateien\Menu</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
-      <Filter>Headerdateien\Header Menu</Filter>
+      <Filter>Headerdateien\Menu</Filter>
     </ClInclude>
     <ClInclude Include="Menu_Options.h">
-      <Filter>Headerdateien\Header Menu</Filter>
+      <Filter>Headerdateien\Menu</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>Headerdateien\Header Entities</Filter>
+      <Filter>Headerdateien\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors.h">
+      <Filter>Headerdateien\Game Logik</Filter>
+    </ClInclude>
+    <ClInclude Include="Geld.h">
+      <Filter>Headerdateien\Game Logik</Filter>
+    </ClInclude>
+    <ClInclude Include="Shop.h">
+      <Filter>Headerdateien\Game Logik\Shop</Filter>
+    </ClInclude>
+    <ClInclude Include="Karte.h">
+      <Filter>Headerdateien\Game Logik\Shop</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Headerdateien\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="enums.h">
+      <Filter>Headerdateien\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Randomizer.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\Game Logik</Filter>
     </ClInclude>
     <ClInclude Include="Wellen.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\Game Logik</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
