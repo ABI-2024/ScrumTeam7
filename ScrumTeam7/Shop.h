@@ -8,7 +8,7 @@ class Shop
 private:
 	
 	int anzahlKarten;
-	sf::Texture t;
+	sf::Texture* t;
 	Karte** karten; // int cost, int Type, Body, Texture
 	Actors* actors;
 	int sellection;

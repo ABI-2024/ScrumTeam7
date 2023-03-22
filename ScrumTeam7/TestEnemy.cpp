@@ -19,21 +19,16 @@ sf::Texture* TestEnemy::texture = nullptr;
 sf::Time TestEnemy::attackSpeed = sf::milliseconds(750);
 
 
-// static Methoden
+// public static Methoden
 void TestEnemy::LoadTexture()
 {
 	if (texture == nullptr) {
 		texture = new sf::Texture();
-	}
 
-	if (!texture->loadFromFile("resource/Textures/StandartSchüler.png")) {
-		std::cout << "\tFail: Textur not loaded!\n\n";
-
-		if (!texture->loadFromFile("resource/Textures/DefaultTexture.png")) {
-			std::cout << "\tFail: Textur not loaded!\n\n";
+		if (!texture->loadFromFile("resource/Textures/StandartSchüler.png")) {
+			texture->loadFromFile("resource/Textures/DefaultTexture.png");
 		}
 	}
-
 }
 
 void TestEnemy::unLoadTexture()
@@ -50,6 +45,7 @@ TestEnemy::TestEnemy(const sf::Vector2f& tilePosition)
 
 TestEnemy::~TestEnemy() {}
 
+// public get-Methoden
 int TestEnemy::getRevenue() {
 	return revenue;
 }
@@ -64,10 +60,11 @@ float TestEnemy::getDamage()
 	return this->Damage;
 }
 
+// public Methoden
 bool TestEnemy::CollisionWithTower(sf::FloatRect& Tower)
 {
-	if (sf::FloatRect(this->Body.getGlobalBounds()).intersects(Tower)) {
-		Movable = false;
+	if (sf::FloatRect(this->body.getGlobalBounds()).intersects(Tower)) {
+		movable = false;
 		return 1;
 	}
 	else {
@@ -77,30 +74,29 @@ bool TestEnemy::CollisionWithTower(sf::FloatRect& Tower)
 
 void TestEnemy::move()
 {
-	if (Movable) {
-		this->Body.move(this->dir * dt);
+	if (movable) {
+		this->body.move(this->dir * dt);
 	}
 	else {
-		Movable = true;
+		movable = true;
 	}
 }
 
 void TestEnemy::update()
 {
 	if (health<= Health/5 ) {
-		Body.setFillColor({ 255,0,0 });
+		body.setFillColor({ 255,0,0 });
 	}
 	else if (health <= Health/2) {
-		Body.setFillColor({ 127,32,32 });
+		body.setFillColor({ 127,32,32 });
 
 	}
 
 	if (this->attackSpeed <= this->clock.getElapsedTime()) {
-		ReadyToAttack = true;
+		readyToAttack = true;
 	}
 	this->move();
 }
 
 
-// public Methoden
 

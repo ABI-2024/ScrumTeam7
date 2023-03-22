@@ -2,32 +2,39 @@
 
 #include "Window.h"
 
-#include <iostream>
+// public static Variables 
+std::vector<BaseTower*> BaseTower::towers;
 
-std::vector<BaseTower*> BaseTower::Towers;
 
 // Constructur & Destructur
 BaseTower::BaseTower(float Health, sf::Vector2f tilePosition, sf::Texture* texture)
-	: alive(true), ReadyToAttack(false), health(Health), tilePosition(tilePosition)
+	: alive(true), readyToAttack(false), health(Health), tilePosition(tilePosition)
 {
-	this->Body.setPosition(400 + 150 * this->tilePosition.x, 150 + 150 * this->tilePosition.y);
-	this->Body.setSize(sf::Vector2f(75.f, 150.f));
-	this->Body.setOrigin(sf::Vector2f(this->Body.getSize().x / 2, this->Body.getSize().y / 2));
-	this->Body.setTexture(texture, 0);
+	this->body.setPosition(400 + 150 * this->tilePosition.x, 150 + 150 * this->tilePosition.y);
+	this->body.setSize(sf::Vector2f(75.f, 150.f));
+	this->body.setOrigin(sf::Vector2f(this->body.getSize().x / 2, this->body.getSize().y / 2));
+	this->body.setTexture(texture, 0);
 
-	Towers.push_back(this);
+	this->shadow.setPosition(this->body.getPosition().x + this->body.getSize().x / 8.f, this->body.getPosition().y + this->body.getSize().y / 2);
+	this->shadow.setSize(sf::Vector2f(this->body.getSize().x, 37.5f));
+	this->shadow.setOrigin(sf::Vector2f(this->shadow.getSize().x / 2, this->shadow.getSize().y / 2));
+	this->shadow.setTexture(this->shadowTexture,0);
+
+	towers.push_back(this);
 }
 
 BaseTower::~BaseTower()
 {
-	for (auto i = Towers.begin(); i != Towers.end(); ++i) {
+	for (auto i = towers.begin(); i != towers.end(); ++i) {
 		if ((*i) == this) {
-			Towers.erase(i);
+			towers.erase(i);
 			break;
 		}
 	}
 }
 
+
+// public get-Methoden
 bool BaseTower::isAlive()
 {
 	return this->alive;
@@ -35,7 +42,31 @@ bool BaseTower::isAlive()
 
 bool BaseTower::isReadyToAttack()
 {
-	return this->ReadyToAttack;
+	return this->readyToAttack;
+}
+
+sf::FloatRect BaseTower::getFloaRect()
+{
+	return this->body.getGlobalBounds();	
+}
+
+sf::Vector2f BaseTower::getPosition()
+{
+	return this->body.getPosition();
+}
+
+sf::Vector2f BaseTower::getTilePosition()
+{
+	return this->tilePosition;
+}
+
+
+// public Methoden
+void BaseTower::HasAttacked()
+{
+	this->readyToAttack = false;
+	this->clock.restart();
+	this->remainingAttackTime = sf::milliseconds(0);
 }
 
 void BaseTower::wasAttacked(float damage)
@@ -45,31 +76,6 @@ void BaseTower::wasAttacked(float damage)
 		this->alive = false;
 	}
 
-}
-
-sf::FloatRect BaseTower::getFloaRect()
-{
-	sf::FloatRect hitbox = this->Body.getGlobalBounds();
-	hitbox.top += 20;
-	hitbox.height -= 40;
-	return hitbox;
-}
-
-void BaseTower::HasAttacked()
-{
-	this->ReadyToAttack = false;
-	this->clock.restart();
-	this->remainingAttackTime = sf::milliseconds(0);
-}
-
-sf::Vector2f BaseTower::getPosition()
-{
-	return this->Body.getPosition();
-}
-
-sf::Vector2f BaseTower::getTilePosition()
-{
-	return this->tilePosition;
 }
 
 void BaseTower::paused()
@@ -84,5 +90,5 @@ void BaseTower::Continue()
 
 void BaseTower::render()
 {
-	GameWindow::getWindow().draw(this->Body);
+	Window.draw(this->body);
 }

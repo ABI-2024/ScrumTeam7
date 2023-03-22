@@ -1,22 +1,18 @@
 #pragma once
 
-#include <vector>
-
-#include "SFML/Graphics.hpp"
+#include "Entity.h"
 
 #include "enums.h"
 
-class BaseEnemy
+class BaseEnemy : public Entity
 {
 public:
-	static std::vector<BaseEnemy*> Enemies;
+	static std::vector<BaseEnemy*> enemies;
 protected:
 
-	sf::RectangleShape Body;
-
 	bool alive;
-	bool ReadyToAttack;
-	bool Movable;
+	bool readyToAttack;
+	bool movable;
 	float health;
 
 	sf::Vector2f tilePosition;
@@ -29,17 +25,19 @@ public:
 	BaseEnemy(float Health,	sf::Vector2f tilePosition, sf::Texture* texture);
 	~BaseEnemy();
 
+
 	bool isAlive();
 	bool isReadyToAttack();
-	const sf::Vector2f& getTilePosition();
 
+	const sf::Vector2f& getTilePosition();
 	virtual EnemyType getEnemyType() = 0;
 	virtual float getDamage() = 0;
 
+	sf::FloatRect getFloaRect();
+
+	sf::Vector2f getPosition();
 	void hasAttacked();
 	void wasAttacked(float damage);
-
-	sf::FloatRect getFloaRect();
 
 	virtual bool CollisionWithTower(sf::FloatRect& Tower) =0;
 

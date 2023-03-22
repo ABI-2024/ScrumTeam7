@@ -11,6 +11,7 @@ private:
 	static float Health;
 
 	static sf::Time fireRate;
+	static sf::Time maximumFireRateDiviation;
 	static sf::Texture* texture;
 
 public:
@@ -22,5 +23,6 @@ public:
 
 	TowerType getTowerType() override;
 
+	void HasAttacked() override;
 	void update() override;
 };

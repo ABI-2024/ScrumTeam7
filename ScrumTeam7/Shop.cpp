@@ -7,15 +7,21 @@ Shop::Shop(Actors& actors) {
 	this->actors = &actors;
 	sellection = -1;
 
-	font.loadFromFile("resource/fonts/arial.ttf");
-	t.loadFromFile("resource/Textures/SportLehre1.png");
-
 	this->anzahlKarten = 5;
+
+	font.loadFromFile("resource/fonts/arial.ttf");
+	t = new sf::Texture[anzahlKarten];
+	t[0].loadFromFile("resource/Textures/Lehrer/Karten/Karte_DE_Front.png");
+	t[1].loadFromFile("resource/Textures/Lehrer/Karten/Karte_EN_Front.png");
+	t[2].loadFromFile("resource/Textures/Lehrer/Karten/Karte_MA_Front.png");
+	t[3].loadFromFile("resource/Textures/Lehrer/Karten/Karte_MU_Front.png");
+	t[4].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Front.png");
+
 
 	//this->karten = new Karte(100, 1, &t, { 25.f, 90.f });
 	karten = new Karte * [anzahlKarten];
 	for (int i = 0; i < anzahlKarten; i++) {
-		this->karten[i] = new Karte(100, TowerType::TestTower, &t, { 60.f, 150.f * i + 90 });
+		this->karten[i] = new Karte(100, TowerType::TestTower, &t[i], { 60.f, 150.f * i + 90 });
 	}
 
 	this->text = new sf::Text[anzahlKarten];

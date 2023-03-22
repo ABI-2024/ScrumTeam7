@@ -88,8 +88,8 @@ void Actors::updateEnemies()
 
 void Actors::CollisionEnemyWithTower()
 {
-    for (BaseTower* i : BaseTower::Towers) {
-        for (BaseEnemy* j : BaseEnemy::Enemies) {
+    for (BaseTower* i : BaseTower::towers) {
+        for (BaseEnemy* j : BaseEnemy::enemies) {
 
             sf::FloatRect tmp = i->getFloaRect();
 
@@ -103,8 +103,8 @@ void Actors::CollisionEnemyWithTower()
 
 void Actors::CollisionAmmoWithEnemy()
 {
-    for (BaseEnemy* i : BaseEnemy::Enemies) {
-        for (BaseAmmo* j : BaseAmmo::Ammos) {
+    for (BaseEnemy* i : BaseEnemy::enemies) {
+        for (BaseAmmo* j : BaseAmmo::ammos) {
 
             sf::FloatRect tmp = i->getFloaRect();
 
@@ -118,28 +118,37 @@ void Actors::CollisionAmmoWithEnemy()
 
 
 
+void Actors::renderShadows()
+{
+    for (Entity* i : Entity::entities) {
+        i->renderShadow();
+    }
+}
+
 void Actors::renderTowers()
 {
-    for (BaseTower* i : BaseTower::Towers) {
+    for (BaseTower* i : BaseTower::towers) {
         i->render();
     }
 }
 
 void Actors::renderAmmos()
 {
-    for (BaseAmmo* i : BaseAmmo::Ammos) {
+    for (BaseAmmo* i : BaseAmmo::ammos) {
         i->render();
     }
 }
 
 void Actors::renderEnemies()
 {
-    for (BaseEnemy* i : BaseEnemy::Enemies) {
+    for (BaseEnemy* i : BaseEnemy::enemies) {
         i->render();
     }
 }
 
-
+std::vector<BaseEnemy*>* Actors::getEnemy() {
+    return &BaseEnemy::enemies;
+}
 
 
 // Constructur & Destructur
@@ -163,7 +172,7 @@ Actors::~Actors()
     testEnemy.clear();
 
     //// löschung aller gespicherten BasisTypen*
-    //Towers.clear();
+    //towers.clear();
     //Ammos.clear();
     //Enemies.clear();
 }
@@ -171,20 +180,20 @@ Actors::~Actors()
 
 void Actors::pauseActors()
 {
-    for (BaseTower* i : BaseTower::Towers) {
+    for (BaseTower* i : BaseTower::towers) {
         i->paused();
     }
-    for (BaseEnemy* i : BaseEnemy::Enemies) {
+    for (BaseEnemy* i : BaseEnemy::enemies) {
         i->paused();
     }
 }
 
 void Actors::ContinueActors()
 {
-    for (BaseTower* i : BaseTower::Towers) {
+    for (BaseTower* i : BaseTower::towers) {
         i->Continue();
     }
-    for (BaseEnemy* i : BaseEnemy::Enemies) {
+    for (BaseEnemy* i : BaseEnemy::enemies) {
         i->Continue();
     }
 }
@@ -205,6 +214,8 @@ void Actors::Collisions()
 
 void Actors::renderActors()
 {
+    this->renderShadows();
+
     this->renderTowers();
     this->renderAmmos();
     this->renderEnemies();
@@ -214,15 +225,15 @@ void Actors::renderActors()
 
 
 
-void Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
+bool Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
 {
     if (TilePosition.x < 0 || TilePosition.x >7  ||  TilePosition.y < 0 || TilePosition.y > 4) {
-        return;
+        return false;
     }
 
-    for (BaseTower* i : BaseTower::Towers) {
+    for (BaseTower* i : BaseTower::towers) {
         if ( i->getTilePosition() == TilePosition) {
-            return;
+            return false;
         }
     }
 
@@ -233,12 +244,18 @@ void Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
         break;
 
     default:
+        return false;
         break;
     }
+    return true;
 }
 
-void Actors::initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition )
+bool Actors::initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition )
 {
+    if (TilePosition.x < 0 || TilePosition.x >7 || TilePosition.y < 0 || TilePosition.y > 4) {
+        return false;
+    }
+
     switch (EnemyType)
     {
     case EnemyType::TestEnemy:
@@ -246,8 +263,10 @@ void Actors::initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition )
         break;
 
     default:
+        return false;
         break;
     }
+    return true;
 }
 
 void Actors::initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition)
@@ -261,4 +280,8 @@ void Actors::initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition)
     default:
         break;
     }
+}
+
+Geld& Actors::getGeld() {
+    return testGeld;
 }

@@ -7,9 +7,9 @@ Karte::Karte(int cost, TowerType type, sf::Texture* texture, sf::Vector2f pos) {
 	this->hovered = false;
 
 	this->Body.setPosition(pos);
-	sf::Vector2f size = { 180.f , 140.f };
+	sf::Vector2f size = { 210.f , 140.f };
 	this->Body.setSize(size);
-	//this->Body.setTexture(texture , 0);
+	this->Body.setTexture(texture , 0);
 
 	hitBox = Body.getGlobalBounds();
 }

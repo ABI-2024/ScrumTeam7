@@ -18,7 +18,7 @@ sf::View GameWindow::mainView(sf::Vector2f(800, 450),sf::Vector2f(1600,900));
 sf::Clock GameWindow::deltaTimer;
 float GameWindow::deltaTime = 0;
 
-
+// Helfer Funktionen
 void writeToFile( const Settings& settings) {
 
     std::ofstream FILE("WindowSettings.csv");

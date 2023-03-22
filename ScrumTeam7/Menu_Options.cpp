@@ -6,7 +6,7 @@ Menu_Options::Menu_Options() {
 	this->open = true;
 
 	backgroundTexture = new sf::Texture();
-	backgroundTexture->loadFromFile("resource/Textures/DefaultTexture.png");
+	backgroundTexture->loadFromFile("resource/Textures/Menu_Options.png");
 
 	background.setPosition(0, 0);
 	background.setSize(sf::Vector2f(GameWindow::getMainView().getSize()));
@@ -47,8 +47,8 @@ Menu_Options::Menu_Options() {
 	for (int i = 0; i < 5; i++) {
 		button[i] = Button(font, sf::Color(34, 32, 52), buttonText[i], buttonTexture, { GameWindow::getMainView().getSize().x/2  , 160.f + 130.f * i }, { 800.f, 120.f });
 	}
-	button[5] = Button(font, sf::Color(34, 32, 52), "Zurück", buttonTexture, {GameWindow::getMainView().getSize().x /4  , GameWindow::getMainView().getSize().y * 15 / 16 }, {400.f, 100.f});
-	button[6] = Button(font, sf::Color(34, 32, 52), "Übernehmen", buttonTexture, {GameWindow::getMainView().getSize().x * 3/ 4  , GameWindow::getMainView().getSize().y * 15 / 16 }, {400.f, 100.f});
+	button[5] = Button(font, sf::Color(34, 32, 52), "Zurück", buttonTexture, {GameWindow::getMainView().getSize().x /8  , GameWindow::getMainView().getSize().y * 15 / 16 }, {400.f, 100.f});
+	button[6] = Button(font, sf::Color(34, 32, 52), "Übernehmen", buttonTexture, {GameWindow::getMainView().getSize().x * 7/ 8  , GameWindow::getMainView().getSize().y * 15 / 16 }, {400.f, 100.f});
 
 	aufloesung[0] = { 0, 0 };
 	aufloesung[1] = { 960, 540 };
