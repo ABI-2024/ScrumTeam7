@@ -69,10 +69,12 @@ void Wellen::SortListeSchueler() {
 	pSchueler[0] = new int(schuelerDaten->size() / 3);
 	spawnclock = new sf::Clock[*pSchueler[0]];
 
+	auto IList = schuelerDaten->begin();
+	
 	for (int i = 1; i < schuelerDaten->size() / 3 + 1; i++) {
 		pSchueler[i] = new int[3];
 		j = 0;
-		for (auto IList = schuelerDaten->begin(); j == 2 or IList != schuelerDaten->end(); j++, IList++) {
+		for (; j != 3 and IList != schuelerDaten->end(); j++, IList++) {
 			pSchueler[i][j] = *IList;
 		}
 	}
