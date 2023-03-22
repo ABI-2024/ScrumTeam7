@@ -145,6 +145,7 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Menu_Options.cpp" />
     <ClCompile Include="Menu_Pause.cpp" />
+    <ClCompile Include="Nerd.cpp" />
     <ClCompile Include="Randomizer.cpp" />
     <ClCompile Include="Raster.cpp" />
     <ClCompile Include="Shop.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Menu_Options.h" />
     <ClInclude Include="Menu_Pause.h" />
+    <ClInclude Include="Nerd.h" />
     <ClInclude Include="Randomizer.h" />
     <ClInclude Include="Raster.h" />
     <ClInclude Include="Karte.h" />

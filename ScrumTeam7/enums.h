@@ -15,5 +15,6 @@ enum class AmmoType : char
 enum class EnemyType : char
 {
 	none = 0,
-	TestEnemy = 1
+	TestEnemy = 1,
+	Nerd = 2
 };

@@ -1,26 +1,26 @@
-#include "TestEnemy.h"
+#include "Nerd.h"
 #include "Window.h"
 
 #include <iostream>
 
 // static Variables
 
-EnemyType TestEnemy::enemyType = EnemyType::TestEnemy;
+EnemyType Nerd::enemyType = EnemyType::Nerd;
 
-float TestEnemy::Health = 200;
-float TestEnemy::Damage = 20;
+float Nerd::Health = 200;
+float Nerd::Damage = 20;
 
-int TestEnemy::revenue = 5;
+int Nerd::revenue = 8;
 
-sf::Vector2f TestEnemy::dir = sf::Vector2f(-10, 0);
+sf::Vector2f Nerd::dir = sf::Vector2f(-7, 0);
 
-sf::Texture* TestEnemy::texture = nullptr;
+sf::Texture* Nerd::texture = nullptr;
 
-sf::Time TestEnemy::attackSpeed = sf::milliseconds(750);
+sf::Time Nerd::attackSpeed = sf::milliseconds(750);
 
 
 // public static Methoden
-void TestEnemy::LoadTexture()
+void Nerd::LoadTexture()
 {
 	if (texture == nullptr) {
 		texture = new sf::Texture();
@@ -31,7 +31,7 @@ void TestEnemy::LoadTexture()
 	}
 }
 
-void TestEnemy::unLoadTexture()
+void Nerd::unLoadTexture()
 {
 	delete texture;
 	texture = nullptr;
@@ -39,29 +39,29 @@ void TestEnemy::unLoadTexture()
 
 
 // Constructur & Destructur
-TestEnemy::TestEnemy(const sf::Vector2f& tilePosition)
+Nerd::Nerd(const sf::Vector2f& tilePosition)
 	:BaseEnemy(Health, tilePosition, texture)
 {}
 
-TestEnemy::~TestEnemy() {}
+Nerd::~Nerd() {}
 
 // public get-Methoden
-int TestEnemy::getRevenue() {
+int Nerd::getRevenue() {
 	return revenue;
 }
 
-EnemyType TestEnemy::getEnemyType()
+EnemyType Nerd::getEnemyType()
 {
 	return this->enemyType;
 }
 
-float TestEnemy::getDamage()
+float Nerd::getDamage()
 {
 	return this->Damage;
 }
 
 // public Methoden
-bool TestEnemy::CollisionWithTower(sf::FloatRect& Tower)
+bool Nerd::CollisionWithTower(sf::FloatRect& Tower)
 {
 	if (sf::FloatRect(this->body.getGlobalBounds()).intersects(Tower)) {
 		movable = false;
@@ -72,7 +72,7 @@ bool TestEnemy::CollisionWithTower(sf::FloatRect& Tower)
 	}
 }
 
-void TestEnemy::move()
+void Nerd::move()
 {
 	if (movable) {
 		this->body.move(this->dir * dt);
@@ -82,7 +82,7 @@ void TestEnemy::move()
 	}
 }
 
-void TestEnemy::update()
+void Nerd::update()
 {
 	if (health <= Health / 5) {
 		body.setFillColor({ 139,0,0 }); //DarkRed
@@ -98,8 +98,3 @@ void TestEnemy::update()
 	if (this->attackSpeed <= this->clock.getElapsedTime()) {
 		readyToAttack = true;
 	}
-	this->move();
-}
-
-
-

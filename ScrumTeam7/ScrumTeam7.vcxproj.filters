@@ -108,6 +108,9 @@
     <ClCompile Include="Wellen.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Nerd.cpp">
+      <Filter>Quelldateien\Entities\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="Wellen.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Nerd.h">
+      <Filter>Headerdateien\Header Entities\Header Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
