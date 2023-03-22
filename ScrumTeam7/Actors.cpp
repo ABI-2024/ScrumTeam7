@@ -281,7 +281,3 @@ void Actors::initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition)
         break;
     }
 }
-
-Geld& Actors::getGeld() {
-    return testGeld;
-}
