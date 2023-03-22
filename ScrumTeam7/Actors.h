@@ -13,6 +13,7 @@
 
 // Enemies / Gegener
 #include "TestEnemy.h"
+#include "Nerd.h"
 
 
 /*
@@ -46,6 +47,7 @@ private:
 
 	// Alle vectoren von Enemies / Gegener
 	std::vector<TestEnemy*> testEnemy;
+	std::vector<Nerd*> nerd;
 
 	
 

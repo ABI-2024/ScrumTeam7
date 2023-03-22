@@ -24,7 +24,7 @@ public:
 	TestEnemy(const sf::Vector2f& tilePosition);
 	~TestEnemy();
 
-	static int getRevenue();
+	int getRevenue() override;
 
 
 	EnemyType getEnemyType() override;

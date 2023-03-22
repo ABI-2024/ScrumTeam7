@@ -25,6 +25,7 @@ int main()
     Entity::loadTexture();
     TestAmmo::LoadTexture();
     TestTower::LoadTexture();
+    Nerd::LoadTexture();
     TestEnemy::LoadTexture();
 
     Test_Level* level = nullptr;
@@ -57,6 +58,7 @@ int main()
     TestAmmo::unLoadTexture();
     TestTower::unLoadTexture();
     TestEnemy::unLoadTexture();
+    Nerd::unLoadTexture();
 
     GameWindow::closeWindow();
     return 0;

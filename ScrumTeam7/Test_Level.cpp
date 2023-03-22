@@ -157,7 +157,7 @@ void Test_Level::startLevel()
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 
                         // Spawnt Enemy
-                        actors.initializeEnemy(EnemyType::TestEnemy, this->TileSelection());
+                        actors.initializeEnemy(EnemyType::Nerd, this->TileSelection());
                     }
                 }
                 else {

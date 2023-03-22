@@ -64,6 +64,24 @@ void Actors::updateEnemies()
         onLine[i] = false;
     }
 
+    /*for (auto i = BaseEnemy::enemies.begin(); i != BaseEnemy::enemies.end(); i++) {
+        onLine[(int)(*i)->getTilePosition().y] = true;
+
+        if (!(*i)->isAlive()) {
+            testGeld.addKontostand((*i)->getRevenue());
+
+            delete (*i);
+            i = BaseEnemy::enemies.erase(i);
+            if (i == BaseEnemy::enemies.end()) {
+                break;
+
+            }
+        }
+
+        (*i)->update();
+    }*/
+
+
     for (auto i = testEnemy.begin(); i != testEnemy.end(); i++) {
 
         onLine[(int)(*i)->getTilePosition().y] = true;
@@ -82,6 +100,23 @@ void Actors::updateEnemies()
         (*i)->update();
     }
 
+    for (auto i = nerd.begin(); i != nerd.end(); i++) {
+
+        onLine[(int)(*i)->getTilePosition().y] = true;
+
+        if (!(*i)->isAlive()) {
+            testGeld.addKontostand((*i)->getRevenue());
+
+            delete (*i);
+            i = nerd.erase(i);
+            if (i == nerd.end()) {
+                break;
+
+            }
+        }
+
+        (*i)->update();
+    }
 }
 
 
@@ -170,6 +205,9 @@ Actors::~Actors()
 
     deleteEntities(testEnemy);
     testEnemy.clear();
+
+    deleteEntities(nerd);
+    nerd.clear();
 
     //// löschung aller gespicherten BasisTypen*
     //towers.clear();
@@ -261,7 +299,9 @@ bool Actors::initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition )
     case EnemyType::TestEnemy:
         testEnemy.push_back(new TestEnemy(TilePosition));
         break;
-
+    case EnemyType::Nerd:
+        nerd.push_back(new Nerd(TilePosition));
+        break;
     default:
         return false;
         break;

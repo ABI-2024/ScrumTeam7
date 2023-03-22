@@ -22,7 +22,7 @@ public:
 	Nerd(const sf::Vector2f& tilePosition);
 	~Nerd();
 
-	static int getRevenue();
+	int getRevenue() override;
 
 
 	EnemyType getEnemyType() override;

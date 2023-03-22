@@ -32,6 +32,7 @@ public:
 	const sf::Vector2f& getTilePosition();
 	virtual EnemyType getEnemyType() = 0;
 	virtual float getDamage() = 0;
+	virtual int getRevenue() = 0;
 
 	sf::FloatRect getFloaRect();
 

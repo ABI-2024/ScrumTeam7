@@ -25,7 +25,7 @@ void Nerd::LoadTexture()
 	if (texture == nullptr) {
 		texture = new sf::Texture();
 
-		if (!texture->loadFromFile("resource/Textures/StandartSchüler.png")) {
+		if (!texture->loadFromFile("resource/Textures/Schueler/Nerd.png")) {
 			texture->loadFromFile("resource/Textures/DefaultTexture.png");
 		}
 	}
@@ -98,3 +98,5 @@ void Nerd::update()
 	if (this->attackSpeed <= this->clock.getElapsedTime()) {
 		readyToAttack = true;
 	}
+	move();
+}
