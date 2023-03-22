@@ -130,7 +130,7 @@ void Wellen::Wartefunktion(Actors& testactor) {
 }
 
 void Wellen::GeldproWelle(Actors& testactor) {
-	testactor.getGeld().addKontostand(200*(1+0.1*getWelle()));
+	testactor.getGeld()->addKontostand(200*(1+0.1*getWelle()));
 }
 
 bool Wellen::getspawnEnde() {
