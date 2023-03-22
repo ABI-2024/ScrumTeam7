@@ -13,6 +13,10 @@ void deleteEntities(std::vector<BaseT*> T) {
     }
 }
 
+// get Methoden
+Geld* Actors::getGeld() {
+    return &testGeld;
+}
 
 
 // private Methoden
@@ -276,8 +280,4 @@ void Actors::initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition)
     default:
         break;
     }
-}
-
-Geld& Actors::getGeld() {
-    return testGeld;
 }

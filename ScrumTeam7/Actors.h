@@ -67,6 +67,9 @@ public:
 	Actors();
 	~Actors();
 
+	// get Methoden
+	Geld* getGeld();
+
 	void pauseActors();
 	void ContinueActors();
 
@@ -81,8 +84,6 @@ public:
 
 	// Gibt die Liste der Enemys zurück
 	std::vector<BaseEnemy*>* getEnemy();
-
-	Geld& getGeld();
 
 	// Initialisiert die Klassen
 	bool initializeTower(TowerType TowerType, sf::Vector2f TilePosition);

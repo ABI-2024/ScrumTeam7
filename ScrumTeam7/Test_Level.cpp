@@ -1,6 +1,5 @@
 #include "Test_Level.h"
 #include "Window.h"
-#include "Raster.h"
 #include "Menu_Options.h"
 
 #include <iostream>
@@ -76,7 +75,9 @@ void Test_Level::buttonEvents()
 }
 
 Test_Level::Test_Level()
-    : active(true) , paused(false) 
+
+    : active(true), paused(false), testShop(actors)
+
 {
     back.loadFromFile("resource/Textures/Background_Sporthalle.png");
 
@@ -148,7 +149,7 @@ void Test_Level::startLevel()
                 if (!paused) {
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {                      
 
-                        testShop.buttonEvents(actors, TileSelection());
+                        testShop.buttonEvents(TileSelection());
 
                         //// Spawnt Tower
                         //actors.initializeTower(TowerType::TestTower, this->TileSelection());
