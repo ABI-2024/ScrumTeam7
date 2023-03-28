@@ -5,13 +5,77 @@
 #include <iostream>
 
 template<class BaseT> 
-void deleteEntities(std::vector<BaseT*> T) {
+void  Actors::deleteEntities(std::vector<BaseT*>* T) {
 
-    for (auto i = T.begin(); i != T.end(); i++) {
+    for (auto i = T->begin(); i != T->end(); i++) {
         delete (*i);
         (*i) = nullptr;
     }
 }
+
+template<class BaseT>
+void  Actors::updateTower(std::vector<BaseT*>* T, const AmmoType& type) {
+
+    for (auto i = T->begin(); i != T->end(); i++) {
+
+        if (!(*i)->isAlive()) {
+            delete (*i);
+            i = T->erase(i);
+            if (i == T->end()) {
+                break;
+            }
+        }
+
+        (*i)->update();
+
+        if ((*i)->isReadyToAttack() && onLine[(int)(*i)->getTilePosition().y]) {
+            (*i)->HasAttacked();
+            initializeAmmo(type, (*i)->getPosition());
+        }
+    }
+
+}
+
+template<class BaseT>
+void  Actors::updateAmmo(std::vector<BaseT*>* T) {
+
+    for (auto i = T->begin(); i != T->end(); i++) {
+
+        if ((*i)->isHit()) {
+            delete (*i);
+            i = T->erase(i);
+            if (i == T->end()) {
+                break;
+            }
+        }
+        (*i)->update();
+    }
+
+}
+
+template<class BaseT>
+void  Actors::updateEnemy(std::vector<BaseT*>* T) {
+
+    for (auto i = T->begin(); i != T->end(); i++) {
+
+        onLine[(int)(*i)->getTilePosition().y] = true;
+
+        (*i)->update();
+
+        if (!(*i)->isAlive()) {
+            testGeld.addKontostand((*i)->getRevenue());
+
+            delete (*i);
+            i = T->erase(i);
+            if (i == T->end()) {
+                break;
+            }
+        }
+    }
+}
+
+
+
 
 // get Methoden
 Geld* Actors::getGeld() {
@@ -22,39 +86,12 @@ Geld* Actors::getGeld() {
 // private Methoden
 void Actors::updateTowers()
 {
-
-    for (auto i = testTower.begin(); i != testTower.end(); i++) {
-        
-        if (!(*i)->isAlive()) {
-            delete (*i);
-            i = testTower.erase(i);
-            if (i == testTower.end()) {
-                break;
-            }
-        }
-
-        (*i)->update();
-
-        if ((*i)->isReadyToAttack() && onLine[(int)(*i)->getTilePosition().y]) {
-                (*i)->HasAttacked();
-                testAmmo.push_back(new TestAmmo( (*i)->getPosition() ));
-        }
-    }
+    updateTower(&testTower, AmmoType::TestAmmo);
 }
 
 void Actors::updateAmmos()
 {
-    for (auto i = testAmmo.begin(); i != testAmmo.end(); i++) {
-
-        if ((*i)->isHit()) {
-            delete (*i);
-            i = testAmmo.erase(i);
-            if (i == testAmmo.end()) {
-                break;
-            }
-        }
-        (*i)->update();
-    }
+    updateAmmo(&testAmmo);
 
 }
 
@@ -64,59 +101,9 @@ void Actors::updateEnemies()
         onLine[i] = false;
     }
 
-    /*for (auto i = BaseEnemy::enemies.begin(); i != BaseEnemy::enemies.end(); i++) {
-        onLine[(int)(*i)->getTilePosition().y] = true;
+    updateEnemy(&testEnemy);
+    updateEnemy(&nerd);
 
-        if (!(*i)->isAlive()) {
-            testGeld.addKontostand((*i)->getRevenue());
-
-            delete (*i);
-            i = BaseEnemy::enemies.erase(i);
-            if (i == BaseEnemy::enemies.end()) {
-                break;
-
-            }
-        }
-
-        (*i)->update();
-    }*/
-
-
-    for (auto i = testEnemy.begin(); i != testEnemy.end(); i++) {
-
-        onLine[(int)(*i)->getTilePosition().y] = true;
-
-        if (!(*i)->isAlive()) {
-            testGeld.addKontostand((*i)->getRevenue());
-
-            delete (*i);
-            i = testEnemy.erase(i);
-            if (i == testEnemy.end()) {
-                break;
-            
-            }
-        }
-
-        (*i)->update();
-    }
-
-    for (auto i = nerd.begin(); i != nerd.end(); i++) {
-
-        onLine[(int)(*i)->getTilePosition().y] = true;
-
-        if (!(*i)->isAlive()) {
-            testGeld.addKontostand((*i)->getRevenue());
-
-            delete (*i);
-            i = nerd.erase(i);
-            if (i == nerd.end()) {
-                break;
-
-            }
-        }
-
-        (*i)->update();
-    }
 }
 
 
@@ -197,16 +184,16 @@ Actors::Actors()
 Actors::~Actors()
 {
     // Löschung aller Gespeicherten Klassentypen
-    deleteEntities(testTower);
+    deleteEntities(&testTower);
     testTower.clear();
 
-    deleteEntities(testAmmo);
+    deleteEntities(&testAmmo);
     testAmmo.clear();
 
-    deleteEntities(testEnemy);
+    deleteEntities(&testEnemy);
     testEnemy.clear();
 
-    deleteEntities(nerd);
+    deleteEntities(&nerd);
     nerd.clear();
 
     //// löschung aller gespicherten BasisTypen*

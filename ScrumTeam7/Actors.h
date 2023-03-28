@@ -50,6 +50,20 @@ private:
 	std::vector<Nerd*> nerd;
 
 	
+	template<class BaseT>
+	void deleteEntities(std::vector<BaseT*>* T);
+
+	template<class BaseT>
+	void updateTower(std::vector<BaseT*>* T, const AmmoType& type);
+
+	template<class BaseT>
+	void updateAmmo(std::vector<BaseT*>* T);
+
+	template<class BaseT>
+	void updateEnemy(std::vector<BaseT*>* T);
+
+
+
 
 	// Updaten alle vectoren und ihre zugehörigen BasisTypen*
 	void updateTowers();
