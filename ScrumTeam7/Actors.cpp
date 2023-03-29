@@ -4,14 +4,6 @@
 
 #include <iostream>
 
-template<class BaseT> 
-void  Actors::deleteEntities(std::vector<BaseT*>* T) {
-
-    for (auto i = T->begin(); i != T->end(); i++) {
-        delete (*i);
-        (*i) = nullptr;
-    }
-}
 
 template<class BaseT>
 void  Actors::updateTower(std::vector<BaseT*>* T, const AmmoType& type) {
@@ -74,6 +66,16 @@ void  Actors::updateEnemy(std::vector<BaseT*>* T) {
     }
 }
 
+template<class BaseT>
+void  Actors::deleteEntities(std::vector<BaseT*>* T) {
+
+    for (auto i = T->begin(); i != T->end(); i++) {
+        delete (*i);
+        (*i) = nullptr;
+    }
+
+    T->clear();
+}
 
 
 
@@ -184,25 +186,23 @@ Actors::Actors()
 Actors::~Actors()
 {
     // Löschung aller Gespeicherten Klassentypen
+
+    // Delete Towers
     deleteEntities(&testTower);
-    testTower.clear();
-
-    deleteEntities(&testAmmo);
-    testAmmo.clear();
-
-    deleteEntities(&testEnemy);
-    testEnemy.clear();
-
     deleteEntities(&nerd);
-    nerd.clear();
 
-    //// löschung aller gespicherten BasisTypen*
-    //towers.clear();
-    //Ammos.clear();
-    //Enemies.clear();
+
+    // Delete Ammos
+    deleteEntities(&testAmmo);
+
+
+    // Delete Enemies
+    deleteEntities(&testEnemy);
+
 }
 
 
+//public Methoden
 void Actors::pauseActors()
 {
     for (BaseTower* i : BaseTower::towers) {
@@ -223,7 +223,7 @@ void Actors::ContinueActors()
     }
 }
 
-//public Methoden
+
 void Actors::updateActors()
 {
     this->updateTowers();

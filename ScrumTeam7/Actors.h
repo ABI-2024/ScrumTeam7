@@ -23,6 +23,12 @@
 		- updaten
 		- Collidieren
 		- rendern
+
+	
+	Guide um neue Entities anzuschlieﬂen
+	1. Einen [ std::vector<Klassenname*> ] in Actors.h erstellen
+	2. In der "Actors.cpp" in den Methoden updateTowers() / updateAmmos() oder updateEnemies() wie die Anderen einbinden.
+	3. In der "Actors.cpp" in den Methoden ~Actors() in die Funktionen einbinden.
 */
 
 class Wellen;
@@ -50,8 +56,6 @@ private:
 	std::vector<Nerd*> nerd;
 
 	
-	template<class BaseT>
-	void deleteEntities(std::vector<BaseT*>* T);
 
 	template<class BaseT>
 	void updateTower(std::vector<BaseT*>* T, const AmmoType& type);
@@ -62,6 +66,8 @@ private:
 	template<class BaseT>
 	void updateEnemy(std::vector<BaseT*>* T);
 
+	template<class BaseT>
+	void deleteEntities(std::vector<BaseT*>* T);
 
 
 
