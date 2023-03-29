@@ -105,6 +105,7 @@ void Actors::updateEnemies()
 
     updateEnemy(&testEnemy);
     updateEnemy(&nerd);
+    updateEnemy(&steroidenking);
 
 }
 
@@ -189,8 +190,7 @@ Actors::~Actors()
 
     // Delete Towers
     deleteEntities(&testTower);
-    deleteEntities(&nerd);
-
+    
 
     // Delete Ammos
     deleteEntities(&testAmmo);
@@ -198,6 +198,8 @@ Actors::~Actors()
 
     // Delete Enemies
     deleteEntities(&testEnemy);
+    deleteEntities(&nerd);
+    deleteEntities(&steroidenking);
 
 }
 
@@ -288,6 +290,9 @@ bool Actors::initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition )
         break;
     case EnemyType::Nerd:
         nerd.push_back(new Nerd(TilePosition));
+        break;
+    case EnemyType::Steroidenking:
+        steroidenking.push_back(new Steroidenking(TilePosition));
         break;
     default:
         return false;

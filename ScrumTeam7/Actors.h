@@ -14,6 +14,7 @@
 // Enemies / Gegener
 #include "TestEnemy.h"
 #include "Nerd.h"
+#include "Steroidenking.h"
 
 
 /*
@@ -47,6 +48,7 @@ private:
 
 	// Alle vectoren von Tower / Lehrer
 	std::vector<TestTower*> testTower;
+	std::vector<Steroidenking*> steroidenking;
 
 	// Alle vectoren von Ammo / Geschosse
 	std::vector<TestAmmo*> testAmmo;

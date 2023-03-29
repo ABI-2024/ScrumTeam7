@@ -25,8 +25,9 @@ int main()
     Entity::loadTexture();
     TestAmmo::LoadTexture();
     TestTower::LoadTexture();
-    Nerd::LoadTexture();
     TestEnemy::LoadTexture();
+    Nerd::LoadTexture();
+    Steroidenking::LoadTexture();
 
     Test_Level* level = nullptr;
 
@@ -59,6 +60,7 @@ int main()
     TestTower::unLoadTexture();
     TestEnemy::unLoadTexture();
     Nerd::unLoadTexture();
+    Steroidenking::unLoadTexture();
 
     GameWindow::closeWindow();
     return 0;

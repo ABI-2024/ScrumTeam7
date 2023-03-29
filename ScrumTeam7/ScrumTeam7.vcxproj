@@ -148,6 +148,7 @@
     <ClCompile Include="Nerd.cpp" />
     <ClCompile Include="Randomizer.cpp" />
     <ClCompile Include="Shop.cpp" />
+    <ClCompile Include="Steroidenking.cpp" />
     <ClCompile Include="TestAmmo.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="TestTower.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="Randomizer.h" />
     <ClInclude Include="Karte.h" />
     <ClInclude Include="Shop.h" />
+    <ClInclude Include="Steroidenking.h" />
     <ClInclude Include="TestAmmo.h" />
     <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="TestTower.h" />

@@ -59,6 +59,17 @@ void TestTower::HasAttacked()
 //public Methoden
 void TestTower::update()
 {
+	if (health <= Health / 5) {
+		body.setFillColor({ 139,0,0 }); //DarkRed
+	}
+	else if (health <= Health / 2) {
+		body.setFillColor({ 255,48,48 }); //firebrick1
+
+	}
+	else if (health <= Health * 0.8) {
+		body.setFillColor({ 255,99,71 }); //tomato1
+	}
+
 	if (this->fireRate + this->fireRateDiviation <= this->clock.getElapsedTime() + this->remainingAttackTime) {
 		this->readyToAttack = true;
 	}
