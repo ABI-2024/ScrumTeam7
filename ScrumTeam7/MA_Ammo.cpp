@@ -9,8 +9,8 @@ AmmoType MA_Ammo::ammoType = AmmoType::Mathe;
 
 
 // static Variables private
-float MA_Ammo::damage = 20.f;
-sf::Vector2f MA_Ammo::dir = sf::Vector2f(400.f, 0);
+float MA_Ammo::damage = 40.f;
+sf::Vector2f MA_Ammo::dir = sf::Vector2f(200.f, 0);
 sf::Texture* MA_Ammo::texture = nullptr;
 
 
@@ -62,7 +62,7 @@ bool MA_Ammo::CollisionWithEnemy(sf::FloatRect& Enemy)
 void MA_Ammo::move()
 {
 	// Noch simple und Fehlerhaft
-	sf::Vector2f pos = sf::Vector2f(body.getPosition().x+ (this->dir.x * dt), 150.f* (float)sin( ((double)dir.x * (double)dt + (double)body.getPosition().x) * (0.01745)) + offset.y );
+	sf::Vector2f pos = sf::Vector2f(body.getPosition().x+ (this->dir.x * dt), 150.f* (float)sin( ( ((double)dir.x * (double)dt+ offset.x) + (double)body.getPosition().x) * (0.02095)) + offset.y );
 	
 	this->body.setPosition(pos);
 

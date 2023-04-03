@@ -25,9 +25,11 @@ int main()
     Entity::loadTexture();
     TestAmmo::LoadTexture();
     MA_Ammo::LoadTexture();
+    INF_Ammo::LoadTexture();
 
     TestTower::LoadTexture();
     Mathelehrer::LoadTexture();
+    INF_Lehrer::LoadTexture();
     
 
     TestEnemy::LoadTexture();
@@ -44,7 +46,6 @@ int main()
             level = new Test_Level;
 
             level->startLevel();
-
 
             delete level;
             level = nullptr;
@@ -63,9 +64,11 @@ int main()
     Entity::unloadTexture();
     TestAmmo::unLoadTexture();
     MA_Ammo::unLoadTexture();
+    INF_Ammo::unLoadTexture();
 
     TestTower::unLoadTexture();
     Mathelehrer::unLoadTexture();
+    INF_Lehrer::unLoadTexture();
     
 
     TestEnemy::unLoadTexture();

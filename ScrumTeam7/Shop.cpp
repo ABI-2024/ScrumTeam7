@@ -12,17 +12,20 @@ Shop::Shop(Actors& actors) {
 	font.loadFromFile("resource/fonts/arial.ttf");
 	t = new sf::Texture[anzahlKarten];
 	t[0].loadFromFile("resource/Textures/Lehrer/Karten/Karte_MA_Front.png");
-	t[1].loadFromFile("resource/Textures/Lehrer/Karten/Karte_EN_Front.png");
-	t[2].loadFromFile("resource/Textures/Lehrer/Karten/Karte_DE_Front.png");
-	t[3].loadFromFile("resource/Textures/Lehrer/Karten/Karte_MU_Front.png");
+	t[1].loadFromFile("resource/Textures/Lehrer/Karten/Karte_INF_Front.png");
+	t[2].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Front.png");
+	t[3].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Front.png");
 	t[4].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Front.png");
 
 
 	//this->karten = new Karte(100, 1, &t, { 25.f, 90.f });
 	karten = new Karte * [anzahlKarten];
 	this->karten[0] = new Karte(100, TowerType::Mathelehrer, &t[0], { 60.f, 150.f * 0 + 90 });
-	for (int i = 1; i < anzahlKarten; i++) {
-		this->karten[i] = new Karte(100, TowerType::TestTower, &t[i], { 60.f, 150.f * i + 90 });
+	this->karten[1] = new Karte(100, TowerType::INF_Lehrer, &t[1], { 60.f, 150.f * 1 + 90 });
+
+
+	for (int i = 2; i < anzahlKarten; i++) {
+		this->karten[i] = new Karte(100, TowerType::TestTower, &t[4], { 60.f, 150.f * i + 90 });
 	}
 
 	this->text = new sf::Text[anzahlKarten];
@@ -83,8 +86,9 @@ void Shop::buttonEvents(sf::Vector2f tilePos)
 {
 	if (sellection != -1) {
 		if (karten[sellection]->getCost() <= actors->getGeld()->getKontostand()) {
-			actors->initializeTower(karten[sellection]->getType(), tilePos);
-			actors->getGeld()->subKontostand(karten[sellection]->getCost());
+			if (actors->initializeTower(karten[sellection]->getType(), tilePos)) {
+				actors->getGeld()->subKontostand(karten[sellection]->getCost());
+			}
 		}
 	}
 	this->sellection = -1;

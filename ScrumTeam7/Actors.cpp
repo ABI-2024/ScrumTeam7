@@ -6,7 +6,7 @@
 
 
 template<class BaseT>
-void  Actors::updateTower(std::vector<BaseT*>* T, const AmmoType& type) {
+void  Actors::updateTower(std::vector<BaseT*>* T) {
 
     for (auto i = T->begin(); i != T->end(); i++) {
 
@@ -22,7 +22,7 @@ void  Actors::updateTower(std::vector<BaseT*>* T, const AmmoType& type) {
 
         if ((*i)->isReadyToAttack() && onLine[(int)(*i)->getTilePosition().y]) {
             (*i)->HasAttacked();
-            initializeAmmo(type, (*i)->getPosition());
+            initializeAmmo((*i)->getAmmoType(), (*i)->getPosition());
         }
     }
 
@@ -88,14 +88,16 @@ Geld* Actors::getGeld() {
 // private Methoden
 void Actors::updateTowers()
 {
-    updateTower(&testTower, AmmoType::TestAmmo);
-    updateTower(&mathelehrer, AmmoType::Mathe);
+    updateTower(&testTower);
+    updateTower(&mathelehrer);
+    updateTower(&inf_Lehrer);
 }
 
 void Actors::updateAmmos()
 {
     updateAmmo(&testAmmo);
     updateAmmo(&ma_Ammo);
+    updateAmmo(&inf_Ammo);
 
 }
 
@@ -193,11 +195,13 @@ Actors::~Actors()
     // Delete Towers
     deleteEntities(&testTower);
     deleteEntities(&mathelehrer);
+    deleteEntities(&inf_Lehrer);
     
 
     // Delete Ammos
     deleteEntities(&testAmmo);
     deleteEntities(&ma_Ammo);
+    deleteEntities(&inf_Ammo);
 
 
     // Delete Enemies
@@ -276,6 +280,9 @@ bool Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
     case TowerType::Mathelehrer:
         mathelehrer.push_back(new Mathelehrer(TilePosition));
         break;
+    case TowerType::INF_Lehrer:
+        inf_Lehrer.push_back(new INF_Lehrer(TilePosition));
+        break;
 
     default:
         return false;
@@ -317,6 +324,9 @@ void Actors::initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition)
         break;
     case AmmoType::Mathe:
         ma_Ammo.push_back(new MA_Ammo(TowerPosition));
+        break;
+    case AmmoType::Inf_weak: case AmmoType::Inf_medium: case AmmoType::Inf_strong:
+        inf_Ammo.push_back(new INF_Ammo(TowerPosition, AmmoType ));
         break;
     default:
         break;

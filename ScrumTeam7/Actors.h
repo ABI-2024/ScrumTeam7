@@ -8,10 +8,12 @@
 // Tower / Lehrer
 #include "TestTower.h"
 #include "Mathelehrer.h"
+#include "INF_Lehrer.h"
 
 // Ammo / Geschosse
 #include "TestAmmo.h"
 #include "MA_Ammo.h"
+#include "INF_Ammo.h"
 
 // Enemies / Gegener
 #include "TestEnemy.h"
@@ -51,10 +53,12 @@ private:
 	// Alle vectoren von Tower / Lehrer
 	std::vector<TestTower*> testTower;
 	std::vector<Mathelehrer*> mathelehrer;
+	std::vector<INF_Lehrer*> inf_Lehrer;
 
 	// Alle vectoren von Ammo / Geschosse
 	std::vector<TestAmmo*> testAmmo;
 	std::vector<MA_Ammo*> ma_Ammo;
+	std::vector<INF_Ammo*> inf_Ammo;
 
 
 	// Alle vectoren von Enemies / Gegener
@@ -65,7 +69,7 @@ private:
 	
 
 	template<class BaseT>
-	void updateTower(std::vector<BaseT*>* T, const AmmoType& type);
+	void updateTower(std::vector<BaseT*>* T);
 
 	template<class BaseT>
 	void updateAmmo(std::vector<BaseT*>* T);

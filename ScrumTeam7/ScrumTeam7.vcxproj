@@ -140,6 +140,8 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Geld.cpp" />
+    <ClCompile Include="INF_Ammo.cpp" />
+    <ClCompile Include="INF_Lehrer.cpp" />
     <ClCompile Include="Karte.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mathelehrer.cpp" />
@@ -167,6 +169,8 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="enums.h" />
     <ClInclude Include="Geld.h" />
+    <ClInclude Include="INF_Ammo.h" />
+    <ClInclude Include="INF_Lehrer.h" />
     <ClInclude Include="Mathelehrer.h" />
     <ClInclude Include="MA_Ammo.h" />
     <ClInclude Include="Menu.h" />

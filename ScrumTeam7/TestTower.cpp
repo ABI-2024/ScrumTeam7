@@ -3,6 +3,7 @@
 
 // public static Variables 
 TowerType TestTower::towerType = TowerType::TestTower;
+AmmoType TestTower::ammoType = AmmoType::TestAmmo;
 
 
 // private static Variables 
@@ -47,6 +48,9 @@ TowerType TestTower::getTowerType()
 	return this->towerType;
 }
 
+AmmoType TestTower::getAmmoType() {
+	return this->ammoType;
+}
 
 void TestTower::HasAttacked()
 {

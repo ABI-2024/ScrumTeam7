@@ -6,6 +6,8 @@ class Mathelehrer : public BaseTower
 {
 private:
 	static TowerType towerType;
+	static AmmoType ammoType;
+
 	static int Cost;
 
 	static float Health;
@@ -24,6 +26,7 @@ public:
 	~Mathelehrer();
 
 	TowerType getTowerType() override;
+	AmmoType getAmmoType() override;
 
 	void HasAttacked() override;
 	void update() override;

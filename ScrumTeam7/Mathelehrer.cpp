@@ -6,13 +6,14 @@
 
 // public static Variables 
 TowerType Mathelehrer::towerType = TowerType::Mathelehrer;
+AmmoType Mathelehrer::ammoType = AmmoType::Mathe;
 
 
 // private static Variables 
 int Mathelehrer::Cost = 20;
 float Mathelehrer::Health = 200;
-sf::Time Mathelehrer::fireRate = sf::milliseconds(1500);
-sf::Time Mathelehrer::maximumFireRateDiviation = sf::milliseconds(150);
+sf::Time Mathelehrer::fireRate = sf::milliseconds(2200);
+sf::Time Mathelehrer::maximumFireRateDiviation = sf::milliseconds(400);
 sf::Texture* Mathelehrer::texture = nullptr;
 
 int Mathelehrer::accuracy = 10;		// Je kleiner die Zahl, desto höher die Genauigkeit
@@ -66,6 +67,9 @@ TowerType Mathelehrer::getTowerType()
 	return this->towerType;
 }
 
+AmmoType Mathelehrer::getAmmoType() {
+	return this->ammoType;
+}
 
 void Mathelehrer::HasAttacked()
 {
