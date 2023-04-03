@@ -18,7 +18,7 @@ void TestAmmo::LoadTexture()
 	if (texture == nullptr) {
 		texture = new sf::Texture();
 
-		if (!texture->loadFromFile("resource/Textures/Basketball.png")) {
+		if (!texture->loadFromFile("resource/Textures/Lehrer/SP/SP-Ammo.png")) {
 			texture->loadFromFile("resource/Textures/DefaultTexture.png");
 		}
 	}

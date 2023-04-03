@@ -2,7 +2,7 @@
 
 #include "BaseAmmo.h"
 
-class Projectil_Pi : public BaseAmmo
+class MA_Ammo : public BaseAmmo
 {
 private:
 	static AmmoType ammoType;
@@ -12,12 +12,14 @@ private:
 	static sf::Texture* texture;
 	static sf::Vector2f dir;
 
+	sf::Vector2f offset; //offset der Sinus Funktion
+
 public:
 	static void LoadTexture();
 	static void unLoadTexture();
 
-	Projectil_Pi(sf::Vector2f TowerPosition);
-	~Projectil_Pi();
+	MA_Ammo(sf::Vector2f TowerPosition);
+	~MA_Ammo();
 
 
 	AmmoType getAmmoType() override;
@@ -28,6 +30,7 @@ public:
 	void move();
 
 	void update() override;
+
 
 };
 

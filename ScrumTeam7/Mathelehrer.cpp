@@ -25,7 +25,7 @@ void Mathelehrer::LoadTexture()
 	if (texture == nullptr) {
 		texture = new sf::Texture();
 
-		if (!texture->loadFromFile("resource/Textures/SportLehre1.png")) {
+		if (!texture->loadFromFile("resource/Textures/Lehrer/MA/MA-Lehrer.png")) {
 			texture->loadFromFile("resource/Textures/DefaultTexture.png");
 		}
 	}

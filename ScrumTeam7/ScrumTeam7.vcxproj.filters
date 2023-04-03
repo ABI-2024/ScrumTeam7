@@ -123,11 +123,11 @@
     <ClCompile Include="Steroidenking.cpp">
       <Filter>Quelldateien\Entities\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Mathelehrer.cpp">
-      <Filter>Quelldateien</Filter>
+    <ClCompile Include="MA_Ammo.cpp">
+      <Filter>Quelldateien\Entities\Ammo</Filter>
     </ClCompile>
-    <ClCompile Include="Projectil_Pi.cpp">
-      <Filter>Quelldateien</Filter>
+    <ClCompile Include="Mathelehrer.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -198,10 +198,10 @@
       <Filter>Headerdateien\Entities\Header Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Mathelehrer.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
     </ClInclude>
-    <ClInclude Include="Projectil_Pi.h">
-      <Filter>Headerdateien</Filter>
+    <ClInclude Include="MA_Ammo.h">
+      <Filter>Headerdateien\Entities\Header Ammo</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -143,11 +143,11 @@
     <ClCompile Include="Karte.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mathelehrer.cpp" />
+    <ClCompile Include="MA_Ammo.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Menu_Options.cpp" />
     <ClCompile Include="Menu_Pause.cpp" />
     <ClCompile Include="Nerd.cpp" />
-    <ClCompile Include="Projectil_Pi.cpp" />
     <ClCompile Include="Randomizer.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Steroidenking.cpp" />
@@ -168,11 +168,11 @@
     <ClInclude Include="enums.h" />
     <ClInclude Include="Geld.h" />
     <ClInclude Include="Mathelehrer.h" />
+    <ClInclude Include="MA_Ammo.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Menu_Options.h" />
     <ClInclude Include="Menu_Pause.h" />
     <ClInclude Include="Nerd.h" />
-    <ClInclude Include="Projectil_Pi.h" />
     <ClInclude Include="Randomizer.h" />
     <ClInclude Include="Karte.h" />
     <ClInclude Include="Shop.h" />

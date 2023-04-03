@@ -19,7 +19,7 @@ void TestTower::LoadTexture()
 	if (texture == nullptr) {
 		texture = new sf::Texture();
 
-		if (!texture->loadFromFile("resource/Textures/SportLehre1.png")) {
+		if (!texture->loadFromFile("resource/Textures/Lehrer/SP/SP-Lehrer.png")) {
 			texture->loadFromFile("resource/Textures/DefaultTexture.png");
 		}
 	}

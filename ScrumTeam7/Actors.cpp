@@ -89,11 +89,13 @@ Geld* Actors::getGeld() {
 void Actors::updateTowers()
 {
     updateTower(&testTower, AmmoType::TestAmmo);
+    updateTower(&mathelehrer, AmmoType::Mathe);
 }
 
 void Actors::updateAmmos()
 {
     updateAmmo(&testAmmo);
+    updateAmmo(&ma_Ammo);
 
 }
 
@@ -190,10 +192,12 @@ Actors::~Actors()
 
     // Delete Towers
     deleteEntities(&testTower);
+    deleteEntities(&mathelehrer);
     
 
     // Delete Ammos
     deleteEntities(&testAmmo);
+    deleteEntities(&ma_Ammo);
 
 
     // Delete Enemies
@@ -269,6 +273,9 @@ bool Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
     case TowerType::TestTower:
         testTower.push_back(new TestTower(TilePosition));
         break;
+    case TowerType::Mathelehrer:
+        mathelehrer.push_back(new Mathelehrer(TilePosition));
+        break;
 
     default:
         return false;
@@ -308,7 +315,9 @@ void Actors::initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition)
     case AmmoType::TestAmmo:
         testAmmo.push_back(new TestAmmo(TowerPosition));
         break;
-
+    case AmmoType::Mathe:
+        ma_Ammo.push_back(new MA_Ammo(TowerPosition));
+        break;
     default:
         break;
     }

@@ -12,7 +12,7 @@ enum class AmmoType : char
 {
 	none = 0,
 	TestAmmo = 1,
-	Pi = 2
+	Mathe = 2
 };
 enum class EnemyType : char
 {

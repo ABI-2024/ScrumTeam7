@@ -7,9 +7,11 @@
 
 // Tower / Lehrer
 #include "TestTower.h"
+#include "Mathelehrer.h"
 
 // Ammo / Geschosse
 #include "TestAmmo.h"
+#include "MA_Ammo.h"
 
 // Enemies / Gegener
 #include "TestEnemy.h"
@@ -48,14 +50,17 @@ private:
 
 	// Alle vectoren von Tower / Lehrer
 	std::vector<TestTower*> testTower;
-	std::vector<Steroidenking*> steroidenking;
+	std::vector<Mathelehrer*> mathelehrer;
 
 	// Alle vectoren von Ammo / Geschosse
 	std::vector<TestAmmo*> testAmmo;
+	std::vector<MA_Ammo*> ma_Ammo;
+
 
 	// Alle vectoren von Enemies / Gegener
 	std::vector<TestEnemy*> testEnemy;
 	std::vector<Nerd*> nerd;
+	std::vector<Steroidenking*> steroidenking;
 
 	
 

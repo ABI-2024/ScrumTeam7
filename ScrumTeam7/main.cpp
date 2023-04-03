@@ -24,7 +24,12 @@ int main()
 
     Entity::loadTexture();
     TestAmmo::LoadTexture();
+    MA_Ammo::LoadTexture();
+
     TestTower::LoadTexture();
+    Mathelehrer::LoadTexture();
+    
+
     TestEnemy::LoadTexture();
     Nerd::LoadTexture();
     Steroidenking::LoadTexture();
@@ -57,7 +62,12 @@ int main()
     
     Entity::unloadTexture();
     TestAmmo::unLoadTexture();
+    MA_Ammo::unLoadTexture();
+
     TestTower::unLoadTexture();
+    Mathelehrer::unLoadTexture();
+    
+
     TestEnemy::unLoadTexture();
     Nerd::unLoadTexture();
     Steroidenking::unLoadTexture();
