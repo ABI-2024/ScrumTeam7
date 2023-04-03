@@ -229,7 +229,6 @@ void Test_Level::startLevel()
             menu.render();
         }
 
-
         Window.display();
 
     }

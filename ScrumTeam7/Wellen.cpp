@@ -2,9 +2,8 @@
 #include <iostream>
 #include <string>
 
-int Wellen::welleAnz = 0;
-
 Wellen::Wellen() {
+	welleAnz = 0;
 	welleDaten[0] = 0;
 	welleDaten[1] = 0;
 	spawnclock = nullptr;

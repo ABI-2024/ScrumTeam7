@@ -5,12 +5,14 @@
 enum class TowerType : char
 {
 	none = 0,
-	TestTower = 1
+	TestTower = 1,
+	Mathelehrer = 2
 };
 enum class AmmoType : char
 {
 	none = 0,
-	TestAmmo = 1
+	TestAmmo = 1,
+	Pi = 2
 };
 enum class EnemyType : char
 {

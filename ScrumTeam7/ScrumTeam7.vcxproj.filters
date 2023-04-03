@@ -123,6 +123,12 @@
     <ClCompile Include="Steroidenking.cpp">
       <Filter>Quelldateien\Entities\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Mathelehrer.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectil_Pi.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -190,6 +196,12 @@
     </ClInclude>
     <ClInclude Include="Steroidenking.h">
       <Filter>Headerdateien\Entities\Header Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Mathelehrer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectil_Pi.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

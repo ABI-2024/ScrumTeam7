@@ -22,7 +22,6 @@ private:
 
 	Wellen testwelle;
 
-
 	sf::Vector2f TileSelection();
 	void buttonEvents();
 public:

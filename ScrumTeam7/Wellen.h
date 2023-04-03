@@ -11,7 +11,7 @@ class Wellen
 {
 	private:
 		Geld testgeld;
-		static int welleAnz;
+		int welleAnz;
 
 		bool firstSpawn = true;
 		bool wellenEnde = false;
