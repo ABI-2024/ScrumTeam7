@@ -8,7 +8,7 @@ std::vector<BaseAmmo*> BaseAmmo::ammos;
 
 // Constructur & Destructur
 BaseAmmo::BaseAmmo(const sf::Vector2f& TowerPosition, sf::Texture* texture)
-	: Entity() ,hit(false)
+	: Entity() ,hit(false), status_Effect(Status_Type::non, 0.f, sf::milliseconds(0))
 {
 	this->body.setPosition(TowerPosition);
 	this->body.setSize(sf::Vector2f(42.1875f, 42.1875f));

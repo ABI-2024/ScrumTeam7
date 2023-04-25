@@ -112,6 +112,9 @@ void Steroidenking::update()
 	if (this->attackSpeed <= this->clock.getElapsedTime()) {
 		readyToAttack = true;
 	}
+
+	this->updateStatus_Proc();
+
 	this->move();
 }
 

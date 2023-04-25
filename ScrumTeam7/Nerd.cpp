@@ -98,5 +98,8 @@ void Nerd::update()
 	if (this->attackSpeed <= this->clock.getElapsedTime()) {
 		readyToAttack = true;
 	}
-	move();
+
+	this->updateStatus_Proc();
+
+	this->move();
 }

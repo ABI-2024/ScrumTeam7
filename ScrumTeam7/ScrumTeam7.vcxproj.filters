@@ -215,5 +215,8 @@
     <ClInclude Include="INF_Ammo.h">
       <Filter>Headerdateien\Entities\Header Ammo</Filter>
     </ClInclude>
+    <ClInclude Include="Status_Effect.h">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

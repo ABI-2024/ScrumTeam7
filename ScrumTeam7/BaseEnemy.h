@@ -1,14 +1,18 @@
 #pragma once
 
 #include "Entity.h"
+#include "Status_Effect.h"
 
 #include "enums.h"
 
 class BaseEnemy : public Entity
 {
+	template<class T> friend class Status_Proc;
 public:
 	static std::vector<BaseEnemy*> enemies;
 protected:
+
+	std::vector<Status_Proc<BaseEnemy>>procs;
 
 	bool alive;
 	bool readyToAttack;
@@ -39,6 +43,12 @@ public:
 	sf::Vector2f getPosition();
 	void hasAttacked();
 	void wasAttacked(float damage);
+
+
+	// Status Effecte
+	void addStatus_Proc(Status_Effect nStatus );	// Experimentel
+	void updateStatus_Proc();
+
 
 	virtual bool CollisionWithTower(sf::FloatRect& Tower) =0;
 

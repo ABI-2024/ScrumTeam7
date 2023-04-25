@@ -1,5 +1,4 @@
 #include "INF_Ammo.h"
-#include "INF_Ammo.h"
 
 #include "Window.h"
 

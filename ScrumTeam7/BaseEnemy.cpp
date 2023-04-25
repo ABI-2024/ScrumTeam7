@@ -37,6 +37,9 @@ BaseEnemy::~BaseEnemy()
 // public get-Methoden
 bool BaseEnemy::isAlive()
 {
+	if (health <= 0) {
+		this->alive = false;
+	}
 	return this->alive;
 }
 
@@ -71,10 +74,28 @@ void BaseEnemy::hasAttacked()
 void BaseEnemy::wasAttacked(float damage)
 {
 	this->health -= damage;
-	if (health <= 0) {
-		this->alive = false;
+}
+
+void BaseEnemy::addStatus_Proc(Status_Effect nStatus)
+{
+	procs.push_back(Status_Proc<BaseEnemy>(nStatus, (BaseEnemy*)this));
+}
+
+void BaseEnemy::updateStatus_Proc()
+{
+	for (auto i = procs.begin(); i != procs.end(); i++) {
+		i->effect();
+
+		if (!i->active) {
+			i = procs.erase(i);
+			if (i == (procs.end())) {
+				break;
+			}
+		}
 	}
 }
+
+
 
 void BaseEnemy::paused()
 {

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Entity.h"
+#include "Status_Effect.h"
 
 #include "enums.h"
 
@@ -11,6 +12,7 @@ class BaseAmmo : public Entity
 public:
 	static std::vector<BaseAmmo*> ammos;
 
+	Status_Effect status_Effect;
 protected:
 
 	bool hit;

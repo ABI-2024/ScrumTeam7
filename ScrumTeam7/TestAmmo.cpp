@@ -34,7 +34,9 @@ void TestAmmo::unLoadTexture()
 // Constructur & Destructur
 TestAmmo::TestAmmo(sf::Vector2f TowerPosition)
 	:BaseAmmo(TowerPosition, texture)
-{}
+{
+	status_Effect = { Status_Type::stun, 100.f, sf::milliseconds(0) };
+}
 
 TestAmmo::~TestAmmo() {}
 

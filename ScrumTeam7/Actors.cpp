@@ -139,6 +139,9 @@ void Actors::CollisionAmmoWithEnemy()
 
             if (j->CollisionWithEnemy(tmp) && !j->isHit()) {
                 i->wasAttacked(j->getDamage());
+                if (j->status_Effect.getType() != Status_Type::non) {
+                    i->addStatus_Proc(j->status_Effect);
+                }
                 j->hasHit();
             }
         }

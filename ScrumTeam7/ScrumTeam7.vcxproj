@@ -180,6 +180,7 @@
     <ClInclude Include="Randomizer.h" />
     <ClInclude Include="Karte.h" />
     <ClInclude Include="Shop.h" />
+    <ClInclude Include="Status_Effect.h" />
     <ClInclude Include="Steroidenking.h" />
     <ClInclude Include="TestAmmo.h" />
     <ClInclude Include="TestEnemy.h" />
