@@ -7,7 +7,8 @@ enum class TowerType : char
 	none = 0,
 	TestTower = 1,
 	Mathelehrer = 2,
-	INF_Lehrer = 3
+	INF_Lehrer = 3,
+	EN_Lehrer = 4
 };
 enum class AmmoType : char
 {

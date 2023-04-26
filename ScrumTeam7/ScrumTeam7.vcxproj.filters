@@ -135,6 +135,12 @@
     <ClCompile Include="INF_Ammo.cpp">
       <Filter>Quelldateien\Entities\Ammo</Filter>
     </ClCompile>
+    <ClCompile Include="EN_Lehrer.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="EN_Ammo.cpp">
+      <Filter>Quelldateien\Entities\Ammo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -217,6 +223,12 @@
     </ClInclude>
     <ClInclude Include="Status_Effect.h">
       <Filter>Quelldateien</Filter>
+    </ClInclude>
+    <ClInclude Include="EN_Ammo.h">
+      <Filter>Headerdateien\Entities\Header Ammo</Filter>
+    </ClInclude>
+    <ClInclude Include="EN_Lehrer.h">
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

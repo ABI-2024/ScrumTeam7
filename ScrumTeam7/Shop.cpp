@@ -13,7 +13,7 @@ Shop::Shop(Actors& actors) {
 	t = new sf::Texture[anzahlKarten];
 	t[0].loadFromFile("resource/Textures/Lehrer/Karten/Karte_MA_Front.png");
 	t[1].loadFromFile("resource/Textures/Lehrer/Karten/Karte_INF_Front.png");
-	t[2].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Front.png");
+	t[2].loadFromFile("resource/Textures/Lehrer/Karten/Karte_EN_Front.png");
 	t[3].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Front.png");
 	t[4].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Front.png");
 
@@ -22,9 +22,10 @@ Shop::Shop(Actors& actors) {
 	karten = new Karte * [anzahlKarten];
 	this->karten[0] = new Karte(100, TowerType::Mathelehrer, &t[0], { 60.f, 150.f * 0 + 90 });
 	this->karten[1] = new Karte(100, TowerType::INF_Lehrer, &t[1], { 60.f, 150.f * 1 + 90 });
+	this->karten[2] = new Karte(100, TowerType::EN_Lehrer, &t[2], { 60.f, 150.f * 2 + 90 });
 
 
-	for (int i = 2; i < anzahlKarten; i++) {
+	for (int i = 3; i < anzahlKarten; i++) {
 		this->karten[i] = new Karte(100, TowerType::TestTower, &t[4], { 60.f, 150.f * i + 90 });
 	}
 

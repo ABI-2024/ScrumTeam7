@@ -91,6 +91,7 @@ void Actors::updateTowers()
     updateTower(&testTower);
     updateTower(&mathelehrer);
     updateTower(&inf_Lehrer);
+    updateTower(&en_Lehrer);
 }
 
 void Actors::updateAmmos()
@@ -98,6 +99,7 @@ void Actors::updateAmmos()
     updateAmmo(&testAmmo);
     updateAmmo(&ma_Ammo);
     updateAmmo(&inf_Ammo);
+    updateAmmo(&en_Ammo);
 
 }
 
@@ -199,12 +201,14 @@ Actors::~Actors()
     deleteEntities(&testTower);
     deleteEntities(&mathelehrer);
     deleteEntities(&inf_Lehrer);
+    deleteEntities(&en_Lehrer);
     
 
     // Delete Ammos
     deleteEntities(&testAmmo);
     deleteEntities(&ma_Ammo);
     deleteEntities(&inf_Ammo);
+    deleteEntities(&en_Ammo);
 
 
     // Delete Enemies
@@ -286,6 +290,9 @@ bool Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
     case TowerType::INF_Lehrer:
         inf_Lehrer.push_back(new INF_Lehrer(TilePosition));
         break;
+    case TowerType::EN_Lehrer:
+        en_Lehrer.push_back(new EN_Lehrer(TilePosition));
+        break;
 
     default:
         return false;
@@ -328,8 +335,16 @@ void Actors::initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition)
     case AmmoType::Mathe:
         ma_Ammo.push_back(new MA_Ammo(TowerPosition));
         break;
-    case AmmoType::Inf_weak: case AmmoType::Inf_medium: case AmmoType::Inf_strong:
+    case AmmoType::Inf_weak: 
+    case AmmoType::Inf_medium: 
+    case AmmoType::Inf_strong:
         inf_Ammo.push_back(new INF_Ammo(TowerPosition, AmmoType ));
+        break;
+    case AmmoType::Englisch_weak: 
+    case AmmoType::Englisch_medium: 
+    case AmmoType::Englisch_strong: 
+    case AmmoType::Englisch_strongest:
+        en_Ammo.push_back(new EN_Ammo(TowerPosition, AmmoType));
         break;
     default:
         break;
