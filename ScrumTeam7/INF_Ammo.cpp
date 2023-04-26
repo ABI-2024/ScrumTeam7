@@ -87,11 +87,6 @@ float INF_Ammo::getDamage()
 	}
 }
 
-bool INF_Ammo::CollisionWithEnemy(sf::FloatRect& Enemy)
-{
-	return sf::FloatRect(this->body.getGlobalBounds()).intersects(Enemy);
-}
-
 void INF_Ammo::move()
 {
 	this->body.move(this->dir * dt);

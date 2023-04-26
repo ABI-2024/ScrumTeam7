@@ -1,8 +1,7 @@
 #pragma once
-
 #include "BaseAmmo.h"
 
-class TestAmmo : public BaseAmmo
+class DE_Ammo : public BaseAmmo
 {
 private:
 	static AmmoType ammoType;
@@ -10,20 +9,23 @@ private:
 	static float damage;
 
 	static sf::Texture* texture;
-	static sf::Vector2f dir;
+
+	static sf::Time damageWindowStart, activeTime;
+
+	sf::Clock timer;
 
 public:
 	static void LoadTexture();
 	static void unLoadTexture();
 
-	TestAmmo(sf::Vector2f TowerPosition);
-	~TestAmmo();
+	DE_Ammo(sf::Vector2f TowerPosition);
+	~DE_Ammo();
 
+	bool isDestroy() override;
 
 	AmmoType getAmmoType() override;
 	float getDamage() override;
-
-	void move();
+	bool CollisionWithEnemy(sf::FloatRect& Enemy) override;
 
 	void update() override;
 

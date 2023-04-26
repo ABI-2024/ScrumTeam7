@@ -10,12 +10,14 @@
 #include "Mathelehrer.h"
 #include "INF_Lehrer.h"
 #include "EN_Lehrer.h"
+#include "DE_Lehrer.h"
 
 // Ammo / Geschosse
 #include "TestAmmo.h"
 #include "MA_Ammo.h"
 #include "INF_Ammo.h"
 #include "EN_Ammo.h"
+#include "DE_Ammo.h"
 
 // Enemies / Gegener
 #include "TestEnemy.h"
@@ -57,12 +59,14 @@ private:
 	std::vector<Mathelehrer*> mathelehrer;
 	std::vector<INF_Lehrer*> inf_Lehrer;
 	std::vector<EN_Lehrer*> en_Lehrer;
+	std::vector<DE_Lehrer*> de_Lehrer;
 
 	// Alle vectoren von Ammo / Geschosse
 	std::vector<TestAmmo*> testAmmo;
 	std::vector<MA_Ammo*> ma_Ammo;
 	std::vector<INF_Ammo*> inf_Ammo;
 	std::vector<EN_Ammo*> en_Ammo;
+	std::vector<DE_Ammo*> de_Ammo;
 
 
 	// Alle vectoren von Enemies / Gegener

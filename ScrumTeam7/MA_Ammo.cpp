@@ -54,11 +54,6 @@ float MA_Ammo::getDamage()
 	return this->damage;
 }
 
-bool MA_Ammo::CollisionWithEnemy(sf::FloatRect& Enemy)
-{
-	return sf::FloatRect(this->body.getGlobalBounds()).intersects(Enemy);
-}
-
 void MA_Ammo::move()
 {
 	// Noch simple und Fehlerhaft

@@ -5,10 +5,11 @@
 enum class TowerType : char
 {
 	none = 0,
-	TestTower = 1,
-	Mathelehrer = 2,
-	INF_Lehrer = 3,
-	EN_Lehrer = 4
+	TestTower,
+	Mathelehrer,
+	INF_Lehrer,
+	EN_Lehrer,
+	DE_Lehrer
 };
 enum class AmmoType : char
 {
@@ -25,7 +26,9 @@ enum class AmmoType : char
 
 	Inf_weak = 7,
 	Inf_medium = 8,
-	Inf_strong = 9
+	Inf_strong = 9,
+
+	DE_Ammo
 };
 enum class EnemyType : char
 {

@@ -51,17 +51,12 @@ float TestAmmo::getDamage()
 	return this->damage;
 }
 
-bool TestAmmo::CollisionWithEnemy(sf::FloatRect& Enemy)
-{
-	return sf::FloatRect(this->body.getGlobalBounds()).intersects(Enemy);
-}
-
 void TestAmmo::move()
 {
 	this->body.move(this->dir * dt);
 
 	if (this->body.getPosition().x >= GameWindow::getMainView().getSize().x) {
-		this->hit = true;
+		this->destroy = true;
 	}
 }
 

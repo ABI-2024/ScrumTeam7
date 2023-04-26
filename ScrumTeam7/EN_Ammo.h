@@ -25,8 +25,6 @@ public:
 	AmmoType getAmmoType() override;
 	float getDamage() override;
 
-	bool CollisionWithEnemy(sf::FloatRect& Enemy) override;
-
 	void move();
 
 	void update() override;

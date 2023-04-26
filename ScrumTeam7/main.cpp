@@ -28,11 +28,13 @@ int main()
     MA_Ammo::LoadTexture();
     INF_Ammo::LoadTexture();
     EN_Ammo::LoadTexture();
+    DE_Ammo::LoadTexture();
 
     TestTower::LoadTexture();
     Mathelehrer::LoadTexture();
     INF_Lehrer::LoadTexture();
     EN_Lehrer::LoadTexture();
+    DE_Lehrer::LoadTexture();
     
 
     TestEnemy::LoadTexture();
@@ -62,7 +64,6 @@ int main()
         }
     }
 
-
     
     Entity::unloadTexture();
 
@@ -70,11 +71,13 @@ int main()
     MA_Ammo::unLoadTexture();
     INF_Ammo::unLoadTexture();
     EN_Ammo::unLoadTexture();
+    DE_Ammo::unLoadTexture();
 
     TestTower::unLoadTexture();
     Mathelehrer::unLoadTexture();
     INF_Lehrer::unLoadTexture();
     EN_Lehrer::unLoadTexture();
+    DE_Lehrer::unLoadTexture();
     
 
     TestEnemy::unLoadTexture();

@@ -33,7 +33,7 @@ void  Actors::updateAmmo(std::vector<BaseT*>* T) {
 
     for (auto i = T->begin(); i != T->end(); i++) {
 
-        if ((*i)->isHit()) {
+        if ((*i)->isDestroy()) {
             delete (*i);
             i = T->erase(i);
             if (i == T->end()) {
@@ -92,6 +92,7 @@ void Actors::updateTowers()
     updateTower(&mathelehrer);
     updateTower(&inf_Lehrer);
     updateTower(&en_Lehrer);
+    updateTower(&de_Lehrer);
 }
 
 void Actors::updateAmmos()
@@ -100,6 +101,7 @@ void Actors::updateAmmos()
     updateAmmo(&ma_Ammo);
     updateAmmo(&inf_Ammo);
     updateAmmo(&en_Ammo);
+    updateAmmo(&de_Ammo);
 
 }
 
@@ -139,12 +141,11 @@ void Actors::CollisionAmmoWithEnemy()
 
             sf::FloatRect tmp = i->getFloaRect();
 
-            if (j->CollisionWithEnemy(tmp) && !j->isHit()) {
+            if (!j->isHit() && j->CollisionWithEnemy(tmp)) {
                 i->wasAttacked(j->getDamage());
                 if (j->status_Effect.getType() != Status_Type::non) {
                     i->addStatus_Proc(j->status_Effect);
                 }
-                j->hasHit();
             }
         }
     }
@@ -202,6 +203,7 @@ Actors::~Actors()
     deleteEntities(&mathelehrer);
     deleteEntities(&inf_Lehrer);
     deleteEntities(&en_Lehrer);
+    deleteEntities(&de_Lehrer);
     
 
     // Delete Ammos
@@ -209,6 +211,7 @@ Actors::~Actors()
     deleteEntities(&ma_Ammo);
     deleteEntities(&inf_Ammo);
     deleteEntities(&en_Ammo);
+    deleteEntities(&de_Ammo);
 
 
     // Delete Enemies
@@ -293,6 +296,9 @@ bool Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
     case TowerType::EN_Lehrer:
         en_Lehrer.push_back(new EN_Lehrer(TilePosition));
         break;
+    case TowerType::DE_Lehrer:
+        de_Lehrer.push_back(new DE_Lehrer(TilePosition));
+        break;
 
     default:
         return false;
@@ -346,6 +352,10 @@ void Actors::initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition)
     case AmmoType::Englisch_strongest:
         en_Ammo.push_back(new EN_Ammo(TowerPosition, AmmoType));
         break;
+    case AmmoType::DE_Ammo:
+        de_Ammo.push_back(new DE_Ammo(TowerPosition));
+        break;
+
     default:
         break;
     }

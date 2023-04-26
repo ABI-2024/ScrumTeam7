@@ -8,7 +8,7 @@ std::vector<BaseAmmo*> BaseAmmo::ammos;
 
 // Constructur & Destructur
 BaseAmmo::BaseAmmo(const sf::Vector2f& TowerPosition, sf::Texture* texture)
-	: Entity() ,hit(false), status_Effect(Status_Type::non, 0.f, sf::milliseconds(0))
+	: Entity() ,hit(false), destroy(false), status_Effect(Status_Type::non, 0.f, sf::milliseconds(0))
 {
 	this->body.setPosition(TowerPosition);
 	this->body.setSize(sf::Vector2f(42.1875f, 42.1875f));
@@ -34,15 +34,22 @@ BaseAmmo::~BaseAmmo()
 }
 
 
-// public Methoden
 bool BaseAmmo::isHit()
 {
-	return this->hit;
+	return hit;
 }
 
-void BaseAmmo::hasHit()
+// public Methoden
+bool BaseAmmo::isDestroy()
 {
-	this->hit = true;
+	return this->destroy;
+}
+
+bool BaseAmmo::CollisionWithEnemy(sf::FloatRect& Enemy)
+{
+	hit = sf::FloatRect(this->body.getGlobalBounds()).intersects(Enemy);
+	destroy = hit;
+	return hit;
 }
 
 void BaseAmmo::render()
