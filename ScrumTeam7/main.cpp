@@ -23,10 +23,21 @@ int main()
     GameWindow::getMainView().setViewport({0,0,1,1});
 
     Entity::loadTexture();
+
     TestAmmo::LoadTexture();
+    MA_Ammo::LoadTexture();
+    INF_Ammo::LoadTexture();
+    EN_Ammo::LoadTexture();
+
     TestTower::LoadTexture();
-    Nerd::LoadTexture();
+    Mathelehrer::LoadTexture();
+    INF_Lehrer::LoadTexture();
+    EN_Lehrer::LoadTexture();
+    
+
     TestEnemy::LoadTexture();
+    Nerd::LoadTexture();
+    Steroidenking::LoadTexture();
 
     Test_Level* level = nullptr;
 
@@ -38,7 +49,6 @@ int main()
             level = new Test_Level;
 
             level->startLevel();
-
 
             delete level;
             level = nullptr;
@@ -55,10 +65,21 @@ int main()
 
     
     Entity::unloadTexture();
+
     TestAmmo::unLoadTexture();
+    MA_Ammo::unLoadTexture();
+    INF_Ammo::unLoadTexture();
+    EN_Ammo::unLoadTexture();
+
     TestTower::unLoadTexture();
+    Mathelehrer::unLoadTexture();
+    INF_Lehrer::unLoadTexture();
+    EN_Lehrer::unLoadTexture();
+    
+
     TestEnemy::unLoadTexture();
     Nerd::unLoadTexture();
+    Steroidenking::unLoadTexture();
 
     GameWindow::closeWindow();
     return 0;

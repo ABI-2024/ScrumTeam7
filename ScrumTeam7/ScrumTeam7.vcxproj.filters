@@ -120,6 +120,27 @@
     <ClCompile Include="Nerd.cpp">
       <Filter>Quelldateien\Entities\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Steroidenking.cpp">
+      <Filter>Quelldateien\Entities\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="MA_Ammo.cpp">
+      <Filter>Quelldateien\Entities\Ammo</Filter>
+    </ClCompile>
+    <ClCompile Include="Mathelehrer.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="INF_Lehrer.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="INF_Ammo.cpp">
+      <Filter>Quelldateien\Entities\Ammo</Filter>
+    </ClCompile>
+    <ClCompile Include="EN_Lehrer.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="EN_Ammo.cpp">
+      <Filter>Quelldateien\Entities\Ammo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -142,9 +163,6 @@
     </ClInclude>
     <ClInclude Include="TestTower.h">
       <Filter>Headerdateien\Entities\Header Tower</Filter>
-    </ClInclude>
-    <ClInclude Include="Test_Level.h">
-      <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Menu_Pause.h">
       <Filter>Headerdateien\Menu</Filter>
@@ -183,7 +201,34 @@
       <Filter>Headerdateien\Game Logik</Filter>
     </ClInclude>
     <ClInclude Include="Nerd.h">
-      <Filter>Headerdateien\Header Entities\Header Enemy</Filter>
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Test_Level.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Steroidenking.h">
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Mathelehrer.h">
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="MA_Ammo.h">
+      <Filter>Headerdateien\Entities\Header Ammo</Filter>
+    </ClInclude>
+    <ClInclude Include="INF_Lehrer.h">
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="INF_Ammo.h">
+      <Filter>Headerdateien\Entities\Header Ammo</Filter>
+    </ClInclude>
+    <ClInclude Include="Status_Effect.h">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
+    <ClInclude Include="EN_Ammo.h">
+      <Filter>Headerdateien\Entities\Header Ammo</Filter>
+    </ClInclude>
+    <ClInclude Include="EN_Lehrer.h">
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

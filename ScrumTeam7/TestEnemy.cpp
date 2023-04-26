@@ -1,7 +1,7 @@
 #include "TestEnemy.h"
-#include "Window.h"
 
-#include <iostream>
+#include "Window.h"
+#include "Randomizer.h"
 
 // static Variables
 
@@ -23,25 +23,31 @@ sf::Time TestEnemy::attackSpeed = sf::milliseconds(750);
 void TestEnemy::LoadTexture()
 {
 	if (texture == nullptr) {
-		texture = new sf::Texture();
+		texture = new sf::Texture[2];
 
-		if (!texture->loadFromFile("resource/Textures/Schueler/STD-Student-m.png")) {
-			texture->loadFromFile("resource/Textures/DefaultTexture.png");
+		if (!texture[0].loadFromFile("resource/Textures/Schueler/STD-Student-m.png")) {
+			texture[0].loadFromFile("resource/Textures/DefaultTexture.png");
+		}
+
+		if (!texture[1].loadFromFile("resource/Textures/Schueler/STD-Student-w.png")) {
+			texture[1].loadFromFile("resource/Textures/DefaultTexture.png");
 		}
 	}
 }
 
 void TestEnemy::unLoadTexture()
 {
-	delete texture;
+	delete[] texture;
 	texture = nullptr;
 }
 
 
 // Constructur & Destructur
 TestEnemy::TestEnemy(const sf::Vector2f& tilePosition)
-	:BaseEnemy(Health, tilePosition, texture)
-{}
+	:BaseEnemy(Health, tilePosition, &texture[0])
+{
+	body.setTexture(&texture[Randomizer::randomize(2)] , false);
+}
 
 TestEnemy::~TestEnemy() {}
 
@@ -98,6 +104,9 @@ void TestEnemy::update()
 	if (this->attackSpeed <= this->clock.getElapsedTime()) {
 		readyToAttack = true;
 	}
+
+	this->updateStatus_Proc();
+
 	this->move();
 }
 

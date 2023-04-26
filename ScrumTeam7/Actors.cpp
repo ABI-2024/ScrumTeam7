@@ -6,7 +6,7 @@
 
 
 template<class BaseT>
-void  Actors::updateTower(std::vector<BaseT*>* T, const AmmoType& type) {
+void  Actors::updateTower(std::vector<BaseT*>* T) {
 
     for (auto i = T->begin(); i != T->end(); i++) {
 
@@ -22,7 +22,7 @@ void  Actors::updateTower(std::vector<BaseT*>* T, const AmmoType& type) {
 
         if ((*i)->isReadyToAttack() && onLine[(int)(*i)->getTilePosition().y]) {
             (*i)->HasAttacked();
-            initializeAmmo(type, (*i)->getPosition());
+            initializeAmmo((*i)->getAmmoType(), (*i)->getPosition());
         }
     }
 
@@ -88,12 +88,18 @@ Geld* Actors::getGeld() {
 // private Methoden
 void Actors::updateTowers()
 {
-    updateTower(&testTower, AmmoType::TestAmmo);
+    updateTower(&testTower);
+    updateTower(&mathelehrer);
+    updateTower(&inf_Lehrer);
+    updateTower(&en_Lehrer);
 }
 
 void Actors::updateAmmos()
 {
     updateAmmo(&testAmmo);
+    updateAmmo(&ma_Ammo);
+    updateAmmo(&inf_Ammo);
+    updateAmmo(&en_Ammo);
 
 }
 
@@ -105,6 +111,7 @@ void Actors::updateEnemies()
 
     updateEnemy(&testEnemy);
     updateEnemy(&nerd);
+    updateEnemy(&steroidenking);
 
 }
 
@@ -134,6 +141,9 @@ void Actors::CollisionAmmoWithEnemy()
 
             if (j->CollisionWithEnemy(tmp) && !j->isHit()) {
                 i->wasAttacked(j->getDamage());
+                if (j->status_Effect.getType() != Status_Type::non) {
+                    i->addStatus_Proc(j->status_Effect);
+                }
                 j->hasHit();
             }
         }
@@ -189,15 +199,22 @@ Actors::~Actors()
 
     // Delete Towers
     deleteEntities(&testTower);
-    deleteEntities(&nerd);
-
+    deleteEntities(&mathelehrer);
+    deleteEntities(&inf_Lehrer);
+    deleteEntities(&en_Lehrer);
+    
 
     // Delete Ammos
     deleteEntities(&testAmmo);
+    deleteEntities(&ma_Ammo);
+    deleteEntities(&inf_Ammo);
+    deleteEntities(&en_Ammo);
 
 
     // Delete Enemies
     deleteEntities(&testEnemy);
+    deleteEntities(&nerd);
+    deleteEntities(&steroidenking);
 
 }
 
@@ -267,6 +284,15 @@ bool Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
     case TowerType::TestTower:
         testTower.push_back(new TestTower(TilePosition));
         break;
+    case TowerType::Mathelehrer:
+        mathelehrer.push_back(new Mathelehrer(TilePosition));
+        break;
+    case TowerType::INF_Lehrer:
+        inf_Lehrer.push_back(new INF_Lehrer(TilePosition));
+        break;
+    case TowerType::EN_Lehrer:
+        en_Lehrer.push_back(new EN_Lehrer(TilePosition));
+        break;
 
     default:
         return false;
@@ -289,6 +315,9 @@ bool Actors::initializeEnemy(EnemyType EnemyType, sf::Vector2f TilePosition )
     case EnemyType::Nerd:
         nerd.push_back(new Nerd(TilePosition));
         break;
+    case EnemyType::Steroidenking:
+        steroidenking.push_back(new Steroidenking(TilePosition));
+        break;
     default:
         return false;
         break;
@@ -303,7 +332,20 @@ void Actors::initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition)
     case AmmoType::TestAmmo:
         testAmmo.push_back(new TestAmmo(TowerPosition));
         break;
-
+    case AmmoType::Mathe:
+        ma_Ammo.push_back(new MA_Ammo(TowerPosition));
+        break;
+    case AmmoType::Inf_weak: 
+    case AmmoType::Inf_medium: 
+    case AmmoType::Inf_strong:
+        inf_Ammo.push_back(new INF_Ammo(TowerPosition, AmmoType ));
+        break;
+    case AmmoType::Englisch_weak: 
+    case AmmoType::Englisch_medium: 
+    case AmmoType::Englisch_strong: 
+    case AmmoType::Englisch_strongest:
+        en_Ammo.push_back(new EN_Ammo(TowerPosition, AmmoType));
+        break;
     default:
         break;
     }

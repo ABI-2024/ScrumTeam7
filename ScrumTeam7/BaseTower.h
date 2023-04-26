@@ -37,6 +37,7 @@ public:
 	sf::Vector2f getTilePosition();
 
 	virtual TowerType getTowerType() = 0;
+	virtual AmmoType getAmmoType() = 0;
 
 
 	virtual void HasAttacked();

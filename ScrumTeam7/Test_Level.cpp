@@ -117,7 +117,7 @@ void Test_Level::startLevel()
 
         GameWindow::updateDeltaTime();
         
-        Wellenfunktion();
+        //Wellenfunktion();
         // Events
 
         for (BaseEnemy* test : BaseEnemy::enemies) {
@@ -157,7 +157,7 @@ void Test_Level::startLevel()
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 
                         // Spawnt Enemy
-                        actors.initializeEnemy(EnemyType::Nerd, this->TileSelection());
+                        actors.initializeEnemy(EnemyType::TestEnemy, this->TileSelection());
                     }
                 }
                 else {
@@ -228,7 +228,6 @@ void Test_Level::startLevel()
         if (paused) {
             menu.render();
         }
-
 
         Window.display();
 

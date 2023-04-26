@@ -7,7 +7,7 @@ AmmoType TestAmmo::ammoType = AmmoType::TestAmmo;
 
 
 // static Variables private
-float TestAmmo::damage = 20.f;
+float TestAmmo::damage = 30.f;
 sf::Vector2f TestAmmo::dir = sf::Vector2f(400.f,0);
 sf::Texture* TestAmmo::texture = nullptr;
 
@@ -18,7 +18,7 @@ void TestAmmo::LoadTexture()
 	if (texture == nullptr) {
 		texture = new sf::Texture();
 
-		if (!texture->loadFromFile("resource/Textures/Basketball.png")) {
+		if (!texture->loadFromFile("resource/Textures/Lehrer/SP/SP-Ammo.png")) {
 			texture->loadFromFile("resource/Textures/DefaultTexture.png");
 		}
 	}
@@ -34,7 +34,8 @@ void TestAmmo::unLoadTexture()
 // Constructur & Destructur
 TestAmmo::TestAmmo(sf::Vector2f TowerPosition)
 	:BaseAmmo(TowerPosition, texture)
-{}
+{
+}
 
 TestAmmo::~TestAmmo() {}
 
