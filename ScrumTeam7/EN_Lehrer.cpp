@@ -9,7 +9,7 @@ AmmoType EN_Lehrer::ammoType[4] = { AmmoType::Englisch_weak, AmmoType::Englisch_
 // private static Variables 
 int EN_Lehrer::Cost = 20;
 float EN_Lehrer::Health = 200;
-sf::Time EN_Lehrer::fireRate = sf::milliseconds(1500);
+sf::Time EN_Lehrer::fireRate = sf::milliseconds(2000);
 sf::Time EN_Lehrer::maximumFireRateDiviation = sf::milliseconds(150);
 sf::Texture* EN_Lehrer::texture = nullptr;
 

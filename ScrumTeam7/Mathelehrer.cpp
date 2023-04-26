@@ -12,7 +12,7 @@ AmmoType Mathelehrer::ammoType = AmmoType::Mathe;
 // private static Variables 
 int Mathelehrer::Cost = 20;
 float Mathelehrer::Health = 200;
-sf::Time Mathelehrer::fireRate = sf::milliseconds(2200);
+sf::Time Mathelehrer::fireRate = sf::milliseconds(2000);
 sf::Time Mathelehrer::maximumFireRateDiviation = sf::milliseconds(400);
 sf::Texture* Mathelehrer::texture = nullptr;
 

@@ -7,7 +7,7 @@ AmmoType EN_Ammo::ammoType[4] = { AmmoType::Englisch_weak, AmmoType::Englisch_me
 
 
 // static Variables private
-float EN_Ammo::damage[4] = { 5.f, 20.f ,40.f, 100.f };
+float EN_Ammo::damage[4] = { 10.f, 20.f ,40.f, 80.f };
 sf::Vector2f EN_Ammo::dir = sf::Vector2f(400.f, 0);
 sf::Texture* EN_Ammo::texture = nullptr;
 
