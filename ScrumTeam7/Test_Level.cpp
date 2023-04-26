@@ -117,7 +117,7 @@ void Test_Level::startLevel()
 
         GameWindow::updateDeltaTime();
         
-        //Wellenfunktion();
+        Wellenfunktion();
         // Events
 
         for (BaseEnemy* test : BaseEnemy::enemies) {
