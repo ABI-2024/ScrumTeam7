@@ -93,6 +93,7 @@ void Actors::updateTowers()
     updateTower(&inf_Lehrer);
     updateTower(&en_Lehrer);
     updateTower(&de_Lehrer);
+    updateTower(&metal_Lehrer);
 }
 
 void Actors::updateAmmos()
@@ -102,6 +103,7 @@ void Actors::updateAmmos()
     updateAmmo(&inf_Ammo);
     updateAmmo(&en_Ammo);
     updateAmmo(&de_Ammo);
+    updateAmmo(&metal_Ammo);
 
 }
 
@@ -204,6 +206,7 @@ Actors::~Actors()
     deleteEntities(&inf_Lehrer);
     deleteEntities(&en_Lehrer);
     deleteEntities(&de_Lehrer);
+    deleteEntities(&metal_Lehrer);
     
 
     // Delete Ammos
@@ -299,6 +302,9 @@ bool Actors::initializeTower(TowerType TowerType, sf::Vector2f TilePosition)
     case TowerType::DE_Lehrer:
         de_Lehrer.push_back(new DE_Lehrer(TilePosition));
         break;
+    case TowerType::METAL_Lehrer:
+        metal_Lehrer.push_back(new METAL_Lehrer(TilePosition));
+        break;
 
     default:
         return false;
@@ -354,6 +360,9 @@ void Actors::initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition)
         break;
     case AmmoType::DE_Ammo:
         de_Ammo.push_back(new DE_Ammo(TowerPosition));
+        break;
+    case AmmoType::METAL_Ammo:
+        metal_Ammo.push_back(new METAL_Ammo(TowerPosition));
         break;
 
     default:

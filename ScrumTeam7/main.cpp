@@ -29,12 +29,14 @@ int main()
     INF_Ammo::LoadTexture();
     EN_Ammo::LoadTexture();
     DE_Ammo::LoadTexture();
+    METAL_Ammo::LoadTexture();
 
     TestTower::LoadTexture();
     Mathelehrer::LoadTexture();
     INF_Lehrer::LoadTexture();
     EN_Lehrer::LoadTexture();
     DE_Lehrer::LoadTexture();
+    METAL_Lehrer::LoadTexture();
     
 
     TestEnemy::LoadTexture();
@@ -72,12 +74,14 @@ int main()
     INF_Ammo::unLoadTexture();
     EN_Ammo::unLoadTexture();
     DE_Ammo::unLoadTexture();
+    METAL_Ammo::unLoadTexture();
 
     TestTower::unLoadTexture();
     Mathelehrer::unLoadTexture();
     INF_Lehrer::unLoadTexture();
     EN_Lehrer::unLoadTexture();
     DE_Lehrer::unLoadTexture();
+    METAL_Lehrer::unLoadTexture();
     
 
     TestEnemy::unLoadTexture();

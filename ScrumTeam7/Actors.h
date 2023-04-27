@@ -11,6 +11,7 @@
 #include "INF_Lehrer.h"
 #include "EN_Lehrer.h"
 #include "DE_Lehrer.h"
+#include "METAL_Lehrer.h"
 
 // Ammo / Geschosse
 #include "TestAmmo.h"
@@ -18,6 +19,7 @@
 #include "INF_Ammo.h"
 #include "EN_Ammo.h"
 #include "DE_Ammo.h"
+#include "METAL_Ammo.h"
 
 // Enemies / Gegener
 #include "TestEnemy.h"
@@ -60,6 +62,7 @@ private:
 	std::vector<INF_Lehrer*> inf_Lehrer;
 	std::vector<EN_Lehrer*> en_Lehrer;
 	std::vector<DE_Lehrer*> de_Lehrer;
+	std::vector<METAL_Lehrer*> metal_Lehrer;
 
 	// Alle vectoren von Ammo / Geschosse
 	std::vector<TestAmmo*> testAmmo;
@@ -67,6 +70,7 @@ private:
 	std::vector<INF_Ammo*> inf_Ammo;
 	std::vector<EN_Ammo*> en_Ammo;
 	std::vector<DE_Ammo*> de_Ammo;
+	std::vector<METAL_Ammo*> metal_Ammo;
 
 
 	// Alle vectoren von Enemies / Gegener

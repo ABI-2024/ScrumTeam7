@@ -75,7 +75,7 @@ public:
 		}
 
 		if (this->timer.getElapsedTime() >= this->duration) {
-			this->active = true;
+			this->active = false;
 			switch (this->type)
 			{
 			case Status_Type::stun:

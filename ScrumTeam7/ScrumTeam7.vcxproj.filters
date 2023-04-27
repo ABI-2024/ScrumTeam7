@@ -147,6 +147,12 @@
     <ClCompile Include="DE_Lehrer.cpp">
       <Filter>Quelldateien\Entities\Tower</Filter>
     </ClCompile>
+    <ClCompile Include="METAL_Lehrer.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="METAL_Ammo.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -241,6 +247,12 @@
     </ClInclude>
     <ClInclude Include="DE_Lehrer.h">
       <Filter>Headerdateien\Entities\Header Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="METAL_Lehrer.h">
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="METAL_Ammo.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
