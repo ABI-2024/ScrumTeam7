@@ -92,3 +92,8 @@ void BaseTower::render()
 {
 	Window.draw(this->body);
 }
+
+void BaseTower::sortLehrer()
+{
+	for (BaseTower::towers)
+}

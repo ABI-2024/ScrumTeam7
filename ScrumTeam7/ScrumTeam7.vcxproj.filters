@@ -206,9 +206,6 @@
     <ClInclude Include="Wellen.h">
       <Filter>Headerdateien\Game Logik</Filter>
     </ClInclude>
-    <ClInclude Include="Nerd.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Test_Level.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -241,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="DE_Lehrer.h">
       <Filter>Headerdateien\Entities\Header Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="Nerd.h">
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

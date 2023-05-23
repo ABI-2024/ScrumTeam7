@@ -1,5 +1,6 @@
 #include "Nerd.h"
 #include "Window.h"
+#include "BaseTower.h"
 
 #include <iostream>
 
@@ -41,7 +42,10 @@ void Nerd::unLoadTexture()
 // Constructur & Destructur
 Nerd::Nerd(const sf::Vector2f& tilePosition)
 	:BaseEnemy(Health, tilePosition, texture)
-{}
+
+{
+	programmzeit.restart();
+}
 
 Nerd::~Nerd() {}
 
@@ -80,6 +84,17 @@ void Nerd::move()
 	else {
 		movable = true;
 	}
+}
+
+void Nerd :: manipulation()
+{
+	if (programmzeit.getElapsedTime() >= sf::seconds(3)) {
+		for (BaseTower* i : BaseTower::towers)
+		{
+			i->getTilePosition()
+		}
+	}
+
 }
 
 void Nerd::update()
