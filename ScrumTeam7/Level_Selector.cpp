@@ -1,13 +1,17 @@
 #include "Level_Selector.h"
 
-#include "Test_Level.h"
+#include "Level_1.h"
+#include "Level_2.h"
+#include "Level_3.h"
+#include "Level_Final.h"
+#include "Level_Endless.h"
 
 #define LevelButtonCount 5
 #define ButtonCount 1 + LevelButtonCount
 
 void Level_Selector::buttonEvents()
 {
-	Test_Level* level = nullptr;
+	Level* level = nullptr;
 
 	for (int i = 0; i < ButtonCount; i++) {
 		if (buttons[i]->isHovered()) {
@@ -17,24 +21,33 @@ void Level_Selector::buttonEvents()
 				break;
 
 			case 1:
-				level = new Test_Level;
-
-				level->startLevel();
-
+				level = new Level_1();
+				level->start(datafiles[i-1]);
 				delete level;
-				level = nullptr;
 				break;
 
 			case 2:
+				level = new Level_2();
+				level->start(datafiles[i-1]);
+				delete level;
 				break;
 
 			case 3:
+				level = new Level_3();
+				level->start(datafiles[i-1]);
+				delete level;
 				break;
 
 			case 4:
+				level = new Level_Final();
+				level->start(datafiles[i-1]);
+				delete level;
 				break;
 
 			case 5:
+				level = new Level_Endless();
+				level->start(datafiles[i]);
+				delete level;
 				break;
 
 			default:
@@ -60,11 +73,11 @@ Level_Selector::Level_Selector()
 
 	datafiles = new std::string[LevelButtonCount];
 
-	datafiles[0] = "A";
-	datafiles[1] = "B";
-	datafiles[2] = "C";
-	datafiles[3] = "D";
-	datafiles[4] = "E";
+	datafiles[0] = "resource/Data/Level_1.csv";
+	datafiles[1] = "resource/Data/Level_2.csv";
+	datafiles[2] = "resource/Data/Level_3.csv";
+	datafiles[3] = "resource/Data/Level_Final.csv";
+	datafiles[4] = "Datenwellen.csv";
 
 
 	font = new sf::Font();
@@ -75,8 +88,8 @@ Level_Selector::Level_Selector()
 	buttonText[1] = "1";
 	buttonText[2] = "2";
 	buttonText[3] = "3";
-	buttonText[4] = "4";
-	buttonText[5] = "5";
+	buttonText[4] = "";
+	buttonText[5] = "";
 
 
 	buttonTexture = new sf::Texture*[ButtonCount];
@@ -89,11 +102,11 @@ Level_Selector::Level_Selector()
 	buttonTexture[0][1].loadFromFile("resource/Textures/Button_Middle.png");
 	buttonTexture[0][2].loadFromFile("resource/Textures/Button_Side2.png");
 
-	buttonTexture[1]->loadFromFile("resource/Textures/DefaultTexture.png");
-	buttonTexture[2]->loadFromFile("resource/Textures/DefaultTexture.png");
-	buttonTexture[3]->loadFromFile("resource/Textures/DefaultTexture.png");
-	buttonTexture[4]->loadFromFile("resource/Textures/DefaultTexture.png");
-	buttonTexture[5]->loadFromFile("resource/Textures/DefaultTexture.png");
+	buttonTexture[1]->loadFromFile("resource/Textures/Level/Select/Select-Small-Uncomplete.png");
+	buttonTexture[2]->loadFromFile("resource/Textures/Level/Select/Select-Small-Uncomplete.png");
+	buttonTexture[3]->loadFromFile("resource/Textures/Level/Select/Select-Small-Uncomplete.png");
+	buttonTexture[4]->loadFromFile("resource/Textures/Level/Select/Select-Big-Sperren.png");
+	buttonTexture[5]->loadFromFile("resource/Textures/Level/Select/Select-Big-Special.png");
 
 
 	buttons = new Button * [ButtonCount];

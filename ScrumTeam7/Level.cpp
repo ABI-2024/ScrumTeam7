@@ -1,10 +1,9 @@
-#include "Test_Level.h"
+#include "Level.h"
+
 #include "Window.h"
 #include "Menu_Options.h"
 
-#include <iostream>
-
-sf::Vector2f Test_Level::TileSelection()
+sf::Vector2f Level::TileSelection()
 {
     // Hier wird die Tile-Position ermittelt
     sf::Vector2i mousePos = sf::Vector2i(Window.mapPixelToCoords(sf::Mouse::getPosition(Window)));
@@ -37,25 +36,9 @@ sf::Vector2f Test_Level::TileSelection()
     return sf::Vector2f(mousePos);
 }
 
-void Test_Level::Wellenfunktion() {
-    if (testwelle.geteof() == true) return;
-    testwelle.SpawnEnde();
-    if (testwelle.getspawnEnde() == false) {
-        testwelle.SpawnEnemy(actors);
-    }
-    else {
-        testwelle.WellenEnde(actors);
-    }
-    if (testwelle.getwellenEnde() == true) {
-        if (testwelle.getwarteTimer() == true)
-            testwelle.startWartetimer();
-        testwelle.Wartefunktion(actors);
-    }
-}
-
-void Test_Level::buttonEvents()
+void Level::buttonEvents()
 {
-    switch ( this->menu.mouseClick()) {
+    switch (this->menu.mouseClick()) {
     case 0:
         // Spiel geht weiter
         paused = false;
@@ -74,16 +57,29 @@ void Test_Level::buttonEvents()
     }
 }
 
-Test_Level::Test_Level()
+void Level::Wellenfunktion()
+{
+    if (welle.geteof() == true) return;
+    welle.SpawnEnde();
+    if (welle.getspawnEnde() == false) {
+        welle.SpawnEnemy(actors);
+    }
+    else {
+        welle.WellenEnde(actors);
+    }
+    if (welle.getwellenEnde() == true) {
+        if (welle.getwarteTimer() == true)
+            welle.startWartetimer();
+        welle.Wartefunktion(actors);
+    }
+}
 
-    : active(true), paused(false), testShop(actors)
+Level::Level()
+    : active(true), paused(false), shop(actors)
 
 {
-    back.loadFromFile("resource/Textures/Level/Background_Sporthalle.png");
-
     background.setSize(GameWindow::getMainView().getSize());
     background.setPosition(0.f, 0.f);
-    background.setTexture(&back, 0);
 
 
     selecteionRectangle[0].setSize({ GameWindow::getMainView().getSize().x, 150.f });
@@ -96,24 +92,24 @@ Test_Level::Test_Level()
     }
 }
 
-Test_Level::~Test_Level()
+Level::~Level()
 {
 }
 
-void Test_Level::startLevel()
+void Level::start(std::string filename)
 {
-
     sf::Vector2f pos;
 
-    testwelle.WellenDaten();
-    testwelle.SortListeSchueler();
-    
+    welle.setFilename(filename);
+    welle.WellenDaten();
+    welle.SortListeSchueler();
+
     GameWindow::updateDeltaTime();
 
     while (Window.isOpen() && active) {
 
         GameWindow::updateDeltaTime();
-        
+
         Wellenfunktion();
         // Events
 
@@ -129,7 +125,7 @@ void Test_Level::startLevel()
                 break;
 
             case sf::Event::KeyPressed:
-                
+
                 // Togglet Pausierung
                 if (GameEvent.key.code == sf::Keyboard::Escape) {
                     if (paused) {
@@ -144,9 +140,9 @@ void Test_Level::startLevel()
 
             case sf::Event::MouseButtonPressed:
                 if (!paused) {
-                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {                      
+                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
-                        testShop.buttonEvents(TileSelection());
+                        shop.buttonEvents(TileSelection());
 
                         //// Spawnt Tower
                         //actors.initializeTower(TowerType::TestTower, this->TileSelection());
@@ -167,14 +163,14 @@ void Test_Level::startLevel()
             case sf::Event::MouseMoved:
 
                 pos = this->TileSelection();
-                if (pos.y >= 0 && pos.y <5 && pos.x >= 0 && pos.x <8) {
+                if (pos.y >= 0 && pos.y < 5 && pos.x >= 0 && pos.x < 8) {
                     selecteionRectangle[0].setPosition(0.f, this->TileSelection().y * 150 + 200);
                     selecteionRectangle[1].setPosition(this->TileSelection().x * 150 + 400, 0.f);
                 }
                 else {
 
-                    selecteionRectangle[0].setPosition(4000.f,4000.f);
-                    selecteionRectangle[1].setPosition(4000.f,4000.f);
+                    selecteionRectangle[0].setPosition(4000.f, 4000.f);
+                    selecteionRectangle[1].setPosition(4000.f, 4000.f);
                 }
                 break;
 
@@ -213,7 +209,7 @@ void Test_Level::startLevel()
 
         actors.renderActors();
 
-        testShop.render();
+        shop.render();
 
         if (paused) {
             menu.render();
