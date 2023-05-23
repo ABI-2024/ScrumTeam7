@@ -140,6 +140,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="DE_Ammo.cpp" />
     <ClCompile Include="DE_Lehrer.cpp" />
+    <ClCompile Include="Emo.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EN_Ammo.cpp" />
     <ClCompile Include="EN_Lehrer.cpp" />
@@ -156,6 +157,7 @@
     <ClCompile Include="Nerd.cpp" />
     <ClCompile Include="Randomizer.cpp" />
     <ClCompile Include="Shop.cpp" />
+    <ClCompile Include="Simp.cpp" />
     <ClCompile Include="Steroidenking.cpp" />
     <ClCompile Include="TestAmmo.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
@@ -172,6 +174,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="DE_Ammo.h" />
     <ClInclude Include="DE_Lehrer.h" />
+    <ClInclude Include="Emo.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="enums.h" />
     <ClInclude Include="EN_Ammo.h" />
@@ -188,6 +191,7 @@
     <ClInclude Include="Randomizer.h" />
     <ClInclude Include="Karte.h" />
     <ClInclude Include="Shop.h" />
+    <ClInclude Include="Simp.h" />
     <ClInclude Include="Status_Effect.h" />
     <ClInclude Include="Steroidenking.h" />
     <ClInclude Include="TestAmmo.h" />

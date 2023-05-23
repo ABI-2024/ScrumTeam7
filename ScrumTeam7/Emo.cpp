@@ -1,4 +1,4 @@
-#include "Nerd.h"
+#include "Emo.h"
 #include "Window.h"
 #include "BaseTower.h"
 
@@ -6,33 +6,33 @@
 
 // static Variables
 
-EnemyType Nerd::enemyType = EnemyType::Nerd;
+EnemyType Emo::enemyType = EnemyType::Emo;
 
-float Nerd::Health = 200;
-float Nerd::Damage = 20;
+float Emo::Health = 400;
+float Emo::Damage = 20;
 
-int Nerd::revenue = 8;
+int Emo::revenue = 8;
 
-sf::Vector2f Nerd::dir = sf::Vector2f(-7, 0);
+sf::Vector2f Emo::dir = sf::Vector2f(-7, 0);
 
-sf::Texture* Nerd::texture = nullptr;
+sf::Texture* Emo::texture = nullptr;
 
-sf::Time Nerd::attackSpeed = sf::milliseconds(750);
+sf::Time Emo::attackSpeed = sf::milliseconds(750);
 
 
 // public static Methoden
-void Nerd::LoadTexture()
+void Emo::LoadTexture()
 {
 	if (texture == nullptr) {
 		texture = new sf::Texture();
 
-		if (!texture->loadFromFile("resource/Textures/Schueler/Nerd.png")) {
+		if (!texture->loadFromFile("resource/Textures/Schueler/Emo.png")) {
 			texture->loadFromFile("resource/Textures/DefaultTexture.png");
 		}
 	}
 }
 
-void Nerd::unLoadTexture()
+void Emo::unLoadTexture()
 {
 	delete texture;
 	texture = nullptr;
@@ -40,32 +40,32 @@ void Nerd::unLoadTexture()
 
 
 // Constructur & Destructur
-Nerd::Nerd(const sf::Vector2f& tilePosition)
+Emo::Emo(const sf::Vector2f& tilePosition)
 	:BaseEnemy(Health, tilePosition, texture)
 
 {
 	programmzeit.restart();
 }
 
-Nerd::~Nerd() {}
+Emo::~Emo() {}
 
 // public get-Methoden
-int Nerd::getRevenue() {
+int Emo::getRevenue() {
 	return revenue;
 }
 
-EnemyType Nerd::getEnemyType()
+EnemyType Emo::getEnemyType()
 {
 	return this->enemyType;
 }
 
-float Nerd::getDamage()
+float Emo::getDamage()
 {
 	return this->Damage;
 }
 
 // public Methoden
-bool Nerd::CollisionWithTower(sf::FloatRect& Tower)
+bool Emo::CollisionWithTower(sf::FloatRect& Tower)
 {
 	if (sf::FloatRect(this->body.getGlobalBounds()).intersects(Tower)) {
 		movable = false;
@@ -76,7 +76,7 @@ bool Nerd::CollisionWithTower(sf::FloatRect& Tower)
 	}
 }
 
-void Nerd::move()
+void Emo::move()
 {
 	if (movable) {
 		this->body.move(this->dir * dt);
@@ -86,18 +86,7 @@ void Nerd::move()
 	}
 }
 
-void Nerd :: manipulation()
-{
-	if (programmzeit.getElapsedTime() >= sf::seconds(3)) {
-		for (BaseTower* i : BaseTower::towers)
-		{
-			i->getTilePosition();
-		}
-	}
-
-}
-
-void Nerd::update()
+void Emo::update()
 {
 	if (health <= Health / 5) {
 		body.setFillColor({ 139,0,0 }); //DarkRed

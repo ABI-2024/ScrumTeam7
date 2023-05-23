@@ -49,7 +49,7 @@ public:
 
 	virtual void update() = 0;
 	void render();
-	void sortLehrer();
+	/*void sortLehrer();*/
 };
 
 
