@@ -147,6 +147,12 @@
     <ClCompile Include="INF_Ammo.cpp" />
     <ClCompile Include="INF_Lehrer.cpp" />
     <ClCompile Include="Karte.cpp" />
+    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="Level_1.cpp" />
+    <ClCompile Include="Level_2.cpp" />
+    <ClCompile Include="Level_3.cpp" />
+    <ClCompile Include="Level_Endless.cpp" />
+    <ClCompile Include="Level_Final.cpp" />
     <ClCompile Include="Level_Selector.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mathelehrer.cpp" />
@@ -182,6 +188,12 @@
     <ClInclude Include="Geld.h" />
     <ClInclude Include="INF_Ammo.h" />
     <ClInclude Include="INF_Lehrer.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="Level_1.h" />
+    <ClInclude Include="Level_2.h" />
+    <ClInclude Include="Level_3.h" />
+    <ClInclude Include="Level_Endless.h" />
+    <ClInclude Include="Level_Final.h" />
     <ClInclude Include="Level_Selector.h" />
     <ClInclude Include="Mathelehrer.h" />
     <ClInclude Include="MA_Ammo.h" />

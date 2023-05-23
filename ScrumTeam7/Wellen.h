@@ -3,6 +3,7 @@
 #include <fstream>
 #include <stdlib.h>
 #include <list>
+#include <string>
 
 #include "Actors.h"
 #include "SFML/Graphics.hpp"
@@ -10,6 +11,8 @@
 class Wellen
 {
 	private:
+		std::string filename;
+
 		Geld testgeld;
 		int welleAnz;
 
@@ -42,6 +45,8 @@ class Wellen
 
 		void SpawnEnemy(Actors&);
 		/*void Time(Actors& test);*/
+
+		void setFilename(const std::string&);
 
 		int* getWellenDaten();
 		std::list <int>* getSchuelerDaten();

@@ -55,6 +55,12 @@
     <Filter Include="Quelldateien\Game Logik\Shop">
       <UniqueIdentifier>{4233db4d-d281-4cec-bf18-fdbb93d594ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Level">
+      <UniqueIdentifier>{e677e1c3-b788-4bb8-ba18-178cec9558b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Level">
+      <UniqueIdentifier>{302f80c2-d29c-468a-986b-9bd3b03d604e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -155,6 +161,24 @@
     </ClCompile>
     <ClCompile Include="Level_Selector.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Level_Final.cpp">
+      <Filter>Quelldateien\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Level_1.cpp">
+      <Filter>Quelldateien\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Level_2.cpp">
+      <Filter>Quelldateien\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Level_3.cpp">
+      <Filter>Quelldateien\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Level_Endless.cpp">
+      <Filter>Quelldateien\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Quelldateien\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +283,24 @@
     </ClInclude>
     <ClInclude Include="Level_Selector.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_Final.h">
+      <Filter>Headerdateien\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_1.h">
+      <Filter>Headerdateien\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_2.h">
+      <Filter>Headerdateien\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_3.h">
+      <Filter>Headerdateien\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_Endless.h">
+      <Filter>Headerdateien\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Headerdateien\Level</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

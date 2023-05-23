@@ -1,6 +1,5 @@
 #include "Wellen.h"
 #include <iostream>
-#include <string>
 
 Wellen::Wellen() {
 	welleAnz = 0;
@@ -11,7 +10,7 @@ Wellen::Wellen() {
 
 void Wellen::WellenDaten() {
 	std::ifstream Datei;
-	Datei.open("Datenwellen.csv"); //Dokument wird neu geöffnet (Dateiposition reseted)
+	Datei.open(filename); //Dokument wird neu geöffnet (Dateiposition reseted)
 	std::string tmp;
 	int dateiposition;
 	char debug;
@@ -43,6 +42,11 @@ void Wellen::WellenDaten() {
 	/*std::getline(wellenDaten, tmp, '\n');*/
 	addWelle();
 	Datei.close();
+}
+
+void Wellen::setFilename(const std::string& name)
+{
+	filename = name;
 }
 
 int* Wellen::getWellenDaten() {
