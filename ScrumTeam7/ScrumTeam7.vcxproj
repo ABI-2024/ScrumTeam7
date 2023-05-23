@@ -163,6 +163,7 @@
     <ClCompile Include="Menu_Pause.cpp" />
     <ClCompile Include="METAL_Ammo.cpp" />
     <ClCompile Include="METAL_Lehrer.cpp" />
+    <ClCompile Include="Music.cpp" />
     <ClCompile Include="Nerd.cpp" />
     <ClCompile Include="Randomizer.cpp" />
     <ClCompile Include="Shop.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="Menu_Pause.h" />
     <ClInclude Include="METAL_Ammo.h" />
     <ClInclude Include="METAL_Lehrer.h" />
+    <ClInclude Include="Music.h" />
     <ClInclude Include="Nerd.h" />
     <ClInclude Include="Randomizer.h" />
     <ClInclude Include="Karte.h" />

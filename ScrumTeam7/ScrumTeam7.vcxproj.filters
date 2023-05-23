@@ -180,6 +180,15 @@
     <ClCompile Include="Level.cpp">
       <Filter>Quelldateien\Level</Filter>
     </ClCompile>
+    <ClCompile Include="Button2.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="TowerSelect.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Music.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -301,6 +310,15 @@
     </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Headerdateien\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Button2.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="TowerSelect.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Music.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

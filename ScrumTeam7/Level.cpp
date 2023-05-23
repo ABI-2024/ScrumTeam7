@@ -3,6 +3,8 @@
 #include "Window.h"
 #include "Menu_Options.h"
 
+#include "Music.h"
+
 sf::Vector2f Level::TileSelection()
 {
     // Hier wird die Tile-Position ermittelt
@@ -98,6 +100,8 @@ Level::~Level()
 
 void Level::start(std::string filename)
 {
+
+    Music::startMusic();
 
     shop.setKarten(TowerSelect::openTowerSelect());
 
@@ -223,4 +227,5 @@ void Level::start(std::string filename)
 
     }
 
+    Music::stopMusic();
 }

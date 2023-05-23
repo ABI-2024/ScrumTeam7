@@ -17,6 +17,8 @@
 #include "Test_Level.h"
 #include "Level_Selector.h"
 
+#include "Music.h"
+
 
 int main()
 {
@@ -92,6 +94,9 @@ int main()
     Steroidenking::unLoadTexture();
 
     GameWindow::closeWindow();
+
+    Music::unloadMusic();
+
     return 0;
 }
 
