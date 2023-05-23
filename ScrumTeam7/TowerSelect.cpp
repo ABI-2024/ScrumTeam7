@@ -32,6 +32,17 @@ void TowerSelect::render()
 {
 	for (int i = 0; i < anzahlKarten; i++) {
 
+		if (karten[i]->getHovered()) {
+			this->Rückseite.setPosition(karten[i]->getPosition());
+			this->Rückseite.setFillColor(sf::Color::White);
+			this->Rückseite.setTexture(&tb[i], 0);
+		}
+		//else {
+		//	this->Rückseite.setFillColor(sf::Color::Transparent);
+		//}
+
+		GameWindow::getWindow().draw(this->Rückseite);
+
 		karten[i]->render();
 	}
 
@@ -43,14 +54,25 @@ TowerSelect::TowerSelect()
 	this->open = true;
 
 
-	// zeigt Karten (Lehrer) an
-
+	// Texturen für die Voderseite der Karten
 	t = new sf::Texture[5];
 	t[0].loadFromFile("resource/Textures/Lehrer/Karten/Karte_MA_Front.png");
 	t[1].loadFromFile("resource/Textures/Lehrer/Karten/Karte_INF_Front.png");
 	t[2].loadFromFile("resource/Textures/Lehrer/Karten/Karte_EN_Front.png");
 	t[3].loadFromFile("resource/Textures/Lehrer/Karten/Karte_DE_Front.png");
 	t[4].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Front.png");
+
+	// Texturen für die Rückseite der Karten
+	tb = new sf::Texture[5];
+	tb[0].loadFromFile("resource/Textures/Basketball.png");
+	tb[1].loadFromFile("resource/Textures/Basketball.png");
+	tb[2].loadFromFile("resource/Textures/Basketball.png");
+	tb[3].loadFromFile("resource/Textures/Basketball.png");
+	tb[4].loadFromFile("resource/Textures/Basketball.png");
+
+	sf::Vector2f size = { 210.f , 140.f };
+	this->Rückseite.setSize(size);
+	this->Rückseite.setFillColor(sf::Color::Transparent);
 
 
 	karten = new Karte * [anzahlKarten];

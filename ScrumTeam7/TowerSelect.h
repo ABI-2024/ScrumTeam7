@@ -9,6 +9,8 @@ private:
 	bool open;
 	static int anzahlKarten;
 	sf::Texture* t;
+	sf::Texture* tb;
+	sf::RectangleShape Rückseite;
 	Karte** karten;
 	Actors* actors;
 
