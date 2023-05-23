@@ -1,33 +1,29 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
-
 #include "Button.h"
 
-class Menu
+#include "Window.h"
+
+class Level_Selector
 {
 private:
-
 	bool open;
-	static int ans;
 
-	sf::Texture titelTexture;
-	sf::RectangleShape titel;
+
+	std::string* datafiles;
 
 	sf::Font* font;
-	sf::Texture* buttonTexture;
+	sf::Texture** buttonTexture;
 	std::string* buttonText;
-	Button** button;
-
+	Button** buttons;
 
 	void buttonEvents();
-
 	void render();
-
-	Menu();
-	~Menu();
 public:
+	Level_Selector();
+	~Level_Selector();
 
-	static int openMenu();
+	void openMenu();
 };
 

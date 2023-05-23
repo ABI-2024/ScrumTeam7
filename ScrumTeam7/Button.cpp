@@ -30,30 +30,41 @@ void Button::initVariables(const sf::Vector2f& Button_Position, const sf::Vector
 	hitBox = { { Button_Position.x - Button_Size.x / 2, Button_Position.y - Button_Size .y/ 2.f }, Button_Size };
 }
 
-Button::Button()
-{
-	this->hovered = false;
-	this->texture = nullptr;
-}
-
-Button::Button(const sf::Font& font, const sf::Color& textColor, const std::string& text, sf::Texture* texture, const sf::Vector2f& ButtonPosition, const sf::Vector2f& ButtonSize)
+Button::Button(const sf::Font& font, const sf::Color& textColor, const std::string& text, sf::Texture* texture, const sf::Vector2f& ButtonPosition, const sf::Vector2f& ButtonSize, bool Standart)
+	:standart(Standart), hovered(false)
 {
 	this->text.setFont(font);
 	this->text.setFillColor(textColor);
 	this->text.setString(text);
 	this->text.setCharacterSize( ButtonSize.y / 2.f);
-	this->text.setOrigin(this->text.getGlobalBounds().width/2 , ButtonSize.y/4 + ButtonSize.x / 64);
-	this->text.setPosition(ButtonPosition );
 
-	this->hovered = false;
+	this->text.setOrigin(this->text.getGlobalBounds().width / 2, ButtonSize.y / 4 + ButtonSize.x / 64);
+	this->text.setPosition(ButtonPosition);
 
 	this->texture = texture;
 
-	this->initVariables( ButtonPosition, ButtonSize);
+
+	if (standart) {
+		Body = new sf::RectangleShape();
+		Body->setPosition(ButtonPosition);
+		Body->setSize(ButtonSize);
+		Body->setOrigin(ButtonSize / 2.f);
+		Body->setTexture(texture, 0);
+
+		hitBox = Body->getGlobalBounds();
+
+	}
+	else {
+		Body = new sf::RectangleShape[3];
+
+		this->initVariables(ButtonPosition, ButtonSize);
+	}
 }
 
 Button::~Button()
 {
+
+
 }
 
 const bool& Button::isHovered()
@@ -71,24 +82,41 @@ void Button::update()
 {
 	sf::FloatRect mouse = {sf::Vector2f( Window.mapPixelToCoords(sf::Mouse::getPosition(Window) )), {1,1} };
 	
-	if (hitBox.intersects(mouse)) {
-		for (int i = 0; i < 3; i++) {
-			Body[i].setFillColor(sf::Color(200, 200, 200));
+	if (standart) {
+		if (hitBox.intersects(mouse)) {
+			Body->setFillColor(sf::Color(200, 200, 200));
+			this->hovered = true;
 		}
-		this->hovered = true;
+		else {
+			Body->setFillColor(sf::Color(255, 255, 255));
+			this->hovered = false;
+		}
 	}
 	else {
-		for (int i = 0; i < 3; i++) {
-			Body[i].setFillColor(sf::Color(255, 255, 255));
+		if (hitBox.intersects(mouse)) {
+			for (int i = 0; i < 3; i++) {
+				Body[i].setFillColor(sf::Color(200, 200, 200));
+			}
+			this->hovered = true;
 		}
-		this->hovered = false;
+		else {
+			for (int i = 0; i < 3; i++) {
+				Body[i].setFillColor(sf::Color(255, 255, 255));
+			}
+			this->hovered = false;
+		}
 	}
 }
 
 void Button::render()
 {
-	for (int i = 0; i < 3; i++) {
-		Window.draw(Body[i]);
+	if (standart) {
+		Window.draw(*Body);
+	}
+	else {
+		for (int i = 0; i < 3; i++) {
+			Window.draw(Body[i]);
+		}
 	}
 	Window.draw(this->text);
 }

@@ -10,16 +10,15 @@ class Button
 private:
 
 	sf::Text text;
-	sf::RectangleShape Body[3];
+	sf::RectangleShape* Body;
 	sf::FloatRect hitBox;
 
-	bool hovered;
+	bool hovered, standart;
 	sf::Texture* texture;
 
 	void initVariables(const sf::Vector2f& Button_Position, const sf::Vector2f& Button_Size);
 public:
-	Button();
-	Button(const sf::Font& font, const sf::Color& textColor, const std::string& text, sf::Texture* texture, const sf::Vector2f& ButtonPosition, const sf::Vector2f& ButtonSize);
+	Button(const sf::Font& font, const sf::Color& textColor, const std::string& text, sf::Texture* texture, const sf::Vector2f& ButtonPosition, const sf::Vector2f& ButtonSize, bool Standart);
 	~Button();
 
 	const bool& isHovered();

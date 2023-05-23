@@ -25,9 +25,9 @@ Menu_Pause::Menu_Pause()
 	buttonText[1] = "Optionen";
 	buttonText[2] = "Hauptmenu";
 
-	button = new Button[Anzahl_Button];
+	button = new Button*[Anzahl_Button];
 	for (int i = 0; i < Anzahl_Button; i++) {
-		button[i] = Button(font, sf::Color(34, 32, 52), buttonText[i], buttonTexture, { GameWindow::getMainView().getSize().x / 2 , 240.f + 200.f * i }, { 500.f, 100.f });
+		button[i] = new Button(font, sf::Color(34, 32, 52), buttonText[i], buttonTexture, { GameWindow::getMainView().getSize().x / 2 , 240.f + 200.f * i }, { 500.f, 100.f }, false);
 	}
 }
 
@@ -35,13 +35,17 @@ Menu_Pause::~Menu_Pause()
 {
 	delete[] buttonTexture;
 	delete[] buttonText;
+
+	for (int i = 0; i < Anzahl_Button; i++)
+		delete button[i];
+
 	delete[] button;
 }
 
 int Menu_Pause::mouseClick()
 {
 	for (int i = 0; i < Anzahl_Button; i++) {
-		if (button[i].isHovered()) {
+		if (button[i]->isHovered()) {
 			return i;
 		}
 	}
@@ -51,7 +55,7 @@ int Menu_Pause::mouseClick()
 void Menu_Pause::update()
 {
 	for (int i = 0; i < Anzahl_Button; i++) {
-		button[i].update();
+		button[i]->update();
 	}
 }
 
@@ -60,7 +64,7 @@ void Menu_Pause::render()
 {
 	Window.draw(background);
 	for (int i = 0; i < Anzahl_Button; i++) {
-		button[i].render();
+		button[i]->render();
 	}
 
 }

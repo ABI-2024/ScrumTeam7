@@ -9,7 +9,8 @@ enum class TowerType : char
 	Mathelehrer,
 	INF_Lehrer,
 	EN_Lehrer,
-	DE_Lehrer
+	DE_Lehrer,
+	METAL_Lehrer
 };
 enum class AmmoType : char
 {
@@ -28,7 +29,9 @@ enum class AmmoType : char
 	Inf_medium = 8,
 	Inf_strong = 9,
 
-	DE_Ammo
+	DE_Ammo,
+
+	METAL_Ammo
 };
 enum class EnemyType : char
 {

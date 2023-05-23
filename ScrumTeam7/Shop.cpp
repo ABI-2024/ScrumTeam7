@@ -7,7 +7,7 @@ Shop::Shop(Actors& actors) {
 	this->actors = &actors;
 	sellection = -1;
 
-	this->anzahlKarten = 5;
+	this->anzahlKarten = 6;
 
 	font.loadFromFile("resource/fonts/arial.ttf");
 	t = new sf::Texture[anzahlKarten];
@@ -16,6 +16,7 @@ Shop::Shop(Actors& actors) {
 	t[2].loadFromFile("resource/Textures/Lehrer/Karten/Karte_EN_Front.png");
 	t[3].loadFromFile("resource/Textures/Lehrer/Karten/Karte_DE_Front.png");
 	t[4].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Front.png");
+	t[5].loadFromFile("resource/Textures/Lehrer/Karten/Karte_METAL_Front.png");
 
 
 	//this->karten = new Karte(100, 1, &t, { 25.f, 90.f });
@@ -25,6 +26,7 @@ Shop::Shop(Actors& actors) {
 	this->karten[2] = new Karte(100, TowerType::EN_Lehrer, &t[2], { 60.f, 150.f * 2 + 90 });
 	this->karten[3] = new Karte(100, TowerType::DE_Lehrer, &t[3], { 60.f, 150.f * 3 + 90 });
 	this->karten[4] = new Karte(100, TowerType::TestTower, &t[4], { 60.f, 150.f * 4 + 90 });
+	this->karten[5] = new Karte(100, TowerType::METAL_Lehrer, &t[5], { 60.f, 150.f * 5 + 90 });
 
 	this->text = new sf::Text[anzahlKarten];
 
