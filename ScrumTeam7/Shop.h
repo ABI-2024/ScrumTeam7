@@ -23,6 +23,7 @@ public:
 
 	int getSellection();
 	void setSellection(int s);
+	void setKarten(Karte** karten);
 
 	void buttonEvents(sf::Vector2f tilePos);
 

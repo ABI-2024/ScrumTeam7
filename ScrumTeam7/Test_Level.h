@@ -3,6 +3,7 @@
 #include "Shop.h"
 #include "Menu_Pause.h"
 #include "Wellen.h"
+#include "TowerSelect.h"
 
 class Test_Level
 {

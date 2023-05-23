@@ -103,6 +103,10 @@ Test_Level::~Test_Level()
 void Test_Level::startLevel()
 {
 
+    // Kartenauswahl
+    testShop.setKarten(TowerSelect::openTowerSelect());
+
+
     sf::Vector2f pos;
 
     /*Raster raster(80, 48);

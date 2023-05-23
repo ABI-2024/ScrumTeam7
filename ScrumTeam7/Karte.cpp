@@ -18,6 +18,14 @@ Karte::~Karte() {
 
 }
 
+
+void Karte::setPosition(sf::Vector2f pos)
+{
+	this->Body.setPosition(pos);
+	hitBox = Body.getGlobalBounds();
+}
+
+
 int Karte::getCost() {
 	return cost;
 }
