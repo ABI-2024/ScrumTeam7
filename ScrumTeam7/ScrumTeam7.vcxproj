@@ -138,6 +138,7 @@
     <ClCompile Include="BaseEnemy.cpp" />
     <ClCompile Include="BaseTower.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Button2.cpp" />
     <ClCompile Include="DE_Ammo.cpp" />
     <ClCompile Include="DE_Lehrer.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -169,6 +170,7 @@
     <ClCompile Include="TestAmmo.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="TestTower.cpp" />
+    <ClCompile Include="TowerSelect.cpp" />
     <ClCompile Include="Wellen.cpp" />
     <ClCompile Include="Test_Level.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -179,6 +181,7 @@
     <ClInclude Include="BaseEnemy.h" />
     <ClInclude Include="BaseTower.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Button2.h" />
     <ClInclude Include="DE_Ammo.h" />
     <ClInclude Include="DE_Lehrer.h" />
     <ClInclude Include="Entity.h" />
@@ -211,6 +214,7 @@
     <ClInclude Include="TestAmmo.h" />
     <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="TestTower.h" />
+    <ClInclude Include="TowerSelect.h" />
     <ClInclude Include="Wellen.h" />
     <ClInclude Include="Test_Level.h" />
     <ClInclude Include="Window.h" />

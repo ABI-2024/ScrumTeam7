@@ -52,7 +52,7 @@ Shop::Shop(Actors& actors, int anzahlKarten, Karte** karten) {
 
 	this->text = new sf::Text[anzahlKarten];
 
-	for(int i = 0; i < anzahlKarten; i++){
+	for (int i = 0; i < anzahlKarten; i++){
 	
 		text[i].setFont(font);
 		text[i].setCharacterSize(20);
@@ -80,6 +80,14 @@ void Shop::setSellection(int s) {
 	else this->sellection = 0;
 }
 
+void Shop::setKarten(Karte** karten)
+{
+	this->karten = karten;
+
+	for (int i = 0; i < 5; i++) {
+		karten[i]->setPosition({ 60.f, 150.f * i + 90 });
+	}
+}
 
 
 void Shop::buttonEvents(sf::Vector2f tilePos)

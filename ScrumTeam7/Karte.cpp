@@ -9,13 +9,25 @@ Karte::Karte(int cost, TowerType type, sf::Texture* texture, sf::Vector2f pos) {
 	this->Body.setPosition(pos);
 	sf::Vector2f size = { 210.f , 140.f };
 	this->Body.setSize(size);
-	this->Body.setTexture(texture , 0);
+	this->Body.setTexture(texture, 0);
 
 	hitBox = Body.getGlobalBounds();
 }
 
 Karte::~Karte() {
 
+}
+
+
+void Karte::setPosition(sf::Vector2f pos)
+{
+	this->Body.setPosition(pos);
+	hitBox = Body.getGlobalBounds();
+}
+
+
+sf::RectangleShape Karte::getBody() {
+	return this->Body;
 }
 
 int Karte::getCost() {
@@ -30,9 +42,12 @@ sf::Vector2f Karte::getPosition() {
 	return Body.getPosition();
 }
 
-
 bool Karte::getHovered() {
 	return this->hovered;
+}
+
+sf::FloatRect Karte::getHitBox() {
+	return this->hitBox;
 }
 
 void Karte::update()
