@@ -210,13 +210,6 @@ void Test_Level::startLevel()
 
         Window.draw(background);
 
-        /*for (int yA = 0; yA < 5; yA++) {
-            for (int xA = 0; xA < 8; xA++) {
-                raster.setRasterPosition(xA, yA);
-                raster.render();
-            }
-        }*/
-
         for (int i = 0; i < 2; i++) {
             Window.draw(selecteionRectangle[i]);
         }

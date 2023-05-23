@@ -11,7 +11,7 @@ private:
 	sf::Font font;
 	sf::Texture* buttonTexture;
 	std::string* buttonText;
-	Button* button;
+	Button** button;
 
 public:
 	Menu_Pause();

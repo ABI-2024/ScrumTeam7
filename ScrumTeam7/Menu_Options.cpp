@@ -43,12 +43,12 @@ Menu_Options::Menu_Options() {
 	buttonText[3] = "Sound Volume: " + std::to_string(settings.SoundVolume) + "%";
 	buttonText[4] = "Music Volume: " + std::to_string(settings.MusicVolume) + "%";
 
-	button = new Button[Anzahl_Button];
+	button = new Button*[Anzahl_Button];
 	for (int i = 0; i < 5; i++) {
-		button[i] = Button(font, sf::Color(34, 32, 52), buttonText[i], buttonTexture, { GameWindow::getMainView().getSize().x/2  , 160.f + 130.f * i }, { 800.f, 120.f });
+		button[i] = new Button(font, sf::Color(34, 32, 52), buttonText[i], buttonTexture, { GameWindow::getMainView().getSize().x/2  , 160.f + 130.f * i }, { 800.f, 120.f }, false);
 	}
-	button[5] = Button(font, sf::Color(34, 32, 52), "Zurück", buttonTexture, {GameWindow::getMainView().getSize().x /8  , GameWindow::getMainView().getSize().y * 15 / 16 }, {400.f, 100.f});
-	button[6] = Button(font, sf::Color(34, 32, 52), "Übernehmen", buttonTexture, {GameWindow::getMainView().getSize().x * 7/ 8  , GameWindow::getMainView().getSize().y * 15 / 16 }, {400.f, 100.f});
+	button[5] = new Button(font, sf::Color(34, 32, 52), "Zurück", buttonTexture, {GameWindow::getMainView().getSize().x /8  , GameWindow::getMainView().getSize().y * 15 / 16 }, {400.f, 100.f}, false);
+	button[6] = new Button(font, sf::Color(34, 32, 52), "Übernehmen", buttonTexture, {GameWindow::getMainView().getSize().x * 7/ 8  , GameWindow::getMainView().getSize().y * 15 / 16 }, {400.f, 100.f}, false);
 
 	aufloesung[0] = { 0, 0 };
 	aufloesung[1] = { 960, 540 };
@@ -63,13 +63,18 @@ Menu_Options::~Menu_Options()
 {
 	delete[] buttonText;
 	delete[] buttonTexture;
+
+
+	for (int i = 0; i < Anzahl_Button; i++)
+		delete button[i];
+
 	delete[] button;
 }
 
 void Menu_Options::buttonEvents()
 {
 	for (int i = 0; i < Anzahl_Button; i++) {
-		if (button[i].isHovered()) {
+		if (button[i]->isHovered()) {
 			switch (i) {
 			case 0:
 				for (int i = 1; i < 6; i++) {
@@ -86,10 +91,10 @@ void Menu_Options::buttonEvents()
 				}
 
 				if (settings.Fullscreen) {
-					button[0].setText( "Auflösung: Fullscreen" );
+					button[0]->setText( "Auflösung: Fullscreen" );
 				}
 				else {
-					button[0].setText("Auflösung: " + std::to_string(settings.WindowSize.x) + " / " + std::to_string(settings.WindowSize.y));
+					button[0]->setText("Auflösung: " + std::to_string(settings.WindowSize.x) + " / " + std::to_string(settings.WindowSize.y));
 				}
 
 				break;
@@ -104,7 +109,7 @@ void Menu_Options::buttonEvents()
 						settings.FrameRateLimit += 10;
 					}
 				}
-				button[1].setText( "Fps-Limit: " + std::to_string(settings.FrameRateLimit));
+				button[1]->setText( "Fps-Limit: " + std::to_string(settings.FrameRateLimit));
 				break;
 			case 2:
 
@@ -118,7 +123,7 @@ void Menu_Options::buttonEvents()
 						settings.MasterVolume += 10;
 					}
 				}
-				button[2].setText("Master Volume: " + std::to_string(settings.MasterVolume) + "%");
+				button[2]->setText("Master Volume: " + std::to_string(settings.MasterVolume) + "%");
 				break;
 			case 3:
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
@@ -131,7 +136,7 @@ void Menu_Options::buttonEvents()
 						settings.SoundVolume += 10;
 					}
 				}
-				button[3].setText("Sound Volume: " + std::to_string(settings.SoundVolume) + "%");
+				button[3]->setText("Sound Volume: " + std::to_string(settings.SoundVolume) + "%");
 				break;
 			case 4:
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
@@ -144,7 +149,7 @@ void Menu_Options::buttonEvents()
 						settings.MusicVolume += 10;
 					}
 				}
-				button[4].setText("Music Volume: " + std::to_string(settings.MusicVolume) + "%");
+				button[4]->setText("Music Volume: " + std::to_string(settings.MusicVolume) + "%");
 				break;
 			case 5:
 				this->open = false;
@@ -162,7 +167,7 @@ void Menu_Options::buttonEvents()
 void Menu_Options::updateButtom()
 {
 	for (int i = 0; i < Anzahl_Button; i++) {
-		button[i].update();
+		button[i]->update();
 	}
 }
 
@@ -170,7 +175,7 @@ void Menu_Options::render()
 {
 	Window.draw(background);
 	for (int i = 0; i < Anzahl_Button; i++) {
-		button[i].render();
+		button[i]->render();
 	}
 }
 

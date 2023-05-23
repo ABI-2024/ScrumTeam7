@@ -14,6 +14,7 @@
 #include "Menu_Options.h"
 
 #include "Test_Level.h"
+#include "Level_Selector.h"
 
 
 int main()
@@ -43,19 +44,18 @@ int main()
     Nerd::LoadTexture();
     Steroidenking::LoadTexture();
 
-    Test_Level* level = nullptr;
+    Level_Selector* selector = nullptr;
 
 
     while (Window.isOpen()) {
         switch (Menu::openMenu()) {
         case 1:
 
-            level = new Test_Level;
-
-            level->startLevel();
-
-            delete level;
-            level = nullptr;
+            selector = new Level_Selector();
+            selector->openMenu();
+            delete selector;
+            selector = nullptr;
+            
             break;
         case 2:
             Menu_Options::openOptions();
