@@ -1,7 +1,7 @@
 #include "TowerSelect.h"
 #include "Window.h"
 
-int TowerSelect::anzahlKarten = 5;
+int TowerSelect::anzahlKarten = 6;
 int TowerSelect::anzGewKarten = 0;
 
 void TowerSelect::buttonEvents()
@@ -55,20 +55,22 @@ TowerSelect::TowerSelect()
 
 
 	// Texturen für die Voderseite der Karten
-	t = new sf::Texture[5];
+	t = new sf::Texture[6];
 	t[0].loadFromFile("resource/Textures/Lehrer/Karten/Karte_MA_Front.png");
 	t[1].loadFromFile("resource/Textures/Lehrer/Karten/Karte_INF_Front.png");
 	t[2].loadFromFile("resource/Textures/Lehrer/Karten/Karte_EN_Front.png");
 	t[3].loadFromFile("resource/Textures/Lehrer/Karten/Karte_DE_Front.png");
 	t[4].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Front.png");
+	t[5].loadFromFile("resource/Textures/Lehrer/Karten/Karte_METAL_Front.png");
 
 	// Texturen für die Rückseite der Karten
-	tb = new sf::Texture[5];
+	tb = new sf::Texture[6];
 	tb[0].loadFromFile("resource/Textures/Basketball.png");
 	tb[1].loadFromFile("resource/Textures/Basketball.png");
 	tb[2].loadFromFile("resource/Textures/Basketball.png");
 	tb[3].loadFromFile("resource/Textures/Basketball.png");
 	tb[4].loadFromFile("resource/Textures/Basketball.png");
+	tb[5].loadFromFile("resource/Textures/Basketball.png");
 
 	sf::Vector2f size = { 210.f , 140.f };
 	this->Rückseite.setSize(size);
@@ -81,7 +83,9 @@ TowerSelect::TowerSelect()
 	this->karten[1] = new Karte(100, TowerType::INF_Lehrer, &t[1], { 220.f * 1 + 600, 100.f });
 	this->karten[2] = new Karte(100, TowerType::EN_Lehrer, &t[2], { 220.f * 2 + 600, 100.f });
 	this->karten[3] = new Karte(100, TowerType::DE_Lehrer, &t[3], { 220.f * 3 + 600, 100.f });
+
 	this->karten[4] = new Karte(100, TowerType::TestTower, &t[4], { 220.f * 0 + 600, 250.f });
+	this->karten[5] = new Karte(100, TowerType::METAL_Lehrer, &t[5], { 220.f * 1 + 600, 250.f });
 
 	
 

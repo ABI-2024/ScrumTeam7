@@ -98,6 +98,10 @@ Level::~Level()
 
 void Level::start(std::string filename)
 {
+
+    shop.setKarten(TowerSelect::openTowerSelect());
+
+
     sf::Vector2f pos;
 
     welle.setFilename(filename);
