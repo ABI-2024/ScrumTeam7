@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseEnemy.h"
-class Nerd : public BaseEnemy
+class Emo : public BaseEnemy
 {
 private:
 	static EnemyType enemyType;
@@ -21,8 +21,8 @@ public:
 	static void LoadTexture();
 	static void unLoadTexture();
 
-	Nerd(const sf::Vector2f& tilePosition);
-	~Nerd();
+	Emo(const sf::Vector2f& tilePosition);
+	~Emo();
 
 	int getRevenue() override;
 
@@ -33,8 +33,6 @@ public:
 	bool CollisionWithTower(sf::FloatRect& Tower) override;
 
 	void move();
-
-	void manipulation();
 
 	void update() override;
 };
