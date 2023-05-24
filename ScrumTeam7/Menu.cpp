@@ -14,7 +14,7 @@ void Menu::buttonEvents()
 {
 
 	for (int i = 0; i < Anzahl_Button; i++) {
-		if (button[i].isHovered()) {
+		if (button[i]->isHovered()) {
 			switch (i) {
 			case 0:
 				Menu::ans = 1;
@@ -40,7 +40,7 @@ void Menu::render()
 
 	for (int i = 0; i < Anzahl_Button; i++) {
 		Window.draw(titel);
-		button[i].render();
+		button[i]->render();
 	}
 
 }
@@ -75,9 +75,9 @@ Menu::Menu()
 	buttonText[1] = "Optionen";
 	buttonText[2] = "Exit";
 
-	button = new Button[Anzahl_Button];
+	button = new Button*[Anzahl_Button];
 	for (int i = 0; i < Anzahl_Button; i++) {
-		button[i] = Button(font[0], sf::Color(34, 32, 52), buttonText[i], buttonTexture, { GameWindow::getMainView().getSize().x / 4 , 440.f+ 150.f*i }, { 400.f, 120.f });
+		button[i] = new Button(font[0], sf::Color(34, 32, 52), buttonText[i], buttonTexture, { GameWindow::getMainView().getSize().x / 4 , 440.f+ 150.f*i }, { 400.f, 120.f } , false);
 	}
 
 
@@ -85,6 +85,9 @@ Menu::Menu()
 
 Menu::~Menu()
 {
+	for (int i = 0; i < Anzahl_Button; i++)
+		delete button[i];
+
 	delete[] button;
 	delete[] buttonTexture;
 }
@@ -128,7 +131,7 @@ int Menu::openMenu()
 		}
 
 		for (int i = 0; i < Anzahl_Button; i++) {
-			menu.button[i].update();
+			menu.button[i]->update();
 		}
 
 		Window.clear();

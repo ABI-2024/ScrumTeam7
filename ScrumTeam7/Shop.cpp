@@ -7,7 +7,7 @@ Shop::Shop(Actors& actors) {
 	this->actors = &actors;
 	sellection = -1;
 
-	this->anzahlKarten = 5;
+	this->anzahlKarten = 6;
 
 	font.loadFromFile("resource/fonts/arial.ttf");
 	t = new sf::Texture[anzahlKarten];
@@ -16,6 +16,7 @@ Shop::Shop(Actors& actors) {
 	t[2].loadFromFile("resource/Textures/Lehrer/Karten/Karte_EN_Front.png");
 	t[3].loadFromFile("resource/Textures/Lehrer/Karten/Karte_DE_Front.png");
 	t[4].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Front.png");
+	t[5].loadFromFile("resource/Textures/Lehrer/Karten/Karte_METAL_Front.png");
 
 
 	//this->karten = new Karte(100, 1, &t, { 25.f, 90.f });
@@ -25,6 +26,7 @@ Shop::Shop(Actors& actors) {
 	this->karten[2] = new Karte(100, TowerType::EN_Lehrer, &t[2], { 60.f, 150.f * 2 + 90 });
 	this->karten[3] = new Karte(100, TowerType::DE_Lehrer, &t[3], { 60.f, 150.f * 3 + 90 });
 	this->karten[4] = new Karte(100, TowerType::TestTower, &t[4], { 60.f, 150.f * 4 + 90 });
+	this->karten[5] = new Karte(100, TowerType::METAL_Lehrer, &t[5], { 60.f, 150.f * 5 + 90 });
 
 	this->text = new sf::Text[anzahlKarten];
 
@@ -50,7 +52,7 @@ Shop::Shop(Actors& actors, int anzahlKarten, Karte** karten) {
 
 	this->text = new sf::Text[anzahlKarten];
 
-	for(int i = 0; i < anzahlKarten; i++){
+	for (int i = 0; i < anzahlKarten; i++){
 	
 		text[i].setFont(font);
 		text[i].setCharacterSize(20);
@@ -78,6 +80,14 @@ void Shop::setSellection(int s) {
 	else this->sellection = 0;
 }
 
+void Shop::setKarten(Karte** karten)
+{
+	this->karten = karten;
+
+	for (int i = 0; i < 5; i++) {
+		karten[i]->setPosition({ 60.f, 150.f * i + 90 });
+	}
+}
 
 
 void Shop::buttonEvents(sf::Vector2f tilePos)

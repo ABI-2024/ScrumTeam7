@@ -11,9 +11,11 @@
 #include "enums.h"
 
 #include "Menu.h"
+#include "TowerSelect.h"
 #include "Menu_Options.h"
 
 #include "Test_Level.h"
+#include "Level_Selector.h"
 
 
 int main()
@@ -29,31 +31,34 @@ int main()
     INF_Ammo::LoadTexture();
     EN_Ammo::LoadTexture();
     DE_Ammo::LoadTexture();
+    METAL_Ammo::LoadTexture();
 
     TestTower::LoadTexture();
     Mathelehrer::LoadTexture();
     INF_Lehrer::LoadTexture();
     EN_Lehrer::LoadTexture();
     DE_Lehrer::LoadTexture();
+    METAL_Lehrer::LoadTexture();
     
 
     TestEnemy::LoadTexture();
     Nerd::LoadTexture();
     Steroidenking::LoadTexture();
 
-    Test_Level* level = nullptr;
+    Level_Selector* selector = nullptr;
 
 
+
+    // 
     while (Window.isOpen()) {
         switch (Menu::openMenu()) {
         case 1:
 
-            level = new Test_Level;
-
-            level->startLevel();
-
-            delete level;
-            level = nullptr;
+            selector = new Level_Selector();
+            selector->openMenu();
+            delete selector;
+            selector = nullptr;
+            
             break;
         case 2:
             Menu_Options::openOptions();
@@ -72,12 +77,14 @@ int main()
     INF_Ammo::unLoadTexture();
     EN_Ammo::unLoadTexture();
     DE_Ammo::unLoadTexture();
+    METAL_Ammo::unLoadTexture();
 
     TestTower::unLoadTexture();
     Mathelehrer::unLoadTexture();
     INF_Lehrer::unLoadTexture();
     EN_Lehrer::unLoadTexture();
     DE_Lehrer::unLoadTexture();
+    METAL_Lehrer::unLoadTexture();
     
 
     TestEnemy::unLoadTexture();
