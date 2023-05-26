@@ -5,8 +5,7 @@
 class TestTower : public BaseTower
 {
 private:
-	static TowerType towerType;
-	static AmmoType ammoType;
+	static AllyType type;
 
 	static int Cost;
 
@@ -22,10 +21,6 @@ public:
 
 	TestTower(sf::Vector2f tilePosition);
 	~TestTower();
-
-	TowerType getTowerType() override;
-	AmmoType getAmmoType() override;
-
-	void HasAttacked() override;
+	
 	void update() override;
 };

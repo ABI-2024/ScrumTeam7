@@ -21,11 +21,8 @@ public:
 	DE_Ammo(sf::Vector2f TowerPosition);
 	~DE_Ammo();
 
-	bool isDestroy() override;
-
 	AmmoType getAmmoType() override;
 	float getDamage() override;
-	bool CollisionWithEnemy(sf::FloatRect& Enemy) override;
 
 	void update() override;
 

@@ -90,10 +90,6 @@ float INF_Ammo::getDamage()
 void INF_Ammo::move()
 {
 	this->body.move(this->dir * dt);
-
-	if (this->body.getPosition().x >= GameWindow::getMainView().getSize().x) {
-		this->hit = true;
-	}
 }
 
 void INF_Ammo::update()

@@ -60,10 +60,6 @@ void MA_Ammo::move()
 	sf::Vector2f pos = sf::Vector2f(body.getPosition().x+ (this->dir.x * dt), 150.f* (float)sin( ( ((double)dir.x * (double)dt+ offset.x) + (double)body.getPosition().x) * (0.02095)) + offset.y );
 	
 	this->body.setPosition(pos);
-
-	if (this->body.getPosition().x >= GameWindow::getMainView().getSize().x) {
-		this->hit = true;
-	}
 }
 
 void MA_Ammo::update()

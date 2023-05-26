@@ -5,8 +5,7 @@
 #include <math.h>
 
 // public static Variables 
-TowerType Mathelehrer::towerType = TowerType::Mathelehrer;
-AmmoType Mathelehrer::ammoType = AmmoType::Mathe;
+AllyType Mathelehrer::type;
 
 
 // private static Variables 
@@ -62,23 +61,6 @@ Mathelehrer::~Mathelehrer()
 {
 }
 
-TowerType Mathelehrer::getTowerType()
-{
-	return this->towerType;
-}
-
-AmmoType Mathelehrer::getAmmoType() {
-	return this->ammoType;
-}
-
-void Mathelehrer::HasAttacked()
-{
-	this->readyToAttack = false;
-	this->clock.restart();
-	this->remainingAttackTime = sf::milliseconds(0);
-	this->fireRateDiviation = sf::milliseconds(Randomizer::randomize((int)this->maximumFireRateDiviation.asMilliseconds() * 2, -(int)this->maximumFireRateDiviation.asMilliseconds()));
-}
-
 //public Methoden
 void Mathelehrer::update()
 {
@@ -91,10 +73,6 @@ void Mathelehrer::update()
 	}
 	else if (health <= Health * 0.8) {
 		body.setFillColor({ 255,99,71 }); //tomato1
-	}
-
-	if (this->fireRate + this->fireRateDiviation <= this->clock.getElapsedTime() + this->remainingAttackTime) {
-		this->readyToAttack = true;
 	}
 }
 

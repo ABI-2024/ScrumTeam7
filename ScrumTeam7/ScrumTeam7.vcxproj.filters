@@ -156,9 +156,6 @@
     <ClCompile Include="METAL_Lehrer.cpp">
       <Filter>Quelldateien\Entities\Tower</Filter>
     </ClCompile>
-    <ClCompile Include="METAL_Ammo.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Level_Selector.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -188,6 +185,12 @@
     </ClCompile>
     <ClCompile Include="Music.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="AActors.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="METAL_Ammo.cpp">
+      <Filter>Quelldateien\Entities\Ammo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -248,9 +251,6 @@
     <ClInclude Include="Wellen.h">
       <Filter>Headerdateien\Game Logik</Filter>
     </ClInclude>
-    <ClInclude Include="Nerd.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Test_Level.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -287,9 +287,6 @@
     <ClInclude Include="METAL_Lehrer.h">
       <Filter>Headerdateien\Entities\Header Tower</Filter>
     </ClInclude>
-    <ClInclude Include="METAL_Ammo.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Level_Selector.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -319,6 +316,15 @@
     </ClInclude>
     <ClInclude Include="Music.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="AActors.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="METAL_Ammo.h">
+      <Filter>Headerdateien\Entities\Header Ammo</Filter>
+    </ClInclude>
+    <ClInclude Include="Nerd.h">
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

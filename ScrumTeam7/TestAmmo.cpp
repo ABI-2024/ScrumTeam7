@@ -54,10 +54,6 @@ float TestAmmo::getDamage()
 void TestAmmo::move()
 {
 	this->body.move(this->dir * dt);
-
-	if (this->body.getPosition().x >= GameWindow::getMainView().getSize().x) {
-		this->destroy = true;
-	}
 }
 
 void TestAmmo::update()

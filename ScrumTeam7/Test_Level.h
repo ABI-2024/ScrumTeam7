@@ -1,17 +1,17 @@
 #pragma once
-#include "Actors.h"
-#include "Shop.h"
+#include "AActors.h"
+//#include "Shop.h"
 #include "Menu_Pause.h"
-#include "Wellen.h"
-#include "TowerSelect.h"
+//#include "Wellen.h"
+//#include "TowerSelect.h"
 
 class Test_Level
 {
 private:
 	bool active;
 
-	Shop testShop;
-	Actors actors;
+	//Shop testShop;
+	AActors actors;
 
 	sf::Texture back;
 	sf::RectangleShape background;
@@ -21,7 +21,7 @@ private:
 	bool paused;
 	Menu_Pause menu;
 
-	Wellen testwelle;
+	//Wellen testwelle;
 
 	sf::Vector2f TileSelection();
 	void buttonEvents();
@@ -29,7 +29,7 @@ public:
 	Test_Level();
 	~Test_Level();
 
-	void Wellenfunktion();
+	//void Wellenfunktion();
 
 	void startLevel();
 };

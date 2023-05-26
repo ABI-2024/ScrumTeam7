@@ -42,7 +42,6 @@ void Steroidenking::unLoadTexture()
 Steroidenking::Steroidenking(const sf::Vector2f& tilePosition)
 	:BaseEnemy(Health, tilePosition, texture), running(true)
 { 
-	readyToAttack = true;
 }
 
 Steroidenking::~Steroidenking() {}
@@ -70,16 +69,6 @@ float Steroidenking::getDamage()
 }
 
 // public Methoden
-bool Steroidenking::CollisionWithTower(sf::FloatRect& Tower)
-{
-	if (sf::FloatRect(this->body.getGlobalBounds()).intersects(Tower)) {
-		movable = false;
-		return 1;
-	}
-	else {
-		return 0;
-	}
-}
 
 void Steroidenking::move()
 {
@@ -107,10 +96,6 @@ void Steroidenking::update()
 	}
 	else if (health <= Health * 0.8) {
 		body.setFillColor({ 255,99,71 }); //tomato1
-	}
-
-	if (this->attackSpeed <= this->clock.getElapsedTime()) {
-		readyToAttack = true;
 	}
 
 	this->updateStatus_Proc();

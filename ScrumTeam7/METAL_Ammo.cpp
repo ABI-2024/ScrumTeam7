@@ -44,11 +44,6 @@ METAL_Ammo::METAL_Ammo(sf::Vector2f TowerPosition)
 
 METAL_Ammo::~METAL_Ammo() {}
 
-bool METAL_Ammo::isDestroy()
-{
-	return destroy;
-}
-
 
 // public Methoden
 AmmoType METAL_Ammo::getAmmoType()
@@ -59,24 +54,6 @@ AmmoType METAL_Ammo::getAmmoType()
 float METAL_Ammo::getDamage()
 {
 	return this->damage;
-}
-
-bool METAL_Ammo::CollisionWithEnemy(sf::FloatRect& Enemy)
-{
-	bool ans = false;
-
-	if (timer.getElapsedTime() >= damageWindowStart) {
-		ans = sf::FloatRect(this->body.getGlobalBounds()).intersects(Enemy);
-
-		if (ans) {
-			destroy = true;
-		}
-		if (timer.getElapsedTime() >= activeTime) {
-			destroy = true;
-		}
-	}
-
-	return ans;
 }
 
 void METAL_Ammo::update()

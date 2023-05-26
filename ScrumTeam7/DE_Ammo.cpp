@@ -50,12 +50,6 @@ DE_Ammo::DE_Ammo(sf::Vector2f TowerPosition)
 
 DE_Ammo::~DE_Ammo() {}
 
-bool DE_Ammo::isDestroy()
-{
-	return destroy;
-}
-
-
 // public Methoden
 AmmoType DE_Ammo::getAmmoType()
 {
@@ -65,24 +59,6 @@ AmmoType DE_Ammo::getAmmoType()
 float DE_Ammo::getDamage()
 {
 	return this->damage;
-}
-
-bool DE_Ammo::CollisionWithEnemy(sf::FloatRect& Enemy)
-{
-	bool ans = false;
-
-	if (timer.getElapsedTime() >= damageWindowStart ) {
-		ans = sf::FloatRect(this->body.getGlobalBounds()).intersects(Enemy);
-		
-		if (ans) {
-			destroy = true;
-		}
-		if (timer.getElapsedTime() >= activeTime) {
-			destroy = true;
-		}
-	}
-
-	return ans;
 }
 
 void DE_Ammo::update()

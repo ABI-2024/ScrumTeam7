@@ -2,8 +2,7 @@
 #include "Randomizer.h"
 
 // public static Variables 
-TowerType TestTower::towerType = TowerType::TestTower;
-AmmoType TestTower::ammoType = AmmoType::TestAmmo;
+AllyType TestTower::type;
 
 
 // private static Variables 
@@ -43,23 +42,6 @@ TestTower::~TestTower()
 {
 }
 
-TowerType TestTower::getTowerType()
-{
-	return this->towerType;
-}
-
-AmmoType TestTower::getAmmoType() {
-	return this->ammoType;
-}
-
-void TestTower::HasAttacked()
-{
-	this->readyToAttack = false;
-	this->clock.restart();
-	this->remainingAttackTime = sf::milliseconds(0);
-	this->fireRateDiviation = sf::milliseconds(Randomizer::randomize( (int)this->maximumFireRateDiviation.asMilliseconds()*2 , -(int)this->maximumFireRateDiviation.asMilliseconds()) );
-}
-
 //public Methoden
 void TestTower::update()
 {
@@ -72,10 +54,6 @@ void TestTower::update()
 	}
 	else if (health <= Health * 0.8) {
 		body.setFillColor({ 255,99,71 }); //tomato1
-	}
-
-	if (this->fireRate + this->fireRateDiviation <= this->clock.getElapsedTime() + this->remainingAttackTime) {
-		this->readyToAttack = true;
 	}
 }
 

@@ -5,8 +5,7 @@
 class INF_Lehrer : public BaseTower
 {
 private:
-	static TowerType towerType;
-	static AmmoType ammoType[3];
+	static AllyType type;
 
 	static int Cost;
 
@@ -33,10 +32,6 @@ public:
 	INF_Lehrer(sf::Vector2f tilePosition);
 	~INF_Lehrer();
 
-	TowerType getTowerType() override;
-	AmmoType getAmmoType() override;
-
-	void HasAttacked() override;
 	void update() override;
 };
 

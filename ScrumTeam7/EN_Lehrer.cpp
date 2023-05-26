@@ -3,8 +3,7 @@
 #include "Randomizer.h"
 
 // public static Variables 
-TowerType EN_Lehrer::towerType = TowerType::EN_Lehrer;
-AmmoType EN_Lehrer::ammoType[4] = { AmmoType::Englisch_weak, AmmoType::Englisch_medium, AmmoType::Englisch_strong, AmmoType::Englisch_strongest };
+AllyType EN_Lehrer::type;
 
 // private static Variables 
 int EN_Lehrer::Cost = 20;
@@ -43,25 +42,6 @@ EN_Lehrer::~EN_Lehrer()
 {
 }
 
-TowerType EN_Lehrer::getTowerType()
-{
-	return this->towerType;
-}
-
-AmmoType EN_Lehrer::getAmmoType() {
-
-	return ammoType[Randomizer::randomize(4)];
-}
-
-void EN_Lehrer::HasAttacked()
-{
-	this->readyToAttack = false;
-	this->clock.restart();
-	this->remainingAttackTime = sf::milliseconds(0);
-	this->fireRateDiviation = sf::milliseconds(Randomizer::randomize((int)this->maximumFireRateDiviation.asMilliseconds() * 2, -(int)this->maximumFireRateDiviation.asMilliseconds()));
-
-}
-
 //public Methoden
 void EN_Lehrer::update()
 {
@@ -74,10 +54,6 @@ void EN_Lehrer::update()
 	}
 	else if (health <= Health * 0.8) {
 		body.setFillColor({ 255,99,71 }); //tomato1
-	}
-
-	if (this->fireRate + this->fireRateDiviation <= this->clock.getElapsedTime() + this->remainingAttackTime) {
-		this->readyToAttack = true;
 	}
 }
 

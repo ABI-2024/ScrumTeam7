@@ -34,8 +34,6 @@ public:
 	EnemyType getEnemyType() override;
 	float getDamage() override;
 
-	bool CollisionWithTower(sf::FloatRect& Tower) override;
-
 	void move();
 
 	void update() override;

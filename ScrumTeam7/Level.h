@@ -12,6 +12,12 @@
 class Level
 {
 protected:
+
+	sf::Texture backgroundTexture;
+	sf::RectangleShape background;
+
+	/*
+protected:
 	bool active;
 
 	Shop shop;
@@ -30,7 +36,7 @@ protected:
 	sf::Vector2f TileSelection();
 	void buttonEvents();
 	void Wellenfunktion();
-
+	*/
 public:
 	Level();
 	virtual ~Level();
