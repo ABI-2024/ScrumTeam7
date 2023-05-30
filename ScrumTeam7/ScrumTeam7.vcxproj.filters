@@ -55,11 +55,11 @@
     <Filter Include="Quelldateien\Game Logik\Shop">
       <UniqueIdentifier>{4233db4d-d281-4cec-bf18-fdbb93d594ed}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Level">
-      <UniqueIdentifier>{e677e1c3-b788-4bb8-ba18-178cec9558b5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Quelldateien\Level">
       <UniqueIdentifier>{302f80c2-d29c-468a-986b-9bd3b03d604e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Level">
+      <UniqueIdentifier>{e677e1c3-b788-4bb8-ba18-178cec9558b5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

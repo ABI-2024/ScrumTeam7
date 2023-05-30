@@ -3,6 +3,8 @@
 #include "Window.h"
 #include "Randomizer.h"
 
+#include "AActors.h"
+
 // static Variables
 
 EnemyType Steroidenking::enemyType = EnemyType::Steroidenking;
@@ -44,7 +46,10 @@ Steroidenking::Steroidenking(const sf::Vector2f& tilePosition)
 { 
 }
 
-Steroidenking::~Steroidenking() {}
+Steroidenking::~Steroidenking() 
+{
+	AActors::addCollectedRevenue(this->revenue);
+}
 
 // public get-Methoden
 int Steroidenking::getRevenue() {
@@ -100,7 +105,32 @@ void Steroidenking::update()
 
 	this->updateStatus_Proc();
 
+	int type = 0;
+	if (running) {
+		type = 1;
+	}
+	Entity* temp = AActors::CollisionSingle(this, CollisionType::ally);
+
+	if (temp != nullptr) {
+		running = false;
+		movable = false;
+		if (clock.getElapsedTime() + this->remainingAttackTime >= this->attackSpeed) {
+
+			temp->takeDamage(this->Damage[type]);
+
+			this->remainingAttackTime = sf::seconds(0);
+			clock.restart();
+		}
+	}
+	else {
+		movable = true;
+	}
+
 	this->move();
+
+	if (!alive) {
+		AActors::destroy(this);
+	}
 }
 
 

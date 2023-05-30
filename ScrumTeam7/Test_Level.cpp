@@ -1,6 +1,7 @@
 #include "Test_Level.h"
 #include "Window.h"
 #include "Menu_Options.h"
+#include "TowerSelect.h"
 
 #include <iostream>
 
@@ -37,22 +38,6 @@ sf::Vector2f Test_Level::TileSelection()
     return sf::Vector2f(mousePos);
 }
 
-//void Test_Level::Wellenfunktion() {
-//    if (testwelle.geteof() == true) return;
-//    testwelle.SpawnEnde();
-//    if (testwelle.getspawnEnde() == false) {
-//        testwelle.SpawnEnemy(actors);
-//    }
-//    else {
-//        testwelle.WellenEnde(actors);
-//    }
-//    if (testwelle.getwellenEnde() == true) {
-//        if (testwelle.getwarteTimer() == true)
-//            testwelle.startWartetimer();
-//        testwelle.Wartefunktion(actors);
-//    }
-//}
-
 void Test_Level::buttonEvents()
 {
     switch ( this->menu.mouseClick()) {
@@ -76,7 +61,7 @@ void Test_Level::buttonEvents()
 
 Test_Level::Test_Level()
 
-    : active(true), paused(false)/*, testShop(actors)*/
+    : active(true), paused(false), testShop(&testGeld)
 
 {
     back.loadFromFile("resource/Textures/Level/Background_Sporthalle.png");
@@ -104,14 +89,14 @@ void Test_Level::startLevel()
 {
 
     // Kartenauswahl
-    //testShop.setKarten(TowerSelect::openTowerSelect());
+    testShop.setKarten(TowerSelect::openTowerSelect());
 
 
     sf::Vector2f pos;
 
-    /*testwelle.setFilename("Datenwellen.csv");
+    testwelle.setFilename("Datenwellen.csv");
     testwelle.WellenDaten();
-    testwelle.SortListeSchueler();*/
+    testwelle.SortListeSchueler();
     
     GameWindow::updateDeltaTime();
 
@@ -119,7 +104,9 @@ void Test_Level::startLevel()
 
         GameWindow::updateDeltaTime();
         
-        //Wellenfunktion();
+        testGeld.addKontostand(AActors::getCollectedRevenue());
+
+        testwelle.Wellenfunktion(testGeld);
 
         /*
         // Gameover bedingung
@@ -143,7 +130,7 @@ void Test_Level::startLevel()
                 // Togglet Pausierung
                 if (GameEvent.key.code == sf::Keyboard::Escape) {
                     if (paused) {
-                        AActors::continueEntities();
+                       AActors::continueEntities();
                     }
                     else {
                         AActors::pauseEntities();
@@ -156,15 +143,15 @@ void Test_Level::startLevel()
                 if (!paused) {
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {                      
 
-                        //testShop.buttonEvents(TileSelection());
+                        testShop.buttonEvents(TileSelection());
 
                         //// Spawnt Tower
-                        //actors.initializeTower(TowerType::TestTower, this->TileSelection());
+                       // AActors::create(AllyType::TestTower, this->TileSelection());
                     }
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 
                         // Spawnt Enemy
-                        AActors::createEnemy(EnemyType::TestEnemy, this->TileSelection());
+                        AActors::create(EnemyType::Steroidenking, this->TileSelection());
                     }
                 }
                 else {
@@ -222,7 +209,8 @@ void Test_Level::startLevel()
 
         AActors::renderEntities();
 
-       // testShop.render();
+        testGeld.render();
+        testShop.render();
 
         if (paused) {
             menu.render();

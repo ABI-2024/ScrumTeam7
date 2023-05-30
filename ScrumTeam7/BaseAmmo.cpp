@@ -19,6 +19,11 @@ BaseAmmo::~BaseAmmo()
 {
 }
 
+const CollisionType& BaseAmmo::getCollisionType()
+{
+	return CollisionType::allyAmmo;
+}
+
 // public Methoden
 void BaseAmmo::renderShadow()
 {

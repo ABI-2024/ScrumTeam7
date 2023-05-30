@@ -1,14 +1,12 @@
 #include "BaseEnemy.h"
 
 #include "Window.h"
+#include"AActors.h"
 
 // Constructur & Destructur
 BaseEnemy::BaseEnemy(float Health, sf::Vector2f tilePosition, sf::Texture* texture)
-	: Entity(), movable(true), health(Health), tilePosition(tilePosition)
+	: Entity({ 75.f, 150.f }, { GameWindow::getMainView().getSize().x, 150.f + 150.f * tilePosition.y }), movable(true), health(Health), tilePosition(tilePosition)
 {
-	this->body.setPosition(GameWindow::getMainView().getSize().x, 150.f + 150.f * this->tilePosition.y);
-	this->body.setSize(sf::Vector2f(75.f, 150.f));
-	this->body.setOrigin(sf::Vector2f(this->body.getSize().x / 2, this->body.getSize().y / 2));
 	this->body.setTexture(texture, 0);
 
 	this->shadow.setPosition(this->body.getPosition().x - this->body.getSize().x / 8.f, this->body.getPosition().y + this->body.getSize().y / 2);
@@ -20,13 +18,13 @@ BaseEnemy::BaseEnemy(float Health, sf::Vector2f tilePosition, sf::Texture* textu
 BaseEnemy::~BaseEnemy()
 {}
 
+const CollisionType& BaseEnemy::getCollisionType()
+{
+	return CollisionType::enemies;
+}
+
 
 // public get-Methoden
-
-const sf::Vector2f& BaseEnemy::getTilePosition()
-{
-	return tilePosition;
-}
 
 sf::FloatRect BaseEnemy::getFloaRect()
 {
@@ -37,6 +35,14 @@ sf::FloatRect BaseEnemy::getFloaRect()
 sf::Vector2f BaseEnemy::getPosition()
 {
 	return body.getPosition();
+}
+
+void BaseEnemy::takeDamage(float damage)
+{
+	health -= damage;
+	if (health <= 0) {
+		AActors::destroy(this);
+	}
 }
 
 // public Methoden
@@ -62,12 +68,12 @@ void BaseEnemy::updateStatus_Proc()
 
 
 
-void BaseEnemy::paused()
+void BaseEnemy::pauseEntitiy()
 {
 	this->remainingAttackTime = this->clock.restart() + this->remainingAttackTime ;
 }
 
-void BaseEnemy::Continue()
+void BaseEnemy::continueEntitiy()
 {
 	this->clock.restart();
 }

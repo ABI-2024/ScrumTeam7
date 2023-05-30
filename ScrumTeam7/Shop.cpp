@@ -1,10 +1,10 @@
 #include "Shop.h"
 #include "Window.h"
-#include <iostream>
+#include "AActors.h"
 
-Shop::Shop(Actors& actors) {
+Shop::Shop(Geld* nGeld) {
 
-	this->actors = &actors;
+	this->geld = nGeld;
 	sellection = -1;
 
 	this->anzahlKarten = 5;
@@ -21,11 +21,11 @@ Shop::Shop(Actors& actors) {
 
 	//this->karten = new Karte(100, 1, &t, { 25.f, 90.f });
 	karten = new Karte * [anzahlKarten];
-	this->karten[0] = new Karte(100, TowerType::Mathelehrer, &t[0], { 60.f, 150.f * 0 + 90 });
-	this->karten[1] = new Karte(100, TowerType::INF_Lehrer, &t[1], { 60.f, 150.f * 1 + 90 });
-	this->karten[2] = new Karte(100, TowerType::EN_Lehrer, &t[2], { 60.f, 150.f * 2 + 90 });
-	this->karten[3] = new Karte(100, TowerType::DE_Lehrer, &t[3], { 60.f, 150.f * 3 + 90 });
-	this->karten[4] = new Karte(100, TowerType::TestTower, &t[4], { 60.f, 150.f * 4 + 90 });
+	this->karten[0] = new Karte(100, AllyType::Mathelehrer, &t[0], { 60.f, 150.f * 0 + 90 });
+	this->karten[1] = new Karte(100, AllyType::INF_Lehrer, &t[1], { 60.f, 150.f * 1 + 90 });
+	this->karten[2] = new Karte(100, AllyType::EN_Lehrer, &t[2], { 60.f, 150.f * 2 + 90 });
+	this->karten[3] = new Karte(100, AllyType::DE_Lehrer, &t[3], { 60.f, 150.f * 3 + 90 });
+	this->karten[4] = new Karte(100, AllyType::TestTower, &t[4], { 60.f, 150.f * 4 + 90 });
 	//this->karten[5] = new Karte(100, TowerType::METAL_Lehrer, &t[5], { 60.f, 150.f * 5 + 90 });
 
 	this->text = new sf::Text[anzahlKarten];
@@ -42,10 +42,11 @@ Shop::Shop(Actors& actors) {
 
 }
 
-Shop::Shop(Actors& actors, int anzahlKarten, Karte** karten) {
+Shop::Shop(Geld* nGeld, int anzahlKarten, Karte** karten) {
 
 	font.loadFromFile("resource/fonts/arial.ttf");
-	this->actors = &actors,
+
+	this->geld = nGeld;
 	this->anzahlKarten = anzahlKarten;
 	this->karten = karten;
 	this->sellection = -1;
@@ -93,9 +94,9 @@ void Shop::setKarten(Karte** karten)
 void Shop::buttonEvents(sf::Vector2f tilePos)
 {
 	if (sellection != -1) {
-		if (karten[sellection]->getCost() <= actors->getGeld()->getKontostand()) {
-			if (actors->initializeTower(karten[sellection]->getType(), tilePos)) {
-				actors->getGeld()->subKontostand(karten[sellection]->getCost());
+		if (karten[sellection]->getCost() <= geld->getKontostand()) {
+			if (AActors::create(karten[sellection]->getType(), tilePos)) {
+				geld->subKontostand(karten[sellection]->getCost());
 			}
 		}
 	}
@@ -113,7 +114,7 @@ void Shop::render() {
 		
 		karten[i]->render();
 
-		if (actors->getGeld()->getKontostand() >= karten[i]->getCost()) {
+		if (geld->getKontostand() >= karten[i]->getCost()) {
 			text[i].setFillColor(sf::Color::Green);
 		}
 		else text[i].setFillColor(sf::Color::Red);

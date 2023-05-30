@@ -1,6 +1,8 @@
 #include "TestTower.h"
 #include "Randomizer.h"
 
+#include "AActors.h"
+
 // public static Variables 
 AllyType TestTower::type;
 
@@ -42,6 +44,14 @@ TestTower::~TestTower()
 {
 }
 
+
+void TestTower::takeDamage(float damage) {
+	health -= damage;
+	if (health <= 0) {
+		AActors::destroy(this);
+	}
+}
+
 //public Methoden
 void TestTower::update()
 {
@@ -55,5 +65,13 @@ void TestTower::update()
 	else if (health <= Health * 0.8) {
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
+
+	if (clock.getElapsedTime()+ this->remainingAttackTime >= fireRate+ fireRateDiviation) {
+		AActors::create(AmmoType::TestAmmo, this->body.getPosition());
+		
+		this->remainingAttackTime = sf::seconds(0);
+		clock.restart();
+	}
+
 }
 

@@ -3,6 +3,8 @@
 #include "Window.h"
 #include "Randomizer.h"
 
+#include "AActors.h"
+
 // static Variables
 
 EnemyType TestEnemy::enemyType = EnemyType::TestEnemy;
@@ -44,12 +46,15 @@ void TestEnemy::unLoadTexture()
 
 // Constructur & Destructur
 TestEnemy::TestEnemy(const sf::Vector2f& tilePosition)
-	:BaseEnemy(Health, tilePosition, &texture[0])
+	:BaseEnemy(Health, tilePosition, texture)
 {
 	body.setTexture(&texture[Randomizer::randomize(2)] , false);
 }
 
-TestEnemy::~TestEnemy() {}
+TestEnemy::~TestEnemy() 
+{
+	AActors::addCollectedRevenue(this->revenue);
+}
 
 // public get-Methoden
 int TestEnemy::getRevenue() {
@@ -91,8 +96,27 @@ void TestEnemy::update()
 	}
 
 	this->updateStatus_Proc();
+	
+	Entity* temp = AActors::CollisionSingle(this, CollisionType::ally);
+	
+	if (temp != nullptr) {
+		movable = false;
+		if (clock.getElapsedTime() + this->remainingAttackTime  >= this->attackSpeed) {
+			temp->takeDamage(this->Damage);
+
+			this->remainingAttackTime = sf::seconds(0);
+			clock.restart();
+		}
+	}
+	else {
+		movable = true;
+	}
 
 	this->move();
+
+	if (!alive) {
+		AActors::destroy(this);
+	}
 }
 
 

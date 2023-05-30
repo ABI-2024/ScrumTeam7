@@ -5,23 +5,19 @@
 // protected static Variables 
 sf::Texture* Entity::shadowTexture = nullptr;
 
-
-const CollisionType& Entity::getCollisionType()
-{
-	return CollisionType::non;
-}
-
 sf::FloatRect Entity::getHitBox()
 {
 	return body.getGlobalBounds();
 }
 
 Entity::Entity()
+	:alive(false)
 {
 }
 
 // Constructur & Destructur
 Entity::Entity(sf::Vector2f size, sf::Vector2f position)
+	:alive(true)
 {
 	body.setSize(size);
 	body.setOrigin(size/2.f);
@@ -32,6 +28,11 @@ Entity::Entity(sf::Vector2f size, sf::Vector2f position)
 
 Entity::~Entity()
 {
+}
+
+void Entity::takeDamage(float damage )
+{
+
 }
 
 
@@ -60,7 +61,20 @@ void Entity::renderShadow()
 	Window.draw(shadow);
 }
 
+sf::Vector2f Entity::getTilePosition()
+{
+	return {0,0};
+}
+
 void Entity::render()
 {
 	Window.draw(body);
+}
+
+void Entity::pauseEntitiy()
+{
+}
+
+void Entity::continueEntitiy()
+{
 }

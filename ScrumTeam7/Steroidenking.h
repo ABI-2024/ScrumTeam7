@@ -19,8 +19,6 @@ private:
 
 	bool running;
 
-
-
 public:
 	static void LoadTexture();
 	static void unLoadTexture();
@@ -29,7 +27,6 @@ public:
 	~Steroidenking();
 
 	int getRevenue() override;
-
 
 	EnemyType getEnemyType() override;
 	float getDamage() override;

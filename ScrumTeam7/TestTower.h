@@ -21,6 +21,8 @@ public:
 
 	TestTower(sf::Vector2f tilePosition);
 	~TestTower();
-	
+
+	void takeDamage(float) override;
+
 	void update() override;
 };

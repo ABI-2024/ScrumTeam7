@@ -23,12 +23,13 @@ public:
 	BaseTower(float Health, sf::Vector2f tilePosition, sf::Texture* texture);
 	~BaseTower();
 
+	sf::Vector2f getTilePosition() override;
+	const CollisionType& getCollisionType() override;
 	sf::FloatRect getFloaRect();
 	sf::Vector2f getPosition();
-	sf::Vector2f getTilePosition();
 
-	void paused();
-	void Continue();
+	virtual void pauseEntitiy();
+	virtual void continueEntitiy();
 };
 
 

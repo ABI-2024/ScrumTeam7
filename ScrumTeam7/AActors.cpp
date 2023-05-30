@@ -21,6 +21,19 @@
 #include "Nerd.h"
 #include "Steroidenking.h"
 
+	// ------------------------------------------ for class Geld
+int AActors::collectedRevenue = 0;
+
+int AActors::getCollectedRevenue() {
+	int ans = collectedRevenue;
+	collectedRevenue = 0;
+	return ans;
+}
+void AActors::addCollectedRevenue(int add) {
+	collectedRevenue += add;
+}
+	// ------------------------------------------ for class Geld
+
 std::vector<Entity*>* AActors::entities = nullptr;
 
 std::vector<Entity*>* AActors::ally = nullptr;
@@ -113,16 +126,42 @@ AActors::~AActors()
 	Steroidenking::unLoadTexture();
 }
 
-void AActors::create(const AllyType& type, const sf::Vector2f& position)
+bool AActors::create(const AllyType& type, const sf::Vector2f& position)
 {
 	bool created = 1;
+	
+	switch (type) {
+
+	case AllyType::TestTower:
+	case AllyType::Mathelehrer:
+	case AllyType::INF_Lehrer:
+	case AllyType::EN_Lehrer:
+	case AllyType::DE_Lehrer:
+	case AllyType::METAL_Lehrer:
+
+		if (position.x < 0 || position.x >7 || position.y < 0 || position.y > 4) {
+			return false;
+		}
+
+		for (auto i = ally->begin(); i != ally->end(); i++) {
+			if ((*i)->getTilePosition() == position) {
+				return false;
+			}
+		}
+
+		break;
+
+	default:
+		break;
+	}
+
 
 	switch (type) {
 
 		    case AllyType::TestTower:
 				entities->push_back(new TestTower(position));
 		        break;
-		    case AllyType::Mathelehrer:
+		    /*case AllyType::Mathelehrer:
 				entities->push_back(new Mathelehrer(position));
 		        break;
 		    case AllyType::INF_Lehrer:
@@ -136,7 +175,7 @@ void AActors::create(const AllyType& type, const sf::Vector2f& position)
 		        break;
 		    case AllyType::METAL_Lehrer:
 				entities->push_back(new METAL_Lehrer(position));
-		        break;
+		        break;*/
 
 	default:
 		created = 0;
@@ -146,9 +185,11 @@ void AActors::create(const AllyType& type, const sf::Vector2f& position)
 	if (created) {
 		ally->push_back(entities->back());		
 	}
+
+	return created;
 }
 
-void AActors::create(const AmmoType& type, const sf::Vector2f& position)
+bool AActors::create(const AmmoType& type, const sf::Vector2f& position)
 {
 	bool created = 1;
 
@@ -157,24 +198,24 @@ void AActors::create(const AmmoType& type, const sf::Vector2f& position)
 			entities->push_back(new TestAmmo(position));
 			break;
 		case AmmoType::Mathe:
-			entities->push_back(new MA_Ammo(position));
+			//entities->push_back(new MA_Ammo(position));
 			break;
 		case AmmoType::Inf_weak: 
 		case AmmoType::Inf_medium: 
 		case AmmoType::Inf_strong:
-			entities->push_back(new INF_Ammo(position, type ));
+			//entities->push_back(new INF_Ammo(position, type ));
 			break;
 		case AmmoType::Englisch_weak: 
 		case AmmoType::Englisch_medium: 
 		case AmmoType::Englisch_strong: 
 		case AmmoType::Englisch_strongest:
-			entities->push_back(new EN_Ammo(position, type));
+			//entities->push_back(new EN_Ammo(position, type));
 			break;
 		case AmmoType::DE_Ammo:
-			entities->push_back(new DE_Ammo(position));
+			//entities->push_back(new DE_Ammo(position));
 			break;
 		case AmmoType::METAL_Ammo:
-			entities->push_back(new METAL_Ammo(position));
+			//entities->push_back(new METAL_Ammo(position));
 			break;
 
 	default:
@@ -185,9 +226,11 @@ void AActors::create(const AmmoType& type, const sf::Vector2f& position)
 	if (created) {
 		allyAmmo->push_back(entities->back());
 	}
+
+	return created;
 }
 
-void AActors::create(const EnemyType& type, const sf::Vector2f& position)
+bool AActors::create(const EnemyType& type, const sf::Vector2f& position)
 {
 	bool created = 1;
 
@@ -211,29 +254,32 @@ void AActors::create(const EnemyType& type, const sf::Vector2f& position)
 	if (created) {
 		enemies->push_back(entities->back());
 	}
+
+	return created;
 }
 
 void AActors::destroy(Entity* other)
 {
+	switch (other->getCollisionType()) {
+
+	case CollisionType::ally:
+		clearSeprateVectors(ally, other);
+		break;
+	case CollisionType::allyAmmo:
+		clearSeprateVectors(allyAmmo, other);
+		break;
+
+	case CollisionType::enemies:
+		clearSeprateVectors(enemies, other);
+		break;
+
+	default:		break;
+	}
+
 	for (auto i = entities->begin(); i != entities->end(); i++) {
-
-		switch ((*i)->getCollisionType()) {
-
-		case CollisionType::ally:
-			clearSeprateVectors(ally, other);
-			break;
-		case CollisionType::allyAmmo:
-			clearSeprateVectors(allyAmmo, other);
-			break;
-
-		case CollisionType::enemies:
-			clearSeprateVectors(enemies, other);
-			break;
-
-		default:		break;
-		}
+				
 		if ((*i) == other) {
-
+			
 			delete (*i);
 			(*i) = nullptr;
 			return;
@@ -264,7 +310,8 @@ Entity* AActors::CollisionSingle(Entity* other, const CollisionType& type)
 
 	for (auto i = temp->begin(); i != temp->end(); i++) {
 		if ((*i)->getHitBox().intersects(hitbox)) {
-			return (*i);
+			ans = (*i);
+			return ans;
 		}
 	}
 
@@ -303,17 +350,35 @@ std::vector<Entity*>* AActors::CollisionPoly(Entity* other, const CollisionType&
 
 void AActors::updateEntities()
 {
+
+	for (int i = 0; i < entities->size(); i++) {
+		// std::vector kann wie ein Array behandelt werden
+		if ((*entities)[i] != nullptr) {
+			(*entities)[i]->update();
+		}
+	}
+
 	for (auto i = entities->begin(); i != entities->end(); i++) {
 
-		(*i)->update();
 
 		if ((*i) == nullptr) {
-
+		redo:
+			// löscht momentanes Element aus dem std::vector entities
 			i = entities->erase(i);
 
-			if (i == entities->end()) {
+			// Abfrage ob der zurück gegebene iterator von erase das Ende des std::vectors ist
+			if (i == entities->end()) { 
 				break;
 			}
+
+			/* 
+			Abfrage ob der zurück gegebene iterator von erase ebenfalls ein nullptr ist
+			und wenn ja wiederhole Vorgang.
+			*/
+			if ((*i) == nullptr) {
+				goto redo;
+			}
+
 		}
 	}
 }
@@ -323,6 +388,26 @@ void AActors::renderEntities()
 	for (auto i = entities->begin(); i != entities->end(); i++) {
 
 		(*i)->render();
+	}
+}
+
+void AActors::pauseEntities()
+{
+	for (int i = 0; i < entities->size(); i++) {
+		// std::vector kann wie ein Array behandelt werden
+		if ((*entities)[i] != nullptr) {
+			(*entities)[i]->pauseEntitiy();
+		}
+	}
+}
+
+void AActors::continueEntities()
+{
+	for (int i = 0; i < entities->size(); i++) {
+		// std::vector kann wie ein Array behandelt werden
+		if ((*entities)[i] != nullptr) {
+			(*entities)[i]->continueEntitiy();
+		}
 	}
 }
 

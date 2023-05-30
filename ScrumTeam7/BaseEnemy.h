@@ -25,7 +25,8 @@ public:
 	BaseEnemy(float Health,	sf::Vector2f tilePosition, sf::Texture* texture);
 	~BaseEnemy();
 
-	const sf::Vector2f& getTilePosition();
+	const CollisionType& getCollisionType() override;
+
 	virtual EnemyType getEnemyType() = 0;
 	virtual float getDamage() = 0;
 	virtual int getRevenue() = 0;
@@ -34,12 +35,14 @@ public:
 
 	sf::Vector2f getPosition();
 
+	void takeDamage(float) override;
+
 
 	// Status Effecte
 	void addStatus_Proc(Status_Effect nStatus );	// Experimentel
 	void updateStatus_Proc();
 
-	void paused();
-	void Continue();
+	virtual void pauseEntitiy();
+	virtual void continueEntitiy();
 };
 

@@ -1,7 +1,6 @@
 #include "Nerd.h"
 #include "Window.h"
-
-#include <iostream>
+#include "AActors.h"
 
 // static Variables
 
@@ -41,9 +40,14 @@ void Nerd::unLoadTexture()
 // Constructur & Destructur
 Nerd::Nerd(const sf::Vector2f& tilePosition)
 	:BaseEnemy(Health, tilePosition, texture)
-{}
+{
+	
+}
 
-Nerd::~Nerd() {}
+Nerd::~Nerd() 
+{
+	AActors::addCollectedRevenue(this->revenue);
+}
 
 // public get-Methoden
 int Nerd::getRevenue() {
@@ -87,5 +91,24 @@ void Nerd::update()
 
 	this->updateStatus_Proc();
 
+	Entity* temp = AActors::CollisionSingle(this, CollisionType::ally);
+
+	if (temp != nullptr) {
+		movable = false;
+		if (clock.getElapsedTime() + this->remainingAttackTime >= this->attackSpeed) {
+			temp->takeDamage(this->Damage);
+
+			this->remainingAttackTime = sf::seconds(0);
+			clock.restart();
+		}
+	}
+	else {
+		movable = true;
+	}
+
 	this->move();
+
+	if (!alive) {
+		AActors::destroy(this);
+	}
 }

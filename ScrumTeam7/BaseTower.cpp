@@ -24,6 +24,11 @@ BaseTower::~BaseTower()
 
 // public get-Methoden
 
+const CollisionType& BaseTower::getCollisionType()
+{
+	return CollisionType::ally;
+}
+
 sf::FloatRect BaseTower::getFloaRect()
 {
 	return this->body.getGlobalBounds();	
@@ -42,12 +47,12 @@ sf::Vector2f BaseTower::getTilePosition()
 
 // public Methoden
 
-void BaseTower::paused()
+void BaseTower::pauseEntitiy()
 {
 	this->remainingAttackTime = this->clock.restart() + this->remainingAttackTime;
 }
 
-void BaseTower::Continue()
+void BaseTower::continueEntitiy()
 {
 	this->clock.restart();
 }
