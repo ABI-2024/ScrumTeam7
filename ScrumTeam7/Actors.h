@@ -25,6 +25,8 @@
 #include "TestEnemy.h"
 #include "Nerd.h"
 #include "Steroidenking.h"
+#include "Simp.h"
+#include "Emo.h"
 
 
 /*
@@ -77,6 +79,8 @@ private:
 	std::vector<TestEnemy*> testEnemy;
 	std::vector<Nerd*> nerd;
 	std::vector<Steroidenking*> steroidenking;
+	std::vector <Simp*> simp;
+	std::vector <Emo*> emo;
 
 	
 

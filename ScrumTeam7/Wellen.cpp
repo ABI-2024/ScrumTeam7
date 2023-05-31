@@ -34,6 +34,9 @@ void Wellen::WellenDaten() {
 			return;
 		}
 		std::getline(Datei, tmp, ';');
+		while (tmp.empty() == 1) {
+			std::getline(Datei, tmp, ';');
+		}
 		welleDaten[i] = stoi(tmp);
 	}
 	do { //Ließt Schülerdaten aus
