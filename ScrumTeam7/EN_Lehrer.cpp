@@ -1,6 +1,7 @@
 #include "En_Lehrer.h"
 
 #include "Randomizer.h"
+#include "AActors.h"
 
 // public static Variables 
 AllyType EN_Lehrer::type;
@@ -43,6 +44,13 @@ EN_Lehrer::~EN_Lehrer()
 }
 
 //public Methoden
+void EN_Lehrer::takeDamage(float damage) {
+health -= damage;
+if (health <= 0) {
+	alive = false;
+}
+}
+
 void EN_Lehrer::update()
 {
 	if (health <= Health / 5) {
@@ -55,5 +63,34 @@ void EN_Lehrer::update()
 	else if (health <= Health * 0.8) {
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
+
+	if (clock.getElapsedTime() + this->remainingAttackTime >= fireRate + fireRateDiviation) {
+
+		switch (Randomizer::randomize(4)) {
+		case 0:
+			AActors::create(AmmoType::Englisch_weak, this->body.getPosition());
+			break;
+		case 1:
+			AActors::create(AmmoType::Englisch_medium, this->body.getPosition());
+			break;
+		case 2:
+			AActors::create(AmmoType::Englisch_strong, this->body.getPosition());
+			break;
+		case 3:
+			AActors::create(AmmoType::Englisch_strongest, this->body.getPosition());
+			break;
+		default:
+			break;
+		}
+
+		fireRateDiviation = sf::milliseconds(maximumFireRateDiviation.asMilliseconds() / Randomizer::randomize(9, 1));
+		this->remainingAttackTime = sf::seconds(0);
+		clock.restart();
+	}
+
+	if (!alive) {
+		AActors::destroy(this);
+	}
+
 }
 

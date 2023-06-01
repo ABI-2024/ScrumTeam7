@@ -4,11 +4,8 @@
 
 // Constructur & Destructur
 BaseTower::BaseTower(float Health, sf::Vector2f tilePosition, sf::Texture* texture)
-	:health(Health), tilePosition(tilePosition)
+	: Entity({ 75.f, 150.f }, { 400 + 150 * tilePosition.x, 150 + 150 * tilePosition.y }), health(Health), tilePosition(tilePosition)
 {
-	this->body.setPosition(400 + 150 * this->tilePosition.x, 150 + 150 * this->tilePosition.y);
-	this->body.setSize(sf::Vector2f(75.f, 150.f));
-	this->body.setOrigin(sf::Vector2f(this->body.getSize().x / 2, this->body.getSize().y / 2));
 	this->body.setTexture(texture, 0);
 
 	this->shadow.setPosition(this->body.getPosition().x + this->body.getSize().x / 8.f, this->body.getPosition().y + this->body.getSize().y / 2);

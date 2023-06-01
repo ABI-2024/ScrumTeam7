@@ -21,6 +21,8 @@ public:
 	DE_Lehrer(sf::Vector2f tilePosition);
 	~DE_Lehrer();
 
+	void takeDamage(float) override;
+
 	void update() override;
 };
 

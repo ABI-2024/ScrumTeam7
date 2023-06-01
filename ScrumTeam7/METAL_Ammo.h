@@ -14,6 +14,10 @@ private:
 	static sf::Time damageWindowStart, activeTime;
 
 	sf::Clock timer;
+	enum class AttackState {
+		Accelerate,
+		Hit
+	} state;
 
 public:
 	static void LoadTexture();

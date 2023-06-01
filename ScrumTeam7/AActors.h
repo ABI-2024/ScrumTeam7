@@ -34,9 +34,9 @@ private:
 	static void clearSeprateVectors(std::vector<Entity*>*, Entity*);
 public:
 
-	// Construkter wird gerupfen, bevor die Static-Funktionen benutzt werden .
+	// Construkter wird gerufen, bevor die Static-Funktionen benutzt werden .
 	AActors();
-	// Destruktor wird gerupfen, wenn diese Klasse nicht mehr benötigt wird.
+	// Destruktor wird gerufen, wenn diese Klasse nicht mehr benötigt wird.
 	~AActors();
 
 	static bool create(const AllyType&,		const sf::Vector2f&);

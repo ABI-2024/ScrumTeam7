@@ -1,6 +1,7 @@
 #include "Mathelehrer.h"
 #include "Randomizer.h"
 #include "Window.h"
+#include "AActors.h"
 
 #include <math.h>
 
@@ -15,10 +16,6 @@ sf::Time Mathelehrer::fireRate = sf::milliseconds(2000);
 sf::Time Mathelehrer::maximumFireRateDiviation = sf::milliseconds(400);
 sf::Texture* Mathelehrer::texture = nullptr;
 
-int Mathelehrer::accuracy = 10;		// Je kleiner die Zahl, desto höher die Genauigkeit
-int Mathelehrer::countVertex = 0;
-sf::Vertex* Mathelehrer::sinusLine = nullptr;
-
 // public static Methoden
 void Mathelehrer::LoadTexture()
 {
@@ -29,26 +26,12 @@ void Mathelehrer::LoadTexture()
 			texture->loadFromFile("resource/Textures/DefaultTexture.png");
 		}
 	}
-
-	//if (sinusLine == nullptr) {
-	//	countVertex = GameWindow::getMainView().getSize().x / accuracy;
-	//	countVertex++;
-	//	sinusLine = new sf::Vertex[countVertex];
-	//	for (int i = 1; i < countVertex; i++) {
-	//		sinusLine[i] = sf::Vector2f(float(accuracy * i), (float)sin((double)accuracy * (double)i * (0.01745)) * 140.f);
-	//		// * sqrt(1./i)*10
-	//	}
-	//}
-
 }
 
 void Mathelehrer::unLoadTexture()
 {
 	delete texture;
 	texture = nullptr;
-
-	delete[] sinusLine;
-	sinusLine = nullptr;
 }
 
 
@@ -62,6 +45,13 @@ Mathelehrer::~Mathelehrer()
 }
 
 //public Methoden
+void Mathelehrer::takeDamage(float damage) {
+	health -= damage;
+	if (health <= 0) {
+		alive = false;
+	}
+}
+
 void Mathelehrer::update()
 {
 	if (health <= Health / 5) {
@@ -73,6 +63,18 @@ void Mathelehrer::update()
 	}
 	else if (health <= Health * 0.8) {
 		body.setFillColor({ 255,99,71 }); //tomato1
+	}
+
+	if (clock.getElapsedTime() + this->remainingAttackTime >= fireRate + fireRateDiviation) {
+		AActors::create(AmmoType::Mathe, this->body.getPosition());
+
+		fireRateDiviation = sf::milliseconds(maximumFireRateDiviation.asMilliseconds() / Randomizer::randomize(9, 1));
+		this->remainingAttackTime = sf::seconds(0);
+		clock.restart();
+	}
+
+	if (!alive) {
+		AActors::destroy(this);
 	}
 }
 

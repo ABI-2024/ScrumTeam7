@@ -15,7 +15,6 @@ private:
 	static sf::Time maximumFireRateDiviation;
 	static sf::Texture* texture;
 
-	AmmoType nextShot;
 	char powerup;
 	enum class PowerLevel : char	{
 		OnlyMouse = 1,
@@ -31,6 +30,8 @@ public:
 
 	INF_Lehrer(sf::Vector2f tilePosition);
 	~INF_Lehrer();
+
+	void takeDamage(float) override;
 
 	void update() override;
 };

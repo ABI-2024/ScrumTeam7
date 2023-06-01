@@ -3,8 +3,6 @@
 #include "Window.h"
 #include "AActors.h"
 
-#include <iostream>
-
 // public static Variables
 AmmoType TestAmmo::ammoType = AmmoType::TestAmmo;
 
@@ -41,9 +39,7 @@ TestAmmo::TestAmmo(sf::Vector2f TowerPosition)
 	this->alive = true;
 }
 
-TestAmmo::~TestAmmo() 
-{
-}
+TestAmmo::~TestAmmo() {}
 
 
 // public Methoden

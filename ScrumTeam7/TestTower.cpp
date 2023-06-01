@@ -1,6 +1,6 @@
 #include "TestTower.h"
-#include "Randomizer.h"
 
+#include "Randomizer.h"
 #include "AActors.h"
 
 // public static Variables 
@@ -45,14 +45,14 @@ TestTower::~TestTower()
 }
 
 
+//public Methoden
 void TestTower::takeDamage(float damage) {
 	health -= damage;
 	if (health <= 0) {
-		AActors::destroy(this);
+		alive = false;
 	}
 }
 
-//public Methoden
 void TestTower::update()
 {
 	if (health <= Health / 5) {
@@ -69,9 +69,13 @@ void TestTower::update()
 	if (clock.getElapsedTime()+ this->remainingAttackTime >= fireRate+ fireRateDiviation) {
 		AActors::create(AmmoType::TestAmmo, this->body.getPosition());
 		
+		fireRateDiviation = sf::milliseconds( maximumFireRateDiviation.asMilliseconds() / Randomizer::randomize(9, 1) );
 		this->remainingAttackTime = sf::seconds(0);
 		clock.restart();
 	}
 
+	if (!alive) {
+		AActors::destroy(this);
+	}
 }
 

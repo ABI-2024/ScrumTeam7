@@ -1,6 +1,7 @@
 #include "METAL_Lehrer.h"
 
 #include "Randomizer.h"
+#include "AActors.h"
 
 // public static Variables 
 AllyType METAL_Lehrer::type;
@@ -44,6 +45,13 @@ METAL_Lehrer::~METAL_Lehrer()
 }
 
 //public Methoden
+void METAL_Lehrer::takeDamage(float damage) {
+	health -= damage;
+	if (health <= 0) {
+		alive = false;
+	}
+}
+
 void METAL_Lehrer::update()
 {
 	if (health <= Health / 5) {
@@ -55,5 +63,17 @@ void METAL_Lehrer::update()
 	}
 	else if (health <= Health * 0.8) {
 		body.setFillColor({ 255,99,71 }); //tomato1
+	}
+
+	if (clock.getElapsedTime() + this->remainingAttackTime >= fireRate + fireRateDiviation) {
+		AActors::create(AmmoType::METAL_Ammo, this->body.getPosition());
+
+		fireRateDiviation = sf::milliseconds(maximumFireRateDiviation.asMilliseconds() / Randomizer::randomize(9, 1));
+		this->remainingAttackTime = sf::seconds(0);
+		clock.restart();
+	}
+
+	if (!alive) {
+		AActors::destroy(this);
 	}
 }

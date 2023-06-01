@@ -161,7 +161,7 @@ bool AActors::create(const AllyType& type, const sf::Vector2f& position)
 		    case AllyType::TestTower:
 				entities->push_back(new TestTower(position));
 		        break;
-		    /*case AllyType::Mathelehrer:
+		    case AllyType::Mathelehrer:
 				entities->push_back(new Mathelehrer(position));
 		        break;
 		    case AllyType::INF_Lehrer:
@@ -175,7 +175,7 @@ bool AActors::create(const AllyType& type, const sf::Vector2f& position)
 		        break;
 		    case AllyType::METAL_Lehrer:
 				entities->push_back(new METAL_Lehrer(position));
-		        break;*/
+		        break;
 
 	default:
 		created = 0;
@@ -198,24 +198,24 @@ bool AActors::create(const AmmoType& type, const sf::Vector2f& position)
 			entities->push_back(new TestAmmo(position));
 			break;
 		case AmmoType::Mathe:
-			//entities->push_back(new MA_Ammo(position));
+			entities->push_back(new MA_Ammo(position));
 			break;
 		case AmmoType::Inf_weak: 
 		case AmmoType::Inf_medium: 
 		case AmmoType::Inf_strong:
-			//entities->push_back(new INF_Ammo(position, type ));
+			entities->push_back(new INF_Ammo(position, type ));
 			break;
 		case AmmoType::Englisch_weak: 
 		case AmmoType::Englisch_medium: 
 		case AmmoType::Englisch_strong: 
 		case AmmoType::Englisch_strongest:
-			//entities->push_back(new EN_Ammo(position, type));
+			entities->push_back(new EN_Ammo(position, type));
 			break;
 		case AmmoType::DE_Ammo:
-			//entities->push_back(new DE_Ammo(position));
+			entities->push_back(new DE_Ammo(position));
 			break;
 		case AmmoType::METAL_Ammo:
-			//entities->push_back(new METAL_Ammo(position));
+			entities->push_back(new METAL_Ammo(position));
 			break;
 
 	default:

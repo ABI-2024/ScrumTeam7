@@ -21,6 +21,8 @@ public:
 	METAL_Lehrer(sf::Vector2f tilePosition);
 	~METAL_Lehrer();
 
+	void takeDamage(float) override;
+
 	void update() override;
 };
 

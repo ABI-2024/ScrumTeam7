@@ -1,6 +1,7 @@
 #include "DE_Lehrer.h"
 
 #include "Randomizer.h"
+#include "AActors.h"
 
 // private static Variables 
 int DE_Lehrer::Cost = 20;
@@ -40,6 +41,13 @@ DE_Lehrer::~DE_Lehrer()
 }
 
 //public Methoden
+void DE_Lehrer::takeDamage(float damage) {
+	health -= damage;
+	if (health <= 0) {
+		alive = false;
+	}
+}
+
 void DE_Lehrer::update()
 {
 	if (health <= Health / 5) {
@@ -51,6 +59,18 @@ void DE_Lehrer::update()
 	}
 	else if (health <= Health * 0.8) {
 		body.setFillColor({ 255,99,71 }); //tomato1
+	}
+
+	if (clock.getElapsedTime() + this->remainingAttackTime >= fireRate + fireRateDiviation) {
+		AActors::create(AmmoType::DE_Ammo, this->body.getPosition());
+
+		fireRateDiviation = sf::milliseconds(maximumFireRateDiviation.asMilliseconds() / Randomizer::randomize(9, 1));
+		this->remainingAttackTime = sf::seconds(0);
+		clock.restart();
+	}
+
+	if (!alive) {
+		AActors::destroy(this);
 	}
 }
 

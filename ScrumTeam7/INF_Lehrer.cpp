@@ -1,6 +1,7 @@
 #include "INF_Lehrer.h"
 
 #include "Randomizer.h"
+#include "AActors.h"
 
 // public static Variables 
 AllyType INF_Lehrer::type;
@@ -44,6 +45,13 @@ INF_Lehrer::~INF_Lehrer()
 }
 
 //public Methoden
+void INF_Lehrer::takeDamage(float damage) {
+	health -= damage;
+	if (health <= 0) {
+		alive = false;
+	}
+}
+
 void INF_Lehrer::update()
 {
 	if (health <= Health / 5) {
@@ -55,6 +63,53 @@ void INF_Lehrer::update()
 	}
 	else if (health <= Health * 0.8) {
 		body.setFillColor({ 255,99,71 }); //tomato1
+	}
+
+	if (clock.getElapsedTime() + this->remainingAttackTime >= fireRate + fireRateDiviation) {
+		
+		switch (level)
+		{
+		case INF_Lehrer::PowerLevel::OnlyMouse:
+			AActors::create(AmmoType::Inf_weak, this->body.getPosition());
+			break;
+		case INF_Lehrer::PowerLevel::MouseKeyboard:
+			if (Randomizer::randomize(2) == 1) {
+				AActors::create(AmmoType::Inf_weak, this->body.getPosition());
+			}
+			else {
+				AActors::create(AmmoType::Inf_medium, this->body.getPosition());
+			}
+			break;
+		case INF_Lehrer::PowerLevel::OnlyKeyboard:
+			AActors::create(AmmoType::Inf_medium, this->body.getPosition());
+			break;
+		case INF_Lehrer::PowerLevel::KeyboardMonitor:
+			if (Randomizer::randomize(2) == 1) {
+			AActors::create(AmmoType::Inf_medium, this->body.getPosition());
+			}
+			else {
+			AActors::create(AmmoType::Inf_strong, this->body.getPosition());
+			}
+			break;
+		case INF_Lehrer::PowerLevel::OnlyMonitor:
+			AActors::create(AmmoType::Inf_strong, this->body.getPosition());
+			break;
+		default:
+			break;
+		}
+		if (level != PowerLevel::OnlyMonitor && powerup >= 5) {
+			level = PowerLevel(int(level) + 1);
+		}
+
+
+
+		fireRateDiviation = sf::milliseconds(maximumFireRateDiviation.asMilliseconds() / Randomizer::randomize(9, 1));
+		this->remainingAttackTime = sf::seconds(0);
+		clock.restart();
+	}
+
+	if (!alive) {
+		AActors::destroy(this);
 	}
 }
 
