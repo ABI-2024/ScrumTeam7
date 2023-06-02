@@ -1,14 +1,15 @@
 #include "TestAmmo.h"
 
 #include "Window.h"
+#include "AActors.h"
 
 // public static Variables
 AmmoType TestAmmo::ammoType = AmmoType::TestAmmo;
 
 
 // static Variables private
-float TestAmmo::damage = 30.f;
-sf::Vector2f TestAmmo::dir = sf::Vector2f(400.f,0);
+float TestAmmo::damage = 50.f;
+sf::Vector2f TestAmmo::dir = sf::Vector2f(600.f,0);
 sf::Texture* TestAmmo::texture = nullptr;
 
 
@@ -35,6 +36,7 @@ void TestAmmo::unLoadTexture()
 TestAmmo::TestAmmo(sf::Vector2f TowerPosition)
 	:BaseAmmo(TowerPosition, texture)
 {
+	this->alive = true;
 }
 
 TestAmmo::~TestAmmo() {}
@@ -55,12 +57,24 @@ void TestAmmo::move()
 {
 	this->body.move(this->dir * dt);
 
-	if (this->body.getPosition().x >= GameWindow::getMainView().getSize().x) {
-		this->destroy = true;
+	if (body.getPosition().x >= 1600.f + body.getSize().x/2.f) {
+		alive = false;
 	}
 }
 
 void TestAmmo::update()
 {
 	this->move();
+
+	Entity* tmp =  AActors::CollisionSingle(this, CollisionType::enemies);
+	if (tmp != nullptr) {
+		tmp->takeDamage(this->damage);
+		alive = false;
+	}
+
+
+
+	if (!alive) {
+		AActors::destroy(this);
+	}
 }

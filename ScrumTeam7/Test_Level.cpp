@@ -1,6 +1,7 @@
 #include "Test_Level.h"
 #include "Window.h"
 #include "Menu_Options.h"
+#include "TowerSelect.h"
 
 #include <iostream>
 
@@ -37,29 +38,13 @@ sf::Vector2f Test_Level::TileSelection()
     return sf::Vector2f(mousePos);
 }
 
-void Test_Level::Wellenfunktion() {
-    if (testwelle.geteof() == true) return;
-    testwelle.SpawnEnde();
-    if (testwelle.getspawnEnde() == false) {
-        testwelle.SpawnEnemy(actors);
-    }
-    else {
-        testwelle.WellenEnde(actors);
-    }
-    if (testwelle.getwellenEnde() == true) {
-        if (testwelle.getwarteTimer() == true)
-            testwelle.startWartetimer();
-        testwelle.Wartefunktion(actors);
-    }
-}
-
 void Test_Level::buttonEvents()
 {
     switch ( this->menu.mouseClick()) {
     case 0:
         // Spiel geht weiter
         paused = false;
-        actors.ContinueActors();
+        AActors::continueEntities();
         break;
     case 1:
         // Optionsmenu wird geoeffnet
@@ -76,7 +61,7 @@ void Test_Level::buttonEvents()
 
 Test_Level::Test_Level()
 
-    : active(true), paused(false), testShop(actors)
+    : active(true), paused(false), testShop(&testGeld)
 
 {
     back.loadFromFile("resource/Textures/Level/Background_Sporthalle.png");
@@ -109,6 +94,7 @@ void Test_Level::startLevel()
 
     sf::Vector2f pos;
 
+    testwelle.setFilename("Datenwellen.csv");
     testwelle.WellenDaten();
     testwelle.SortListeSchueler();
     
@@ -118,12 +104,19 @@ void Test_Level::startLevel()
 
         GameWindow::updateDeltaTime();
         
-        Wellenfunktion();
-        // Events
+        testGeld.addKontostand(AActors::getCollectedRevenue());
 
+        testwelle.Wellenfunktion(testGeld);
+
+        /*
+        // Gameover bedingung
         for (BaseEnemy* test : BaseEnemy::enemies) {
             if (test->getPosition().x < 400) active = false;
-        }
+        }*/
+
+        /*
+            Events        
+        */
         while (Window.pollEvent(GameEvent)) {
             switch (GameEvent.type)
             {
@@ -137,10 +130,10 @@ void Test_Level::startLevel()
                 // Togglet Pausierung
                 if (GameEvent.key.code == sf::Keyboard::Escape) {
                     if (paused) {
-                        actors.ContinueActors();
+                       AActors::continueEntities();
                     }
                     else {
-                        actors.pauseActors();
+                        AActors::pauseEntities();
                     }
                     paused = !paused;
                 }
@@ -153,12 +146,12 @@ void Test_Level::startLevel()
                         testShop.buttonEvents(TileSelection());
 
                         //// Spawnt Tower
-                        //actors.initializeTower(TowerType::TestTower, this->TileSelection());
+                       // AActors::create(AllyType::TestTower, this->TileSelection());
                     }
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 
                         // Spawnt Enemy
-                        actors.initializeEnemy(EnemyType::TestEnemy, this->TileSelection());
+                        AActors::create(EnemyType::Steroidenking, this->TileSelection());
                     }
                 }
                 else {
@@ -184,7 +177,7 @@ void Test_Level::startLevel()
 
             case sf::Event::LostFocus:
                 if (!paused) {
-                    actors.pauseActors();
+                    AActors::pauseEntities();
                 }
                 paused = 1;
 
@@ -195,11 +188,10 @@ void Test_Level::startLevel()
             }
         }
 
+
         // Updates
         if (!paused) {
-            actors.updateActors();
-
-            actors.Collisions();
+            AActors::updateEntities();
         }
         else {
             menu.update();
@@ -215,8 +207,9 @@ void Test_Level::startLevel()
             Window.draw(selecteionRectangle[i]);
         }
 
-        actors.renderActors();
+        AActors::renderEntities();
 
+        testGeld.render();
         testShop.render();
 
         if (paused) {

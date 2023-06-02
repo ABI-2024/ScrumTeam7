@@ -14,6 +14,10 @@ private:
 	static sf::Time damageWindowStart, activeTime;
 
 	sf::Clock timer;
+	enum class AttackState {
+		Accelerate,
+		Hit
+	} state;
 
 public:
 	static void LoadTexture();
@@ -22,11 +26,8 @@ public:
 	METAL_Ammo(sf::Vector2f TowerPosition);
 	~METAL_Ammo();
 
-	bool isDestroy() override;
-
 	AmmoType getAmmoType() override;
 	float getDamage() override;
-	bool CollisionWithEnemy(sf::FloatRect& Enemy) override;
 
 	void update() override;
 

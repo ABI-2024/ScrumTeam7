@@ -1,18 +1,23 @@
 #pragma once
 
-#include "Actors.h"
+#include <string>
+
+#include "Geld.h"
+#include "AActors.h"
 #include "Shop.h"
 #include "Menu_Pause.h"
 #include "Wellen.h"
-#include <string>
+#include "TowerSelect.h"
+
 
 class Level
 {
 protected:
 	bool active;
 
+	Geld geld;
 	Shop shop;
-	Actors actors;
+	AActors actors;
 
 	sf::Texture backgroundTexture;
 	sf::RectangleShape background;
@@ -26,8 +31,6 @@ protected:
 
 	sf::Vector2f TileSelection();
 	void buttonEvents();
-	void Wellenfunktion();
-
 public:
 	Level();
 	virtual ~Level();

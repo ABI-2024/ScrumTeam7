@@ -1,10 +1,10 @@
 #include "En_Lehrer.h"
 
 #include "Randomizer.h"
+#include "AActors.h"
 
 // public static Variables 
-TowerType EN_Lehrer::towerType = TowerType::EN_Lehrer;
-AmmoType EN_Lehrer::ammoType[4] = { AmmoType::Englisch_weak, AmmoType::Englisch_medium, AmmoType::Englisch_strong, AmmoType::Englisch_strongest };
+AllyType EN_Lehrer::type;
 
 // private static Variables 
 int EN_Lehrer::Cost = 20;
@@ -43,26 +43,14 @@ EN_Lehrer::~EN_Lehrer()
 {
 }
 
-TowerType EN_Lehrer::getTowerType()
-{
-	return this->towerType;
-}
-
-AmmoType EN_Lehrer::getAmmoType() {
-
-	return ammoType[Randomizer::randomize(4)];
-}
-
-void EN_Lehrer::HasAttacked()
-{
-	this->readyToAttack = false;
-	this->clock.restart();
-	this->remainingAttackTime = sf::milliseconds(0);
-	this->fireRateDiviation = sf::milliseconds(Randomizer::randomize((int)this->maximumFireRateDiviation.asMilliseconds() * 2, -(int)this->maximumFireRateDiviation.asMilliseconds()));
-
-}
-
 //public Methoden
+void EN_Lehrer::takeDamage(float damage) {
+health -= damage;
+if (health <= 0) {
+	alive = false;
+}
+}
+
 void EN_Lehrer::update()
 {
 	if (health <= Health / 5) {
@@ -76,8 +64,33 @@ void EN_Lehrer::update()
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
 
-	if (this->fireRate + this->fireRateDiviation <= this->clock.getElapsedTime() + this->remainingAttackTime) {
-		this->readyToAttack = true;
+	if (clock.getElapsedTime() + this->remainingAttackTime >= fireRate + fireRateDiviation) {
+
+		switch (Randomizer::randomize(4)) {
+		case 0:
+			AActors::create(AmmoType::Englisch_weak, this->body.getPosition());
+			break;
+		case 1:
+			AActors::create(AmmoType::Englisch_medium, this->body.getPosition());
+			break;
+		case 2:
+			AActors::create(AmmoType::Englisch_strong, this->body.getPosition());
+			break;
+		case 3:
+			AActors::create(AmmoType::Englisch_strongest, this->body.getPosition());
+			break;
+		default:
+			break;
+		}
+
+		fireRateDiviation = sf::milliseconds(maximumFireRateDiviation.asMilliseconds() / Randomizer::randomize(9, 1));
+		this->remainingAttackTime = sf::seconds(0);
+		clock.restart();
 	}
+
+	if (!alive) {
+		AActors::destroy(this);
+	}
+
 }
 

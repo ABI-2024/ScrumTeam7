@@ -1,6 +1,7 @@
 #include "EN_Ammo.h"
 
 #include "Window.h"
+#include "AActors.h"
 
 // public static Variables
 AmmoType EN_Ammo::ammoType[4] = { AmmoType::Englisch_weak, AmmoType::Englisch_medium, AmmoType::Englisch_strong, AmmoType::Englisch_strongest };
@@ -96,12 +97,25 @@ void EN_Ammo::move()
 {
 	this->body.move(this->dir * dt);
 
-	if (this->body.getPosition().x >= GameWindow::getMainView().getSize().x) {
-		this->hit = true;
+	if (body.getPosition().x >= 1600.f + body.getSize().x / 2.f) {
+		alive = false;
 	}
 }
 
 void EN_Ammo::update()
 {
 	this->move();
+
+	Entity* tmp = AActors::CollisionSingle(this, CollisionType::enemies);
+	if (tmp != nullptr) {
+		tmp->takeDamage(this->getDamage());
+		alive = false;
+	}
+
+
+
+	if (!alive) {
+		AActors::destroy(this);
+	}
+
 }
