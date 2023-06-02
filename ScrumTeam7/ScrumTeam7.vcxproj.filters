@@ -153,6 +153,11 @@
     <ClCompile Include="DE_Lehrer.cpp">
       <Filter>Quelldateien\Entities\Tower</Filter>
     </ClCompile>
+    <ClCompile Include="Simp.cpp">
+      <Filter>Quelldateien\Entities\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Emo.cpp">
+      <Filter>Quelldateien\Entities\Enemy</Filter>
     <ClCompile Include="METAL_Lehrer.cpp">
       <Filter>Quelldateien\Entities\Tower</Filter>
     </ClCompile>
@@ -224,9 +229,6 @@
     <ClInclude Include="Menu_Options.h">
       <Filter>Headerdateien\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Headerdateien\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Actors.h">
       <Filter>Headerdateien\Game Logik</Filter>
     </ClInclude>
@@ -284,6 +286,17 @@
     <ClInclude Include="DE_Lehrer.h">
       <Filter>Headerdateien\Entities\Header Tower</Filter>
     </ClInclude>
+    <ClInclude Include="Nerd.h">
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Simp.h">
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Emo.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
     <ClInclude Include="METAL_Lehrer.h">
       <Filter>Headerdateien\Entities\Header Tower</Filter>
     </ClInclude>

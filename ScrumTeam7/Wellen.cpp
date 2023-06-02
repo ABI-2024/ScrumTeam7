@@ -23,17 +23,25 @@ void Wellen::WellenDaten() {
 	schuelerDaten->clear();
 
 	for (int n = 0; n < welleAnz; n++) { //Skippt bis zur relevanten Teil im Dokument
-		std::getline(Datei, tmp, '0');
-	}
-	for (int i = 0; i < 2; i++) { //Ließt Wellendaten aus
-		std::getline(Datei, tmp, ';');
 		if (Datei.eof()) {
 			eof = true;
 			return;
 		}
+		std::getline(Datei, tmp, '0');
+	}
+	for (int i = 0; i < 2; i++) { //Ließt Wellendaten aus
+		if (Datei.eof()) {
+			eof = true;
+			return;
+		}
+		std::getline(Datei, tmp, ';');
 		welleDaten[i] = stoi(tmp);
 	}
 	do { //Ließt Schülerdaten aus
+		if (Datei.eof()) {
+			eof = true;
+			return;
+		}
 		std::getline(Datei, tmp, ';');
 		schuelerDaten->push_back(stoi(tmp));
 		dateiposition = Datei.tellg();
@@ -87,6 +95,10 @@ void Wellen::SortListeSchueler() {
 void Wellen::WellenEnde() { // Checkt ob alle Schüler in der Welle getötet wurden
 	if (AActors::enemies->size() == 0) { // Ließt die Anzahl der lebenden Schüler aus
 		wellenEnde = true;
+		//delete[] * pSchueler; //Löscht die lehre pSchüler
+		//*pSchueler = nullptr;
+		//delete[] pSchueler;
+		//pSchueler = nullptr;
 	}
 }
 
@@ -167,6 +179,10 @@ bool Wellen::getwarteTimer() {
 
 bool Wellen::geteof() {
 	return this->eof;
+}
+
+void Wellen::deletepSchueler() {
+	
 }
 
 

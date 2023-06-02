@@ -41,7 +41,6 @@ void Nerd::unLoadTexture()
 Nerd::Nerd(const sf::Vector2f& tilePosition)
 	:BaseEnemy(Health, tilePosition, texture)
 {
-	
 }
 
 Nerd::~Nerd() 
@@ -74,6 +73,17 @@ void Nerd::move()
 	else {
 		movable = true;
 	}
+}
+
+void Nerd :: manipulation()
+{
+	if (programmzeit.getElapsedTime() >= sf::seconds(3)) {
+		for (BaseTower* i : BaseTower::towers)
+		{
+			i->getTilePosition();
+		}
+	}
+
 }
 
 void Nerd::update()

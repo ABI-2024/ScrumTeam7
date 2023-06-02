@@ -37,7 +37,6 @@ public:
 
 	void takeDamage(float) override;
 
-
 	// Status Effecte
 	void addStatus_Proc(Status_Effect nStatus );	// Experimentel
 	void updateStatus_Proc();
