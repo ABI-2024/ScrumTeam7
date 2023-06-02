@@ -2,7 +2,8 @@
 
 #include <string>
 
-#include "Actors.h"
+#include "Geld.h"
+#include "AActors.h"
 #include "Shop.h"
 #include "Menu_Pause.h"
 #include "Wellen.h"
@@ -12,16 +13,11 @@
 class Level
 {
 protected:
-
-	sf::Texture backgroundTexture;
-	sf::RectangleShape background;
-
-	/*
-protected:
 	bool active;
 
+	Geld geld;
 	Shop shop;
-	Actors actors;
+	AActors actors;
 
 	sf::Texture backgroundTexture;
 	sf::RectangleShape background;
@@ -35,8 +31,6 @@ protected:
 
 	sf::Vector2f TileSelection();
 	void buttonEvents();
-	void Wellenfunktion();
-	*/
 public:
 	Level();
 	virtual ~Level();

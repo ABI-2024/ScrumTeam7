@@ -28,9 +28,6 @@ int main()
 
     Level_Selector* selector = nullptr;
 
-    Test_Level level;
-    level.startLevel();
-
     // 
     while (Window.isOpen()) {
         switch (Menu::openMenu()) {
