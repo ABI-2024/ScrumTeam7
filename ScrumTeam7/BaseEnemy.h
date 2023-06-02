@@ -44,6 +44,7 @@ public:
 	void hasAttacked();
 	void wasAttacked(float damage);
 
+
 	// Status Effecte
 	void addStatus_Proc(Status_Effect nStatus );	// Experimentel
 	void updateStatus_Proc();

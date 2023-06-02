@@ -15,8 +15,6 @@ private:
 
 	static sf::Time attackSpeed;
 
-	sf::Clock programmzeit;
-
 public:
 	static void LoadTexture();
 	static void unLoadTexture();
@@ -33,8 +31,6 @@ public:
 	bool CollisionWithTower(sf::FloatRect& Tower) override;
 
 	void move();
-
-	void manipulation();
 
 	void update() override;
 };

@@ -10,7 +10,6 @@ class BaseTower : public Entity
 {
 public:
 	static std::vector<BaseTower*> towers;
-	std::vector <BaseTower*> towersorted;
 protected:
 		
 	bool alive;
@@ -49,7 +48,6 @@ public:
 
 	virtual void update() = 0;
 	void render();
-	/*void sortLehrer();*/
 };
 
 
