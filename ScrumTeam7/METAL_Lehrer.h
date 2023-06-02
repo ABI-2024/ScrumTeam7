@@ -4,8 +4,7 @@
 class METAL_Lehrer : public BaseTower
 {
 private:
-	static TowerType towerType;
-	static AmmoType ammoType;
+	static AllyType type;
 
 	static int Cost;
 
@@ -22,10 +21,8 @@ public:
 	METAL_Lehrer(sf::Vector2f tilePosition);
 	~METAL_Lehrer();
 
-	TowerType getTowerType() override;
-	AmmoType getAmmoType() override;
+	void takeDamage(float) override;
 
-	void HasAttacked() override;
 	void update() override;
 };
 

@@ -5,8 +5,7 @@
 class Mathelehrer : public BaseTower
 {
 private:
-	static TowerType towerType;
-	static AmmoType ammoType;
+	static AllyType type;
 
 	static int Cost;
 
@@ -16,8 +15,6 @@ private:
 	static sf::Time maximumFireRateDiviation;
 	static sf::Texture* texture;
 
-	static int accuracy, countVertex;
-	static sf::Vertex* sinusLine;
 public:
 	static void LoadTexture();
 	static void unLoadTexture();
@@ -25,10 +22,8 @@ public:
 	Mathelehrer(sf::Vector2f tilePosition);
 	~Mathelehrer();
 
-	TowerType getTowerType() override;
-	AmmoType getAmmoType() override;
+	void takeDamage(float) override;
 
-	void HasAttacked() override;
 	void update() override;
 
 };

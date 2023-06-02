@@ -1,7 +1,7 @@
 #include "Karte.h"
 #include "Window.h"
 
-Karte::Karte(int cost, TowerType type, sf::Texture* texture, sf::Vector2f pos) {
+Karte::Karte(int cost, AllyType type, sf::Texture* texture, sf::Vector2f pos) {
 	this->cost = cost;
 	this->type = type;
 	this->hovered = false;
@@ -34,7 +34,7 @@ int Karte::getCost() {
 	return cost;
 }
 
-TowerType Karte::getType() {
+AllyType Karte::getType() {
 	return type;
 }
 

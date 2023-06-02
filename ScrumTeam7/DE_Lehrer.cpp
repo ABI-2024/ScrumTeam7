@@ -1,11 +1,7 @@
 #include "DE_Lehrer.h"
 
 #include "Randomizer.h"
-
-// public static Variables 
-TowerType DE_Lehrer::towerType = TowerType::DE_Lehrer;
-AmmoType DE_Lehrer::ammoType = AmmoType::DE_Ammo;
-
+#include "AActors.h"
 
 // private static Variables 
 int DE_Lehrer::Cost = 20;
@@ -44,24 +40,14 @@ DE_Lehrer::~DE_Lehrer()
 {
 }
 
-TowerType DE_Lehrer::getTowerType()
-{
-	return this->towerType;
-}
-
-AmmoType DE_Lehrer::getAmmoType() {
-	return this->ammoType;
-}
-
-void DE_Lehrer::HasAttacked()
-{
-	this->readyToAttack = false;
-	this->clock.restart();
-	this->remainingAttackTime = sf::milliseconds(0);
-	this->fireRateDiviation = sf::milliseconds(Randomizer::randomize((int)this->maximumFireRateDiviation.asMilliseconds() * 2, -(int)this->maximumFireRateDiviation.asMilliseconds()));
-}
-
 //public Methoden
+void DE_Lehrer::takeDamage(float damage) {
+	health -= damage;
+	if (health <= 0) {
+		alive = false;
+	}
+}
+
 void DE_Lehrer::update()
 {
 	if (health <= Health / 5) {
@@ -75,8 +61,16 @@ void DE_Lehrer::update()
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
 
-	if (this->fireRate + this->fireRateDiviation <= this->clock.getElapsedTime() + this->remainingAttackTime) {
-		this->readyToAttack = true;
+	if (clock.getElapsedTime() + this->remainingAttackTime >= fireRate + fireRateDiviation) {
+		AActors::create(AmmoType::DE_Ammo, this->body.getPosition());
+
+		fireRateDiviation = sf::milliseconds(maximumFireRateDiviation.asMilliseconds() / Randomizer::randomize(9, 1));
+		this->remainingAttackTime = sf::seconds(0);
+		clock.restart();
+	}
+
+	if (!alive) {
+		AActors::destroy(this);
 	}
 }
 

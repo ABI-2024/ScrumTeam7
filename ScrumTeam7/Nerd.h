@@ -26,11 +26,8 @@ public:
 
 	int getRevenue() override;
 
-
 	EnemyType getEnemyType() override;
 	float getDamage() override;
-
-	bool CollisionWithTower(sf::FloatRect& Tower) override;
 
 	void move();
 

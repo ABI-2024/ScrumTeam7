@@ -55,11 +55,11 @@
     <Filter Include="Quelldateien\Game Logik\Shop">
       <UniqueIdentifier>{4233db4d-d281-4cec-bf18-fdbb93d594ed}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Level">
-      <UniqueIdentifier>{e677e1c3-b788-4bb8-ba18-178cec9558b5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Quelldateien\Level">
       <UniqueIdentifier>{302f80c2-d29c-468a-986b-9bd3b03d604e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Level">
+      <UniqueIdentifier>{e677e1c3-b788-4bb8-ba18-178cec9558b5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -161,12 +161,6 @@
     <ClCompile Include="METAL_Lehrer.cpp">
       <Filter>Quelldateien\Entities\Tower</Filter>
     </ClCompile>
-    <ClCompile Include="METAL_Ammo.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Level_Selector.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Level_Final.cpp">
       <Filter>Quelldateien\Level</Filter>
     </ClCompile>
@@ -183,6 +177,24 @@
       <Filter>Quelldateien\Level</Filter>
     </ClCompile>
     <ClCompile Include="Level.cpp">
+      <Filter>Quelldateien\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Button2.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="TowerSelect.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Music.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="AActors.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="METAL_Ammo.cpp">
+      <Filter>Quelldateien\Entities\Ammo</Filter>
+    </ClCompile>
+    <ClCompile Include="Level_Selector.cpp">
       <Filter>Quelldateien\Level</Filter>
     </ClCompile>
   </ItemGroup>
@@ -288,12 +300,6 @@
     <ClInclude Include="METAL_Lehrer.h">
       <Filter>Headerdateien\Entities\Header Tower</Filter>
     </ClInclude>
-    <ClInclude Include="METAL_Ammo.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Level_Selector.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Level_Final.h">
       <Filter>Headerdateien\Level</Filter>
     </ClInclude>
@@ -310,6 +316,27 @@
       <Filter>Headerdateien\Level</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
+      <Filter>Headerdateien\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Button2.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="TowerSelect.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Music.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="AActors.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="METAL_Ammo.h">
+      <Filter>Headerdateien\Entities\Header Ammo</Filter>
+    </ClInclude>
+    <ClInclude Include="Nerd.h">
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_Selector.h">
       <Filter>Headerdateien\Level</Filter>
     </ClInclude>
   </ItemGroup>

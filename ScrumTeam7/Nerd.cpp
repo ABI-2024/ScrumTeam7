@@ -1,8 +1,6 @@
 #include "Nerd.h"
 #include "Window.h"
-#include "BaseTower.h"
-
-#include <iostream>
+#include "AActors.h"
 
 // static Variables
 
@@ -42,12 +40,13 @@ void Nerd::unLoadTexture()
 // Constructur & Destructur
 Nerd::Nerd(const sf::Vector2f& tilePosition)
 	:BaseEnemy(Health, tilePosition, texture)
-
 {
-	programmzeit.restart();
 }
 
-Nerd::~Nerd() {}
+Nerd::~Nerd() 
+{
+	AActors::addCollectedRevenue(this->revenue);
+}
 
 // public get-Methoden
 int Nerd::getRevenue() {
@@ -65,16 +64,6 @@ float Nerd::getDamage()
 }
 
 // public Methoden
-bool Nerd::CollisionWithTower(sf::FloatRect& Tower)
-{
-	if (sf::FloatRect(this->body.getGlobalBounds()).intersects(Tower)) {
-		movable = false;
-		return 1;
-	}
-	else {
-		return 0;
-	}
-}
 
 void Nerd::move()
 {
@@ -110,11 +99,26 @@ void Nerd::update()
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
 
-	if (this->attackSpeed <= this->clock.getElapsedTime()) {
-		readyToAttack = true;
-	}
-
 	this->updateStatus_Proc();
 
+	Entity* temp = AActors::CollisionSingle(this, CollisionType::ally);
+
+	if (temp != nullptr) {
+		movable = false;
+		if (clock.getElapsedTime() + this->remainingAttackTime >= this->attackSpeed) {
+			temp->takeDamage(this->Damage);
+
+			this->remainingAttackTime = sf::seconds(0);
+			clock.restart();
+		}
+	}
+	else {
+		movable = true;
+	}
+
 	this->move();
+
+	if (!alive) {
+		AActors::destroy(this);
+	}
 }

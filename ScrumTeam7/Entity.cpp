@@ -2,28 +2,37 @@
 
 #include "Window.h"
 
-// public static Variables 
-std::vector<Entity*> Entity::entities;
-
-
 // protected static Variables 
 sf::Texture* Entity::shadowTexture = nullptr;
 
+sf::FloatRect Entity::getHitBox()
+{
+	return body.getGlobalBounds();
+}
+
+Entity::Entity()
+	:alive(false)
+{
+}
 
 // Constructur & Destructur
-Entity::Entity()
+Entity::Entity(sf::Vector2f size, sf::Vector2f position)
+	:alive(true)
 {
-	entities.push_back(this);
+	body.setSize(size);
+	body.setOrigin(size/2.f);
+	body.setPosition(position);
+
+
 }
 
 Entity::~Entity()
 {
-	for (auto i = entities.begin(); i != entities.end(); ++i) {
-		if ((*i) == this) {
-			entities.erase(i);
-			break;
-		}
-	}
+}
+
+void Entity::takeDamage(float damage )
+{
+
 }
 
 
@@ -50,4 +59,22 @@ void Entity::unloadTexture()
 void Entity::renderShadow()
 {
 	Window.draw(shadow);
+}
+
+sf::Vector2f Entity::getTilePosition()
+{
+	return {0,0};
+}
+
+void Entity::render()
+{
+	Window.draw(body);
+}
+
+void Entity::pauseEntitiy()
+{
+}
+
+void Entity::continueEntitiy()
+{
 }

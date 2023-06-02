@@ -5,8 +5,7 @@
 class INF_Lehrer : public BaseTower
 {
 private:
-	static TowerType towerType;
-	static AmmoType ammoType[3];
+	static AllyType type;
 
 	static int Cost;
 
@@ -16,7 +15,6 @@ private:
 	static sf::Time maximumFireRateDiviation;
 	static sf::Texture* texture;
 
-	AmmoType nextShot;
 	char powerup;
 	enum class PowerLevel : char	{
 		OnlyMouse = 1,
@@ -33,10 +31,8 @@ public:
 	INF_Lehrer(sf::Vector2f tilePosition);
 	~INF_Lehrer();
 
-	TowerType getTowerType() override;
-	AmmoType getAmmoType() override;
+	void takeDamage(float) override;
 
-	void HasAttacked() override;
 	void update() override;
 };
 

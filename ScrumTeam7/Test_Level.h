@@ -1,17 +1,18 @@
 #pragma once
-#include "Actors.h"
+#include "AActors.h"
+#include "Geld.h"
 #include "Shop.h"
 #include "Menu_Pause.h"
 #include "Wellen.h"
-#include "TowerSelect.h"
 
 class Test_Level
 {
 private:
 	bool active;
 
+	Geld testGeld;
 	Shop testShop;
-	Actors actors;
+	AActors actors;
 
 	sf::Texture back;
 	sf::RectangleShape background;
@@ -28,8 +29,6 @@ private:
 public:
 	Test_Level();
 	~Test_Level();
-
-	void Wellenfunktion();
 
 	void startLevel();
 };
