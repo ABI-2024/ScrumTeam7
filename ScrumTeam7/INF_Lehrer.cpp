@@ -1,10 +1,10 @@
 #include "INF_Lehrer.h"
 
 #include "Randomizer.h"
-#include "AActors.h"
 
 // public static Variables 
-AllyType INF_Lehrer::type;
+TowerType INF_Lehrer::towerType = TowerType::INF_Lehrer;
+AmmoType INF_Lehrer::ammoType[3] = { AmmoType::Inf_weak, AmmoType::Inf_medium, AmmoType::Inf_strong };
 
 // private static Variables 
 int INF_Lehrer::Cost = 20;
@@ -36,7 +36,7 @@ void INF_Lehrer::unLoadTexture()
 
 // Constructur & Destructur
 INF_Lehrer::INF_Lehrer(sf::Vector2f tilePosition)
-	: BaseTower(this->Health, tilePosition, texture)
+	: BaseTower(this->Health, tilePosition, texture), nextShot(ammoType[0])
 	, powerup(0), level(PowerLevel::OnlyMouse)
 {}
 
@@ -44,14 +44,56 @@ INF_Lehrer::~INF_Lehrer()
 {
 }
 
-//public Methoden
-void INF_Lehrer::takeDamage(float damage) {
-	health -= damage;
-	if (health <= 0) {
-		alive = false;
+TowerType INF_Lehrer::getTowerType()
+{
+	return this->towerType;
+}
+
+AmmoType INF_Lehrer::getAmmoType() {
+
+	switch (level)
+	{
+	case INF_Lehrer::PowerLevel::OnlyMouse:
+		nextShot = ammoType[0];
+		break;
+	case INF_Lehrer::PowerLevel::MouseKeyboard:
+		nextShot = ammoType[ Randomizer::randomize(2) ];
+		break;
+	case INF_Lehrer::PowerLevel::OnlyKeyboard:
+		nextShot = ammoType[1];
+		break;
+	case INF_Lehrer::PowerLevel::KeyboardMonitor:
+		nextShot = ammoType[Randomizer::randomize(2) +1];
+		break;
+	case INF_Lehrer::PowerLevel::OnlyMonitor:
+		nextShot = ammoType[2];
+		break;
+	default:
+		break;
+	}
+
+	return this->nextShot;
+}
+
+void INF_Lehrer::HasAttacked()
+{
+	this->readyToAttack = false;
+	this->clock.restart();
+	this->remainingAttackTime = sf::milliseconds(0);
+	this->fireRateDiviation = sf::milliseconds(Randomizer::randomize((int)this->maximumFireRateDiviation.asMilliseconds() * 2, -(int)this->maximumFireRateDiviation.asMilliseconds()));
+
+
+
+	if (powerup >= 3 and level != PowerLevel::OnlyMonitor) {
+		((int&)level)++;
+		powerup = 0;
+	}
+	else {
+		powerup++;
 	}
 }
 
+//public Methoden
 void INF_Lehrer::update()
 {
 	if (health <= Health / 5) {
@@ -65,51 +107,8 @@ void INF_Lehrer::update()
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
 
-	if (clock.getElapsedTime() + this->remainingAttackTime >= fireRate + fireRateDiviation) {
-		
-		switch (level)
-		{
-		case INF_Lehrer::PowerLevel::OnlyMouse:
-			AActors::create(AmmoType::Inf_weak, this->body.getPosition());
-			break;
-		case INF_Lehrer::PowerLevel::MouseKeyboard:
-			if (Randomizer::randomize(2) == 1) {
-				AActors::create(AmmoType::Inf_weak, this->body.getPosition());
-			}
-			else {
-				AActors::create(AmmoType::Inf_medium, this->body.getPosition());
-			}
-			break;
-		case INF_Lehrer::PowerLevel::OnlyKeyboard:
-			AActors::create(AmmoType::Inf_medium, this->body.getPosition());
-			break;
-		case INF_Lehrer::PowerLevel::KeyboardMonitor:
-			if (Randomizer::randomize(2) == 1) {
-			AActors::create(AmmoType::Inf_medium, this->body.getPosition());
-			}
-			else {
-			AActors::create(AmmoType::Inf_strong, this->body.getPosition());
-			}
-			break;
-		case INF_Lehrer::PowerLevel::OnlyMonitor:
-			AActors::create(AmmoType::Inf_strong, this->body.getPosition());
-			break;
-		default:
-			break;
-		}
-		if (level != PowerLevel::OnlyMonitor && powerup >= 5) {
-			level = PowerLevel(int(level) + 1);
-		}
-
-
-
-		fireRateDiviation = sf::milliseconds(maximumFireRateDiviation.asMilliseconds() / Randomizer::randomize(9, 1));
-		this->remainingAttackTime = sf::seconds(0);
-		clock.restart();
-	}
-
-	if (!alive) {
-		AActors::destroy(this);
+	if (this->fireRate + this->fireRateDiviation <= this->clock.getElapsedTime() + this->remainingAttackTime) {
+		this->readyToAttack = true;
 	}
 }
 

@@ -1,7 +1,6 @@
 #include "MA_Ammo.h"
 
 #include "Window.h"
-#include "AActors.h"
 
 #include <math.h>
 
@@ -62,22 +61,12 @@ void MA_Ammo::move()
 	
 	this->body.setPosition(pos);
 
-	if (body.getPosition().x >= 1600.f + body.getSize().x / 2.f) {
-		alive = false;
+	if (this->body.getPosition().x >= GameWindow::getMainView().getSize().x) {
+		this->hit = true;
 	}
 }
 
 void MA_Ammo::update()
 {
 	this->move();
-
-	Entity* tmp = AActors::CollisionSingle(this, CollisionType::enemies);
-	if (tmp != nullptr) {
-		tmp->takeDamage(this->damage);
-		alive = false;
-	}
-
-	if (!alive) {
-		AActors::destroy(this);
-	}
 }

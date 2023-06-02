@@ -28,27 +28,24 @@ class Wellen
 		int** pSchueler = 0;
 		sf::Clock* spawnclock;
 		sf::Clock warteclock;
-
-		
-		void WellenEnde(); // Checkt ob alle Schüler in der Welle getötet wurden
-		void SpawnEnde(); // Checkt ob alle Schüler in der Welle gespawnt wurden
-
-		void Wartefunktion(Geld&); //Setzt den Wellenspawn auf Pause
-		void startWartetimer();
-
-		void SpawnEnemy();
-		/*void Time(Actors& test);*/
-
 	public:
+		Wellen();
 
 		void WellenDaten(); // Ließt die Daten aus der Datei aus
 
 		void SortListeSchueler(); // Sortiert die Schüler aus der random Liste in ein Array
+		
+		void WellenEnde(Actors&); // Checkt ob alle Schüler in der Welle getötet wurden
+		void SpawnEnde(); // Checkt ob alle Schüler in der Welle gespawnt wurden
 
-		void Wellenfunktion(Geld&); // 
+		void Wartefunktion(Actors&); //Setzt den Wellenspawn auf Pause
+		void startWartetimer();
 
+		void GeldproWelle(Actors&);
 
-		Wellen();
+		void SpawnEnemy(Actors&);
+		/*void Time(Actors& test);*/
+
 		void setFilename(const std::string&);
 
 		int* getWellenDaten();
