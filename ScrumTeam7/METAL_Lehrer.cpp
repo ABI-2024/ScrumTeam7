@@ -1,10 +1,10 @@
 #include "METAL_Lehrer.h"
 
 #include "Randomizer.h"
-#include "AActors.h"
 
 // public static Variables 
-AllyType METAL_Lehrer::type;
+TowerType METAL_Lehrer::towerType = TowerType::METAL_Lehrer;
+AmmoType METAL_Lehrer::ammoType = AmmoType::METAL_Ammo;
 
 
 // private static Variables 
@@ -44,14 +44,24 @@ METAL_Lehrer::~METAL_Lehrer()
 {
 }
 
-//public Methoden
-void METAL_Lehrer::takeDamage(float damage) {
-	health -= damage;
-	if (health <= 0) {
-		alive = false;
-	}
+TowerType METAL_Lehrer::getTowerType()
+{
+	return this->towerType;
 }
 
+AmmoType METAL_Lehrer::getAmmoType() {
+	return this->ammoType;
+}
+
+void METAL_Lehrer::HasAttacked()
+{
+	this->readyToAttack = false;
+	this->clock.restart();
+	this->remainingAttackTime = sf::milliseconds(0);
+	this->fireRateDiviation = sf::milliseconds(Randomizer::randomize((int)this->maximumFireRateDiviation.asMilliseconds() * 2, -(int)this->maximumFireRateDiviation.asMilliseconds()));
+}
+
+//public Methoden
 void METAL_Lehrer::update()
 {
 	if (health <= Health / 5) {
@@ -65,15 +75,7 @@ void METAL_Lehrer::update()
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
 
-	if (clock.getElapsedTime() + this->remainingAttackTime >= fireRate + fireRateDiviation) {
-		AActors::create(AmmoType::METAL_Ammo, this->body.getPosition());
-
-		fireRateDiviation = sf::milliseconds(maximumFireRateDiviation.asMilliseconds() / Randomizer::randomize(9, 1));
-		this->remainingAttackTime = sf::seconds(0);
-		clock.restart();
-	}
-
-	if (!alive) {
-		AActors::destroy(this);
+	if (this->fireRate + this->fireRateDiviation <= this->clock.getElapsedTime() + this->remainingAttackTime) {
+		this->readyToAttack = true;
 	}
 }

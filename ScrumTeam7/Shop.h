@@ -1,7 +1,6 @@
 #pragma once
+#include "Actors.h"
 #include "Karte.h"
-#include "Geld.h"
-
 #include <vector>
 
 class Shop
@@ -11,15 +10,15 @@ private:
 	int anzahlKarten;
 	sf::Texture* t;
 	Karte** karten; // int cost, int Type, Body, Texture
-	Geld* geld;
+	Actors* actors;
 	int sellection;
 
 	sf::Font font;
 	sf::Text* text;
 
 public:
-	Shop(Geld* nGeld);
-	Shop(Geld* nGeld,int anzahlKarten, Karte** karten);
+	Shop(Actors& actors);
+	Shop(Actors& actors, int anzahlKarten, Karte** karten);
 	~Shop();
 
 	int getSellection();

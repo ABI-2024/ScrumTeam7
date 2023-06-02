@@ -1,5 +1,4 @@
 #include "Wellen.h"
-#include "AActors.h"
 #include <iostream>
 
 Wellen::Wellen() {
@@ -92,8 +91,8 @@ void Wellen::SortListeSchueler() {
 	}
 }
 
-void Wellen::WellenEnde() { // Checkt ob alle Schüler in der Welle getötet wurden
-	if (AActors::enemies->size() == 0) { // Ließt die Anzahl der lebenden Schüler aus
+void Wellen::WellenEnde(Actors& EnemyAlive) { // Checkt ob alle Schüler in der Welle getötet wurden
+	if (EnemyAlive.getEnemy()->size() == 0) { // Ließt die Anzahl der lebenden Schüler aus
 		wellenEnde = true;
 		//delete[] * pSchueler; //Löscht die lehre pSchüler
 		//*pSchueler = nullptr;
@@ -111,15 +110,14 @@ void Wellen::SpawnEnde() { // Checkt ob alle Schüler in der Welle gespawnt wurde
 	}
 }
 
-void Wellen::SpawnEnemy() {
+void Wellen::SpawnEnemy(Actors& test) {
 	SpawnEnde();
 	if (spawnEnde == true) { //Wenn alle Schüler der Welle gespawnt wurden muss die Spawnfunktion nicht gecallt werden
 		return;
 	}
 	if (firstSpawn == true) { //Plichtspawn und Erstellung des Timers
 		for (int i = 1; i <= *pSchueler[0]; i++) {
-
-			/*AActors::create((EnemyType)pSchueler[i][0], { 0, (float)(rand() % 5) });
+			/*test.initializeEnemy((EnemyType)pSchueler[i][0], { 0, (float)(rand() % 5) });
 			pSchueler[i][1] = pSchueler[i][1] - 1;*/
 			spawnclock[i].restart();
 		}
@@ -127,7 +125,7 @@ void Wellen::SpawnEnemy() {
 	}
 	for (int b = 1; b <= *pSchueler[0]; b++) { //Kontinuierlicher Spawn
 		if (pSchueler[b][1] > 0 and spawnclock[b].getElapsedTime() >= sf::seconds(pSchueler[b][2])) { //Überprüfung ob noch Schüler gespawnt werden müssen und ob die notwendige Ziet vergangen ist
-			AActors::create((EnemyType)pSchueler[b][0], { 0, (float)(rand() % 5) });
+			test.initializeEnemy((EnemyType)pSchueler[b][0], { 0, (float)(rand() % 5) });
 			pSchueler[b][1]--;
 			spawnclock[b].restart();
 		}
@@ -139,30 +137,17 @@ void Wellen::startWartetimer() {
 	this->warteTimer = false;
 }
 
-void Wellen::Wartefunktion(Geld& geld) {
+void Wellen::Wartefunktion(Actors& testactor) {
 	if ((int)warteclock.getElapsedTime().asSeconds() > welleDaten[1]) {
 		this->warteTimer = true;
-		geld.addKontostand(200 * (1 + 0.1 * getWelle())); // Geld pro Welle
+		GeldproWelle(testactor);
 		WellenDaten();
 		SortListeSchueler();
 	}
 }
 
-
-void Wellen::Wellenfunktion(Geld& geld) {
-	if (this->geteof() == true) return;
-	this->SpawnEnde();
-	if (this->getspawnEnde() == false) {
-		this->SpawnEnemy();
-	}
-	else {
-		this->WellenEnde();
-	}
-	if (this->getwellenEnde() == true) {
-		if (this->getwarteTimer() == true)
-			this->startWartetimer();
-		this->Wartefunktion(geld);
-	}
+void Wellen::GeldproWelle(Actors& testactor) {
+	testactor.getGeld()->addKontostand(200*(1+0.1*getWelle()));
 }
 
 bool Wellen::getspawnEnde() {
@@ -188,8 +173,8 @@ void Wellen::deletepSchueler() {
 
 /*
 Wellen testwelle;
-this->WelleDaten();
-this->SortListeSchueler(); //geht nicht: Frage an Leo ist Rückgabewert int** wichtig?
+testwelle.WelleDaten();
+testwelle.SortListeSchueler(); //geht nicht: Frage an Leo ist Rückgabewert int** wichtig?
 
 belibige schleife(){
 	maybe wird alles folgende eine eigene Funktion in der Klasse der Schleife?

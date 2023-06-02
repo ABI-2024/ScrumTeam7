@@ -3,8 +3,6 @@
 #include "Window.h"
 #include "Randomizer.h"
 
-#include "AActors.h"
-
 // static Variables
 
 EnemyType TestEnemy::enemyType = EnemyType::TestEnemy;
@@ -46,15 +44,12 @@ void TestEnemy::unLoadTexture()
 
 // Constructur & Destructur
 TestEnemy::TestEnemy(const sf::Vector2f& tilePosition)
-	:BaseEnemy(Health, tilePosition, texture)
+	:BaseEnemy(Health, tilePosition, &texture[0])
 {
 	body.setTexture(&texture[Randomizer::randomize(2)] , false);
 }
 
-TestEnemy::~TestEnemy() 
-{
-	AActors::addCollectedRevenue(this->revenue);
-}
+TestEnemy::~TestEnemy() {}
 
 // public get-Methoden
 int TestEnemy::getRevenue() {
@@ -72,6 +67,17 @@ float TestEnemy::getDamage()
 }
 
 // public Methoden
+bool TestEnemy::CollisionWithTower(sf::FloatRect& Tower)
+{
+	if (sf::FloatRect(this->body.getGlobalBounds()).intersects(Tower)) {
+		movable = false;
+		return 1;
+	}
+	else {
+		return 0;
+	}
+}
+
 void TestEnemy::move()
 {
 	if (movable) {
@@ -95,28 +101,13 @@ void TestEnemy::update()
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
 
-	this->updateStatus_Proc();
-	
-	Entity* temp = AActors::CollisionSingle(this, CollisionType::ally);
-	
-	if (temp != nullptr) {
-		movable = false;
-		if (clock.getElapsedTime() + this->remainingAttackTime  >= this->attackSpeed) {
-			temp->takeDamage(this->Damage);
+	if (this->attackSpeed <= this->clock.getElapsedTime()) {
+		readyToAttack = true;
+	}
 
-			this->remainingAttackTime = sf::seconds(0);
-			clock.restart();
-		}
-	}
-	else {
-		movable = true;
-	}
+	this->updateStatus_Proc();
 
 	this->move();
-
-	if (!alive) {
-		AActors::destroy(this);
-	}
 }
 
 

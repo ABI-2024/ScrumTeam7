@@ -3,8 +3,6 @@
 #include "Window.h"
 #include "Menu_Options.h"
 
-#include "Music.h"
-
 sf::Vector2f Level::TileSelection()
 {
     // Hier wird die Tile-Position ermittelt
@@ -44,7 +42,7 @@ void Level::buttonEvents()
     case 0:
         // Spiel geht weiter
         paused = false;
-        AActors::continueEntities();
+        actors.ContinueActors();
         break;
     case 1:
         // Optionsmenu wird geoeffnet
@@ -59,8 +57,25 @@ void Level::buttonEvents()
     }
 }
 
+void Level::Wellenfunktion()
+{
+    if (welle.geteof() == true) return;
+    welle.SpawnEnde();
+    if (welle.getspawnEnde() == false) {
+        welle.SpawnEnemy(actors);
+    }
+    else {
+        welle.WellenEnde(actors);
+    }
+    if (welle.getwellenEnde() == true) {
+        if (welle.getwarteTimer() == true)
+            welle.startWartetimer();
+        welle.Wartefunktion(actors);
+    }
+}
+
 Level::Level()
-    : active(true), paused(false), shop(&geld)
+    : active(true), paused(false), shop(actors)
 
 {
     background.setSize(GameWindow::getMainView().getSize());
@@ -83,12 +98,6 @@ Level::~Level()
 
 void Level::start(std::string filename)
 {
-
-    Music::startMusic();
-
-    shop.setKarten(TowerSelect::openTowerSelect());
-
-
     sf::Vector2f pos;
 
     welle.setFilename(filename);
@@ -101,9 +110,12 @@ void Level::start(std::string filename)
 
         GameWindow::updateDeltaTime();
 
-        welle.Wellenfunktion(geld);
-        
+        Wellenfunktion();
         // Events
+
+        for (BaseEnemy* test : BaseEnemy::enemies) {
+            if (test->getPosition().x < 400) active = false;
+        }
         while (Window.pollEvent(GameEvent)) {
             switch (GameEvent.type)
             {
@@ -117,10 +129,10 @@ void Level::start(std::string filename)
                 // Togglet Pausierung
                 if (GameEvent.key.code == sf::Keyboard::Escape) {
                     if (paused) {
-                        AActors::continueEntities();
+                        actors.ContinueActors();
                     }
                     else {
-                        AActors::pauseEntities();
+                        actors.pauseActors();
                     }
                     paused = !paused;
                 }
@@ -131,11 +143,14 @@ void Level::start(std::string filename)
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
                         shop.buttonEvents(TileSelection());
+
+                        //// Spawnt Tower
+                        //actors.initializeTower(TowerType::TestTower, this->TileSelection());
                     }
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 
                         // Spawnt Enemy
-                        AActors::create(EnemyType::TestEnemy, this->TileSelection());
+                        actors.initializeEnemy(EnemyType::TestEnemy, this->TileSelection());
                     }
                 }
                 else {
@@ -161,7 +176,7 @@ void Level::start(std::string filename)
 
             case sf::Event::LostFocus:
                 if (!paused) {
-                    AActors::pauseEntities();
+                    actors.pauseActors();
                 }
                 paused = 1;
 
@@ -174,7 +189,9 @@ void Level::start(std::string filename)
 
         // Updates
         if (!paused) {
-            AActors::updateEntities();
+            actors.updateActors();
+
+            actors.Collisions();
         }
         else {
             menu.update();
@@ -190,7 +207,7 @@ void Level::start(std::string filename)
             Window.draw(selecteionRectangle[i]);
         }
 
-        AActors::renderEntities();
+        actors.renderActors();
 
         shop.render();
 
@@ -202,5 +219,4 @@ void Level::start(std::string filename)
 
     }
 
-    Music::stopMusic();
 }

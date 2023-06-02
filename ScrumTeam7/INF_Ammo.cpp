@@ -1,7 +1,6 @@
 #include "INF_Ammo.h"
 
 #include "Window.h"
-#include "AActors.h"
 
 // public static Variables
 AmmoType INF_Ammo::ammoType[3] = { AmmoType::Inf_weak, AmmoType::Inf_medium, AmmoType::Inf_strong };
@@ -92,22 +91,12 @@ void INF_Ammo::move()
 {
 	this->body.move(this->dir * dt);
 
-	if (body.getPosition().x >= 1600.f + body.getSize().x / 2.f) {
-		alive = false;
+	if (this->body.getPosition().x >= GameWindow::getMainView().getSize().x) {
+		this->hit = true;
 	}
 }
 
 void INF_Ammo::update()
 {
 	this->move();
-
-	Entity* tmp = AActors::CollisionSingle(this, CollisionType::enemies);
-	if (tmp != nullptr) {
-		tmp->takeDamage(this->getDamage());
-		alive = false;
-	}
-
-	if (!alive) {
-		AActors::destroy(this);
-	}
 }

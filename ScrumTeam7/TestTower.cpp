@@ -1,10 +1,9 @@
 #include "TestTower.h"
-
 #include "Randomizer.h"
-#include "AActors.h"
 
 // public static Variables 
-AllyType TestTower::type;
+TowerType TestTower::towerType = TowerType::TestTower;
+AmmoType TestTower::ammoType = AmmoType::TestAmmo;
 
 
 // private static Variables 
@@ -44,15 +43,24 @@ TestTower::~TestTower()
 {
 }
 
-
-//public Methoden
-void TestTower::takeDamage(float damage) {
-	health -= damage;
-	if (health <= 0) {
-		alive = false;
-	}
+TowerType TestTower::getTowerType()
+{
+	return this->towerType;
 }
 
+AmmoType TestTower::getAmmoType() {
+	return this->ammoType;
+}
+
+void TestTower::HasAttacked()
+{
+	this->readyToAttack = false;
+	this->clock.restart();
+	this->remainingAttackTime = sf::milliseconds(0);
+	this->fireRateDiviation = sf::milliseconds(Randomizer::randomize( (int)this->maximumFireRateDiviation.asMilliseconds()*2 , -(int)this->maximumFireRateDiviation.asMilliseconds()) );
+}
+
+//public Methoden
 void TestTower::update()
 {
 	if (health <= Health / 5) {
@@ -66,16 +74,8 @@ void TestTower::update()
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
 
-	if (clock.getElapsedTime()+ this->remainingAttackTime >= fireRate+ fireRateDiviation) {
-		AActors::create(AmmoType::TestAmmo, this->body.getPosition());
-		
-		fireRateDiviation = sf::milliseconds( maximumFireRateDiviation.asMilliseconds() / Randomizer::randomize(9, 1) );
-		this->remainingAttackTime = sf::seconds(0);
-		clock.restart();
-	}
-
-	if (!alive) {
-		AActors::destroy(this);
+	if (this->fireRate + this->fireRateDiviation <= this->clock.getElapsedTime() + this->remainingAttackTime) {
+		this->readyToAttack = true;
 	}
 }
 
