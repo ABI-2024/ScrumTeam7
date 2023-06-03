@@ -287,11 +287,10 @@ void AActors::destroy(Entity* other)
 	}
 }
 
-Entity* AActors::CollisionSingle(Entity* other, const CollisionType& type)
+Entity* AActors::CollisionSingle(sf::FloatRect hitbox, const CollisionType& type)
 {
 	Entity* ans = nullptr;
 	std::vector<Entity*>* temp = nullptr;
-	sf::FloatRect hitbox = other->getHitBox();
 
 	switch (type) {
 	case CollisionType::ally:
@@ -318,11 +317,10 @@ Entity* AActors::CollisionSingle(Entity* other, const CollisionType& type)
 	return ans;
 }
 
-std::vector<Entity*>* AActors::CollisionPoly(Entity* other, const CollisionType& type)
+std::vector<Entity*>* AActors::CollisionPoly(sf::FloatRect hitbox, const CollisionType& type)
 {
 	std::vector<Entity*>* ans = new 	std::vector<Entity*>;
 	std::vector<Entity*>* temp = nullptr;
-	sf::FloatRect hitbox = other->getHitBox();
 
 	switch (type) {
 	case CollisionType::ally:
@@ -350,6 +348,7 @@ std::vector<Entity*>* AActors::CollisionPoly(Entity* other, const CollisionType&
 
 void AActors::updateEntities()
 {
+	BaseTower::areEnemiesOnLine(enemies);
 
 	for (int i = 0; i < entities->size(); i++) {
 		// std::vector kann wie ein Array behandelt werden

@@ -64,7 +64,7 @@ void EN_Lehrer::update()
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
 
-	if (clock.getElapsedTime() + this->remainingAttackTime >= fireRate + fireRateDiviation) {
+	if (clock.getElapsedTime() + this->remainingAttackTime >= fireRate + fireRateDiviation && enemyOnLines[(int)tilePosition.y]) {
 
 		switch (Randomizer::randomize(4)) {
 		case 0:

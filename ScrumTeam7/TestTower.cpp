@@ -66,7 +66,7 @@ void TestTower::update()
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
 
-	if (clock.getElapsedTime()+ this->remainingAttackTime >= fireRate+ fireRateDiviation) {
+	if (clock.getElapsedTime()+ this->remainingAttackTime >= fireRate+ fireRateDiviation && enemyOnLines[(int)tilePosition.y]) {
 		AActors::create(AmmoType::TestAmmo, this->body.getPosition());
 		
 		fireRateDiviation = sf::milliseconds( maximumFireRateDiviation.asMilliseconds() / Randomizer::randomize(9, 1) );

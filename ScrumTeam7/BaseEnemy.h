@@ -25,6 +25,7 @@ public:
 	BaseEnemy(float Health,	sf::Vector2f tilePosition, sf::Texture* texture);
 	virtual ~BaseEnemy();
 
+	sf::Vector2f getTilePosition()  override;
 	const CollisionType& getCollisionType() override;
 
 	virtual EnemyType getEnemyType() = 0;

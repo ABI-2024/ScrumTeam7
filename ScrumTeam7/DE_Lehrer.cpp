@@ -61,12 +61,13 @@ void DE_Lehrer::update()
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
 
-	if (clock.getElapsedTime() + this->remainingAttackTime >= fireRate + fireRateDiviation) {
-		AActors::create(AmmoType::DE_Ammo, this->body.getPosition());
-
-		fireRateDiviation = sf::milliseconds(maximumFireRateDiviation.asMilliseconds() / Randomizer::randomize(9, 1));
-		this->remainingAttackTime = sf::seconds(0);
-		clock.restart();
+	if (clock.getElapsedTime() + this->remainingAttackTime >= fireRate + fireRateDiviation && enemyOnLines[(int)tilePosition.y]) {
+		if (AActors::CollisionSingle(sf::FloatRect(body.getPosition(), { 42.1875f * 32.f / 9.f * 1.5f, 1.f }), CollisionType::enemies) != nullptr) {
+			AActors::create(AmmoType::DE_Ammo, this->body.getPosition());
+			fireRateDiviation = sf::milliseconds(maximumFireRateDiviation.asMilliseconds() / Randomizer::randomize(9, 1));
+			this->remainingAttackTime = sf::seconds(0);
+			clock.restart();
+		}
 	}
 
 	if (!alive) {

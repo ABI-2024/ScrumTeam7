@@ -18,6 +18,11 @@ BaseEnemy::BaseEnemy(float Health, sf::Vector2f tilePosition, sf::Texture* textu
 BaseEnemy::~BaseEnemy()
 {}
 
+sf::Vector2f BaseEnemy::getTilePosition()
+{
+	return this->tilePosition;
+}
+
 const CollisionType& BaseEnemy::getCollisionType()
 {
 	return CollisionType::enemies;

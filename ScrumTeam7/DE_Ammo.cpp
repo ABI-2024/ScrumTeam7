@@ -93,7 +93,7 @@ void DE_Ammo::update()
 	std::vector<Entity*>* temp = nullptr;
 	if (alive && state == AttackState::Hit) {
 
-		temp = AActors::CollisionPoly(this,CollisionType::enemies);
+		temp = AActors::CollisionPoly(body.getGlobalBounds(),CollisionType::enemies);
 		for (int i = 0; i < temp->size(); i++) {
 			(*temp)[i]->takeDamage(this->damage);
 		}

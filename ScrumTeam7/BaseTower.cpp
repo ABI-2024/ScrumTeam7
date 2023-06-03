@@ -2,6 +2,39 @@
 
 #include "Window.h"
 
+bool BaseTower::enemyOnLines[5] = { false,false,false,false,false };
+
+void BaseTower::areEnemiesOnLine(std::vector<Entity*>* enemies)
+{
+	for (int i = 0; i < 5; i++) {
+		enemyOnLines[i] = false;
+	}
+
+	for (int i = 0; i < enemies->size(); i++) {
+		switch ( (int)(*enemies)[i]->getTilePosition().y)
+		{
+		case 0:
+			enemyOnLines[0] = true;
+			break;
+		case 1:
+			enemyOnLines[1] = true;
+			break;
+		case 2:
+			enemyOnLines[2] = true;
+			break;
+		case 3:
+			enemyOnLines[3] = true;
+			break;
+		case 4:
+			enemyOnLines[4] = true;
+			break;
+		default:
+			break;
+		}
+	}
+
+}
+
 // Constructur & Destructur
 BaseTower::BaseTower(float Health, sf::Vector2f tilePosition, sf::Texture* texture)
 	: Entity({ 75.f, 150.f }, { 400 + 150 * tilePosition.x, 150 + 150 * tilePosition.y }), health(Health), tilePosition(tilePosition)

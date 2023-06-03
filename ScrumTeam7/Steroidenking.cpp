@@ -109,7 +109,7 @@ void Steroidenking::update()
 	if (running) {
 		type = 1;
 	}
-	Entity* temp = AActors::CollisionSingle(this, CollisionType::ally);
+	Entity* temp = AActors::CollisionSingle(body.getGlobalBounds(), CollisionType::ally);
 
 	if (temp != nullptr) {
 		running = false;

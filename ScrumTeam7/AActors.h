@@ -45,8 +45,8 @@ public:
 
 	static void destroy(Entity*);
 
-	static Entity* CollisionSingle(Entity*, const CollisionType&);
-	static std::vector<Entity*>* CollisionPoly(Entity*, const CollisionType&);
+	static Entity* CollisionSingle(sf::FloatRect, const CollisionType&);
+	static std::vector<Entity*>* CollisionPoly(sf::FloatRect, const CollisionType&);
 
 	static void updateEntities();
 	static void renderEntities();

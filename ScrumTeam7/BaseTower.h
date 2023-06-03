@@ -18,7 +18,9 @@ protected:
 	sf::Time remainingAttackTime;
 	sf::Time fireRateDiviation;
 
+	static bool enemyOnLines[5];
 public:
+	static void areEnemiesOnLine(std::vector<Entity*>* enemies);
 
 	BaseTower(float Health, sf::Vector2f tilePosition, sf::Texture* texture);
 	virtual ~BaseTower();

@@ -59,15 +59,7 @@ float METAL_Ammo::getDamage()
 
 void METAL_Ammo::update()
 {
-	if (timer.getElapsedTime() <= damageWindowStart) {
-
-		if (state != AttackState::Accelerate) {
-			body.setSize(sf::Vector2f(42.1875f * 18.f / 9.f, 42.1875f * 11.f / 9.f) * 1.5f);
-			body.setTexture(&texture[0], 1);
-			state = AttackState::Accelerate;
-		}
-	}
-	else if (timer.getElapsedTime() >= damageWindowStart) {
+	if (timer.getElapsedTime() >= damageWindowStart) {
 		if (state != AttackState::Hit) {
 			body.setSize(sf::Vector2f(42.1875f * 48.f / 9.f, 42.1875f * 10.f / 9.f) * 1.5f);
 			body.setTexture(&texture[0], 1);
@@ -78,7 +70,7 @@ void METAL_Ammo::update()
 	std::vector<Entity*>* temp = nullptr;
 	if (alive && state == AttackState::Hit) {
 
-		temp = AActors::CollisionPoly(this, CollisionType::enemies);
+		temp = AActors::CollisionPoly(body.getGlobalBounds(), CollisionType::enemies);
 		for (int i = 0; i < temp->size(); i++) {
 			(*temp)[i]->takeDamage(this->damage);
 		}

@@ -91,7 +91,7 @@ void Nerd::update()
 
 	this->updateStatus_Proc();
 
-	Entity* temp = AActors::CollisionSingle(this, CollisionType::ally);
+	Entity* temp = AActors::CollisionSingle(body.getGlobalBounds(), CollisionType::ally);
 
 	if (temp != nullptr) {
 		movable = false;

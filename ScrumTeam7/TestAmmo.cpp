@@ -66,7 +66,7 @@ void TestAmmo::update()
 {
 	this->move();
 
-	Entity* tmp =  AActors::CollisionSingle(this, CollisionType::enemies);
+	Entity* tmp =  AActors::CollisionSingle(body.getGlobalBounds(), CollisionType::enemies);
 	if (tmp != nullptr) {
 		tmp->takeDamage(this->damage);
 		alive = false;
