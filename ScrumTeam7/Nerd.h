@@ -20,7 +20,7 @@ public:
 	static void unLoadTexture();
 
 	Nerd(const sf::Vector2f& tilePosition);
-	~Nerd();
+	virtual ~Nerd();
 
 	int getRevenue() override;
 

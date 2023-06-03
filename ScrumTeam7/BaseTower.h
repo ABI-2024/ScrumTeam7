@@ -21,7 +21,7 @@ protected:
 public:
 
 	BaseTower(float Health, sf::Vector2f tilePosition, sf::Texture* texture);
-	~BaseTower();
+	virtual ~BaseTower();
 
 	sf::Vector2f getTilePosition() override;
 	const CollisionType& getCollisionType() override;

@@ -22,7 +22,7 @@ public:
 	static void unLoadTexture();
 
 	TestEnemy(const sf::Vector2f& tilePosition);
-	~TestEnemy();
+	virtual ~TestEnemy();
 
 	int getRevenue() override;
 

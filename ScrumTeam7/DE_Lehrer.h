@@ -19,7 +19,7 @@ public:
 	static void unLoadTexture();
 
 	DE_Lehrer(sf::Vector2f tilePosition);
-	~DE_Lehrer();
+	virtual ~DE_Lehrer();
 
 	void takeDamage(float) override;
 

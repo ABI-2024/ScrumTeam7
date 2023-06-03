@@ -24,7 +24,7 @@ public:
 	static void unLoadTexture();
 
 	Steroidenking(const sf::Vector2f& tilePosition);
-	~Steroidenking();
+	virtual ~Steroidenking();
 
 	int getRevenue() override;
 

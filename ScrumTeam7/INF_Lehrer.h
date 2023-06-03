@@ -29,7 +29,7 @@ public:
 	static void unLoadTexture();
 
 	INF_Lehrer(sf::Vector2f tilePosition);
-	~INF_Lehrer();
+	virtual ~INF_Lehrer();
 
 	void takeDamage(float) override;
 

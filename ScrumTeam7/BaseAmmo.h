@@ -15,7 +15,7 @@ protected:
 
 public:
 	BaseAmmo(const sf::Vector2f& TowerPosition, sf::Texture * texture); // texture nicht hier setzten
-	~BaseAmmo();
+	virtual ~BaseAmmo();
 
 	const CollisionType& getCollisionType() override;
 		

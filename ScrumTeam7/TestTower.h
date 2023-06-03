@@ -20,7 +20,7 @@ public:
 	static void unLoadTexture();
 
 	TestTower(sf::Vector2f tilePosition);
-	~TestTower();
+	virtual ~TestTower();
 
 	void takeDamage(float) override;
 

@@ -24,7 +24,7 @@ public:
 	static void unLoadTexture();
 
 	DE_Ammo(sf::Vector2f TowerPosition);
-	~DE_Ammo();
+	virtual ~DE_Ammo();
 
 	AmmoType getAmmoType() override;
 	float getDamage() override;

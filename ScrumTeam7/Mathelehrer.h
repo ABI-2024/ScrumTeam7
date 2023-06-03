@@ -20,7 +20,7 @@ public:
 	static void unLoadTexture();
 
 	Mathelehrer(sf::Vector2f tilePosition);
-	~Mathelehrer();
+	virtual ~Mathelehrer();
 
 	void takeDamage(float) override;
 

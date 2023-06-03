@@ -17,7 +17,7 @@ public:
 	static void unLoadTexture();
 
 	TestAmmo(sf::Vector2f TowerPosition);
-	~TestAmmo();
+	virtual ~TestAmmo();
 
 
 	AmmoType getAmmoType() override;

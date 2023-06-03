@@ -23,7 +23,7 @@ protected:
 public:
 
 	BaseEnemy(float Health,	sf::Vector2f tilePosition, sf::Texture* texture);
-	~BaseEnemy();
+	virtual ~BaseEnemy();
 
 	const CollisionType& getCollisionType() override;
 
