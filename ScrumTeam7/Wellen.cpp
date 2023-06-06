@@ -23,24 +23,34 @@ void Wellen::WellenDaten() {
 	schuelerDaten->clear();
 
 	for (int n = 0; n < welleAnz; n++) { //Skippt bis zur relevanten Teil im Dokument
-		std::getline(Datei, tmp, '0');
-	}
-	for (int i = 0; i < 2; i++) { //Ließt Wellendaten aus
-		std::getline(Datei, tmp, ';');
 		if (Datei.eof()) {
 			eof = true;
 			return;
 		}
+		std::getline(Datei, tmp, '0');
+	}
+	for (int i = 0; i < 2; i++) { //Ließt Wellendaten aus
+		if (Datei.eof()) {
+			eof = true;
+			return;
+		}
+		std::getline(Datei, tmp, ';');
+		while (tmp.empty() == 1) {
+			std::getline(Datei, tmp, ';');
+		}
 		welleDaten[i] = stoi(tmp);
 	}
 	do { //Ließt Schülerdaten aus
+		if (Datei.eof()) {
+			eof = true;
+			return;
+		}
 		std::getline(Datei, tmp, ';');
 		schuelerDaten->push_back(stoi(tmp));
 		dateiposition = Datei.tellg();
 		Datei.get(debug);
 		Datei.seekg(dateiposition);
 	} while (debug != '0');
-	/*std::getline(wellenDaten, tmp, '\n');*/
 	addWelle();
 	Datei.close();
 }
