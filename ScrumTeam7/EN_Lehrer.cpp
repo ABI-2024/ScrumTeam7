@@ -47,7 +47,7 @@ EN_Lehrer::~EN_Lehrer()
 void EN_Lehrer::takeDamage(float damage) {
 health -= damage;
 if (health <= 0) {
-	alive = false;
+	status.alive = false;
 }
 }
 
@@ -88,7 +88,7 @@ void EN_Lehrer::update()
 		clock.restart();
 	}
 
-	if (!alive) {
+	if (!status.alive) {
 		AActors::destroy(this);
 	}
 

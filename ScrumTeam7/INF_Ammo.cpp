@@ -93,7 +93,7 @@ void INF_Ammo::move()
 	this->body.move(this->dir * dt);
 
 	if (body.getPosition().x >= 1600.f + body.getSize().x / 2.f) {
-		alive = false;
+		status.alive = false;
 	}
 }
 
@@ -104,10 +104,10 @@ void INF_Ammo::update()
 	Entity* tmp = AActors::CollisionSingle(body.getGlobalBounds(), CollisionType::enemies);
 	if (tmp != nullptr) {
 		tmp->takeDamage(this->getDamage());
-		alive = false;
+		status.alive = false;
 	}
 
-	if (!alive) {
+	if (!status.alive) {
 		AActors::destroy(this);
 	}
 }

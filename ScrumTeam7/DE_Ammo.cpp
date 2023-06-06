@@ -44,7 +44,6 @@ void DE_Ammo::unLoadTexture()
 DE_Ammo::DE_Ammo(sf::Vector2f TowerPosition)
 	:BaseAmmo(TowerPosition, &texture[0]), state(AttackState::Book)
 {
-	status_Effect = {Status_Type::stun, 20.f, sf::seconds(0) };
 	body.setSize(sf::Vector2f(42.1875f * 8.f/9.f, 42.1875f * 11.f/9.f)*1.5f );
 	body.setOrigin({ 0.f, body.getSize().y /2.f});
 }
@@ -91,18 +90,19 @@ void DE_Ammo::update()
 	}
 
 	std::vector<Entity*>* temp = nullptr;
-	if (alive && state == AttackState::Hit) {
+	if (status.alive && state == AttackState::Hit) {
 
 		temp = AActors::CollisionPoly(body.getGlobalBounds(),CollisionType::enemies);
 		for (int i = 0; i < temp->size(); i++) {
+			(*temp)[i]->addStatusEffect( StatusEffect( StatusType::stun, sf::milliseconds(500), 25.f ) );
 			(*temp)[i]->takeDamage(this->damage);
 		}
 
-		alive = false;
+		status.alive = false;
 		delete temp;
 	}
 
-	if (!alive && timer.getElapsedTime() >= this->activeTime) {
+	if (!status.alive && timer.getElapsedTime() >= this->activeTime) {
 		AActors::destroy(this);
 	}
 }

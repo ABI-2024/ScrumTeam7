@@ -48,7 +48,7 @@ INF_Lehrer::~INF_Lehrer()
 void INF_Lehrer::takeDamage(float damage) {
 	health -= damage;
 	if (health <= 0) {
-		alive = false;
+		status.alive = false;
 	}
 }
 
@@ -108,7 +108,7 @@ void INF_Lehrer::update()
 		clock.restart();
 	}
 
-	if (!alive) {
+	if (!status.alive) {
 		AActors::destroy(this);
 	}
 }

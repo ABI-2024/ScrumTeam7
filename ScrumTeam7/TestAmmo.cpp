@@ -36,7 +36,6 @@ void TestAmmo::unLoadTexture()
 TestAmmo::TestAmmo(sf::Vector2f TowerPosition)
 	:BaseAmmo(TowerPosition, texture)
 {
-	this->alive = true;
 }
 
 TestAmmo::~TestAmmo() {}
@@ -58,7 +57,7 @@ void TestAmmo::move()
 	this->body.move(this->dir * dt);
 
 	if (body.getPosition().x >= 1600.f + body.getSize().x/2.f) {
-		alive = false;
+		status.alive = false;
 	}
 }
 
@@ -69,12 +68,12 @@ void TestAmmo::update()
 	Entity* tmp =  AActors::CollisionSingle(body.getGlobalBounds(), CollisionType::enemies);
 	if (tmp != nullptr) {
 		tmp->takeDamage(this->damage);
-		alive = false;
+		status.alive = false;
 	}
 
 
 
-	if (!alive) {
+	if (!status.alive) {
 		AActors::destroy(this);
 	}
 }

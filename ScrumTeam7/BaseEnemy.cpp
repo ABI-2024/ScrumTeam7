@@ -7,6 +7,8 @@
 BaseEnemy::BaseEnemy(float Health, sf::Vector2f tilePosition, sf::Texture* texture)
 	: Entity({ 75.f, 150.f }, { GameWindow::getMainView().getSize().x, 150.f + 150.f * tilePosition.y }), movable(true), health(Health), tilePosition(tilePosition)
 {
+	this->statusprocs = new std::vector< StatusProc*>;
+
 	this->body.setTexture(texture, 0);
 
 	this->shadow.setPosition(this->body.getPosition().x - this->body.getSize().x / 8.f, this->body.getPosition().y + this->body.getSize().y / 2);
@@ -46,33 +48,11 @@ void BaseEnemy::takeDamage(float damage)
 {
 	health -= damage;
 	if (health <= 0) {
-		AActors::destroy(this);
+		status.alive = false;
 	}
 }
 
 // public Methoden
-
-void BaseEnemy::addStatus_Proc(Status_Effect nStatus)
-{
-	procs.push_back(Status_Proc<BaseEnemy>(nStatus, (BaseEnemy*)this));
-}
-
-void BaseEnemy::updateStatus_Proc()
-{
-	for (auto i = procs.begin(); i != procs.end(); i++) {
-		i->effect();
-
-		if (!i->active) {
-			i = procs.erase(i);
-			if (i == (procs.end())) {
-				break;
-			}
-		}
-	}
-}
-
-
-
 void BaseEnemy::pauseEntitiy()
 {
 	this->remainingAttackTime = this->clock.restart() + this->remainingAttackTime ;

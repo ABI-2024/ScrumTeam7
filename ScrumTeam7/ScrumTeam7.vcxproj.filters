@@ -61,6 +61,12 @@
     <Filter Include="Headerdateien\Level">
       <UniqueIdentifier>{e677e1c3-b788-4bb8-ba18-178cec9558b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\Entities\Status">
+      <UniqueIdentifier>{4a97866e-e930-40d4-860a-6e24abaed1f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Entities\Status">
+      <UniqueIdentifier>{8adad8fd-a841-444a-9b4c-b8a17c5780bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -174,16 +180,7 @@
     <ClCompile Include="Level.cpp">
       <Filter>Quelldateien\Level</Filter>
     </ClCompile>
-    <ClCompile Include="Button2.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="TowerSelect.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Music.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="AActors.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="METAL_Ammo.cpp">
@@ -191,6 +188,27 @@
     </ClCompile>
     <ClCompile Include="Level_Selector.cpp">
       <Filter>Quelldateien\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="AActors.cpp">
+      <Filter>Quelldateien\Game Logik</Filter>
+    </ClCompile>
+    <ClCompile Include="TowerSelect.cpp">
+      <Filter>Quelldateien\Game Logik\Shop</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityStatus.cpp">
+      <Filter>Quelldateien\Entities\Status</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusEffect.cpp">
+      <Filter>Quelldateien\Entities\Status</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusProc.cpp">
+      <Filter>Quelldateien\Entities\Status</Filter>
+    </ClCompile>
+    <ClCompile Include="Burn.cpp">
+      <Filter>Quelldateien\Entities\Status</Filter>
+    </ClCompile>
+    <ClCompile Include="Stun.cpp">
+      <Filter>Quelldateien\Entities\Status</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,9 +287,6 @@
     <ClInclude Include="INF_Ammo.h">
       <Filter>Headerdateien\Entities\Header Ammo</Filter>
     </ClInclude>
-    <ClInclude Include="Status_Effect.h">
-      <Filter>Quelldateien</Filter>
-    </ClInclude>
     <ClInclude Include="EN_Ammo.h">
       <Filter>Headerdateien\Entities\Header Ammo</Filter>
     </ClInclude>
@@ -305,16 +320,7 @@
     <ClInclude Include="Level.h">
       <Filter>Headerdateien\Level</Filter>
     </ClInclude>
-    <ClInclude Include="Button2.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="TowerSelect.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Music.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="AActors.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="METAL_Ammo.h">
@@ -325,6 +331,27 @@
     </ClInclude>
     <ClInclude Include="Level_Selector.h">
       <Filter>Headerdateien\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="AActors.h">
+      <Filter>Headerdateien\Game Logik</Filter>
+    </ClInclude>
+    <ClInclude Include="TowerSelect.h">
+      <Filter>Headerdateien\Game Logik\Shop</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityStatus.h">
+      <Filter>Headerdateien\Entities\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusEffect.h">
+      <Filter>Headerdateien\Entities\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusProc.h">
+      <Filter>Headerdateien\Entities\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="Burn.h">
+      <Filter>Headerdateien\Entities\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="Stun.h">
+      <Filter>Headerdateien\Entities\Status</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

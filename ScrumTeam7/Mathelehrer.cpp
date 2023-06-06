@@ -48,7 +48,7 @@ Mathelehrer::~Mathelehrer()
 void Mathelehrer::takeDamage(float damage) {
 	health -= damage;
 	if (health <= 0) {
-		alive = false;
+		status.alive = false;
 	}
 }
 
@@ -73,7 +73,7 @@ void Mathelehrer::update()
 		clock.restart();
 	}
 
-	if (!alive) {
+	if (!status.alive) {
 		AActors::destroy(this);
 	}
 }

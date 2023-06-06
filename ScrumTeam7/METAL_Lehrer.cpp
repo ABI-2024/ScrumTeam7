@@ -48,7 +48,7 @@ METAL_Lehrer::~METAL_Lehrer()
 void METAL_Lehrer::takeDamage(float damage) {
 	health -= damage;
 	if (health <= 0) {
-		alive = false;
+		status.alive = false;
 	}
 }
 
@@ -75,7 +75,7 @@ void METAL_Lehrer::update()
 		}
 	}
 
-	if (!alive) {
+	if (!status.alive) {
 		AActors::destroy(this);
 	}
 }

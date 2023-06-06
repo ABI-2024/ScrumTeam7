@@ -4,7 +4,7 @@
 
 // Constructur & Destructur
 BaseAmmo::BaseAmmo(const sf::Vector2f& TowerPosition, sf::Texture* texture)
-	: Entity(sf::Vector2f(42.1875f, 42.1875f), TowerPosition), status_Effect(Status_Type::non, 0.f, sf::milliseconds(0))
+	: Entity(sf::Vector2f(42.1875f, 42.1875f), TowerPosition)
 {
 
 	this->body.setTexture(texture, 0);

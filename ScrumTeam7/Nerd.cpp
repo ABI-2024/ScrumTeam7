@@ -89,11 +89,11 @@ void Nerd::update()
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
 
-	this->updateStatus_Proc();
+	updateStatusprocs(true, true);
 
 	Entity* temp = AActors::CollisionSingle(body.getGlobalBounds(), CollisionType::ally);
 
-	if (temp != nullptr) {
+	if (temp != nullptr && status.canAttack) {
 		movable = false;
 		if (clock.getElapsedTime() + this->remainingAttackTime >= this->attackSpeed) {
 			temp->takeDamage(this->Damage);
@@ -106,9 +106,11 @@ void Nerd::update()
 		movable = true;
 	}
 
-	this->move();
+	if (status.canWalk) {
+		this->move();
+	}
 
-	if (!alive) {
+	if (!status.alive) {
 		AActors::destroy(this);
 	}
 }

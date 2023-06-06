@@ -44,7 +44,7 @@ DE_Lehrer::~DE_Lehrer()
 void DE_Lehrer::takeDamage(float damage) {
 	health -= damage;
 	if (health <= 0) {
-		alive = false;
+		status.alive = false;
 	}
 }
 
@@ -70,7 +70,7 @@ void DE_Lehrer::update()
 		}
 	}
 
-	if (!alive) {
+	if (!status.alive) {
 		AActors::destroy(this);
 	}
 }

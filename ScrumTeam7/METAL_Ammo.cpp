@@ -38,7 +38,6 @@ void METAL_Ammo::unLoadTexture()
 METAL_Ammo::METAL_Ammo(sf::Vector2f TowerPosition)
 	:BaseAmmo(TowerPosition, texture), state(AttackState::Accelerate)
 {
-	status_Effect = { Status_Type::fire, 100.f, sf::seconds(1) };
 	body.setSize(sf::Vector2f(42.1875f * 48.f / 9.f, 42.1875f * 10.f / 9.f) * 1.5f);
 	body.setOrigin({ 0.f, body.getSize().y / 2.f });
 }
@@ -68,18 +67,19 @@ void METAL_Ammo::update()
 	}
 
 	std::vector<Entity*>* temp = nullptr;
-	if (alive && state == AttackState::Hit) {
+	if (status.alive && state == AttackState::Hit) {
 
 		temp = AActors::CollisionPoly(body.getGlobalBounds(), CollisionType::enemies);
 		for (int i = 0; i < temp->size(); i++) {
+			(*temp)[i]->addStatusEffect( StatusEffect(StatusType::burn, sf::milliseconds(1000), 100.f) );
 			(*temp)[i]->takeDamage(this->damage);
 		}
 
-		alive = false;
+		status.alive = false;
 		delete temp;
 	}
 
-	if (!alive && timer.getElapsedTime() >= this->activeTime) {
+	if (!status.alive && timer.getElapsedTime() >= this->activeTime) {
 		AActors::destroy(this);
 	}
 }

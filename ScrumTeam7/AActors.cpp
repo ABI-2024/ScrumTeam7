@@ -21,7 +21,7 @@
 #include "Nerd.h"
 #include "Steroidenking.h"
 
-	// ------------------------------------------ for class Geld
+	// ------------------------------------------ Nebenfuktion
 int AActors::collectedRevenue = 0;
 
 int AActors::getCollectedRevenue() {
@@ -32,7 +32,9 @@ int AActors::getCollectedRevenue() {
 void AActors::addCollectedRevenue(int add) {
 	collectedRevenue += add;
 }
-	// ------------------------------------------ for class Geld
+// ------------------------------------------ Nebenfuktion
+
+// ------------------------------------------ Hauptfunktion
 
 std::vector<Entity*>* AActors::entities = nullptr;
 
@@ -51,6 +53,7 @@ void AActors::clearSeprateVectors(std::vector<Entity*>* vector, Entity* other)
 	}
 }
 
+// Constructur & Destructur
 AActors::AActors()
 {
 	entities = new std::vector<Entity*>;
@@ -126,11 +129,13 @@ AActors::~AActors()
 	Steroidenking::unLoadTexture();
 }
 
+// Alle create-Fuktionen
 bool AActors::create(const AllyType& type, const sf::Vector2f& position)
 {
 	bool created = 1;
 	
-	switch (type) {
+	switch (type) { 
+		// Wenn type eines der folgenden AllyTypen ist, wird überprüft ob an der übergebenen Funktion schon ein Tower steht
 
 	case AllyType::TestTower:
 	case AllyType::Mathelehrer:
@@ -258,6 +263,7 @@ bool AActors::create(const EnemyType& type, const sf::Vector2f& position)
 	return created;
 }
 
+// destroy-Funktion
 void AActors::destroy(Entity* other)
 {
 	switch (other->getCollisionType()) {
@@ -287,6 +293,7 @@ void AActors::destroy(Entity* other)
 	}
 }
 
+// Collisions-Funktionen
 Entity* AActors::CollisionSingle(sf::FloatRect hitbox, const CollisionType& type)
 {
 	Entity* ans = nullptr;
@@ -346,6 +353,7 @@ std::vector<Entity*>* AActors::CollisionPoly(sf::FloatRect hitbox, const Collisi
 	return ans;
 }
 
+// update- & render-Funktionen
 void AActors::updateEntities()
 {
 	BaseTower::areEnemiesOnLine(enemies);
@@ -390,6 +398,7 @@ void AActors::renderEntities()
 	}
 }
 
+// Diese Funktonen sind zum Stoppen und fortfahren aller sf::Clock aller Entities
 void AActors::pauseEntities()
 {
 	for (int i = 0; i < entities->size(); i++) {
@@ -410,3 +419,5 @@ void AActors::continueEntities()
 	}
 }
 
+
+// ------------------------------------------ Hauptfunktion

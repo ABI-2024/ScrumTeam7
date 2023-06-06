@@ -63,7 +63,7 @@ void MA_Ammo::move()
 	this->body.setPosition(pos);
 
 	if (body.getPosition().x >= 1600.f + body.getSize().x / 2.f) {
-		alive = false;
+		status.alive = false;
 	}
 }
 
@@ -74,10 +74,10 @@ void MA_Ammo::update()
 	Entity* tmp = AActors::CollisionSingle(body.getGlobalBounds(), CollisionType::enemies);
 	if (tmp != nullptr) {
 		tmp->takeDamage(this->damage);
-		alive = false;
+		status.alive = false;
 	}
 
-	if (!alive) {
+	if (!status.alive) {
 		AActors::destroy(this);
 	}
 }
