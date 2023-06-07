@@ -24,30 +24,61 @@ void Level_Selector::buttonEvents()
 				level = new Level_1();
 				level->start(datafiles[i-1]);
 				delete level;
+				if (progress.status < Level_Progression::Level_1) {
+					progress.status= Level_Progression::Level_1;
+				}
+				open = false;
+
 				break;
 
 			case 2:
+				if (progress.status < Level_Progression::Level_1) {
+					break;
+				}
 				level = new Level_2();
 				level->start(datafiles[i-1]);
 				delete level;
+				if (progress.status < Level_Progression::Level_2) {
+					progress.status = Level_Progression::Level_2;
+				}
+				open = false;
 				break;
 
 			case 3:
+				if (progress.status < Level_Progression::Level_2) {
+					break;
+				}
 				level = new Level_3();
 				level->start(datafiles[i-1]);
 				delete level;
+				if (progress.status < Level_Progression::Level_3) {
+					progress.status = Level_Progression::Level_3;
+				}
+				open = false;
 				break;
 
 			case 4:
+				if (progress.status < Level_Progression::Level_3) {
+				break;
+				}
 				level = new Level_Final();
 				level->start(datafiles[i-1]);
 				delete level;
+				if (progress.status < Level_Progression::AllOnlocked) {
+					progress.status = Level_Progression::AllOnlocked;
+				}
+				open = false;
 				break;
 
 			case 5:
+				if (progress.status <= Level_Progression::AllOnlocked) {
+					break;
+				}
 				level = new Level_Endless();
 				level->start(datafiles[i]);
 				delete level;
+
+				open = false;
 				break;
 
 			default:
@@ -92,9 +123,9 @@ Level_Selector::Level_Selector()
 	buttonText[5] = "";
 
 
-	buttonTexture = new sf::Texture*[ButtonCount];
+	buttonTexture = new sf::Texture*[8];
 	buttonTexture[0] = new sf::Texture[3];
-	for(int i = 1 ; i < ButtonCount; i++)
+	for(int i = 1 ; i < 8; i++)
 		buttonTexture[i] = new sf::Texture();
 
 
@@ -102,11 +133,14 @@ Level_Selector::Level_Selector()
 	buttonTexture[0][1].loadFromFile("resource/Textures/Button_Middle.png");
 	buttonTexture[0][2].loadFromFile("resource/Textures/Button_Side2.png");
 
-	buttonTexture[1]->loadFromFile("resource/Textures/Level/Select/Select-Small-Uncomplete.png");
+	buttonTexture[1]->loadFromFile("resource/Textures/Level/Select/Select-Small-Complete.png");
 	buttonTexture[2]->loadFromFile("resource/Textures/Level/Select/Select-Small-Uncomplete.png");
-	buttonTexture[3]->loadFromFile("resource/Textures/Level/Select/Select-Small-Uncomplete.png");
-	buttonTexture[4]->loadFromFile("resource/Textures/Level/Select/Select-Big-Sperren.png");
-	buttonTexture[5]->loadFromFile("resource/Textures/Level/Select/Select-Big-Special.png");
+	buttonTexture[3]->loadFromFile("resource/Textures/Level/Select/Select-Small-Sperren.png");
+
+	buttonTexture[4]->loadFromFile("resource/Textures/Level/Select/Select-Big-Complete.png");
+	buttonTexture[5]->loadFromFile("resource/Textures/Level/Select/Select-Big-Uncomplete.png");
+	buttonTexture[6]->loadFromFile("resource/Textures/Level/Select/Select-Big-Sperren.png");
+	buttonTexture[7]->loadFromFile("resource/Textures/Level/Select/Select-Big-Special.png");
 
 
 	buttons = new Button * [ButtonCount];
@@ -115,11 +149,34 @@ Level_Selector::Level_Selector()
 	buttons[0] = new Button(*font, sf::Color(34, 32, 52), buttonText[0], buttonTexture[0], {randAbstand+200, 800 }, { 400.f, 100.f }, false);
 
 	for (int i = 1; i <= 3; i++) {
-		buttons[i] = new Button(*font, sf::Color(34, 32, 52), buttonText[i], buttonTexture[i], { randAbstand+130 + 200 + 420 * (i - 1), randAbstand + 180 }, { 400.f, 300.f }, true);
+		if (this->progress.status > Level_Progression(i-1)) {
+			buttons[i] = new Button(*font, sf::Color(34, 32, 52), buttonText[i], buttonTexture[1], { randAbstand + 130 + 200 + 420 * (i - 1), randAbstand + 180 }, { 400.f, 300.f }, true);
+		}
+		else if (this->progress.status == Level_Progression(i - 1)) {
+			buttons[i] = new Button(*font, sf::Color(34, 32, 52), buttonText[i], buttonTexture[2], { randAbstand + 130 + 200 + 420 * (i - 1), randAbstand + 180 }, { 400.f, 300.f }, true);
+		}
+		else {
+			buttons[i] = new Button(*font, sf::Color(34, 32, 52), buttonText[i], buttonTexture[3], { randAbstand + 130 + 200 + 420 * (i - 1), randAbstand + 180 }, { 400.f, 300.f }, true);
+		}
 	}
-	for (int i = 4; i <= 5; i++) {
-		buttons[i] = new Button(*font, sf::Color(34, 32, 52), buttonText[i], buttonTexture[i], { randAbstand+130 + 300 + 640 * (i - 4),randAbstand + 500 }, { 600.f, 300.f }, true);
+
+	if (this->progress.status > Level_Progression(4 - 1)) {
+		buttons[4] = new Button(*font, sf::Color(34, 32, 52), buttonText[4], buttonTexture[4], { randAbstand + 130 + 300 + 640 * (4 - 4),randAbstand + 500 }, { 600.f, 300.f }, true);
 	}
+	else if (this->progress.status == Level_Progression(4 - 1)) {
+		buttons[4] = new Button(*font, sf::Color(34, 32, 52), buttonText[4], buttonTexture[5], { randAbstand + 130 + 300 + 640 * (4 - 4),randAbstand + 500 }, { 600.f, 300.f }, true);
+	}
+	else {
+		buttons[4] = new Button(*font, sf::Color(34, 32, 52), buttonText[4], buttonTexture[6], { randAbstand + 130 + 300 + 640 * (4 - 4),randAbstand + 500 }, { 600.f, 300.f }, true);
+	}
+
+	if (this->progress.status >= Level_Progression(5 - 1)) {
+		buttons[5] = new Button(*font, sf::Color(34, 32, 52), buttonText[5], buttonTexture[7], { randAbstand + 130 + 300 + 640 * (5 - 4),randAbstand + 500 }, { 600.f, 300.f }, true);
+	}
+	else {
+		buttons[5] = new Button(*font, sf::Color(34, 32, 52), buttonText[5], buttonTexture[6], { randAbstand + 130 + 300 + 640 * (5 - 4),randAbstand + 500 }, { 600.f, 300.f }, true);
+	}
+
 }
 
 Level_Selector::~Level_Selector()
@@ -172,6 +229,9 @@ void Level_Selector::openMenu()
 
 			case sf::Event::MouseButtonPressed:
 				buttonEvents();
+				if (!open) {
+					return;
+				}
 				break;
 
 			default:

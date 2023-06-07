@@ -9,6 +9,7 @@
 #include "Wellen.h"
 #include "TowerSelect.h"
 
+#include "Progression.h"
 
 class Level
 {
@@ -36,6 +37,6 @@ public:
 	virtual ~Level();
 
 
-	virtual void start(std::string);
+	virtual void start(std::string  /*, Progression&*/);
 };
 

@@ -81,7 +81,7 @@ Level::~Level()
 {
 }
 
-void Level::start(std::string filename)
+void Level::start(std::string filename /*, Progression&*/)
 {
 
     Music::startMusic();
@@ -192,6 +192,7 @@ void Level::start(std::string filename)
 
         AActors::renderEntities();
 
+        geld.render();
         shop.render();
 
         if (paused) {

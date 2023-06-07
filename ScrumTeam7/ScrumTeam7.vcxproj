@@ -167,6 +167,7 @@
     <ClCompile Include="METAL_Lehrer.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="Nerd.cpp" />
+    <ClCompile Include="Progression.cpp" />
     <ClCompile Include="Randomizer.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="StatusEffect.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="METAL_Lehrer.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Nerd.h" />
+    <ClInclude Include="Progression.h" />
     <ClInclude Include="Randomizer.h" />
     <ClInclude Include="Karte.h" />
     <ClInclude Include="Shop.h" />
