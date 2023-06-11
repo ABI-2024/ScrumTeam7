@@ -71,11 +71,11 @@ void Level_Selector::buttonEvents()
 				break;
 
 			case 5:
-				if (progress.status <= Level_Progression::AllOnlocked) {
+				if (progress.status < Level_Progression::AllOnlocked) {
 					break;
 				}
 				level = new Level_Endless();
-				level->start(datafiles[i]);
+				level->start(datafiles[i-1]);
 				delete level;
 
 				open = false;

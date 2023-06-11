@@ -72,6 +72,7 @@ void INF_Lehrer::update()
 		case INF_Lehrer::PowerLevel::OnlyMouse:
 			AActors::create(AmmoType::Inf_weak, this->body.getPosition());
 			break;
+
 		case INF_Lehrer::PowerLevel::MouseKeyboard:
 			if (Randomizer::randomize(2) == 1) {
 				AActors::create(AmmoType::Inf_weak, this->body.getPosition());
@@ -80,9 +81,11 @@ void INF_Lehrer::update()
 				AActors::create(AmmoType::Inf_medium, this->body.getPosition());
 			}
 			break;
+
 		case INF_Lehrer::PowerLevel::OnlyKeyboard:
 			AActors::create(AmmoType::Inf_medium, this->body.getPosition());
 			break;
+
 		case INF_Lehrer::PowerLevel::KeyboardMonitor:
 			if (Randomizer::randomize(2) == 1) {
 			AActors::create(AmmoType::Inf_medium, this->body.getPosition());
@@ -91,14 +94,20 @@ void INF_Lehrer::update()
 			AActors::create(AmmoType::Inf_strong, this->body.getPosition());
 			}
 			break;
+
 		case INF_Lehrer::PowerLevel::OnlyMonitor:
 			AActors::create(AmmoType::Inf_strong, this->body.getPosition());
 			break;
 		default:
 			break;
 		}
-		if (level != PowerLevel::OnlyMonitor && powerup >= 5) {
+
+		if (level != PowerLevel::OnlyMonitor && powerup >= 1) {
 			level = PowerLevel(int(level) + 1);
+			powerup = 0;
+		}
+		else {
+			powerup++;
 		}
 
 

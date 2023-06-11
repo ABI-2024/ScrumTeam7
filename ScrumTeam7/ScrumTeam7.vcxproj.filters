@@ -213,6 +213,9 @@
     <ClCompile Include="Progression.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="InfinityWellen.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -357,6 +360,9 @@
       <Filter>Headerdateien\Entities\Status</Filter>
     </ClInclude>
     <ClInclude Include="Progression.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="InfinityWellen.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
