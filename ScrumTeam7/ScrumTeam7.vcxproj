@@ -151,6 +151,7 @@
     <ClCompile Include="INF_Ammo.cpp" />
     <ClCompile Include="INF_Lehrer.cpp" />
     <ClCompile Include="Karte.cpp" />
+    <ClCompile Include="Kreative.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Level_1.cpp" />
     <ClCompile Include="Level_2.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="InfinityWellen.h" />
     <ClInclude Include="INF_Ammo.h" />
     <ClInclude Include="INF_Lehrer.h" />
+    <ClInclude Include="Kreative.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Level_1.h" />
     <ClInclude Include="Level_2.h" />

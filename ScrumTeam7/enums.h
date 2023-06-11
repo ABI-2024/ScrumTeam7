@@ -33,5 +33,6 @@ enum class EnemyType : char
 	none = 0,
 	TestEnemy = 1,
 	Nerd = 2,
-	Steroidenking = 3
+	Steroidenking = 3,
+	Kreative
 };

@@ -210,11 +210,14 @@
     <ClCompile Include="Stun.cpp">
       <Filter>Quelldateien\Entities\Status</Filter>
     </ClCompile>
-    <ClCompile Include="Progression.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="InfinityWellen.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Game Logik</Filter>
+    </ClCompile>
+    <ClCompile Include="Progression.cpp">
+      <Filter>Quelldateien\Game Logik</Filter>
+    </ClCompile>
+    <ClCompile Include="Kreative.cpp">
+      <Filter>Quelldateien\Entities\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -359,11 +362,14 @@
     <ClInclude Include="Stun.h">
       <Filter>Headerdateien\Entities\Status</Filter>
     </ClInclude>
-    <ClInclude Include="Progression.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="InfinityWellen.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\Game Logik</Filter>
+    </ClInclude>
+    <ClInclude Include="Progression.h">
+      <Filter>Headerdateien\Game Logik</Filter>
+    </ClInclude>
+    <ClInclude Include="Kreative.h">
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
