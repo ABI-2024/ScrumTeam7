@@ -7,7 +7,7 @@ int TowerSelect::anzGewKarten = 0;
 void TowerSelect::buttonEvents()
 {
 	bool exist = false;
-	// Karte auswählen
+	// Karte auswÃ¤hlen
 	for (int i = 0; i < anzahlKarten; i++) {
 		if (karten[i]->getHovered()) {
 
@@ -17,7 +17,7 @@ void TowerSelect::buttonEvents()
 				}
 			}
 			if (!exist) {
-				// Karte zu gew Karten hinzufügen
+				// Karte zu gew Karten hinzufÃ¼gen
 				gewKarten[anzGewKarten] = karten[i];
 				// Karte als gew Karte anzeigen (linker rand)
 				karten[i]->setPosition({ 60.f, 150.f * anzGewKarten + 90 });
@@ -33,15 +33,16 @@ void TowerSelect::render()
 	for (int i = 0; i < anzahlKarten; i++) {
 
 		if (karten[i]->getHovered()) {
-			this->Rückseite.setPosition(karten[i]->getPosition());
-			this->Rückseite.setFillColor(sf::Color::White);
-			this->Rückseite.setTexture(&tb[i], 0);
+			this->RÃ¼ckseite.setSize({ 420.f, 280.f });
+			this->RÃ¼ckseite.setPosition({ 850.f, 550.f });
+			this->RÃ¼ckseite.setFillColor(sf::Color::White);
+			this->RÃ¼ckseite.setTexture(&tb[i], 0);
 		}
 		//else {
-		//	this->Rückseite.setFillColor(sf::Color::Transparent);
+		//	this->RÃ¼ckseite.setFillColor(sf::Color::Transparent);
 		//}
 
-		GameWindow::getWindow().draw(this->Rückseite);
+		GameWindow::getWindow().draw(this->RÃ¼ckseite);
 
 		karten[i]->render();
 	}
@@ -54,7 +55,7 @@ TowerSelect::TowerSelect()
 	this->open = true;
 
 
-	// Texturen für die Voderseite der Karten
+	// Texturen fÃ¼r die Voderseite der Karten
 	t = new sf::Texture[6];
 	t[0].loadFromFile("resource/Textures/Lehrer/Karten/Karte_MA_Front.png");
 	t[1].loadFromFile("resource/Textures/Lehrer/Karten/Karte_INF_Front.png");
@@ -63,18 +64,26 @@ TowerSelect::TowerSelect()
 	t[4].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Front.png");
 	t[5].loadFromFile("resource/Textures/Lehrer/Karten/Karte_METAL_Front.png");
 
-	// Texturen für die Rückseite der Karten
-	tb = new sf::Texture[6];
-	tb[0].loadFromFile("resource/Textures/Basketball.png");
-	tb[1].loadFromFile("resource/Textures/Basketball.png");
-	tb[2].loadFromFile("resource/Textures/Basketball.png");
-	tb[3].loadFromFile("resource/Textures/Basketball.png");
-	tb[4].loadFromFile("resource/Textures/Basketball.png");
-	tb[5].loadFromFile("resource/Textures/Basketball.png");
+	// Texturen fÃ¼r die RÃ¼ckseite der Karten
+//<<<<<<< master
+//	tb = new sf::Texture[6];
+//	tb[0].loadFromFile("resource/Textures/Basketball.png");
+//	tb[1].loadFromFile("resource/Textures/Basketball.png");
+//	tb[2].loadFromFile("resource/Textures/Basketball.png");
+//	tb[3].loadFromFile("resource/Textures/Basketball.png");
+//  tb[4].loadFromFile("resource/Textures/Basketball.png");
+//  tb[5].loadFromFile("resource/Textures/Basketball.png");
+//=======
+	tb = new sf::Texture[5];
+	tb[0].loadFromFile("resource/Textures/Lehrer/Karten/Karte_MA_Front.png");
+	tb[1].loadFromFile("resource/Textures/Lehrer/Karten/Karte_INF_Front.png");
+	tb[2].loadFromFile("resource/Textures/Lehrer/Karten/Karte_EN_Front.png");
+	tb[3].loadFromFile("resource/Textures/Lehrer/Karten/Karte_DE_Front.png");
+	tb[4].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Front.png");
 
 	sf::Vector2f size = { 210.f , 140.f };
-	this->Rückseite.setSize(size);
-	this->Rückseite.setFillColor(sf::Color::Transparent);
+	this->RÃ¼ckseite.setSize(size);
+	this->RÃ¼ckseite.setFillColor(sf::Color::Transparent);
 
 
 	karten = new Karte * [anzahlKarten];
@@ -101,7 +110,7 @@ Karte** TowerSelect::openTowerSelect()
 {
 	TowerSelect TowerSelect;
 	
-	// "array" für gewählte Karten
+	// "array" fÃ¼r gewÃ¤hlte Karten
 	TowerSelect.gewKarten = new Karte * [5];
 
 
@@ -126,10 +135,10 @@ Karte** TowerSelect::openTowerSelect()
 				break;
 
 			case sf::Event::KeyPressed:
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-					TowerSelect.open = false;
-				}
-				break;
+				//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+				//	TowerSelect.open = false;
+				//}
+				//break;
 
 			case sf::Event::MouseButtonPressed:
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {

@@ -66,6 +66,8 @@ Shop::Shop(Geld* nGeld, int anzahlKarten, Karte** karten) {
 
 Shop::~Shop() {
 	delete[] this->text;
+	delete[]* this->karten;
+	delete[] this->t;
 }
 
 
