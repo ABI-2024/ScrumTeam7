@@ -63,6 +63,8 @@ Shop::Shop(Actors& actors, int anzahlKarten, Karte** karten) {
 
 Shop::~Shop() {
 	delete[] this->text;
+	delete[]* this->karten;
+	delete[] this->t;
 }
 
 

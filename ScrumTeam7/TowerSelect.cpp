@@ -33,7 +33,8 @@ void TowerSelect::render()
 	for (int i = 0; i < anzahlKarten; i++) {
 
 		if (karten[i]->getHovered()) {
-			this->Rückseite.setPosition(karten[i]->getPosition());
+			this->Rückseite.setSize({ 420.f, 280.f });
+			this->Rückseite.setPosition({ 850.f, 550.f });
 			this->Rückseite.setFillColor(sf::Color::White);
 			this->Rückseite.setTexture(&tb[i], 0);
 		}
@@ -64,11 +65,11 @@ TowerSelect::TowerSelect()
 
 	// Texturen für die Rückseite der Karten
 	tb = new sf::Texture[5];
-	tb[0].loadFromFile("resource/Textures/Basketball.png");
-	tb[1].loadFromFile("resource/Textures/Basketball.png");
-	tb[2].loadFromFile("resource/Textures/Basketball.png");
-	tb[3].loadFromFile("resource/Textures/Basketball.png");
-	tb[4].loadFromFile("resource/Textures/Basketball.png");
+	tb[0].loadFromFile("resource/Textures/Lehrer/Karten/Karte_MA_Front.png");
+	tb[1].loadFromFile("resource/Textures/Lehrer/Karten/Karte_INF_Front.png");
+	tb[2].loadFromFile("resource/Textures/Lehrer/Karten/Karte_EN_Front.png");
+	tb[3].loadFromFile("resource/Textures/Lehrer/Karten/Karte_DE_Front.png");
+	tb[4].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Front.png");
 
 	sf::Vector2f size = { 210.f , 140.f };
 	this->Rückseite.setSize(size);
@@ -122,10 +123,10 @@ Karte** TowerSelect::openTowerSelect()
 				break;
 
 			case sf::Event::KeyPressed:
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-					TowerSelect.open = false;
-				}
-				break;
+				//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+				//	TowerSelect.open = false;
+				//}
+				//break;
 
 			case sf::Event::MouseButtonPressed:
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
