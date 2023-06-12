@@ -210,6 +210,12 @@
     <ClCompile Include="Stun.cpp">
       <Filter>Quelldateien\Entities\Status</Filter>
     </ClCompile>
+    <ClCompile Include="Progression.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="InfinityWellen.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -352,6 +358,12 @@
     </ClInclude>
     <ClInclude Include="Stun.h">
       <Filter>Headerdateien\Entities\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="Progression.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="InfinityWellen.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

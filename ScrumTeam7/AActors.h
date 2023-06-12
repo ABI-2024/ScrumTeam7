@@ -5,10 +5,12 @@
 #include "Entity.h"
 #include "enums.h"
 class Wellen;
+class InfinityWellen;
 class AActors
 {
 	// ------------------------------------------ Nebenfuktion
 	friend Wellen;
+	friend InfinityWellen;
 private:
 
 	static int collectedRevenue;
