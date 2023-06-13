@@ -410,9 +410,6 @@
     <ClInclude Include="RELI_Ammo.h">
       <Filter>Headerdateien\Entities\Header Ammo</Filter>
     </ClInclude>
-    <ClInclude Include="Status_Effect.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Emo.h">
       <Filter>Headerdateien\Entities\Header Enemy</Filter>
     </ClInclude>

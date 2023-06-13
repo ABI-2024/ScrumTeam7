@@ -65,7 +65,7 @@ void Mathelehrer::update()
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
 	updateStatusprocs(1, 1);
-	if (clock.getElapsedTime() + this->remainingAttackTime >= fireRate + fireRateDiviation && enemyOnLines[(int)tilePosition.y]) {
+	if ((clock.getElapsedTime() + this->remainingAttackTime) * status.multi_Attackspeed >= fireRate + fireRateDiviation && enemyOnLines[(int)tilePosition.y]) {
 		AActors::create(AmmoType::Mathe, this->body.getPosition());
 
 		fireRateDiviation = sf::milliseconds(maximumFireRateDiviation.asMilliseconds() / Randomizer::randomize(9, 1));

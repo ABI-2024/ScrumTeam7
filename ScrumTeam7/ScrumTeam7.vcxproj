@@ -243,7 +243,6 @@
     <ClInclude Include="StatusEffect.h" />
     <ClInclude Include="StatusProc.h" />
     <ClInclude Include="Simp.h" />
-    <ClInclude Include="Status_Effect.h" />
     <ClInclude Include="Steroidenking.h" />
     <ClInclude Include="Stun.h" />
     <ClInclude Include="TestAmmo.h" />

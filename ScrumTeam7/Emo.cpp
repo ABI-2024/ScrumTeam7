@@ -50,19 +50,6 @@ Emo::Emo(const sf::Vector2f& tilePosition)
 Emo::~Emo() {}
 
 // public get-Methoden
-int Emo::getRevenue() {
-	return revenue;
-}
-
-EnemyType Emo::getEnemyType()
-{
-	return this->enemyType;
-}
-
-float Emo::getDamage()
-{
-	return this->Damage;
-}
 
 // public Methoden
 void Emo::move()

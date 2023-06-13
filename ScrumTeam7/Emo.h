@@ -25,11 +25,6 @@ public:
 	Emo(const sf::Vector2f& tilePosition);
 	virtual ~Emo();
 
-	int getRevenue() override;
-
-	EnemyType getEnemyType() override;
-	float getDamage() override;
-
 	void move();
 
 	void update() override;

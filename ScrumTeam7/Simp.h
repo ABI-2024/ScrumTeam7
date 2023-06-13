@@ -24,11 +24,6 @@ public:
 	Simp(const sf::Vector2f& tilePosition);
 	virtual ~Simp();
 
-	int getRevenue() override;
-
-	EnemyType getEnemyType() override;
-	float getDamage() override;
-
 	void move();
 
 	void update() override;

@@ -50,20 +50,6 @@ Simp::Simp(const sf::Vector2f& tilePosition)
 Simp::~Simp() {}
 
 // public get-Methoden
-int Simp::getRevenue() {
-	return revenue;
-}
-
-EnemyType Simp::getEnemyType()
-{
-	return this->enemyType;
-}
-
-float Simp::getDamage()
-{
-	return this->Damage;
-}
-
 // public Methoden
 void Simp::move()
 {

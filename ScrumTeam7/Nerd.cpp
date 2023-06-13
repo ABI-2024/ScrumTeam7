@@ -77,7 +77,7 @@ void Nerd::manipulation()
 				}
 				for (int k = 0; k < temp->size(); k++) {							//StatusEffect:Cripple wird auf den Lehrer übertragen
 					if ((*temp)[k]->getTilePosition().x == rightesttileposition) {
-						(*temp)[k]->addStatusEffect(StatusEffect(StatusType::cripple, sf::seconds(2), 0));
+						(*temp)[k]->addStatusEffect(StatusEffect(StatusType::cripple, sf::seconds(2), 0.5));
 					}
 				}
 
