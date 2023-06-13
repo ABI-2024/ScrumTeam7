@@ -234,6 +234,15 @@
     <ClCompile Include="RELI_Ammo.cpp">
       <Filter>Quelldateien\Entities\Ammo</Filter>
     </ClCompile>
+    <ClCompile Include="Simp.cpp">
+      <Filter>Quelldateien\Entities\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Emo.cpp">
+      <Filter>Quelldateien\Entities\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Cripple.cpp">
+      <Filter>Quelldateien\Entities\Status</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -400,6 +409,18 @@
     </ClInclude>
     <ClInclude Include="RELI_Ammo.h">
       <Filter>Headerdateien\Entities\Header Ammo</Filter>
+    </ClInclude>
+    <ClInclude Include="Status_Effect.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Emo.h">
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Simp.h">
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Cripple.h">
+      <Filter>Headerdateien\Entities\Status</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

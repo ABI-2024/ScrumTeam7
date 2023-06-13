@@ -64,7 +64,7 @@ void Mathelehrer::update()
 	else if (health <= Health * 0.8) {
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
-
+	updateStatusprocs(1, 1);
 	if (clock.getElapsedTime() + this->remainingAttackTime >= fireRate + fireRateDiviation && enemyOnLines[(int)tilePosition.y]) {
 		AActors::create(AmmoType::Mathe, this->body.getPosition());
 

@@ -1,39 +1,38 @@
-#include "Steroidenking.h"
-
+#include "Simp.h"
 #include "Window.h"
-#include "Randomizer.h"
-
+#include "BaseTower.h"
 #include "AActors.h"
+#include <iostream>
 
 // static Variables
 
-EnemyType Steroidenking::enemyType = EnemyType::Steroidenking;
+EnemyType Simp::enemyType = EnemyType::Simp;
 
-float Steroidenking::Health = 200;
-float Steroidenking::Damage[2] = { 30,100 };
+float Simp::Health = 400;
+float Simp::Damage = 0;
 
-int Steroidenking::revenue = 15;
+int Simp::revenue = 5;
 
-sf::Vector2f Steroidenking::dir[2] = { sf::Vector2f(-10, 0),sf::Vector2f(-40, 0) };
+sf::Vector2f Simp::dir = sf::Vector2f(-7, 0);
 
-sf::Texture* Steroidenking::texture = nullptr;
+sf::Texture* Simp::texture = nullptr;
 
-sf::Time Steroidenking::attackSpeed = sf::milliseconds(1400);
+sf::Time Simp::attackSpeed = sf::milliseconds(750);
 
 
 // public static Methoden
-void Steroidenking::LoadTexture()
+void Simp::LoadTexture()
 {
 	if (texture == nullptr) {
 		texture = new sf::Texture();
 
-		if (!texture->loadFromFile("resource/Textures/Schueler/Steroidenking.png")) {
+		if (!texture->loadFromFile("resource/Textures/Schueler/Simp.png")) {
 			texture->loadFromFile("resource/Textures/DefaultTexture.png");
 		}
 	}
 }
 
-void Steroidenking::unLoadTexture()
+void Simp::unLoadTexture()
 {
 	delete texture;
 	texture = nullptr;
@@ -41,48 +40,42 @@ void Steroidenking::unLoadTexture()
 
 
 // Constructur & Destructur
-Steroidenking::Steroidenking(const sf::Vector2f& tilePosition)
-	:BaseEnemy(Health, tilePosition, texture), running(true)
-{ 
+Simp::Simp(const sf::Vector2f& tilePosition)
+	:BaseEnemy(Health, tilePosition, texture)
+
+{
+	programmzeit.restart();
 }
 
-Steroidenking::~Steroidenking() 
-{
-	AActors::addCollectedRevenue(this->revenue);
-}
+Simp::~Simp() {}
 
 // public get-Methoden
+int Simp::getRevenue() {
+	return revenue;
+}
 
-float Steroidenking::getDamage()
+EnemyType Simp::getEnemyType()
 {
-	int type = 0;
+	return this->enemyType;
+}
 
-	if (running) {
-		type = 1;
-		running = false;
-	}
-
-	return this->Damage[type];
+float Simp::getDamage()
+{
+	return this->Damage;
 }
 
 // public Methoden
-
-void Steroidenking::move()
+void Simp::move()
 {
-	int type = 0;
-	if (running) {
-		type = 1;
-	}
-
 	if (movable) {
-		this->body.move(this->dir[type] * dt);
+		this->body.move(this->dir * dt);
 	}
 	else {
 		movable = true;
 	}
 }
 
-void Steroidenking::update()
+void Simp::update()
 {
 	if (health <= Health / 5) {
 		body.setFillColor({ 139,0,0 }); //DarkRed
@@ -97,18 +90,12 @@ void Steroidenking::update()
 
 	updateStatusprocs(true, true);
 
-	int type = 0;
-	if (running) {
-		type = 1;
-	}
 	Entity* temp = AActors::CollisionSingle(body.getGlobalBounds(), CollisionType::ally);
 
 	if (temp != nullptr && status.canAttack) {	//True wenn es mit einem Lehrer kollidiert
-		running = false;
 		movable = false;
 		if (clock.getElapsedTime() + this->remainingAttackTime >= this->attackSpeed) {
-
-			temp->takeDamage(this->Damage[type]);
+			temp->addStatusEffect(StatusEffect(StatusType::cripple, sf::seconds(0.75), 0));
 
 			this->remainingAttackTime = sf::seconds(0);
 			clock.restart();
@@ -126,6 +113,3 @@ void Steroidenking::update()
 		AActors::destroy(this);
 	}
 }
-
-
-

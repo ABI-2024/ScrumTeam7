@@ -24,6 +24,7 @@
     <ProjectGuid>{50cbd80d-cadb-4135-8615-7cac22f7d132}</ProjectGuid>
     <RootNamespace>ScrumTeam7</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>ScrumTeam7</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -140,8 +141,10 @@
     <ClCompile Include="BaseTower.cpp" />
     <ClCompile Include="Burn.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Cripple.cpp" />
     <ClCompile Include="DE_Ammo.cpp" />
     <ClCompile Include="DE_Lehrer.cpp" />
+    <ClCompile Include="Emo.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityStatus.cpp" />
     <ClCompile Include="EN_Ammo.cpp" />
@@ -179,6 +182,7 @@
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="StatusEffect.cpp" />
     <ClCompile Include="StatusProc.cpp" />
+    <ClCompile Include="Simp.cpp" />
     <ClCompile Include="Steroidenking.cpp" />
     <ClCompile Include="Stun.cpp" />
     <ClCompile Include="TestAmmo.cpp" />
@@ -197,8 +201,10 @@
     <ClInclude Include="BaseTower.h" />
     <ClInclude Include="Burn.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Cripple.h" />
     <ClInclude Include="DE_Ammo.h" />
     <ClInclude Include="DE_Lehrer.h" />
+    <ClInclude Include="Emo.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityStatus.h" />
     <ClInclude Include="enums.h" />
@@ -236,6 +242,8 @@
     <ClInclude Include="Shop.h" />
     <ClInclude Include="StatusEffect.h" />
     <ClInclude Include="StatusProc.h" />
+    <ClInclude Include="Simp.h" />
+    <ClInclude Include="Status_Effect.h" />
     <ClInclude Include="Steroidenking.h" />
     <ClInclude Include="Stun.h" />
     <ClInclude Include="TestAmmo.h" />

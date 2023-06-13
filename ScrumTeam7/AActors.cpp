@@ -23,6 +23,8 @@
 #include "TestEnemy.h"
 #include "Nerd.h"
 #include "Steroidenking.h"
+#include "Simp.h"
+#include "Emo.h"
 #include "Kreative.h"
 
 	// ------------------------------------------ Nebenfuktion
@@ -94,6 +96,8 @@ AActors::AActors()
 	TestEnemy::LoadTexture();
 	Nerd::LoadTexture();
 	Steroidenking::LoadTexture();
+	Simp::LoadTexture();
+	Emo::LoadTexture();
 	Kreative::LoadTexture();
 
 }
@@ -140,6 +144,8 @@ AActors::~AActors()
 	TestEnemy::unLoadTexture();
 	Nerd::unLoadTexture();
 	Steroidenking::unLoadTexture();
+	Simp::unLoadTexture();
+	Emo::unLoadTexture();
 	Kreative::unLoadTexture();
 }
 
@@ -149,7 +155,7 @@ bool AActors::create(const AllyType& type, const sf::Vector2f& position)
 	bool created = 1;
 	
 	switch (type) { 
-		// Wenn type eines der folgenden AllyTypen ist, wird überprüft ob an der übergebenen Funktion schon ein Tower steht
+		// Wenn type eines der folgenden AllyTypen ist, wird Ã¼berprÃ¼ft ob an der Ã¼bergebenen Funktion schon ein Tower steht
 
 	case AllyType::TestTower:
 	case AllyType::Mathelehrer:
@@ -275,10 +281,15 @@ bool AActors::create(const EnemyType& type, const sf::Vector2f& position)
 		    case EnemyType::Steroidenking:
 				entities->push_back(new Steroidenking(position));
 		        break;
+			case EnemyType::Simp:
+				entities->push_back(new Simp(position));
+				break;
+			case EnemyType::Emo:
+				entities->push_back(new Emo(position));
+				break;
 		    case EnemyType::Kreative:
 				entities->push_back(new Kreative(position));
 		        break;
-
 	default:
 		created = 0;
 		break;
@@ -398,16 +409,16 @@ void AActors::updateEntities()
 
 		if ((*i) == nullptr) {
 		redo:
-			// löscht momentanes Element aus dem std::vector entities
+			// lÃ¶scht momentanes Element aus dem std::vector entities
 			i = entities->erase(i);
 
-			// Abfrage ob der zurück gegebene iterator von erase das Ende des std::vectors ist
+			// Abfrage ob der zurÃ¼ck gegebene iterator von erase das Ende des std::vectors ist
 			if (i == entities->end()) { 
 				break;
 			}
 
 			/* 
-			Abfrage ob der zurück gegebene iterator von erase ebenfalls ein nullptr ist
+			Abfrage ob der zurÃ¼ck gegebene iterator von erase ebenfalls ein nullptr ist
 			und wenn ja wiederhole Vorgang.
 			*/
 			if ((*i) == nullptr) {

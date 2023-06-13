@@ -1,12 +1,13 @@
 #pragma once
 #include "BaseEnemy.h"
-class Nerd : public BaseEnemy
+class Emo : public BaseEnemy
 {
 private:
 	static EnemyType enemyType;
 
 	static float Health;
 	static float Damage;
+	static float SelfharmDMG;
 
 	static int revenue;
 
@@ -21,12 +22,15 @@ public:
 	static void LoadTexture();
 	static void unLoadTexture();
 
-	Nerd(const sf::Vector2f& tilePosition);
-	virtual ~Nerd();
+	Emo(const sf::Vector2f& tilePosition);
+	virtual ~Emo();
+
+	int getRevenue() override;
+
+	EnemyType getEnemyType() override;
+	float getDamage() override;
 
 	void move();
-
-	void manipulation();
 
 	void update() override;
 };

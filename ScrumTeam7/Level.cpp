@@ -215,7 +215,7 @@ void Level::start(std::string filename , Progression& progress)
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 
                         // Spawnt Enemy
-                        AActors::create(EnemyType::TestEnemy, this->TileSelection());
+                        AActors::create(EnemyType::Emo, this->TileSelection());
                     }
                 }
                 else {

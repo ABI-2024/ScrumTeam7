@@ -61,6 +61,8 @@ class Wellen
 		bool getwarteTimer();
 		bool geteof();*/
 
+		void deletepSchueler();
+
 
 };
 

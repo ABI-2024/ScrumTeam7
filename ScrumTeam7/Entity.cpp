@@ -3,6 +3,7 @@
 #include "Window.h"
 #include "Burn.h"
 #include "Stun.h"
+#include "Cripple.h"
 
 // protected static Variables 
 sf::Texture* Entity::shadowTexture = nullptr;
@@ -66,6 +67,9 @@ void Entity::addStatusEffect(StatusEffect effect)
 			break;
 		case StatusType::stun:
 			statusprocs->push_back(new Stun(effect, this));
+			break;
+		case StatusType::cripple:
+			statusprocs->push_back(new Cripple(effect, this));
 			break;
 		default:
 			break;
