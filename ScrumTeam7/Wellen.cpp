@@ -1,4 +1,9 @@
 #include "Wellen.h"
+
+/*
+	i just want to die !!!
+*/
+
 #include "AActors.h"
 #include <iostream>
 
@@ -51,7 +56,7 @@ void Wellen::WellenDaten() {
 		Datei.get(debug);
 		Datei.seekg(dateiposition);
 	} while (debug != '0');
-	addWelle();
+	welleAnz++;
 	Datei.close();
 }
 
@@ -60,21 +65,21 @@ void Wellen::setFilename(const std::string& name)
 	filename = name;
 }
 
-int* Wellen::getWellenDaten() {
-	return welleDaten;
-}
+//int* Wellen::getWellenDaten() {
+//	return welleDaten;
+//}
 
-std::list <int>* Wellen::getSchuelerDaten() {
-	return this->schuelerDaten;
-}
+//std::list <int>* Wellen::getSchuelerDaten() {
+//	return this->schuelerDaten;
+//}
 
-void Wellen::addWelle() {
-	welleAnz++;
-}
+//void Wellen::addWelle() {
+//	welleAnz++;
+//}
 
-int Wellen::getWelle() {
-	return this->welleAnz;
-}
+//int Wellen::getWelle() {
+//	return this->welleAnz;
+//}
 
 void Wellen::SortListeSchueler() {
 	int j = 0;
@@ -140,7 +145,7 @@ void Wellen::startWartetimer() {
 void Wellen::Wartefunktion(Geld& geld) {
 	if ((int)warteclock.getElapsedTime().asSeconds() > welleDaten[1]) {
 		this->warteTimer = true;
-		geld.addKontostand(200 * (1 + 0.1 * getWelle())); // Geld pro Welle
+		geld.addKontostand(200 * (1 + 0.1 * spawnEnde)); // Geld pro Welle
 		WellenDaten();
 		SortListeSchueler();
 	}
@@ -148,41 +153,41 @@ void Wellen::Wartefunktion(Geld& geld) {
 
 
 void Wellen::Wellenfunktion(Geld& geld) {
-	if (this->geteof() == true) {
+	if (this->eof == true) {
 
 		return;
 	}
 
 	this->SpawnEnde();
-	if (this->getspawnEnde() == false) {
+	if (spawnEnde == false) {
 		this->SpawnEnemy();
 	}
 	else {
 		this->WellenEnde();
 	}
 
-	if (this->getwellenEnde() == true) {
-		if (this->getwarteTimer() == true)
+	if (wellenEnde == true) {
+		if (warteTimer == true)
 			this->startWartetimer();
 		this->Wartefunktion(geld);
 	}
 }
+//
+//bool Wellen::getspawnEnde() {
+//	return this->spawnEnde;
+//}
 
-bool Wellen::getspawnEnde() {
-	return this->spawnEnde;
-}
+//bool Wellen::getwellenEnde() {
+//	return this->wellenEnde;
+//}
 
-bool Wellen::getwellenEnde() {
-	return this->wellenEnde;
-}
-
-bool Wellen::getwarteTimer() {
-	return this->warteTimer;
-}
-
-bool Wellen::geteof() {
-	return this->eof;
-}
+//bool Wellen::getwarteTimer() {
+//	return this->warteTimer;
+//}
+//
+//bool Wellen::geteof() {
+//	return this->eof;
+//}
 
 
 /*

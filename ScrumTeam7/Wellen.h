@@ -51,15 +51,15 @@ class Wellen
 		Wellen();
 		void setFilename(const std::string&);
 
-		int* getWellenDaten();
-		std::list <int>* getSchuelerDaten();
+		//int* getWellenDaten();
+		//std::list <int>* getSchuelerDaten();
 
-		void addWelle();
-		int getWelle();
+		//void addWelle();
+		/*int getWelle();
 		bool getspawnEnde();
 		bool getwellenEnde();
 		bool getwarteTimer();
-		bool geteof();
+		bool geteof();*/
 
 
 };

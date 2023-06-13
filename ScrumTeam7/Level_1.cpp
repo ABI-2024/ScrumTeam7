@@ -95,7 +95,7 @@ void Level_1::dialogWindow()
     textures[0].loadFromFile("resource/Textures/Schueler/Steroidenking.png");
     textures[1].loadFromFile("resource/Textures/Schueler/STD-Student-m.png");
     textures[2].loadFromFile("resource/Textures/Lehrer/SP/SP-Lehrer.png");
-    textures[3].loadFromFile("resource/Textures/DefaultTexture.png");
+    textures[3].loadFromFile("resource/Textures/Schueler/Klasse.png");
 
     // Alle Figuren und ihre größen
     sf::RectangleShape figures[4];
@@ -107,17 +107,21 @@ void Level_1::dialogWindow()
     figures[2] = figures[0];
     figures[3] = figures[0];
 
+
+    figures[3].setSize({ 75.f*3.f, 75.f* 3.f });
+    figures[3].setOrigin(figures[3].getSize() / 2.f);
+
     figures[0].setTexture(&textures[0],0);
-    figures[0].setPosition({ 0.f ,GameWindow::getMainView().getSize().y / 2.f});
+    figures[0].setPosition({ 1100.f ,GameWindow::getMainView().getSize().y / 2.f});
 
     figures[1].setTexture(&textures[1],0);
-    figures[1].setPosition({ 100.f ,GameWindow::getMainView().getSize().y / 2.f });
+    figures[1].setPosition({ 1200.f ,GameWindow::getMainView().getSize().y / 2.f });
 
     figures[2].setTexture(&textures[2],0);
-    figures[2].setPosition({ 200.f ,GameWindow::getMainView().getSize().y / 2.f });
+    figures[2].setPosition({ 400.f ,GameWindow::getMainView().getSize().y / 2.f });
 
     figures[3].setTexture(&textures[3],0);
-    figures[3].setPosition({ 300.f ,GameWindow::getMainView().getSize().y / 2.f });
+    figures[3].setPosition({ 1350.f ,GameWindow::getMainView().getSize().y / 2.f });
 
 
     // Größe und aussehen des Textfeldes
@@ -178,9 +182,11 @@ void Level_1::dialogWindow()
                 else {
                     for (int i = 0; i < 4; i++) {
                         figures[i].setFillColor(sf::Color(100, 100, 100));
+                        figures[i].setScale(1, 1);
                     }
                     if (dialogIndex-1 < dialoge.size()) {
                         figures[dialoge[dialogIndex-1].who].setFillColor(sf::Color(255, 255, 255));
+                        figures[dialoge[dialogIndex - 1].who].setScale(1.5f, 1.5f);
                     }
                 }
                 break;
