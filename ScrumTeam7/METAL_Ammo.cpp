@@ -46,15 +46,6 @@ METAL_Ammo::~METAL_Ammo() {}
 
 
 // public Methoden
-AmmoType METAL_Ammo::getAmmoType()
-{
-	return this->ammoType;
-}
-
-float METAL_Ammo::getDamage()
-{
-	return this->damage;
-}
 
 void METAL_Ammo::update()
 {

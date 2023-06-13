@@ -10,7 +10,9 @@ enum class AllyType : char
 	INF_Lehrer,
 	EN_Lehrer,
 	DE_Lehrer,
-	METAL_Lehrer
+	METAL_Lehrer,
+	POWI_Lehrer,
+	RELI_Lehrer
 };
 enum class AmmoType : char
 {
@@ -26,7 +28,8 @@ enum class AmmoType : char
 	Inf_medium = 8,
 	Inf_strong = 9,
 	DE_Ammo,
-	METAL_Ammo
+	METAL_Ammo,
+	RELI_Ammo
 };
 enum class EnemyType : char
 {
@@ -35,5 +38,6 @@ enum class EnemyType : char
 	Nerd = 2,
 	Steroidenking = 3,
 	Simp = 4,
-	Emo = 5
+	Emo = 5,
+	Kreative
 };

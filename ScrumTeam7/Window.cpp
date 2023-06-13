@@ -88,10 +88,10 @@ void GameWindow::openWindow()
     }
 
     if (settings.Fullscreen) {
-        window = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "Game", sf::Style::Fullscreen, set);
+        window = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "Get F'd", sf::Style::Fullscreen, set);
     }
     else {
-        window = new sf::RenderWindow(sf::VideoMode(settings.WindowSize.x, settings.WindowSize.y), "Game", sf::Style::Titlebar | sf::Style::Close, set);
+        window = new sf::RenderWindow(sf::VideoMode(settings.WindowSize.x, settings.WindowSize.y), "Get F'd", sf::Style::Titlebar | sf::Style::Close, set);
     }
     window->setFramerateLimit(settings.FrameRateLimit);
 }
@@ -109,8 +109,8 @@ sf::RenderWindow& GameWindow::getWindow()
 
 
 // Settings
-Settings GameWindow::getSettings() {
-    return settings;
+const Settings* GameWindow::getSettings() {
+    return &settings;
 }
 
 void  GameWindow::setSettings(const Settings& newSettings) {

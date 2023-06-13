@@ -52,14 +52,6 @@ Steroidenking::~Steroidenking()
 }
 
 // public get-Methoden
-int Steroidenking::getRevenue() {
-	return revenue;
-}
-
-EnemyType Steroidenking::getEnemyType()
-{
-	return this->enemyType;
-}
 
 float Steroidenking::getDamage()
 {

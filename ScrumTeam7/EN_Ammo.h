@@ -14,6 +14,9 @@ private:
 
 	AmmoType curendType;
 
+
+	float getDamage();
+
 public:
 	static void LoadTexture();
 	static void unLoadTexture();
@@ -21,9 +24,6 @@ public:
 	EN_Ammo(sf::Vector2f TowerPosition, AmmoType type);
 	virtual ~EN_Ammo();
 
-
-	AmmoType getAmmoType() override;
-	float getDamage() override;
 
 	void move();
 

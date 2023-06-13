@@ -24,11 +24,6 @@ public:
 	TestEnemy(const sf::Vector2f& tilePosition);
 	virtual ~TestEnemy();
 
-	int getRevenue() override;
-
-	EnemyType getEnemyType() override;
-	float getDamage() override;
-
 	void move();
 
 	void update() override;

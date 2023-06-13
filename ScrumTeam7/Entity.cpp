@@ -50,7 +50,15 @@ void Entity::takeDamage(float damage )
 
 void Entity::addStatusEffect(StatusEffect effect)
 {
+
 	if (statusprocs != nullptr) { // wenn statusprocs == nullptr ist bedeutet das, dass dieser Entity keine StatusEffekte haben kann
+		for (int i = 0; i < statusprocs->size(); i++) {
+			if ((*statusprocs)[i]->getType() == effect.getType()) {
+				return;
+			}
+				
+		}
+		
 		switch (effect.getType())
 		{
 

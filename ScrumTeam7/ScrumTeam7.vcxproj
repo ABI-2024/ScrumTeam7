@@ -154,6 +154,7 @@
     <ClCompile Include="INF_Ammo.cpp" />
     <ClCompile Include="INF_Lehrer.cpp" />
     <ClCompile Include="Karte.cpp" />
+    <ClCompile Include="Kreative.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Level_1.cpp" />
     <ClCompile Include="Level_2.cpp" />
@@ -171,8 +172,13 @@
     <ClCompile Include="METAL_Lehrer.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="Nerd.cpp" />
+    <ClCompile Include="POWI_Book.cpp" />
+    <ClCompile Include="POWI_Lehrer.cpp" />
     <ClCompile Include="Progression.cpp" />
     <ClCompile Include="Randomizer.cpp" />
+    <ClCompile Include="RELI_Ammo.cpp" />
+    <ClCompile Include="RELI_Book.cpp" />
+    <ClCompile Include="RELI_Lehrer.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="StatusEffect.cpp" />
     <ClCompile Include="StatusProc.cpp" />
@@ -208,6 +214,7 @@
     <ClInclude Include="InfinityWellen.h" />
     <ClInclude Include="INF_Ammo.h" />
     <ClInclude Include="INF_Lehrer.h" />
+    <ClInclude Include="Kreative.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Level_1.h" />
     <ClInclude Include="Level_2.h" />
@@ -224,9 +231,14 @@
     <ClInclude Include="METAL_Lehrer.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Nerd.h" />
+    <ClInclude Include="POWI_Book.h" />
+    <ClInclude Include="POWI_Lehrer.h" />
     <ClInclude Include="Progression.h" />
     <ClInclude Include="Randomizer.h" />
     <ClInclude Include="Karte.h" />
+    <ClInclude Include="RELI_Ammo.h" />
+    <ClInclude Include="RELI_Book.h" />
+    <ClInclude Include="RELI_Lehrer.h" />
     <ClInclude Include="Shop.h" />
     <ClInclude Include="StatusEffect.h" />
     <ClInclude Include="StatusProc.h" />

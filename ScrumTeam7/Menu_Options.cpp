@@ -1,5 +1,7 @@
 #include "Menu_Options.h"
 
+#include "Music.h"
+
 #define Anzahl_Button 7
 
 Menu_Options::Menu_Options() {
@@ -29,7 +31,7 @@ Menu_Options::Menu_Options() {
 	*/
 
 
-	settings = GameWindow::getSettings();
+	settings = *GameWindow::getSettings();
 
 	buttonText = new std::string[Anzahl_Button];
 	if (settings.Fullscreen) {
@@ -156,6 +158,7 @@ void Menu_Options::buttonEvents()
 				break;
 			case 6:
 				GameWindow::setSettings(settings);
+				Music::setVolume();
 				break;
 			default:
 				break;

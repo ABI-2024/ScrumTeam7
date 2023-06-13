@@ -1,7 +1,7 @@
 #include "TowerSelect.h"
 #include "Window.h"
 
-int TowerSelect::anzahlKarten = 6;
+int TowerSelect::anzahlKarten = 8;
 int TowerSelect::anzGewKarten = 0;
 
 void TowerSelect::buttonEvents()
@@ -33,7 +33,8 @@ void TowerSelect::render()
 	for (int i = 0; i < anzahlKarten; i++) {
 
 		if (karten[i]->getHovered()) {
-			this->Rückseite.setPosition(karten[i]->getPosition());
+			this->Rückseite.setSize({ 420.f, 280.f });
+			this->Rückseite.setPosition(850.f, 550.f);
 			this->Rückseite.setFillColor(sf::Color::White);
 			this->Rückseite.setTexture(&tb[i], 0);
 		}
@@ -51,26 +52,31 @@ void TowerSelect::render()
 
 TowerSelect::TowerSelect()
 {
+	anzGewKarten = 0;
 	this->open = true;
 
 
 	// Texturen für die Voderseite der Karten
-	t = new sf::Texture[6];
+	t = new sf::Texture[8];
 	t[0].loadFromFile("resource/Textures/Lehrer/Karten/Karte_MA_Front.png");
 	t[1].loadFromFile("resource/Textures/Lehrer/Karten/Karte_INF_Front.png");
 	t[2].loadFromFile("resource/Textures/Lehrer/Karten/Karte_EN_Front.png");
 	t[3].loadFromFile("resource/Textures/Lehrer/Karten/Karte_DE_Front.png");
 	t[4].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Front.png");
 	t[5].loadFromFile("resource/Textures/Lehrer/Karten/Karte_METAL_Front.png");
+	t[6].loadFromFile("resource/Textures/Lehrer/Karten/Karte_POWI_Front.png");
+	t[7].loadFromFile("resource/Textures/Lehrer/Karten/Karte_RELI_Front.png");
 
 	// Texturen für die Rückseite der Karten
-	tb = new sf::Texture[6];
-	tb[0].loadFromFile("resource/Textures/Basketball.png");
-	tb[1].loadFromFile("resource/Textures/Basketball.png");
-	tb[2].loadFromFile("resource/Textures/Basketball.png");
-	tb[3].loadFromFile("resource/Textures/Basketball.png");
-	tb[4].loadFromFile("resource/Textures/Basketball.png");
-	tb[5].loadFromFile("resource/Textures/Basketball.png");
+	tb = new sf::Texture[8];
+	tb[0].loadFromFile("resource/Textures/Lehrer/Karten/Karte_MA_Back.png");
+	tb[1].loadFromFile("resource/Textures/Lehrer/Karten/Karte_INF_Back.png");
+	tb[2].loadFromFile("resource/Textures/Lehrer/Karten/Karte_EN_Back.png");
+	tb[3].loadFromFile("resource/Textures/Lehrer/Karten/Karte_DE_Back.png");
+	tb[4].loadFromFile("resource/Textures/Lehrer/Karten/Karte_SP_Back.png");
+	tb[5].loadFromFile("resource/Textures/Lehrer/Karten/Karte_METAL_Back.png");
+	tb[6].loadFromFile("resource/Textures/Lehrer/Karten/Karte_POWI_Back.png");
+	tb[7].loadFromFile("resource/Textures/Lehrer/Karten/Karte_RELI_Back.png");
 
 	sf::Vector2f size = { 210.f , 140.f };
 	this->Rückseite.setSize(size);
@@ -86,6 +92,8 @@ TowerSelect::TowerSelect()
 
 	this->karten[4] = new Karte(100, AllyType::TestTower, &t[4], { 220.f * 0 + 600, 250.f });
 	this->karten[5] = new Karte(100, AllyType::METAL_Lehrer, &t[5], { 220.f * 1 + 600, 250.f });
+	this->karten[6] = new Karte(100, AllyType::POWI_Lehrer, &t[6], { 220.f * 2 + 600, 250.f });
+	this->karten[7] = new Karte(100, AllyType::RELI_Lehrer, &t[7], { 220.f * 3 + 600, 250.f });
 
 	
 
@@ -123,12 +131,6 @@ Karte** TowerSelect::openTowerSelect()
 
 			case sf::Event::Closed:
 				GameWindow::getWindow().close();
-				break;
-
-			case sf::Event::KeyPressed:
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-					TowerSelect.open = false;
-				}
 				break;
 
 			case sf::Event::MouseButtonPressed:

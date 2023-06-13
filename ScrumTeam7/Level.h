@@ -16,6 +16,10 @@ class Level
 protected:
 	bool active;
 
+	sf::RectangleShape endOfTheLevel;
+	sf::Font font;
+	sf::Text gameOver, victory;
+
 	Geld geld;
 	Shop shop;
 	AActors actors;
@@ -32,11 +36,13 @@ protected:
 
 	sf::Vector2f TileSelection();
 	void buttonEvents();
+
+	virtual void endLevel(bool victory);
 public:
 	Level();
 	virtual ~Level();
 
 
-	virtual void start(std::string  /*, Progression&*/);
+	virtual void start(std::string  , Progression&);
 };
 

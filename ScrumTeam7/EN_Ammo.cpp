@@ -66,10 +66,6 @@ EN_Ammo::~EN_Ammo() {}
 
 
 // public Methoden
-AmmoType EN_Ammo::getAmmoType()
-{
-	return this->curendType;
-}
 
 float EN_Ammo::getDamage()
 {

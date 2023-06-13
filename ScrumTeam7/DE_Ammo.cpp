@@ -51,16 +51,6 @@ DE_Ammo::DE_Ammo(sf::Vector2f TowerPosition)
 DE_Ammo::~DE_Ammo() {}
 
 // public Methoden
-AmmoType DE_Ammo::getAmmoType()
-{
-	return this->ammoType;
-}
-
-float DE_Ammo::getDamage()
-{
-	return this->damage;
-}
-
 void DE_Ammo::update()
 {
 
