@@ -219,6 +219,21 @@
     <ClCompile Include="Kreative.cpp">
       <Filter>Quelldateien\Entities\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="POWI_Lehrer.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="RELI_Lehrer.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="POWI_Book.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="RELI_Book.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="RELI_Ammo.cpp">
+      <Filter>Quelldateien\Entities\Ammo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -370,6 +385,21 @@
     </ClInclude>
     <ClInclude Include="Kreative.h">
       <Filter>Headerdateien\Entities\Header Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="POWI_Book.h">
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="POWI_Lehrer.h">
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="RELI_Book.h">
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="RELI_Lehrer.h">
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="RELI_Ammo.h">
+      <Filter>Headerdateien\Entities\Header Ammo</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@
 #include <math.h>
 
 // static Variables
+int Kreative::count = 0;
 
 EnemyType Kreative::enemyType = EnemyType::Kreative;
 
@@ -42,7 +43,7 @@ void Kreative::unLoadTexture()
 
 // Constructur & Destructur
 Kreative::Kreative(const sf::Vector2f& tilePosition)
-	:BaseEnemy(Health*sqrt(count+1), tilePosition, texture)
+	:BaseEnemy(Health*(float)sqrt(count+1), tilePosition, texture)
 {
 	count++;
 }
@@ -51,16 +52,6 @@ Kreative::~Kreative()
 {
 	count--;
 	AActors::addCollectedRevenue(this->revenue);
-}
-
-// public get-Methoden
-int Kreative::getRevenue() {
-	return revenue;
-}
-
-EnemyType Kreative::getEnemyType()
-{
-	return this->enemyType;
 }
 
 // public Methoden
@@ -95,7 +86,7 @@ void Kreative::update()
 	if (temp != nullptr && status.canAttack) {
 		movable = false;
 		if (clock.getElapsedTime() + this->remainingAttackTime >= this->attackSpeed) {
-			temp->takeDamage(this->Damage * sqrt(count));
+			temp->takeDamage(this->Damage * (float)sqrt(count));
 
 			this->remainingAttackTime = sf::seconds(0);
 			clock.restart();

@@ -56,21 +56,6 @@ TestEnemy::~TestEnemy()
 	AActors::addCollectedRevenue(this->revenue);
 }
 
-// public get-Methoden
-int TestEnemy::getRevenue() {
-	return revenue;
-}
-
-EnemyType TestEnemy::getEnemyType()
-{
-	return this->enemyType;
-}
-
-float TestEnemy::getDamage()
-{
-	return this->Damage;
-}
-
 // public Methoden
 void TestEnemy::move()
 {

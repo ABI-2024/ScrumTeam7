@@ -26,8 +26,6 @@ public:
 	METAL_Ammo(sf::Vector2f TowerPosition);
 	virtual ~METAL_Ammo();
 
-	AmmoType getAmmoType() override;
-	float getDamage() override;
 
 	void update() override;
 

@@ -49,21 +49,6 @@ Nerd::~Nerd()
 	AActors::addCollectedRevenue(this->revenue);
 }
 
-// public get-Methoden
-int Nerd::getRevenue() {
-	return revenue;
-}
-
-EnemyType Nerd::getEnemyType()
-{
-	return this->enemyType;
-}
-
-float Nerd::getDamage()
-{
-	return this->Damage;
-}
-
 // public Methoden
 
 void Nerd::move()

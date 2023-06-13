@@ -27,10 +27,6 @@ public:
 	Kreative(const sf::Vector2f& tilePosition);
 	virtual ~Kreative();
 
-	int getRevenue() override;
-
-	EnemyType getEnemyType() override;
-
 	void move();
 
 	void update() override;

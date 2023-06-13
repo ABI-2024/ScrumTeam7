@@ -19,10 +19,6 @@ public:
 	TestAmmo(sf::Vector2f TowerPosition);
 	virtual ~TestAmmo();
 
-
-	AmmoType getAmmoType() override;
-	float getDamage() override;
-
 	void move();
 
 	void update() override;

@@ -42,15 +42,6 @@ TestAmmo::~TestAmmo() {}
 
 
 // public Methoden
-AmmoType TestAmmo::getAmmoType()
-{
-	return this->ammoType;
-}
-
-float TestAmmo::getDamage()
-{
-	return this->damage;
-}
 
 void TestAmmo::move()
 {

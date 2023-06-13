@@ -13,17 +13,13 @@ private:
 	static sf::Vector2f dir;
 
 	AmmoType curendType;
-
+	float getDamage();
 public:
 	static void LoadTexture();
 	static void unLoadTexture();
 
 	INF_Ammo(sf::Vector2f TowerPosition, AmmoType type);
 	virtual ~INF_Ammo();
-
-
-	AmmoType getAmmoType() override;
-	float getDamage() override;
 
 	void move();
 

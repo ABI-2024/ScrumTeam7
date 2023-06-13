@@ -15,9 +15,6 @@ public:
 	virtual ~BaseAmmo();
 
 	const CollisionType& getCollisionType() override;
-		
-	virtual AmmoType getAmmoType() = 0;
-	virtual float getDamage() = 0;
 
 	virtual void update() = 0;
 	void renderShadow() override;

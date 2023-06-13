@@ -7,6 +7,8 @@
 #include "EN_Lehrer.h"
 #include "DE_Lehrer.h"
 #include "METAL_Lehrer.h"
+#include "RELI_Lehrer.h"
+#include "POWI_Lehrer.h"
 
 // Ammo / Geschosse
 #include "TestAmmo.h"
@@ -15,11 +17,13 @@
 #include "EN_Ammo.h"
 #include "DE_Ammo.h"
 #include "METAL_Ammo.h"
+#include "RELI_Ammo.h"
 
 // Enemies / Gegener
 #include "TestEnemy.h"
 #include "Nerd.h"
 #include "Steroidenking.h"
+#include "Kreative.h"
 
 	// ------------------------------------------ Nebenfuktion
 int AActors::collectedRevenue = 0;
@@ -72,6 +76,8 @@ AActors::AActors()
 	EN_Lehrer::LoadTexture();
 	DE_Lehrer::LoadTexture();
 	METAL_Lehrer::LoadTexture();
+	RELI_Lehrer::LoadTexture();
+	POWI_Lehrer::LoadTexture();
 
 	// Alle AmmoTypes
 	TestAmmo::LoadTexture();
@@ -80,11 +86,13 @@ AActors::AActors()
 	EN_Ammo::LoadTexture();
 	DE_Ammo::LoadTexture();
 	METAL_Ammo::LoadTexture();
+	RELI_Ammo::LoadTexture();
 
 	// Alle EnemyTypes
 	TestEnemy::LoadTexture();
 	Nerd::LoadTexture();
 	Steroidenking::LoadTexture();
+	Kreative::LoadTexture();
 
 }
 
@@ -114,6 +122,8 @@ AActors::~AActors()
 	EN_Lehrer::unLoadTexture();
 	DE_Lehrer::unLoadTexture();
 	METAL_Lehrer::unLoadTexture();
+	RELI_Lehrer::unLoadTexture();
+	POWI_Lehrer::unLoadTexture();
 
 	// Alle AmmoTypes
 	TestAmmo::unLoadTexture();
@@ -122,11 +132,13 @@ AActors::~AActors()
 	EN_Ammo::unLoadTexture();
 	DE_Ammo::unLoadTexture();
 	METAL_Ammo::unLoadTexture();
+	RELI_Ammo::unLoadTexture();
 
 	// Alle EnemyTypes
 	TestEnemy::unLoadTexture();
 	Nerd::unLoadTexture();
 	Steroidenking::unLoadTexture();
+	Kreative::unLoadTexture();
 }
 
 // Alle create-Fuktionen
@@ -143,6 +155,8 @@ bool AActors::create(const AllyType& type, const sf::Vector2f& position)
 	case AllyType::EN_Lehrer:
 	case AllyType::DE_Lehrer:
 	case AllyType::METAL_Lehrer:
+	case AllyType::RELI_Lehrer:
+	case AllyType::POWI_Lehrer:
 
 		if (position.x < 0 || position.x >7 || position.y < 0 || position.y > 4) {
 			return false;
@@ -180,6 +194,12 @@ bool AActors::create(const AllyType& type, const sf::Vector2f& position)
 		        break;
 		    case AllyType::METAL_Lehrer:
 				entities->push_back(new METAL_Lehrer(position));
+		        break;
+			case AllyType::RELI_Lehrer:
+				entities->push_back(new RELI_Lehrer(position));
+		        break;
+			case AllyType::POWI_Lehrer:
+				entities->push_back(new POWI_Lehrer(position));
 		        break;
 
 	default:
@@ -222,6 +242,9 @@ bool AActors::create(const AmmoType& type, const sf::Vector2f& position)
 		case AmmoType::METAL_Ammo:
 			entities->push_back(new METAL_Ammo(position));
 			break;
+		case AmmoType::RELI_Ammo:
+			entities->push_back(new RELI_Ammo(position));
+			break;
 
 	default:
 		created = 0;
@@ -249,6 +272,9 @@ bool AActors::create(const EnemyType& type, const sf::Vector2f& position)
 		        break;
 		    case EnemyType::Steroidenking:
 				entities->push_back(new Steroidenking(position));
+		        break;
+		    case EnemyType::Kreative:
+				entities->push_back(new Kreative(position));
 		        break;
 
 	default:

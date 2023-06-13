@@ -45,15 +45,6 @@ MA_Ammo::~MA_Ammo() {}
 
 
 // public Methoden
-AmmoType MA_Ammo::getAmmoType()
-{
-	return this->ammoType;
-}
-
-float MA_Ammo::getDamage()
-{
-	return this->damage;
-}
 
 void MA_Ammo::move()
 {
