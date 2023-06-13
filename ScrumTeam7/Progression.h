@@ -3,11 +3,10 @@
 #include <vector>
 
 struct Highscores {
-	std::string playerName;
 	int score;
 
-	Highscores(const std::string& playerName, const int& score)
-		:playerName(playerName), score(score)
+	Highscores( const int& score)
+		: score(score)
 	{	}
 };
 

@@ -1,0 +1,15 @@
+14
+0;Hey, wer ist denn das? Standardschueler?! Was ein Looser. *RUFT LAUT* Standardschueler!
+0;Ich habe gehoert, du trainierst im Fitnessstudio. Willst du dich boxen, um Dominanz zu zeigen?
+1;Klar, kein Problem!
+1;*SINGT* Wir zwei reden gleich über Brueche, aber nicht aus der Mathematik…
+0;HUEHNCHEN MIT REIS! HUEHNCHEN MIT REIS!
+1;AUA! Mein Kiefer ist gebrochen.
+2;Simulanten! Das sieht mir nach einer 6 aus, und dass für euch beide!
+2;Du kannst jetzt uebrigens aufhoeren mit dem Simulieren, Standardschueler.
+2;Das muss nur ein bisschen gekuehlt werden, noich.
+1;*HEULT* Dafuer bekommen wir bestimmt eine schlechte Note.
+0;Ich habe eine Idee. Wir stuermen die Schulserver, um unsere Noten zu "verbessern".
+3;OK, lass machen, #yolomeus! Aber nur wenn Elisabet auch mit macht.
+2;Haltet euch für brillant, einfach nur arrogant, moechtet Zugang zu dem Serverschrank, Simulant!
+2;Ich halte euch auf! Das Simulieren muss ein Ende haben!

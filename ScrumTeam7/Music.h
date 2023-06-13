@@ -14,5 +14,7 @@ public:
 	static void stopMusic();
 
 	static void unloadMusic();
+
+	static void setVolume();
 };
 

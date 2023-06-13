@@ -53,7 +53,7 @@ public:
 	static void closeWindow();
 	static sf::RenderWindow& getWindow();
 
-	static Settings getSettings();
+	static const Settings* getSettings();
 	static void setSettings(const Settings& newSettings);
 
 	static sf::Event& getEvent();

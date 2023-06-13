@@ -18,6 +18,7 @@ public:
 
 	static int getCollectedRevenue();
 	static void addCollectedRevenue(int);
+	static void setCollectedRevenue(int);
 	// ------------------------------------------ Nebenfuktion
 
 	// ------------------------------------------ Hauptfunktion
@@ -65,6 +66,9 @@ public:
 	static void pauseEntities();
 	static void continueEntities();
 
+	static std::vector<Entity*>* getAlly();
+	static std::vector<Entity*>* getAllyAmmo();
+	static std::vector<Entity*>* getEnemies();
 	// ------------------------------------------ Hauptfunktion
 };
 

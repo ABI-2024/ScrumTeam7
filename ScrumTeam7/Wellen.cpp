@@ -148,7 +148,11 @@ void Wellen::Wartefunktion(Geld& geld) {
 
 
 void Wellen::Wellenfunktion(Geld& geld) {
-	if (this->geteof() == true) return;
+	if (this->geteof() == true) {
+
+		return;
+	}
+
 	this->SpawnEnde();
 	if (this->getspawnEnde() == false) {
 		this->SpawnEnemy();
@@ -156,6 +160,7 @@ void Wellen::Wellenfunktion(Geld& geld) {
 	else {
 		this->WellenEnde();
 	}
+
 	if (this->getwellenEnde() == true) {
 		if (this->getwarteTimer() == true)
 			this->startWartetimer();

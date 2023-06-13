@@ -29,12 +29,14 @@
 int AActors::collectedRevenue = 0;
 
 int AActors::getCollectedRevenue() {
-	int ans = collectedRevenue;
-	collectedRevenue = 0;
-	return ans;
+	return collectedRevenue;
 }
 void AActors::addCollectedRevenue(int add) {
 	collectedRevenue += add;
+}
+void AActors::setCollectedRevenue(int)
+{
+	collectedRevenue = 0;
 }
 // ------------------------------------------ Nebenfuktion
 
@@ -443,6 +445,21 @@ void AActors::continueEntities()
 			(*entities)[i]->continueEntitiy();
 		}
 	}
+}
+
+std::vector<Entity*>* AActors::getAlly()
+{
+	return ally;
+}
+
+std::vector<Entity*>* AActors::getAllyAmmo()
+{
+	return allyAmmo;
+}
+
+std::vector<Entity*>* AActors::getEnemies()
+{
+	return enemies;
 }
 
 
