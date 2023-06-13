@@ -134,19 +134,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AActors.cpp" />
     <ClCompile Include="Actors.cpp" />
     <ClCompile Include="BaseAmmo.cpp" />
     <ClCompile Include="BaseEnemy.cpp" />
     <ClCompile Include="BaseTower.cpp" />
+    <ClCompile Include="Burn.cpp" />
     <ClCompile Include="Button.cpp" />
-    <ClCompile Include="Button2.cpp" />
     <ClCompile Include="DE_Ammo.cpp" />
     <ClCompile Include="DE_Lehrer.cpp" />
     <ClCompile Include="Emo.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityStatus.cpp" />
     <ClCompile Include="EN_Ammo.cpp" />
     <ClCompile Include="EN_Lehrer.cpp" />
     <ClCompile Include="Geld.cpp" />
+    <ClCompile Include="InfinityWellen.cpp" />
     <ClCompile Include="INF_Ammo.cpp" />
     <ClCompile Include="INF_Lehrer.cpp" />
     <ClCompile Include="Karte.cpp" />
@@ -165,11 +168,16 @@
     <ClCompile Include="Menu_Pause.cpp" />
     <ClCompile Include="METAL_Ammo.cpp" />
     <ClCompile Include="METAL_Lehrer.cpp" />
+    <ClCompile Include="Music.cpp" />
     <ClCompile Include="Nerd.cpp" />
+    <ClCompile Include="Progression.cpp" />
     <ClCompile Include="Randomizer.cpp" />
     <ClCompile Include="Shop.cpp" />
+    <ClCompile Include="StatusEffect.cpp" />
+    <ClCompile Include="StatusProc.cpp" />
     <ClCompile Include="Simp.cpp" />
     <ClCompile Include="Steroidenking.cpp" />
+    <ClCompile Include="Stun.cpp" />
     <ClCompile Include="TestAmmo.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="TestTower.cpp" />
@@ -179,20 +187,23 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AActors.h" />
     <ClInclude Include="Actors.h" />
     <ClInclude Include="BaseAmmo.h" />
     <ClInclude Include="BaseEnemy.h" />
     <ClInclude Include="BaseTower.h" />
+    <ClInclude Include="Burn.h" />
     <ClInclude Include="Button.h" />
-    <ClInclude Include="Button2.h" />
     <ClInclude Include="DE_Ammo.h" />
     <ClInclude Include="DE_Lehrer.h" />
     <ClInclude Include="Emo.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityStatus.h" />
     <ClInclude Include="enums.h" />
     <ClInclude Include="EN_Ammo.h" />
     <ClInclude Include="EN_Lehrer.h" />
     <ClInclude Include="Geld.h" />
+    <ClInclude Include="InfinityWellen.h" />
     <ClInclude Include="INF_Ammo.h" />
     <ClInclude Include="INF_Lehrer.h" />
     <ClInclude Include="Level.h" />
@@ -209,13 +220,18 @@
     <ClInclude Include="Menu_Pause.h" />
     <ClInclude Include="METAL_Ammo.h" />
     <ClInclude Include="METAL_Lehrer.h" />
+    <ClInclude Include="Music.h" />
     <ClInclude Include="Nerd.h" />
+    <ClInclude Include="Progression.h" />
     <ClInclude Include="Randomizer.h" />
     <ClInclude Include="Karte.h" />
     <ClInclude Include="Shop.h" />
+    <ClInclude Include="StatusEffect.h" />
+    <ClInclude Include="StatusProc.h" />
     <ClInclude Include="Simp.h" />
     <ClInclude Include="Status_Effect.h" />
     <ClInclude Include="Steroidenking.h" />
+    <ClInclude Include="Stun.h" />
     <ClInclude Include="TestAmmo.h" />
     <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="TestTower.h" />

@@ -1,6 +1,7 @@
 #include "EN_Ammo.h"
 
 #include "Window.h"
+#include "AActors.h"
 
 // public static Variables
 AmmoType EN_Ammo::ammoType[4] = { AmmoType::Englisch_weak, AmmoType::Englisch_medium, AmmoType::Englisch_strong, AmmoType::Englisch_strongest };
@@ -53,11 +54,9 @@ EN_Ammo::EN_Ammo(sf::Vector2f TowerPosition, AmmoType type)
 		body.setTexture(&texture[1], 1);
 		break;
 	case AmmoType::Englisch_strong:
-		this->status_Effect = { Status_Type::stun, 0.f , sf::milliseconds(500) };
 		body.setTexture(&texture[2], 1);
 		break;
 	case AmmoType::Englisch_strongest:
-		this->status_Effect = { Status_Type::stun, 50.f , sf::milliseconds(1500) };
 		body.setTexture(&texture[3], 1);
 		break;
 	}
@@ -96,12 +95,25 @@ void EN_Ammo::move()
 {
 	this->body.move(this->dir * dt);
 
-	if (this->body.getPosition().x >= GameWindow::getMainView().getSize().x) {
-		this->hit = true;
+	if (body.getPosition().x >= 1600.f + body.getSize().x / 2.f) {
+		status.alive = false;
 	}
 }
 
 void EN_Ammo::update()
 {
 	this->move();
+
+	Entity* tmp = AActors::CollisionSingle(body.getGlobalBounds(), CollisionType::enemies);
+	if (tmp != nullptr) {
+		tmp->takeDamage(this->getDamage());
+		status.alive = false;
+	}
+
+
+
+	if (!status.alive) {
+		AActors::destroy(this);
+	}
+
 }

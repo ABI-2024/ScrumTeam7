@@ -22,15 +22,12 @@ public:
 	static void unLoadTexture();
 
 	TestEnemy(const sf::Vector2f& tilePosition);
-	~TestEnemy();
+	virtual ~TestEnemy();
 
 	int getRevenue() override;
 
-
 	EnemyType getEnemyType() override;
 	float getDamage() override;
-
-	bool CollisionWithTower(sf::FloatRect& Tower) override;
 
 	void move();
 

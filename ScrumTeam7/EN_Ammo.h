@@ -19,7 +19,7 @@ public:
 	static void unLoadTexture();
 
 	EN_Ammo(sf::Vector2f TowerPosition, AmmoType type);
-	~EN_Ammo();
+	virtual ~EN_Ammo();
 
 
 	AmmoType getAmmoType() override;

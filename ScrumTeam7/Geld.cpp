@@ -1,6 +1,5 @@
 #include "Geld.h"
 #include "Window.h"
-#include <iostream>
 
 using namespace std;
 

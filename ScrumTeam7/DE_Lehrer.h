@@ -4,8 +4,7 @@
 class DE_Lehrer : public BaseTower
 {
 private:
-	static TowerType towerType;
-	static AmmoType ammoType;
+	static AllyType type;
 
 	static int Cost;
 
@@ -20,12 +19,10 @@ public:
 	static void unLoadTexture();
 
 	DE_Lehrer(sf::Vector2f tilePosition);
-	~DE_Lehrer();
+	virtual ~DE_Lehrer();
 
-	TowerType getTowerType() override;
-	AmmoType getAmmoType() override;
+	void takeDamage(float) override;
 
-	void HasAttacked() override;
 	void update() override;
 };
 

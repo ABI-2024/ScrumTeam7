@@ -22,15 +22,12 @@ public:
 	static void unLoadTexture();
 
 	Nerd(const sf::Vector2f& tilePosition);
-	~Nerd();
+	virtual ~Nerd();
 
 	int getRevenue() override;
 
-
 	EnemyType getEnemyType() override;
 	float getDamage() override;
-
-	bool CollisionWithTower(sf::FloatRect& Tower) override;
 
 	void move();
 
