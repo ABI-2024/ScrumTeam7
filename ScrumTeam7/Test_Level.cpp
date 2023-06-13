@@ -37,7 +37,6 @@ sf::Vector2f Test_Level::TileSelection()
 
     return sf::Vector2f(mousePos);
 }
-
 void Test_Level::buttonEvents()
 {
     switch ( this->menu.mouseClick()) {

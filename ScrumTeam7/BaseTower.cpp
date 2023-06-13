@@ -61,7 +61,7 @@ const CollisionType& BaseTower::getCollisionType()
 
 sf::FloatRect BaseTower::getFloaRect()
 {
-	return this->body.getGlobalBounds();	
+	return this->body.getGlobalBounds();
 }
 
 sf::Vector2f BaseTower::getPosition()
@@ -76,6 +76,7 @@ sf::Vector2f BaseTower::getTilePosition()
 
 
 // public Methoden
+
 
 void BaseTower::pauseEntitiy()
 {

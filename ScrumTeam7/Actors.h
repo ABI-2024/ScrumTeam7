@@ -28,7 +28,7 @@
 //
 //
 ///*
-//	Diese Klasse enth‰lt alle Tower-,Enemies- und Ammotypen
+//	Diese Klasse enth√§lt alle Tower-,Enemies- und Ammotypen
 //	
 //	Sie kann die oben Genannten Klassen
 //		- updaten
@@ -36,7 +36,7 @@
 //		- rendern
 //
 //	
-//	Guide um neue Entities anzuschlieﬂen
+//	Guide um neue Entities anzuschlie√üen
 //	1. Einen [ std::vector<Klassenname*> ] in Actors.h erstellen
 //	2. In der "Actors.cpp" in den Methoden updateTowers() / updateAmmos() oder updateEnemies() wie die Anderen einbinden.
 //	3. In der "Actors.cpp" in den Methoden ~Actors() in die Funktionen einbinden.
@@ -96,12 +96,12 @@
 //
 //
 //
-//	// Updaten alle vectoren und ihre zugehˆrigen BasisTypen*
+//	// Updaten alle vectoren und ihre zugeh√∂rigen BasisTypen*
 //	void updateTowers();
 //	void updateAmmos();
 //	void updateEnemies();
 //
-//	// Sorgt f¸r Collision von den Klassen
+//	// Sorgt f√ºr Collision von den Klassen
 //	void CollisionEnemyWithTower();
 //	void CollisionAmmoWithEnemy();
 //
@@ -129,7 +129,7 @@
 //	// Ruft alle Render-Methoden
 //	void renderActors();
 //
-//	// Gibt die Liste der Enemys zur¸ck
+//	// Gibt die Liste der Enemys zur√ºck
 //	std::vector<BaseEnemy*>* getEnemy();
 //
 //	// Initialisiert die Klassen
@@ -138,7 +138,7 @@
 //
 //	void initializeAmmo(AmmoType AmmoType, sf::Vector2f TowerPosition); // Beachte Parametername des Vectors
 //
-//	// Ver‰ndert die Geldmenge
+//	// Ver√§ndert die Geldmenge
 //
 //
 //};

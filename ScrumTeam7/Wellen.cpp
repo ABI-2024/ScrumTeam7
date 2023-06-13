@@ -97,6 +97,10 @@ void Wellen::SortListeSchueler() {
 void Wellen::WellenEnde() { // Checkt ob alle Schüler in der Welle getötet wurden
 	if (AActors::enemies->size() == 0) { // Ließt die Anzahl der lebenden Schüler aus
 		wellenEnde = true;
+		//delete[] * pSchueler; //Löscht die lehre pSchüler
+		//*pSchueler = nullptr;
+		//delete[] pSchueler;
+		//pSchueler = nullptr;
 	}
 }
 
@@ -177,6 +181,10 @@ bool Wellen::getwarteTimer() {
 
 bool Wellen::geteof() {
 	return this->eof;
+}
+
+void Wellen::deletepSchueler() {
+	
 }
 
 

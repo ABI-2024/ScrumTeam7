@@ -216,6 +216,12 @@
     <ClCompile Include="InfinityWellen.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Emo.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Simp.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -364,6 +370,12 @@
     </ClInclude>
     <ClInclude Include="InfinityWellen.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+   <ClInclude Include="Emo.h" >
+    <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Simp.h" >
+    <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
