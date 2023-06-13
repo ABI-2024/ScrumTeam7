@@ -7,6 +7,7 @@ private:
 
 	static float Health;
 	static float Damage;
+	static float SelfharmDMG;
 
 	static int revenue;
 
@@ -22,15 +23,12 @@ public:
 	static void unLoadTexture();
 
 	Emo(const sf::Vector2f& tilePosition);
-	~Emo();
+	virtual ~Emo();
 
 	int getRevenue() override;
 
-
 	EnemyType getEnemyType() override;
 	float getDamage() override;
-
-	bool CollisionWithTower(sf::FloatRect& Tower) override;
 
 	void move();
 

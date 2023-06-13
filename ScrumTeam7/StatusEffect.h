@@ -7,6 +7,7 @@ enum class StatusType {
 	non = 0,
 	burn,
 	stun,
+	cripple,
 };
 
 

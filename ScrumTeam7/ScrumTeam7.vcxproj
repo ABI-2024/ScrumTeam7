@@ -141,6 +141,7 @@
     <ClCompile Include="BaseTower.cpp" />
     <ClCompile Include="Burn.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Cripple.cpp" />
     <ClCompile Include="DE_Ammo.cpp" />
     <ClCompile Include="DE_Lehrer.cpp" />
     <ClCompile Include="Emo.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="BaseTower.h" />
     <ClInclude Include="Burn.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Cripple.h" />
     <ClInclude Include="DE_Ammo.h" />
     <ClInclude Include="DE_Lehrer.h" />
     <ClInclude Include="Emo.h" />

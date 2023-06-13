@@ -20,6 +20,8 @@
 #include "TestEnemy.h"
 #include "Nerd.h"
 #include "Steroidenking.h"
+#include "Simp.h"
+#include "Emo.h"
 
 	// ------------------------------------------ Nebenfuktion
 int AActors::collectedRevenue = 0;
@@ -85,6 +87,8 @@ AActors::AActors()
 	TestEnemy::LoadTexture();
 	Nerd::LoadTexture();
 	Steroidenking::LoadTexture();
+	Simp::LoadTexture();
+	Emo::LoadTexture();
 
 }
 
@@ -127,6 +131,8 @@ AActors::~AActors()
 	TestEnemy::unLoadTexture();
 	Nerd::unLoadTexture();
 	Steroidenking::unLoadTexture();
+	Simp::unLoadTexture();
+	Emo::unLoadTexture();
 }
 
 // Alle create-Fuktionen
@@ -250,7 +256,12 @@ bool AActors::create(const EnemyType& type, const sf::Vector2f& position)
 		    case EnemyType::Steroidenking:
 				entities->push_back(new Steroidenking(position));
 		        break;
-
+			case EnemyType::Simp:
+				entities->push_back(new Simp(position));
+				break;
+			case EnemyType::Emo:
+				entities->push_back(new Emo(position));
+				break;
 	default:
 		created = 0;
 		break;

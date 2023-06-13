@@ -1,6 +1,7 @@
 #include "Nerd.h"
 #include "Window.h"
 #include "AActors.h"
+#include "Cripple.h"
 
 // static Variables
 
@@ -44,7 +45,7 @@ Nerd::Nerd(const sf::Vector2f& tilePosition)
 	programmzeit.restart();
 }
 
-Nerd::~Nerd() 
+Nerd::~Nerd()
 {
 	AActors::addCollectedRevenue(this->revenue);
 }
@@ -76,19 +77,34 @@ void Nerd::move()
 	}
 }
 
-void Nerd :: manipulation()
+void Nerd::manipulation()
 {
-	if (programmzeit.getElapsedTime() >= sf::seconds(3)) {
-		for (BaseTower* i : BaseTower::towers)
-		{
-			i->getTilePosition();
+	int rightesttileposition;
+	if (programmzeit.getElapsedTime() >= sf::seconds(2)) { //sobald 5 sekunden vergangen sind
+		for (int i = 0; i < 5; i++) {
+			std::vector<Entity*>* temp = AActors::CollisionPoly(sf::FloatRect(sf::Vector2f(0, 150.f + 150.f * i), sf::Vector2f(GameWindow::getMainView().getSize().x, 1)), CollisionType::ally); // neues array mit lehrer aus der reihe i
+			if (temp != nullptr and temp->size() != 0) {
+				rightesttileposition = (*temp)[0]->getTilePosition().x; // begin initialisierung für ...
+				for (int j = 1; j < temp->size(); j++) {							// die Überprüfung des Lehrer, welcher am weitesten rechts ist in Zeile i
+					if (rightesttileposition < (*temp)[j]->getTilePosition().x) {
+						rightesttileposition = (*temp)[j]->getTilePosition().x;
+					}
+				}
+				for (int k = 0; k < temp->size(); k++) {							//StatusEffect:Cripple wird auf den Lehrer übertragen
+					if ((*temp)[k]->getTilePosition().x == rightesttileposition) {
+						(*temp)[k]->addStatusEffect(StatusEffect(StatusType::cripple, sf::seconds(2), 0));
+					}
+				}
+
+			}
+			delete temp;
 		}
 	}
-
 }
 
 void Nerd::update()
 {
+	manipulation();
 	if (health <= Health / 5) {
 		body.setFillColor({ 139,0,0 }); //DarkRed
 	}
@@ -104,7 +120,7 @@ void Nerd::update()
 
 	Entity* temp = AActors::CollisionSingle(body.getGlobalBounds(), CollisionType::ally);
 
-	if (temp != nullptr && status.canAttack) {
+	if (temp != nullptr && status.canAttack) {		//True wenn es mit einem Lehrer kollidiert
 		movable = false;
 		if (clock.getElapsedTime() + this->remainingAttackTime >= this->attackSpeed) {
 			temp->takeDamage(this->Damage);

@@ -1,17 +1,17 @@
 #include "Simp.h"
 #include "Window.h"
 #include "BaseTower.h"
-
+#include "AActors.h"
 #include <iostream>
 
 // static Variables
 
 EnemyType Simp::enemyType = EnemyType::Simp;
 
-float Simp::Health = 100;
+float Simp::Health = 400;
 float Simp::Damage = 0;
 
-int Simp::revenue = 8;
+int Simp::revenue = 5;
 
 sf::Vector2f Simp::dir = sf::Vector2f(-7, 0);
 
@@ -65,17 +65,6 @@ float Simp::getDamage()
 }
 
 // public Methoden
-bool Simp::CollisionWithTower(sf::FloatRect& Tower)
-{
-	if (sf::FloatRect(this->body.getGlobalBounds()).intersects(Tower)) {
-		movable = false;
-		return 1;
-	}
-	else {
-		return 0;
-	}
-}
-
 void Simp::move()
 {
 	if (movable) {
@@ -99,11 +88,28 @@ void Simp::update()
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
 
-	if (this->attackSpeed <= this->clock.getElapsedTime()) {
-		readyToAttack = true;
+	updateStatusprocs(true, true);
+
+	Entity* temp = AActors::CollisionSingle(body.getGlobalBounds(), CollisionType::ally);
+
+	if (temp != nullptr && status.canAttack) {	//True wenn es mit einem Lehrer kollidiert
+		movable = false;
+		if (clock.getElapsedTime() + this->remainingAttackTime >= this->attackSpeed) {
+			temp->addStatusEffect(StatusEffect(StatusType::cripple, sf::seconds(0.75), 0));
+
+			this->remainingAttackTime = sf::seconds(0);
+			clock.restart();
+		}
+	}
+	else {
+		movable = true;
 	}
 
-	this->updateStatus_Proc();
+	if (status.canWalk) {
+		this->move();
+	}
 
-	this->move();
+	if (!status.alive) {
+		AActors::destroy(this);
+	}
 }

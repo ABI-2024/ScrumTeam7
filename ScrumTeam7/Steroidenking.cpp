@@ -111,7 +111,7 @@ void Steroidenking::update()
 	}
 	Entity* temp = AActors::CollisionSingle(body.getGlobalBounds(), CollisionType::ally);
 
-	if (temp != nullptr && status.canAttack) {
+	if (temp != nullptr && status.canAttack) {	//True wenn es mit einem Lehrer kollidiert
 		running = false;
 		movable = false;
 		if (clock.getElapsedTime() + this->remainingAttackTime >= this->attackSpeed) {

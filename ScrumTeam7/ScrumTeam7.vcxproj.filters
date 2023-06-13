@@ -216,11 +216,14 @@
     <ClCompile Include="InfinityWellen.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Emo.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Simp.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Entities\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Emo.cpp">
+      <Filter>Quelldateien\Entities\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Cripple.cpp">
+      <Filter>Quelldateien\Entities\Status</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -371,11 +374,17 @@
     <ClInclude Include="InfinityWellen.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-   <ClInclude Include="Emo.h" >
-    <Filter>Headerdateien</Filter>
+    <ClInclude Include="Status_Effect.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Simp.h" >
-    <Filter>Headerdateien</Filter>
+    <ClInclude Include="Emo.h">
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Simp.h">
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Cripple.h">
+      <Filter>Headerdateien\Entities\Status</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

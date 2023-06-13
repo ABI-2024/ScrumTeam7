@@ -1,17 +1,18 @@
 #include "Emo.h"
 #include "Window.h"
 #include "BaseTower.h"
-
+#include "AActors.h"
 #include <iostream>
 
 // static Variables
 
 EnemyType Emo::enemyType = EnemyType::Emo;
 
-float Emo::Health = 400;
-float Emo::Damage = 20;
+float Emo::Health = 1000;
+float Emo::Damage = 40;
+float Emo::SelfharmDMG = 20;
 
-int Emo::revenue = 8;
+int Emo::revenue = 0;
 
 sf::Vector2f Emo::dir = sf::Vector2f(-7, 0);
 
@@ -44,7 +45,6 @@ Emo::Emo(const sf::Vector2f& tilePosition)
 	:BaseEnemy(Health, tilePosition, texture)
 
 {
-	programmzeit.restart();
 }
 
 Emo::~Emo() {}
@@ -65,17 +65,6 @@ float Emo::getDamage()
 }
 
 // public Methoden
-bool Emo::CollisionWithTower(sf::FloatRect& Tower)
-{
-	if (sf::FloatRect(this->body.getGlobalBounds()).intersects(Tower)) {
-		movable = false;
-		return 1;
-	}
-	else {
-		return 0;
-	}
-}
-
 void Emo::move()
 {
 	if (movable) {
@@ -99,11 +88,29 @@ void Emo::update()
 		body.setFillColor({ 255,99,71 }); //tomato1
 	}
 
-	if (this->attackSpeed <= this->clock.getElapsedTime()) {
-		readyToAttack = true;
+	updateStatusprocs(true, true);
+
+	Entity* temp = AActors::CollisionSingle(body.getGlobalBounds(), CollisionType::ally);
+
+	if (temp != nullptr && status.canAttack) {	//True wenn es mit einem Lehrer kollidiert
+		movable = false;
+		if (clock.getElapsedTime() + this->remainingAttackTime >= this->attackSpeed) {
+			temp->takeDamage(this->Damage);
+			this->takeDamage(this->SelfharmDMG);
+
+			this->remainingAttackTime = sf::seconds(0);
+			clock.restart();
+		}
+	}
+	else {
+		movable = true;
 	}
 
-	this->updateStatus_Proc();
+	if (status.canWalk) {
+		this->move();
+	}
 
-	this->move();
+	if (!status.alive) {
+		AActors::destroy(this);
+	}
 }
