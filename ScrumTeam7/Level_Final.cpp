@@ -230,6 +230,8 @@ void Level_Final::endLevel(bool victory)
 
 Level_Final::Level_Final()
 {
+    timeToWin = sf::seconds(500);
+
 	backgroundTexture.loadFromFile("resource/Textures/Level/Background-Lehrerzimmer.png");
 	background.setTexture(&backgroundTexture, 0);
 }

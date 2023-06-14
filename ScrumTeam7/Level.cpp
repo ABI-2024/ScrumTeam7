@@ -146,10 +146,10 @@ Level::~Level()
 
 void Level::start(std::string filename , Progression& progress)
 {
-
     Music::startMusic();
 
     shop.setKarten(TowerSelect::openTowerSelect());
+    winTimer.restart();
 
 
     sf::Vector2f pos;
@@ -175,6 +175,14 @@ void Level::start(std::string filename , Progression& progress)
                     return;
                 }
            }
+        }
+
+        if (winTimer.getElapsedTime() >= timeToWin) {
+            this->endLevel(true);
+            if (!active) {
+                Music::stopMusic();
+                return;
+            }
         }
 
         // Wellen und Geld

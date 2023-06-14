@@ -16,6 +16,10 @@ class Level
 protected:
 	bool active;
 
+	sf::Clock winTimer;
+	sf::Time timeToWin;
+
+
 	sf::RectangleShape endOfTheLevel;
 	sf::Font font;
 	sf::Text gameOver, victory;

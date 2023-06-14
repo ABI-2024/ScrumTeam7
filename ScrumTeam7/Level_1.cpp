@@ -222,6 +222,7 @@ void Level_1::dialogWindow()
 
 Level_1::Level_1()
 {
+    timeToWin = sf::seconds(500);
 
 	backgroundTexture.loadFromFile("resource/Textures/Level/Background-Tutorial-3.png");
 	background.setTexture(&backgroundTexture,0);
