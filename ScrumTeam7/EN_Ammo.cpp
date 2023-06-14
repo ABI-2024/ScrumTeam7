@@ -8,7 +8,7 @@ AmmoType EN_Ammo::ammoType[4] = { AmmoType::Englisch_weak, AmmoType::Englisch_me
 
 
 // static Variables private
-float EN_Ammo::damage[4] = { 10.f, 20.f ,40.f, 80.f };
+float EN_Ammo::damage[4] = { 5.f, 20.f ,70.f, 100.f };
 sf::Vector2f EN_Ammo::dir = sf::Vector2f(400.f, 0);
 sf::Texture* EN_Ammo::texture = nullptr;
 
@@ -66,10 +66,6 @@ EN_Ammo::~EN_Ammo() {}
 
 
 // public Methoden
-AmmoType EN_Ammo::getAmmoType()
-{
-	return this->curendType;
-}
 
 float EN_Ammo::getDamage()
 {
@@ -108,6 +104,9 @@ void EN_Ammo::update()
 	if (tmp != nullptr) {
 		tmp->takeDamage(this->getDamage());
 		status.alive = false;
+
+		hitSound->setVolume(100 * GameWindow::getSettings()->MasterVolume * GameWindow::getSettings()->SoundVolume / 10000);
+		hitSound->play();
 	}
 
 

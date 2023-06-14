@@ -22,7 +22,7 @@ void Level_Selector::buttonEvents()
 
 			case 1:
 				level = new Level_1();
-				level->start(datafiles[i-1]);
+				level->start(datafiles[i-1], progress);
 				delete level;
 				if (progress.status < Level_Progression::Level_1) {
 					progress.status= Level_Progression::Level_1;
@@ -36,7 +36,7 @@ void Level_Selector::buttonEvents()
 					break;
 				}
 				level = new Level_2();
-				level->start(datafiles[i-1]);
+				level->start(datafiles[i-1], progress);
 				delete level;
 				if (progress.status < Level_Progression::Level_2) {
 					progress.status = Level_Progression::Level_2;
@@ -49,7 +49,7 @@ void Level_Selector::buttonEvents()
 					break;
 				}
 				level = new Level_3();
-				level->start(datafiles[i-1]);
+				level->start(datafiles[i-1], progress);
 				delete level;
 				if (progress.status < Level_Progression::Level_3) {
 					progress.status = Level_Progression::Level_3;
@@ -62,7 +62,7 @@ void Level_Selector::buttonEvents()
 				break;
 				}
 				level = new Level_Final();
-				level->start(datafiles[i-1]);
+				level->start(datafiles[i-1], progress);
 				delete level;
 				if (progress.status < Level_Progression::AllOnlocked) {
 					progress.status = Level_Progression::AllOnlocked;
@@ -75,7 +75,7 @@ void Level_Selector::buttonEvents()
 					break;
 				}
 				level = new Level_Endless();
-				level->start(datafiles[i-1]);
+				level->start(datafiles[i-1], progress);
 				delete level;
 
 				open = false;
@@ -108,7 +108,7 @@ Level_Selector::Level_Selector()
 	datafiles[1] = "resource/Data/Level_2.csv";
 	datafiles[2] = "resource/Data/Level_3.csv";
 	datafiles[3] = "resource/Data/Level_Final.csv";
-	datafiles[4] = "Datenwellen.csv";
+	datafiles[4] = "resource/Data/Datenwellen.csv";
 
 
 	font = new sf::Font();
@@ -181,7 +181,6 @@ Level_Selector::Level_Selector()
 
 Level_Selector::~Level_Selector()
 {
-
 	delete[] datafiles;
 	delete font;
 

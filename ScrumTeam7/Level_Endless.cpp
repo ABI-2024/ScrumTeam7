@@ -19,9 +19,13 @@ Level_Endless::~Level_Endless()
 {
 }
 
-void Level_Endless::start(std::string filename)
+void Level_Endless::start(std::string filename, Progression& progress)
 {
-
+    int score = 0;
+    sf::Text highscore;
+    highscore.setFont(font);
+    highscore.setCharacterSize(20);
+    highscore.setPosition(1500, 70);
 
     Music::startMusic();
 
@@ -29,6 +33,7 @@ void Level_Endless::start(std::string filename)
 
 
     sf::Vector2f pos;
+    std::vector<Entity*>* temp = nullptr;
 
     GameWindow::updateDeltaTime();
 
@@ -36,7 +41,27 @@ void Level_Endless::start(std::string filename)
 
         GameWindow::updateDeltaTime();
 
+        // GameOver
+        temp = AActors::getEnemies();
+        for (int i = 0; i < temp->size(); i++) {
+            if ((*temp)[i]->getPosition().x <= 300.f) {
+                this->endLevel(false);
+                if (!active) {
+                    Music::stopMusic();
+                    return;
+                }
+            }
+        }
+
+        // Wellen und Geld
         iWellen.update(geld);
+        geld.addKontostand(AActors::getCollectedRevenue());
+
+        score += AActors::getCollectedRevenue() * 10;
+        highscore.setString( std::to_string(score) );
+        highscore.setOrigin(highscore.getGlobalBounds().width, highscore.getGlobalBounds().height/2);
+
+        AActors::setCollectedRevenue(0);
 
         // Events
         while (Window.pollEvent(GameEvent)) {
@@ -140,6 +165,7 @@ void Level_Endless::start(std::string filename)
 
         geld.render();
         shop.render();
+        Window.draw(highscore);
 
         if (paused) {
             menu.render();
@@ -148,7 +174,57 @@ void Level_Endless::start(std::string filename)
         Window.display();
 
     }
+    progress.addScore( new Highscores{ score });
 
     Music::stopMusic();
 
+
+    active = true;
+    for (int i = 0; i < progress.highscores.size(); i++) {
+        if (progress.highscores[i]->score > score) {
+            score = progress.highscores[i]->score;
+        }
+    }
+
+    sf::Text text;
+    text.setFont(font);
+    text.setString("Highscore");
+    text.setCharacterSize(100);
+    text.setOrigin(text.getGlobalBounds().width / 2, text.getGlobalBounds().height / 2);
+    text.setPosition(GameWindow::getMainView().getSize().x / 2.f , GameWindow::getMainView().getSize().y/ 2.f -200);
+    text.setFillColor(sf::Color::Cyan);
+
+
+    highscore.setString( std::to_string(score));
+    highscore.setCharacterSize(150);
+    highscore.setOrigin(highscore.getGlobalBounds().width/2, highscore.getGlobalBounds().height/2);
+    highscore.setPosition(GameWindow::getMainView().getSize() / 2.f);
+    highscore.setFillColor(sf::Color::Cyan);
+
+    while (Window.isOpen() && active) {
+
+        while (Window.pollEvent(GameEvent)) {
+            switch (GameEvent.type)
+            {
+            case sf::Event::Closed:
+                GameWindow::getWindow().close();
+                break;
+            case sf::Event::MouseButtonPressed:
+            case sf::Event::KeyPressed:
+                active = false;
+                break;
+            default:
+                break;
+            }
+        }
+
+        Window.clear();
+
+        Window.draw(highscore);
+        Window.draw(text);
+
+        Window.display();
+        
+
+    }
 }

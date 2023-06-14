@@ -21,10 +21,6 @@ public:
 	MA_Ammo(sf::Vector2f TowerPosition);
 	virtual ~MA_Ammo();
 
-
-	AmmoType getAmmoType() override;
-	float getDamage() override;
-
 	void move();
 
 	void update() override;

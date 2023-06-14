@@ -3,6 +3,7 @@
 #include "Window.h"
 #include "Burn.h"
 #include "Stun.h"
+#include "Cripple.h"
 
 // protected static Variables 
 sf::Texture* Entity::shadowTexture = nullptr;
@@ -49,7 +50,15 @@ void Entity::takeDamage(float damage )
 
 void Entity::addStatusEffect(StatusEffect effect)
 {
+
 	if (statusprocs != nullptr) { // wenn statusprocs == nullptr ist bedeutet das, dass dieser Entity keine StatusEffekte haben kann
+		for (int i = 0; i < statusprocs->size(); i++) {
+			if ((*statusprocs)[i]->getType() == effect.getType()) {
+				return;
+			}
+				
+		}
+		
 		switch (effect.getType())
 		{
 
@@ -58,6 +67,9 @@ void Entity::addStatusEffect(StatusEffect effect)
 			break;
 		case StatusType::stun:
 			statusprocs->push_back(new Stun(effect, this));
+			break;
+		case StatusType::cripple:
+			statusprocs->push_back(new Cripple(effect, this));
 			break;
 		default:
 			break;

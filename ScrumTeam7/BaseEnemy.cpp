@@ -3,6 +3,48 @@
 #include "Window.h"
 #include"AActors.h"
 
+sf::SoundBuffer* BaseEnemy::bufferMale = nullptr;
+sf::SoundBuffer* BaseEnemy::bufferFemale = nullptr;
+sf::Sound* BaseEnemy::male = nullptr;
+sf::Sound* BaseEnemy::female = nullptr;
+
+void BaseEnemy::loadSound()
+{
+	if (bufferMale == nullptr) {
+		bufferMale = new sf::SoundBuffer();
+		bufferFemale = new sf::SoundBuffer();
+
+		bufferMale->loadFromFile("resource/Sound/Effects/male-death.wav");
+		bufferFemale->loadFromFile("resource/Sound/Effects/Female-Death.wav");
+
+		male = new sf::Sound();
+		male->setBuffer(*bufferMale);
+
+		female = new sf::Sound();
+		female->setBuffer(*bufferFemale);
+	}
+}
+
+void BaseEnemy::unloadSound()
+{
+	if (bufferMale != nullptr) {
+
+		delete bufferMale;
+		delete bufferFemale;
+
+		delete male;
+		delete female;
+
+		bufferMale = nullptr;
+		bufferFemale = nullptr;
+
+		male = nullptr;
+		female = nullptr;
+
+	}
+}
+
+
 // Constructur & Destructur
 BaseEnemy::BaseEnemy(float Health, sf::Vector2f tilePosition, sf::Texture* texture)
 	: Entity({ 75.f, 150.f }, { GameWindow::getMainView().getSize().x, 150.f + 150.f * tilePosition.y }), movable(true), health(Health), tilePosition(tilePosition)

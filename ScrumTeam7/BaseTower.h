@@ -3,6 +3,7 @@
 #include "Entity.h"
 
 #include "enums.h"
+#include "SFML/Audio.hpp"
 
 
 
@@ -19,7 +20,14 @@ protected:
 	sf::Time fireRateDiviation;
 
 	static bool enemyOnLines[5];
+
+	static sf::SoundBuffer* bufferMale, * bufferFemale;
+	static sf::Sound* male, * female;
+
 public:
+	static void loadSound();
+	static void unloadSound();
+
 	static void areEnemiesOnLine(std::vector<Entity*>* enemies);
 
 	BaseTower(float Health, sf::Vector2f tilePosition, sf::Texture* texture);

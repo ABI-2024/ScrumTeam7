@@ -26,9 +26,6 @@ public:
 	DE_Ammo(sf::Vector2f TowerPosition);
 	virtual ~DE_Ammo();
 
-	AmmoType getAmmoType() override;
-	float getDamage() override;
-
 	void update() override;
 
 

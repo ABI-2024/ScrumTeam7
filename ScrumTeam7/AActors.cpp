@@ -7,6 +7,8 @@
 #include "EN_Lehrer.h"
 #include "DE_Lehrer.h"
 #include "METAL_Lehrer.h"
+#include "RELI_Lehrer.h"
+#include "POWI_Lehrer.h"
 
 // Ammo / Geschosse
 #include "TestAmmo.h"
@@ -15,22 +17,28 @@
 #include "EN_Ammo.h"
 #include "DE_Ammo.h"
 #include "METAL_Ammo.h"
+#include "RELI_Ammo.h"
 
 // Enemies / Gegener
 #include "TestEnemy.h"
 #include "Nerd.h"
 #include "Steroidenking.h"
+#include "Simp.h"
+#include "Emo.h"
+#include "Kreative.h"
 
 	// ------------------------------------------ Nebenfuktion
 int AActors::collectedRevenue = 0;
 
 int AActors::getCollectedRevenue() {
-	int ans = collectedRevenue;
-	collectedRevenue = 0;
-	return ans;
+	return collectedRevenue;
 }
 void AActors::addCollectedRevenue(int add) {
 	collectedRevenue += add;
+}
+void AActors::setCollectedRevenue(int)
+{
+	collectedRevenue = 0;
 }
 // ------------------------------------------ Nebenfuktion
 
@@ -62,6 +70,11 @@ AActors::AActors()
 	allyAmmo = new std::vector<Entity*>;
 	enemies = new std::vector<Entity*>;
 
+
+	BaseAmmo::loadSound();
+	BaseEnemy::loadSound();
+	BaseTower::loadSound();
+
 	// Laden aden der Texturen der Entities
 	Entity::loadTexture();
 
@@ -72,6 +85,8 @@ AActors::AActors()
 	EN_Lehrer::LoadTexture();
 	DE_Lehrer::LoadTexture();
 	METAL_Lehrer::LoadTexture();
+	RELI_Lehrer::LoadTexture();
+	POWI_Lehrer::LoadTexture();
 
 	// Alle AmmoTypes
 	TestAmmo::LoadTexture();
@@ -80,11 +95,15 @@ AActors::AActors()
 	EN_Ammo::LoadTexture();
 	DE_Ammo::LoadTexture();
 	METAL_Ammo::LoadTexture();
+	RELI_Ammo::LoadTexture();
 
 	// Alle EnemyTypes
 	TestEnemy::LoadTexture();
 	Nerd::LoadTexture();
 	Steroidenking::LoadTexture();
+	Simp::LoadTexture();
+	Emo::LoadTexture();
+	Kreative::LoadTexture();
 
 }
 
@@ -103,6 +122,9 @@ AActors::~AActors()
 	delete enemies;
 
 
+	BaseAmmo::unloadSound();
+	BaseEnemy::unloadSound();
+	BaseTower::unloadSound();
 
 	// Endladen der Texturen der Entities
 	Entity::unloadTexture();
@@ -114,6 +136,8 @@ AActors::~AActors()
 	EN_Lehrer::unLoadTexture();
 	DE_Lehrer::unLoadTexture();
 	METAL_Lehrer::unLoadTexture();
+	RELI_Lehrer::unLoadTexture();
+	POWI_Lehrer::unLoadTexture();
 
 	// Alle AmmoTypes
 	TestAmmo::unLoadTexture();
@@ -122,11 +146,15 @@ AActors::~AActors()
 	EN_Ammo::unLoadTexture();
 	DE_Ammo::unLoadTexture();
 	METAL_Ammo::unLoadTexture();
+	RELI_Ammo::unLoadTexture();
 
 	// Alle EnemyTypes
 	TestEnemy::unLoadTexture();
 	Nerd::unLoadTexture();
 	Steroidenking::unLoadTexture();
+	Simp::unLoadTexture();
+	Emo::unLoadTexture();
+	Kreative::unLoadTexture();
 }
 
 // Alle create-Fuktionen
@@ -135,7 +163,7 @@ bool AActors::create(const AllyType& type, const sf::Vector2f& position)
 	bool created = 1;
 	
 	switch (type) { 
-		// Wenn type eines der folgenden AllyTypen ist, wird überprüft ob an der übergebenen Funktion schon ein Tower steht
+		// Wenn type eines der folgenden AllyTypen ist, wird Ã¼berprÃ¼ft ob an der Ã¼bergebenen Funktion schon ein Tower steht
 
 	case AllyType::TestTower:
 	case AllyType::Mathelehrer:
@@ -143,6 +171,8 @@ bool AActors::create(const AllyType& type, const sf::Vector2f& position)
 	case AllyType::EN_Lehrer:
 	case AllyType::DE_Lehrer:
 	case AllyType::METAL_Lehrer:
+	case AllyType::RELI_Lehrer:
+	case AllyType::POWI_Lehrer:
 
 		if (position.x < 0 || position.x >7 || position.y < 0 || position.y > 4) {
 			return false;
@@ -180,6 +210,12 @@ bool AActors::create(const AllyType& type, const sf::Vector2f& position)
 		        break;
 		    case AllyType::METAL_Lehrer:
 				entities->push_back(new METAL_Lehrer(position));
+		        break;
+			case AllyType::RELI_Lehrer:
+				entities->push_back(new RELI_Lehrer(position));
+		        break;
+			case AllyType::POWI_Lehrer:
+				entities->push_back(new POWI_Lehrer(position));
 		        break;
 
 	default:
@@ -222,6 +258,9 @@ bool AActors::create(const AmmoType& type, const sf::Vector2f& position)
 		case AmmoType::METAL_Ammo:
 			entities->push_back(new METAL_Ammo(position));
 			break;
+		case AmmoType::RELI_Ammo:
+			entities->push_back(new RELI_Ammo(position));
+			break;
 
 	default:
 		created = 0;
@@ -250,7 +289,15 @@ bool AActors::create(const EnemyType& type, const sf::Vector2f& position)
 		    case EnemyType::Steroidenking:
 				entities->push_back(new Steroidenking(position));
 		        break;
-
+			case EnemyType::Simp:
+				entities->push_back(new Simp(position));
+				break;
+			case EnemyType::Emo:
+				entities->push_back(new Emo(position));
+				break;
+		    case EnemyType::Kreative:
+				entities->push_back(new Kreative(position));
+		        break;
 	default:
 		created = 0;
 		break;
@@ -370,16 +417,16 @@ void AActors::updateEntities()
 
 		if ((*i) == nullptr) {
 		redo:
-			// löscht momentanes Element aus dem std::vector entities
+			// lÃ¶scht momentanes Element aus dem std::vector entities
 			i = entities->erase(i);
 
-			// Abfrage ob der zurück gegebene iterator von erase das Ende des std::vectors ist
+			// Abfrage ob der zurÃ¼ck gegebene iterator von erase das Ende des std::vectors ist
 			if (i == entities->end()) { 
 				break;
 			}
 
 			/* 
-			Abfrage ob der zurück gegebene iterator von erase ebenfalls ein nullptr ist
+			Abfrage ob der zurÃ¼ck gegebene iterator von erase ebenfalls ein nullptr ist
 			und wenn ja wiederhole Vorgang.
 			*/
 			if ((*i) == nullptr) {
@@ -417,6 +464,21 @@ void AActors::continueEntities()
 			(*entities)[i]->continueEntitiy();
 		}
 	}
+}
+
+std::vector<Entity*>* AActors::getAlly()
+{
+	return ally;
+}
+
+std::vector<Entity*>* AActors::getAllyAmmo()
+{
+	return allyAmmo;
+}
+
+std::vector<Entity*>* AActors::getEnemies()
+{
+	return enemies;
 }
 
 

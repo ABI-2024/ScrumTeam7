@@ -33,13 +33,10 @@ void Progression::readFromFile()
     int score;
 
     for (; i > 0; i--) {
-
-        std::getline(FILE, tmp, ';');
-        name = tmp;
         std::getline(FILE, tmp, '\n');
         score = std::stoi(tmp);
 
-        highscores.push_back(new Highscores(name, score));
+        highscores.push_back(new Highscores(score));
     }
 
     FILE.close();
@@ -54,7 +51,7 @@ void Progression::writeToFile()
     FILE << highscores.size()<< '\n'; // Anzahl der Highscores
 
     for (int i = 0; i < highscores.size(); i++) { // Alle Highscores
-        FILE << highscores[i]->playerName << ';' << highscores[i]->score<< '\n';
+        FILE <<highscores[i]->score<< '\n';
     }
 
 	FILE.close();

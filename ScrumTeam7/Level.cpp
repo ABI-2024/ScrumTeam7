@@ -59,10 +59,73 @@ void Level::buttonEvents()
     }
 }
 
+void Level::endLevel(bool isVictory)
+{
+    while (Window.isOpen() && active)
+    {
+        // Events
+        while (Window.pollEvent(GameEvent)) {
+            switch (GameEvent.type)
+            {
+
+            case sf::Event::Closed:
+                GameWindow::getWindow().close();
+                break;
+
+            case sf::Event::KeyPressed:
+                active = false;
+                break;
+
+            case sf::Event::MouseButtonPressed:
+                active = false;
+                break;
+
+            default:
+                break;
+            }
+        }
+
+        Window.clear();
+
+        Window.draw(endOfTheLevel);
+
+        if (isVictory) {
+            Window.draw(victory);
+        }
+        else {
+            Window.draw(gameOver);
+        }
+
+        Window.display();
+    }
+}
+
 Level::Level()
     : active(true), paused(false), shop(&geld)
 
 {
+    endOfTheLevel.setPosition(GameWindow::getMainView().getSize() / 2.f);
+    endOfTheLevel.setSize({ GameWindow::getMainView().getSize().x, GameWindow::getMainView().getSize().y - 100.f });
+    endOfTheLevel.setOrigin(endOfTheLevel.getSize() / 2.f);
+    endOfTheLevel.setFillColor(sf::Color(127, 127, 127, 63));
+
+    font.loadFromFile("resource/fonts/Broken Console Bold.otf");
+
+    gameOver.setFont(font);
+    gameOver.setString("GAME OVER");
+    gameOver.setFillColor(sf::Color::Red);
+    gameOver.setCharacterSize(200.f);
+    gameOver.setOrigin(gameOver.getGlobalBounds().width/2.f, gameOver.getGlobalBounds().height / 2.f);
+    gameOver.setPosition(GameWindow::getMainView().getSize()/2.f);
+
+    victory.setFont(font);
+    victory.setString("VICTORY");
+    victory.setFillColor(sf::Color::Yellow);
+    victory.setCharacterSize(200.f);
+    victory.setOrigin(victory.getGlobalBounds().width / 2.f, victory.getGlobalBounds().height / 2.f);
+    victory.setPosition(GameWindow::getMainView().getSize()/2.f);
+
+
     background.setSize(GameWindow::getMainView().getSize());
     background.setPosition(0.f, 0.f);
 
@@ -81,15 +144,16 @@ Level::~Level()
 {
 }
 
-void Level::start(std::string filename /*, Progression&*/)
+void Level::start(std::string filename , Progression& progress)
 {
-
     Music::startMusic();
 
     shop.setKarten(TowerSelect::openTowerSelect());
+    winTimer.restart();
 
 
     sf::Vector2f pos;
+    std::vector<Entity*>* temp = nullptr;
 
     welle.setFilename(filename);
     welle.WellenDaten();
@@ -101,7 +165,31 @@ void Level::start(std::string filename /*, Progression&*/)
 
         GameWindow::updateDeltaTime();
 
+        // GameOver
+        temp = AActors::getEnemies();
+        for (int i = 0; i < temp->size(); i++) {
+            if ((*temp)[i]->getPosition().x <= 300.f) {
+                this->endLevel(false);
+                if (!active) {
+                    Music::stopMusic();
+                    return;
+                }
+           }
+        }
+
+        if (winTimer.getElapsedTime() >= timeToWin) {
+            this->endLevel(true);
+            if (!active) {
+                Music::stopMusic();
+                return;
+            }
+        }
+
+        // Wellen und Geld
         welle.Wellenfunktion(geld);
+        geld.addKontostand(AActors::getCollectedRevenue());
+        AActors::setCollectedRevenue(0);
+       
         
         // Events
         while (Window.pollEvent(GameEvent)) {
@@ -135,7 +223,7 @@ void Level::start(std::string filename /*, Progression&*/)
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 
                         // Spawnt Enemy
-                        AActors::create(EnemyType::TestEnemy, this->TileSelection());
+                        AActors::create(EnemyType::Emo, this->TileSelection());
                     }
                 }
                 else {

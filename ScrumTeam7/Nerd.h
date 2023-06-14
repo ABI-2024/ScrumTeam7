@@ -15,6 +15,8 @@ private:
 
 	static sf::Time attackSpeed;
 
+	sf::Clock programmzeit;
+
 public:
 	static void LoadTexture();
 	static void unLoadTexture();
@@ -22,12 +24,9 @@ public:
 	Nerd(const sf::Vector2f& tilePosition);
 	virtual ~Nerd();
 
-	int getRevenue() override;
-
-	EnemyType getEnemyType() override;
-	float getDamage() override;
-
 	void move();
+
+	void manipulation();
 
 	void update() override;
 };

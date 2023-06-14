@@ -2,6 +2,35 @@
 
 #include "Window.h"
 
+
+sf::SoundBuffer* BaseAmmo::buffer = nullptr;
+sf::Sound* BaseAmmo::hitSound = nullptr;
+
+void BaseAmmo::loadSound()
+{
+	if (buffer == nullptr) {
+		buffer = new sf::SoundBuffer();
+
+		buffer->loadFromFile("resource/Sound/Effects/Hitmarker.wav");
+
+		hitSound = new sf::Sound();
+		hitSound->setBuffer(*buffer);
+	}
+}
+
+void BaseAmmo::unloadSound()
+{
+	if (buffer != nullptr) {
+
+		delete buffer;
+		delete hitSound;
+
+		buffer = nullptr;
+		hitSound = nullptr;
+
+	}
+}
+
 // Constructur & Destructur
 BaseAmmo::BaseAmmo(const sf::Vector2f& TowerPosition, sf::Texture* texture)
 	: Entity(sf::Vector2f(42.1875f, 42.1875f), TowerPosition)

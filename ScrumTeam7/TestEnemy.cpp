@@ -14,7 +14,7 @@ float TestEnemy::Damage = 20;
 
 int TestEnemy::revenue = 5;
 
-sf::Vector2f TestEnemy::dir = sf::Vector2f(-10, 0);
+sf::Vector2f TestEnemy::dir = sf::Vector2f(-20, 0);
 
 sf::Texture* TestEnemy::texture = nullptr;
 
@@ -54,21 +54,13 @@ TestEnemy::TestEnemy(const sf::Vector2f& tilePosition)
 TestEnemy::~TestEnemy() 
 {
 	AActors::addCollectedRevenue(this->revenue);
-}
-
-// public get-Methoden
-int TestEnemy::getRevenue() {
-	return revenue;
-}
-
-EnemyType TestEnemy::getEnemyType()
-{
-	return this->enemyType;
-}
-
-float TestEnemy::getDamage()
-{
-	return this->Damage;
+	
+	if (Randomizer::randomize(2) == 0) {
+		male->play();
+	}
+	else {
+		female->play();
+	}
 }
 
 // public Methoden
@@ -99,7 +91,7 @@ void TestEnemy::update()
 
 	Entity* temp = AActors::CollisionSingle(body.getGlobalBounds(), CollisionType::ally);
 	
-	if (temp != nullptr && status.canAttack) {
+	if (temp != nullptr && status.canAttack) {	//True wenn es mit einem Lehrer kollidiert
 		movable = false;
 		if (clock.getElapsedTime() + this->remainingAttackTime  >= this->attackSpeed) {
 			temp->takeDamage(this->Damage);

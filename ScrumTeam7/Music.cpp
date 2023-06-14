@@ -1,5 +1,6 @@
 #include "Music.h"
 #include "Randomizer.h"
+#include "Window.h"
 //sf::Music music;
 //if (!music.openFromFile("music.ogg"))
 //return -1; // error
@@ -22,9 +23,14 @@ void Music::startMusic()
 
 		music[0].openFromFile("resource/Sound/Music/Anode.wav");
 		music[1].openFromFile("resource/Sound/Music/Quote.wav");
+
+		activ = true;
+
+		setVolume();
 	}
 
 	music[currend].play();
+	music[currend].setLoop(true);
 }
 
 void Music::stopMusic()
@@ -38,5 +44,14 @@ void Music::unloadMusic()
 {
 	if (activ) {
 		delete[] music;
+	}
+}
+
+void Music::setVolume()
+{
+	if (activ) {
+
+		music[0].setVolume(100*GameWindow::getSettings()->MasterVolume* GameWindow::getSettings()->MusicVolume / 10000);
+		music[1].setVolume(100*GameWindow::getSettings()->MasterVolume* GameWindow::getSettings()->MusicVolume / 10000);
 	}
 }

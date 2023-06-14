@@ -8,7 +8,7 @@ AmmoType DE_Ammo::ammoType = AmmoType::DE_Ammo;
 
 
 // static Variables private
-float DE_Ammo::damage = 50.f;
+float DE_Ammo::damage = 20.f;
 sf::Texture* DE_Ammo::texture = nullptr;
 
 sf::Time DE_Ammo::damageWindowStart = {sf::milliseconds(200)};
@@ -51,16 +51,6 @@ DE_Ammo::DE_Ammo(sf::Vector2f TowerPosition)
 DE_Ammo::~DE_Ammo() {}
 
 // public Methoden
-AmmoType DE_Ammo::getAmmoType()
-{
-	return this->ammoType;
-}
-
-float DE_Ammo::getDamage()
-{
-	return this->damage;
-}
-
 void DE_Ammo::update()
 {
 

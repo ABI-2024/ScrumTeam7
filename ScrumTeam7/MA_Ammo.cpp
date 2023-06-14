@@ -10,7 +10,7 @@ AmmoType MA_Ammo::ammoType = AmmoType::Mathe;
 
 
 // static Variables private
-float MA_Ammo::damage = 70.f;
+float MA_Ammo::damage = 50.f;
 sf::Vector2f MA_Ammo::dir = sf::Vector2f(200.f, 0);
 sf::Texture* MA_Ammo::texture = nullptr;
 
@@ -45,15 +45,6 @@ MA_Ammo::~MA_Ammo() {}
 
 
 // public Methoden
-AmmoType MA_Ammo::getAmmoType()
-{
-	return this->ammoType;
-}
-
-float MA_Ammo::getDamage()
-{
-	return this->damage;
-}
 
 void MA_Ammo::move()
 {
@@ -75,6 +66,9 @@ void MA_Ammo::update()
 	if (tmp != nullptr) {
 		tmp->takeDamage(this->damage);
 		status.alive = false;
+
+		hitSound->setVolume(100 * GameWindow::getSettings()->MasterVolume * GameWindow::getSettings()->SoundVolume / 10000);
+		hitSound->play();
 	}
 
 	if (!status.alive) {

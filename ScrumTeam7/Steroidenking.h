@@ -19,17 +19,13 @@ private:
 
 	bool running;
 
+	float getDamage();
 public:
 	static void LoadTexture();
 	static void unLoadTexture();
 
 	Steroidenking(const sf::Vector2f& tilePosition);
 	virtual ~Steroidenking();
-
-	int getRevenue() override;
-
-	EnemyType getEnemyType() override;
-	float getDamage() override;
 
 	void move();
 

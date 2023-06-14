@@ -210,11 +210,38 @@
     <ClCompile Include="Stun.cpp">
       <Filter>Quelldateien\Entities\Status</Filter>
     </ClCompile>
-    <ClCompile Include="Progression.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="InfinityWellen.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Quelldateien\Game Logik</Filter>
+    </ClCompile>
+    <ClCompile Include="Progression.cpp">
+      <Filter>Quelldateien\Game Logik</Filter>
+    </ClCompile>
+    <ClCompile Include="Kreative.cpp">
+      <Filter>Quelldateien\Entities\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="POWI_Lehrer.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="RELI_Lehrer.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="POWI_Book.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="RELI_Book.cpp">
+      <Filter>Quelldateien\Entities\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="RELI_Ammo.cpp">
+      <Filter>Quelldateien\Entities\Ammo</Filter>
+    </ClCompile>
+    <ClCompile Include="Simp.cpp">
+      <Filter>Quelldateien\Entities\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Emo.cpp">
+      <Filter>Quelldateien\Entities\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Cripple.cpp">
+      <Filter>Quelldateien\Entities\Status</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -359,11 +386,38 @@
     <ClInclude Include="Stun.h">
       <Filter>Headerdateien\Entities\Status</Filter>
     </ClInclude>
-    <ClInclude Include="Progression.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="InfinityWellen.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Headerdateien\Game Logik</Filter>
+    </ClInclude>
+    <ClInclude Include="Progression.h">
+      <Filter>Headerdateien\Game Logik</Filter>
+    </ClInclude>
+    <ClInclude Include="Kreative.h">
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="POWI_Book.h">
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="POWI_Lehrer.h">
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="RELI_Book.h">
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="RELI_Lehrer.h">
+      <Filter>Headerdateien\Entities\Header Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="RELI_Ammo.h">
+      <Filter>Headerdateien\Entities\Header Ammo</Filter>
+    </ClInclude>
+    <ClInclude Include="Emo.h">
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Simp.h">
+      <Filter>Headerdateien\Entities\Header Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Cripple.h">
+      <Filter>Headerdateien\Entities\Status</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

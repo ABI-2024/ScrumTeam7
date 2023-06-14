@@ -14,7 +14,7 @@ float Steroidenking::Damage[2] = { 30,100 };
 
 int Steroidenking::revenue = 15;
 
-sf::Vector2f Steroidenking::dir[2] = { sf::Vector2f(-10, 0),sf::Vector2f(-40, 0) };
+sf::Vector2f Steroidenking::dir[2] = { sf::Vector2f(-20, 0),sf::Vector2f(-60, 0) };
 
 sf::Texture* Steroidenking::texture = nullptr;
 
@@ -49,17 +49,10 @@ Steroidenking::Steroidenking(const sf::Vector2f& tilePosition)
 Steroidenking::~Steroidenking() 
 {
 	AActors::addCollectedRevenue(this->revenue);
+	male->play();
 }
 
 // public get-Methoden
-int Steroidenking::getRevenue() {
-	return revenue;
-}
-
-EnemyType Steroidenking::getEnemyType()
-{
-	return this->enemyType;
-}
 
 float Steroidenking::getDamage()
 {
@@ -111,7 +104,7 @@ void Steroidenking::update()
 	}
 	Entity* temp = AActors::CollisionSingle(body.getGlobalBounds(), CollisionType::ally);
 
-	if (temp != nullptr && status.canAttack) {
+	if (temp != nullptr && status.canAttack) {	//True wenn es mit einem Lehrer kollidiert
 		running = false;
 		movable = false;
 		if (clock.getElapsedTime() + this->remainingAttackTime >= this->attackSpeed) {
