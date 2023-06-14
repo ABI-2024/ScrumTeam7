@@ -13,7 +13,7 @@ float Simp::Damage = 0;
 
 int Simp::revenue = 5;
 
-sf::Vector2f Simp::dir = sf::Vector2f(-7, 0);
+sf::Vector2f Simp::dir = sf::Vector2f(-15, 0);
 
 sf::Texture* Simp::texture = nullptr;
 
@@ -47,7 +47,9 @@ Simp::Simp(const sf::Vector2f& tilePosition)
 	programmzeit.restart();
 }
 
-Simp::~Simp() {}
+Simp::~Simp() {
+	male->play();
+}
 
 // public get-Methoden
 // public Methoden

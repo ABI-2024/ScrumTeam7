@@ -2,6 +2,46 @@
 
 #include "Window.h"
 
+sf::SoundBuffer* BaseTower::bufferMale = nullptr;
+sf::SoundBuffer* BaseTower::bufferFemale = nullptr;
+sf::Sound* BaseTower::male = nullptr;
+sf::Sound* BaseTower::female = nullptr;
+
+void BaseTower::loadSound()
+{
+	if (bufferMale == nullptr) {
+		bufferMale = new sf::SoundBuffer();
+		bufferFemale = new sf::SoundBuffer();
+
+		bufferMale->loadFromFile("resource/Sound/Effects/male-death.wav");
+		bufferFemale->loadFromFile("resource/Sound/Effects/Female-Death.wav");
+
+		male = new sf::Sound();
+		male->setBuffer(*bufferMale);
+
+		female = new sf::Sound();
+		female->setBuffer(*bufferFemale);
+	}
+}
+
+void BaseTower::unloadSound()
+{
+	if (bufferMale != nullptr) {
+
+		delete bufferMale;
+		delete bufferFemale;
+
+		delete male;
+		delete female;
+
+		bufferMale = nullptr;
+		bufferFemale = nullptr;
+
+		male = nullptr;
+		female = nullptr;
+	}
+}
+
 bool BaseTower::enemyOnLines[5] = { false,false,false,false,false };
 
 void BaseTower::areEnemiesOnLine(std::vector<Entity*>* enemies)

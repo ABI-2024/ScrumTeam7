@@ -14,7 +14,7 @@ float Steroidenking::Damage[2] = { 30,100 };
 
 int Steroidenking::revenue = 15;
 
-sf::Vector2f Steroidenking::dir[2] = { sf::Vector2f(-10, 0),sf::Vector2f(-40, 0) };
+sf::Vector2f Steroidenking::dir[2] = { sf::Vector2f(-20, 0),sf::Vector2f(-60, 0) };
 
 sf::Texture* Steroidenking::texture = nullptr;
 
@@ -49,6 +49,7 @@ Steroidenking::Steroidenking(const sf::Vector2f& tilePosition)
 Steroidenking::~Steroidenking() 
 {
 	AActors::addCollectedRevenue(this->revenue);
+	male->play();
 }
 
 // public get-Methoden

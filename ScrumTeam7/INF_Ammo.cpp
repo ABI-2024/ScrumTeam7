@@ -101,6 +101,9 @@ void INF_Ammo::update()
 	if (tmp != nullptr) {
 		tmp->takeDamage(this->getDamage());
 		status.alive = false;
+
+		hitSound->setVolume(100 * GameWindow::getSettings()->MasterVolume * GameWindow::getSettings()->SoundVolume / 10000);
+		hitSound->play();
 	}
 
 	if (!status.alive) {

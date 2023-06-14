@@ -14,7 +14,7 @@ float TestEnemy::Damage = 20;
 
 int TestEnemy::revenue = 5;
 
-sf::Vector2f TestEnemy::dir = sf::Vector2f(-10, 0);
+sf::Vector2f TestEnemy::dir = sf::Vector2f(-20, 0);
 
 sf::Texture* TestEnemy::texture = nullptr;
 
@@ -54,6 +54,13 @@ TestEnemy::TestEnemy(const sf::Vector2f& tilePosition)
 TestEnemy::~TestEnemy() 
 {
 	AActors::addCollectedRevenue(this->revenue);
+	
+	if (Randomizer::randomize(2) == 0) {
+		male->play();
+	}
+	else {
+		female->play();
+	}
 }
 
 // public Methoden

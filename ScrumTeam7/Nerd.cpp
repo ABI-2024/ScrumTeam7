@@ -12,7 +12,7 @@ float Nerd::Damage = 20;
 
 int Nerd::revenue = 8;
 
-sf::Vector2f Nerd::dir = sf::Vector2f(-7, 0);
+sf::Vector2f Nerd::dir = sf::Vector2f(-15, 0);
 
 sf::Texture* Nerd::texture = nullptr;
 
@@ -48,6 +48,7 @@ Nerd::Nerd(const sf::Vector2f& tilePosition)
 Nerd::~Nerd()
 {
 	AActors::addCollectedRevenue(this->revenue);
+	male->play();
 }
 
 // public Methoden

@@ -42,6 +42,7 @@ METAL_Lehrer::METAL_Lehrer(sf::Vector2f tilePosition)
 
 METAL_Lehrer::~METAL_Lehrer()
 {
+	male->play();
 }
 
 //public Methoden

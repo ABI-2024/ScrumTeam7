@@ -8,7 +8,7 @@ AmmoType DE_Ammo::ammoType = AmmoType::DE_Ammo;
 
 
 // static Variables private
-float DE_Ammo::damage = 50.f;
+float DE_Ammo::damage = 20.f;
 sf::Texture* DE_Ammo::texture = nullptr;
 
 sf::Time DE_Ammo::damageWindowStart = {sf::milliseconds(200)};

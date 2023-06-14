@@ -14,7 +14,7 @@ float Emo::SelfharmDMG = 20;
 
 int Emo::revenue = 0;
 
-sf::Vector2f Emo::dir = sf::Vector2f(-7, 0);
+sf::Vector2f Emo::dir = sf::Vector2f(-20, 0);
 
 sf::Texture* Emo::texture = nullptr;
 
@@ -47,7 +47,10 @@ Emo::Emo(const sf::Vector2f& tilePosition)
 {
 }
 
-Emo::~Emo() {}
+Emo::~Emo() {
+	male->play();
+
+}
 
 // public get-Methoden
 

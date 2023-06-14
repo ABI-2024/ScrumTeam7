@@ -41,6 +41,7 @@ EN_Lehrer::EN_Lehrer(sf::Vector2f tilePosition)
 
 EN_Lehrer::~EN_Lehrer()
 {
+	female->play();
 }
 
 //public Methoden

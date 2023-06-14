@@ -86,7 +86,7 @@ void Level_1::dialogWindow()
     // Name der Figuren
     std::string names[4];
     names[0] = "King F.";
-    names[1] = "Fabio";
+    names[1] = "Standartschueler";
     names[2] = "Herr Berto";
     names[3] = "Klasse";
 

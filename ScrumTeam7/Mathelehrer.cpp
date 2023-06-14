@@ -42,6 +42,7 @@ Mathelehrer::Mathelehrer(sf::Vector2f tilePosition)
 
 Mathelehrer::~Mathelehrer()
 {
+	male->play();
 }
 
 //public Methoden

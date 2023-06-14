@@ -3,6 +3,7 @@
 #include "Entity.h"
 
 #include "enums.h"
+#include "SFML/Audio.hpp"
 
 class BaseEnemy : public Entity
 {
@@ -16,7 +17,12 @@ protected:
 	sf::Clock clock;
 	sf::Time remainingAttackTime;
 
+	static sf::SoundBuffer* bufferMale,* bufferFemale;
+	static sf::Sound* male, *female;
+
 public:
+	static void loadSound();
+	static void unloadSound();
 
 	BaseEnemy(float Health,	sf::Vector2f tilePosition, sf::Texture* texture);
 	virtual ~BaseEnemy();

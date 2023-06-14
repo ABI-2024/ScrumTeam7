@@ -21,7 +21,7 @@ float GameWindow::deltaTime = 0;
 // Helfer Funktionen
 void writeToFile( const Settings& settings) {
 
-    std::ofstream FILE("WindowSettings.csv");
+    std::ofstream FILE("resource/Data/WindowSettings.csv");
 
     FILE << true << '\n';
 
@@ -41,10 +41,10 @@ void writeToFile( const Settings& settings) {
 
 void readFromFile(Settings& settings) {
 
-    std::ifstream FILE("WindowSettings.csv");
+    std::ifstream FILE("resource/Data/WindowSettings.csv");
 
     if (!FILE.is_open()) {
-        std::ofstream create("WindowSettings.csv");
+        std::ofstream create("resource/Data/WindowSettings.csv");
         create << false << '\n';
         create.close();
         return;

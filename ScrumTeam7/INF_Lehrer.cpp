@@ -42,6 +42,7 @@ INF_Lehrer::INF_Lehrer(sf::Vector2f tilePosition)
 
 INF_Lehrer::~INF_Lehrer()
 {
+	male->play();
 }
 
 //public Methoden

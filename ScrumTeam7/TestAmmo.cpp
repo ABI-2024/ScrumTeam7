@@ -8,7 +8,7 @@ AmmoType TestAmmo::ammoType = AmmoType::TestAmmo;
 
 
 // static Variables private
-float TestAmmo::damage = 50.f;
+float TestAmmo::damage = 40.f;
 sf::Vector2f TestAmmo::dir = sf::Vector2f(600.f,0);
 sf::Texture* TestAmmo::texture = nullptr;
 
@@ -60,6 +60,10 @@ void TestAmmo::update()
 	if (tmp != nullptr) {
 		tmp->takeDamage(this->damage);
 		status.alive = false;
+
+		hitSound->setVolume(100 * GameWindow::getSettings()->MasterVolume * GameWindow::getSettings()->SoundVolume / 10000);
+		hitSound->play();
+
 	}
 
 

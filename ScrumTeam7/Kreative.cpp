@@ -15,7 +15,7 @@ float Kreative::Damage = 20;
 
 int Kreative::revenue = 8;
 
-sf::Vector2f Kreative::dir = sf::Vector2f(-7, 0);
+sf::Vector2f Kreative::dir = sf::Vector2f(-25, 0);
 
 sf::Texture* Kreative::texture = nullptr;
 
@@ -52,6 +52,7 @@ Kreative::~Kreative()
 {
 	count--;
 	AActors::addCollectedRevenue(this->revenue);
+	female->play();
 }
 
 // public Methoden

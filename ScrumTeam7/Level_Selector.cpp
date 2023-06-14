@@ -108,7 +108,7 @@ Level_Selector::Level_Selector()
 	datafiles[1] = "resource/Data/Level_2.csv";
 	datafiles[2] = "resource/Data/Level_3.csv";
 	datafiles[3] = "resource/Data/Level_Final.csv";
-	datafiles[4] = "Datenwellen.csv";
+	datafiles[4] = "resource/Data/Datenwellen.csv";
 
 
 	font = new sf::Font();

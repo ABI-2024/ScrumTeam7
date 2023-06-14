@@ -8,7 +8,7 @@ AmmoType METAL_Ammo::ammoType = AmmoType::METAL_Ammo;
 
 
 // static Variables private
-float METAL_Ammo::damage = 10.f;
+float METAL_Ammo::damage = 0.f;
 sf::Texture* METAL_Ammo::texture = nullptr;
 
 sf::Time METAL_Ammo::damageWindowStart = { sf::milliseconds(200) };
@@ -62,7 +62,7 @@ void METAL_Ammo::update()
 
 		temp = AActors::CollisionPoly(body.getGlobalBounds(), CollisionType::enemies);
 		for (int i = 0; i < temp->size(); i++) {
-			(*temp)[i]->addStatusEffect( StatusEffect(StatusType::burn, sf::milliseconds(1000), 100.f) );
+			(*temp)[i]->addStatusEffect( StatusEffect(StatusType::burn, sf::milliseconds(2000), 50.f) );
 			(*temp)[i]->takeDamage(this->damage);
 		}
 

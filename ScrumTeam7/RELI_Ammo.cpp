@@ -68,7 +68,7 @@ void RELI_Ammo::update()
 
 			if (enemiesHit > 0) {
 				// Status effect
-				(*tmp)[i]->addStatusEffect(StatusEffect(StatusType::stun, sf::milliseconds(200), 50.f));
+				(*tmp)[i]->addStatusEffect(StatusEffect(StatusType::stun, sf::milliseconds(200), 20.f));
 				enemiesHit--;
 			}
 			else {

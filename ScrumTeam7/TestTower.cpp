@@ -42,6 +42,7 @@ TestTower::TestTower(sf::Vector2f tilePosition)
 
 TestTower::~TestTower()
 {
+	male->play();
 }
 
 

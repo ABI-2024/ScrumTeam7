@@ -46,6 +46,7 @@ RELI_Lehrer::RELI_Lehrer(sf::Vector2f tilePosition)
 
 RELI_Lehrer::~RELI_Lehrer()
 {
+	female->play();
 }
 
 

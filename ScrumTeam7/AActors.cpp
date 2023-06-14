@@ -70,6 +70,11 @@ AActors::AActors()
 	allyAmmo = new std::vector<Entity*>;
 	enemies = new std::vector<Entity*>;
 
+
+	BaseAmmo::loadSound();
+	BaseEnemy::loadSound();
+	BaseTower::loadSound();
+
 	// Laden aden der Texturen der Entities
 	Entity::loadTexture();
 
@@ -117,6 +122,9 @@ AActors::~AActors()
 	delete enemies;
 
 
+	BaseAmmo::unloadSound();
+	BaseEnemy::unloadSound();
+	BaseTower::unloadSound();
 
 	// Endladen der Texturen der Entities
 	Entity::unloadTexture();

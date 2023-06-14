@@ -30,6 +30,7 @@ void Music::startMusic()
 	}
 
 	music[currend].play();
+	music[currend].setLoop(true);
 }
 
 void Music::stopMusic()

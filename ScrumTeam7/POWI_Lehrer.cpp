@@ -46,6 +46,7 @@ POWI_Lehrer::POWI_Lehrer(sf::Vector2f tilePosition)
 
 POWI_Lehrer::~POWI_Lehrer()
 {
+	female->play();
 }
 
 
