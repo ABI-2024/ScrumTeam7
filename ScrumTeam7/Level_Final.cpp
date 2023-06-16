@@ -227,6 +227,13 @@ void Level_Final::dialogWindow()
 
 void Level_Final::endLevel(bool isVictory)
 {
+    sf::Texture t;
+    if (isVictory == false){
+    t.loadFromFile("resource/Textures/Level/GameOver.png");
+    endOfTheLevel.setSize({ 1600,900 });
+    endOfTheLevel.setTexture(&t, 0);
+    endOfTheLevel.setFillColor(sf::Color::White);
+    }
     while (Window.isOpen() && active)
     {
         // Events
@@ -258,10 +265,6 @@ void Level_Final::endLevel(bool isVictory)
         if (isVictory) {
             Window.draw(victory);
         }
-        else {
-            Window.draw(gameOver);
-        }
-
         Window.display();
     }
 
