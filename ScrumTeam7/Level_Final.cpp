@@ -224,8 +224,45 @@ void Level_Final::dialogWindow()
 
 }
 
-void Level_Final::endLevel(bool victory)
+void Level_Final::endLevel(bool isVictory)
 {
+    while (Window.isOpen() && active)
+    {
+        // Events
+        while (Window.pollEvent(GameEvent)) {
+            switch (GameEvent.type)
+            {
+
+            case sf::Event::Closed:
+                GameWindow::getWindow().close();
+                break;
+
+            case sf::Event::KeyPressed:
+                active = false;
+                break;
+
+            case sf::Event::MouseButtonPressed:
+                active = false;
+                break;
+
+            default:
+                break;
+            }
+        }
+
+        Window.clear();
+
+        Window.draw(endOfTheLevel);
+
+        if (isVictory) {
+            Window.draw(victory);
+        }
+        else {
+            Window.draw(gameOver);
+        }
+
+        Window.display();
+    }
 }
 
 Level_Final::Level_Final()

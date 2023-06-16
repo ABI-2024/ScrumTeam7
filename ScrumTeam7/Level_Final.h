@@ -11,7 +11,7 @@ class Level_Final : public Level
 	bool fillText(std::string* names, sf::Text* name, sf::Text* texte, int& dialogIndex, float textWigth);
 	void dialogWindow();
 
-	void endLevel(bool victory) override;
+	void endLevel(bool isVictory) override;
 public:
 	Level_Final();
 	virtual ~Level_Final();
