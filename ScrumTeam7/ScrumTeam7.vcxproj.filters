@@ -93,9 +93,6 @@
     <ClCompile Include="TestEnemy.cpp">
       <Filter>Quelldateien\Entities\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Test_Level.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Menu_Options.cpp">
       <Filter>Quelldateien\Menu</Filter>
     </ClCompile>
@@ -301,9 +298,6 @@
     </ClInclude>
     <ClInclude Include="Wellen.h">
       <Filter>Headerdateien\Game Logik</Filter>
-    </ClInclude>
-    <ClInclude Include="Test_Level.h">
-      <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Steroidenking.h">
       <Filter>Headerdateien\Entities\Header Enemy</Filter>

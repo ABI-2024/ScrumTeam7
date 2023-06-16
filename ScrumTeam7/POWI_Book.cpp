@@ -1,8 +1,9 @@
 #include "POWI_Book.h"
 
 #include "Window.h"
+#include "AActors.h"
 
-#define HEALTH 1000.f
+#define HEALTH 500.f
 
 sf::Texture* POWI_Book::texture = nullptr;
 
@@ -68,5 +69,12 @@ void POWI_Book::heal(const float& heal)
 
 void POWI_Book::render()
 {
+
+	revenue += 1.f*dt;
+	
+	if (revenue >= 10) {
+		AActors::addCollectedRevenue(revenue);
+		revenue = 0;
+	}
 	Window.draw(body);
 }

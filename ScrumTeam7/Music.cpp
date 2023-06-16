@@ -1,24 +1,22 @@
 #include "Music.h"
 #include "Randomizer.h"
 #include "Window.h"
-//sf::Music music;
-//if (!music.openFromFile("music.ogg"))
-//return -1; // error
-//music.play();
 
-
+// Anzahl der Tracks
 #define trackCount 2
 
+// static Attribute
 bool Music::activ = false;
 int Music::currend = 0;
 sf::Music* Music::music = nullptr;
 
+// public-Methoden
 void Music::startMusic()
 {
-	Music::stopMusic();
-	currend = Randomizer::randomize(2);
+	Music::stopMusic(); // Stoppt music fals welche schon gespielt wird
+	currend = Randomizer::randomize(2);		// Zufalls zahl
 
-	if (!activ) {
+	if (!activ) {		// Wenn nicht geladen dann Music laden
 		music = new sf::Music[trackCount];
 
 		music[0].openFromFile("resource/Sound/Music/Anode.wav");
@@ -29,21 +27,23 @@ void Music::startMusic()
 		setVolume();
 	}
 
+	// Start Music und spiele sie solange ab, bis sie gestoppt wird
 	music[currend].play();
 	music[currend].setLoop(true);
 }
 
 void Music::stopMusic()
 {
-	if(activ){
+	if(activ){	// wenn music geladen, dann music stoppen
 		music[currend].stop();
 	}
 }
 
 void Music::unloadMusic()
 {
-	if (activ) {
+	if (activ) {	// wenn music geladen, dann music löschen
 		delete[] music;
+		activ = false;
 	}
 }
 

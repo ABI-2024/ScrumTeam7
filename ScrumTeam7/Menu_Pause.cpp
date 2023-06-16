@@ -25,6 +25,7 @@ Menu_Pause::Menu_Pause()
 	buttonText[1] = "Optionen";
 	buttonText[2] = "Hauptmenu";
 
+	// Erstelle Buttons
 	button = new Button*[Anzahl_Button];
 	for (int i = 0; i < Anzahl_Button; i++) {
 		button[i] = new Button(font, sf::Color(34, 32, 52), buttonText[i], buttonTexture, { GameWindow::getMainView().getSize().x / 2 , 240.f + 200.f * i }, { 500.f, 100.f }, false);
@@ -33,6 +34,7 @@ Menu_Pause::Menu_Pause()
 
 Menu_Pause::~Menu_Pause()
 {
+	// lösche alle erstellten Dinge
 	delete[] buttonTexture;
 	delete[] buttonText;
 

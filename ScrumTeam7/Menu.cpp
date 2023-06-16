@@ -12,7 +12,8 @@ int Menu::ans = 0;
 
 void Menu::buttonEvents()
 {
-
+	// Abfrage der Buttons 
+	// + Rückgabe wert für die OpenMenu funnktion, wenn butten gedrückt
 	for (int i = 0; i < Anzahl_Button; i++) {
 		if (button[i]->isHovered()) {
 			switch (i) {
@@ -52,7 +53,7 @@ Menu::Menu()
 	this->open = true;
 
 	
-
+	// Titel
 	titelTexture.loadFromFile("resource/Textures/titel.png");
 
 	titel.setPosition({ 100,100 });
@@ -75,6 +76,7 @@ Menu::Menu()
 	buttonText[1] = "Optionen";
 	buttonText[2] = "Exit";
 
+	// Erstelle Buttons
 	button = new Button*[Anzahl_Button];
 	for (int i = 0; i < Anzahl_Button; i++) {
 		button[i] = new Button(font[0], sf::Color(34, 32, 52), buttonText[i], buttonTexture, { GameWindow::getMainView().getSize().x / 4 , 440.f+ 150.f*i }, { 400.f, 120.f } , false);
@@ -85,6 +87,7 @@ Menu::Menu()
 
 Menu::~Menu()
 {
+	// lösche alle erstellten Dinge
 	for (int i = 0; i < Anzahl_Button; i++)
 		delete button[i];
 
@@ -96,17 +99,20 @@ int Menu::openMenu()
 {
 	Menu menu;
 
+	// Hintergrundtextur
 	sf::Texture* background_Texture = new sf::Texture();
 	background_Texture->loadFromFile("resource/Textures/Menu_Options.png");
 
+	// Hintergrund
 	sf::RectangleShape background;
 	background.setPosition(0,0);
 	background.setSize( GameWindow::getMainView().getSize() );
 	background.setTexture(background_Texture,0);
 
-
+	// Menü Ausführung
 	while (Window.isOpen() && menu.open)
 	{
+		// Events
 		while ( Window.pollEvent(GameEvent)) {
 			switch (GameEvent.type)
 			{
@@ -130,10 +136,12 @@ int Menu::openMenu()
 			}
 		}
 
+		// Update
 		for (int i = 0; i < Anzahl_Button; i++) {
 			menu.button[i]->update();
 		}
 
+		// Render
 		Window.clear();
 
 		Window.setView(GameWindow::getMainView());

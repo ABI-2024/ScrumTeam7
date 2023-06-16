@@ -8,26 +8,31 @@ class Menu
 {
 private:
 
-	bool open;
-	static int ans;
+	bool open;		// Menü ist active/offen
+	static int ans;	// Buttenaktions auswahl / Rückgabewert von OpenMenu
 
-	sf::Texture titelTexture;
+	// Titel anzeige
+	sf::Texture titelTexture;	
 	sf::RectangleShape titel;
 
+	// Texte und Button
 	sf::Font* font;
 	sf::Texture* buttonTexture;
 	std::string* buttonText;
 	Button** button;
 
-
+	// Buttenaktions
 	void buttonEvents();
 
+	// Render
 	void render();
 
+	// diese werden in openMenu aufgeruffen
 	Menu();
 	~Menu();
 public:
-
+	
+	// Menü anzeige
 	static int openMenu();
 };
 
