@@ -177,7 +177,7 @@ void Level::start(std::string filename , Progression& progress)
            }
         }
 
-        if (winTimer.getElapsedTime() >= timeToWin) {
+        if (welle.geteof() == true) {
             this->endLevel(true);
             if (!active) {
                 Music::stopMusic();
