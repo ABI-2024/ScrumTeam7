@@ -17,6 +17,6 @@ public:
 	Level_Endless();
 	virtual ~Level_Endless();
 
-	void start(std::string  , Progression&) override;
+	bool start(std::string  , Progression&) override;
 };
 

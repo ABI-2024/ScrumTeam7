@@ -47,6 +47,6 @@ public:
 	virtual ~Level();
 
 
-	virtual void start(std::string  , Progression&);
+	virtual bool start(std::string  , Progression&);
 };
 

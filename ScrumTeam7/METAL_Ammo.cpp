@@ -68,8 +68,8 @@ void METAL_Ammo::update()
 
 				(*temp)[i]->addStatusEffect(StatusEffect(StatusType::burn, sf::milliseconds(2000), 75.f));
 			}
-		status.alive = false;
 		}
+		status.alive = false;
 		delete temp;
 	}
 

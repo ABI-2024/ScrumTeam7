@@ -12,6 +12,7 @@
 void Level_Selector::buttonEvents()
 {
 	Level* level = nullptr;
+	bool ans = 0;
 
 	for (int i = 0; i < ButtonCount; i++) {
 		if (buttons[i]->isHovered()) {
@@ -22,13 +23,12 @@ void Level_Selector::buttonEvents()
 
 			case 1:
 				level = new Level_1();
-				level->start(datafiles[i-1], progress);
+				ans = level->start(datafiles[i-1], progress);
 				delete level;
-				if (progress.status < Level_Progression::Level_1) {
-					progress.status= Level_Progression::Level_1;
-				}
 				open = false;
-
+				if (progress.status < Level_Progression::Level_1 && ans) {
+					progress.status = Level_Progression::Level_1;
+				}
 				break;
 
 			case 2:
@@ -36,9 +36,9 @@ void Level_Selector::buttonEvents()
 					break;
 				}
 				level = new Level_2();
-				level->start(datafiles[i-1], progress);
+				ans = level->start(datafiles[i-1], progress);
 				delete level;
-				if (progress.status < Level_Progression::Level_2) {
+				if (progress.status < Level_Progression::Level_2 && ans) {
 					progress.status = Level_Progression::Level_2;
 				}
 				open = false;
@@ -49,9 +49,9 @@ void Level_Selector::buttonEvents()
 					break;
 				}
 				level = new Level_3();
-				level->start(datafiles[i-1], progress);
+				ans = level->start(datafiles[i-1], progress);
 				delete level;
-				if (progress.status < Level_Progression::Level_3) {
+				if (progress.status < Level_Progression::Level_3 && ans) {
 					progress.status = Level_Progression::Level_3;
 				}
 				open = false;
@@ -62,9 +62,9 @@ void Level_Selector::buttonEvents()
 				break;
 				}
 				level = new Level_Final();
-				level->start(datafiles[i-1], progress);
+				ans = level->start(datafiles[i-1], progress);
 				delete level;
-				if (progress.status < Level_Progression::AllOnlocked) {
+				if (progress.status < Level_Progression::AllOnlocked && ans) {
 					progress.status = Level_Progression::AllOnlocked;
 				}
 				open = false;
@@ -119,7 +119,7 @@ Level_Selector::Level_Selector()
 	buttonText[1] = "1";
 	buttonText[2] = "2";
 	buttonText[3] = "3";
-	buttonText[4] = "";
+	buttonText[4] = "Final";
 	buttonText[5] = "";
 
 

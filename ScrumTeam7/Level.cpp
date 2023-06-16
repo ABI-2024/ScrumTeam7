@@ -142,9 +142,10 @@ Level::Level()
 
 Level::~Level()
 {
+    Music::stopMusic();
 }
 
-void Level::start(std::string filename , Progression& progress)
+bool Level::start(std::string filename , Progression& progress)
 {
     Music::startMusic();
 
@@ -172,17 +173,20 @@ void Level::start(std::string filename , Progression& progress)
                 this->endLevel(false);
                 if (!active) {
                     Music::stopMusic();
-                    return;
                 }
+                return false;
            }
         }
 
+        // Victory
         if (welle.geteof() == true) {
-            this->endLevel(true);
+            this->endLevel(true);            
+
             if (!active) {
                 Music::stopMusic();
-                return;
             }
+
+            return true;
         }
 
         // Wellen und Geld
@@ -292,4 +296,5 @@ void Level::start(std::string filename , Progression& progress)
     }
 
     Music::stopMusic();
+    return 0;
 }

@@ -19,7 +19,7 @@ Level_Endless::~Level_Endless()
 {
 }
 
-void Level_Endless::start(std::string filename, Progression& progress)
+bool Level_Endless::start(std::string filename, Progression& progress)
 {
     int score = 0;
     sf::Text highscore;
@@ -48,8 +48,8 @@ void Level_Endless::start(std::string filename, Progression& progress)
                 this->endLevel(false);
                 if (!active) {
                     Music::stopMusic();
-                    return;
                 }
+                active = false;
             }
         }
 
@@ -227,4 +227,5 @@ void Level_Endless::start(std::string filename, Progression& progress)
         
 
     }
+    return false;
 }
