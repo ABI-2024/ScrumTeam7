@@ -13,6 +13,13 @@ private:
 	float revenue;
 	sf::RectangleShape body;
 
+
+	static sf::Font* font;
+
+	sf::Text stongs;
+	sf::Clock animationTimer;
+	static sf::Time animationTime;
+
 public:
 	static void LoadTexture();
 	static void unLoadTexture();

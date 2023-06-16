@@ -58,7 +58,7 @@ void Level_Endless::start(std::string filename, Progression& progress)
         geld.addKontostand(AActors::getCollectedRevenue());
 
         score += AActors::getCollectedRevenue() * 10;
-        highscore.setString( std::to_string(score) );
+        highscore.setString( std::string("Highscore ")+std::to_string(score) );
         highscore.setOrigin(highscore.getGlobalBounds().width, highscore.getGlobalBounds().height/2);
 
         AActors::setCollectedRevenue(0);

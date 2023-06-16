@@ -8,9 +8,9 @@
 
 EnemyType Emo::enemyType = EnemyType::Emo;
 
-float Emo::Health = 1000;
+float Emo::Health = 800;
 float Emo::Damage = 40;
-float Emo::SelfharmDMG = 20;
+float Emo::SelfharmDMG = 30;
 
 int Emo::revenue = 0;
 

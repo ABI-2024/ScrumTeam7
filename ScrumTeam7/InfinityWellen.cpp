@@ -1,16 +1,27 @@
 #include "InfinityWellen.h"
 
+#include "Window.h"
 #include "AActors.h"
 #include "Randomizer.h"
 
 #include <math.h>
 
+#define SPAWNTIME 5.f
+
 InfinityWellen::InfinityWellen()
-	:wellenCounter(0), score(0), timeBetweenWave(sf::seconds(60))
+	:wellenCounter(0), score(0), timeBetweenWave(sf::seconds(60)), allSpawned(false)
 {
-	enemyGrowth.push_back({ EnemyType::TestEnemy, 10.f });
-	enemyGrowth.push_back({ EnemyType::Nerd, 5.f });
-	enemyGrowth.push_back({ EnemyType::Steroidenking, 3.f });
+	enemyGrowth.push_back({ EnemyType::TestEnemy, 6.f });
+	enemyGrowth.push_back({ EnemyType::Nerd, 0.5f });
+	enemyGrowth.push_back({ EnemyType::Steroidenking, 2.f });
+	enemyGrowth.push_back({ EnemyType::Emo, 1.f });
+	enemyGrowth.push_back({ EnemyType::Kreative, 1.5f });
+
+	for (int i = 0; i < enemyGrowth.size(); i++) {
+		enemyGrowth[i].anzahlDieseWelle = enemyGrowth[i].startAmount * powf(1.15, wellenCounter);
+		enemyGrowth[i].spawnRateDieseWelle = enemyGrowth[i].startAmount / SPAWNTIME;
+		enemyGrowth[i].nextSpawn = 0;
+	}
 }
 
 InfinityWellen::~InfinityWellen()
@@ -20,42 +31,52 @@ InfinityWellen::~InfinityWellen()
 void InfinityWellen::update(Geld& geld)
 {
 
-	float temp = 0, rate = 0, spawnTime = 10;
+	float temp = 0;
 
 
-	if (nextWaveTimer.getElapsedTime() <= sf::seconds(spawnTime)) {
+	if (nextWaveTimer.getElapsedTime() <= sf::seconds(SPAWNTIME)) {
 		for (int i = 0; i < enemyGrowth.size(); i++) {
 
-			// Anzahl an Enemies, die gespwant werden 
-			// Enemey Spawnrate über 5 Sekunden
-			rate = spawnTime / enemyGrowth[i].startAmount * powf(1.15, wellenCounter);
+			enemyGrowth[i].nextSpawn += enemyGrowth[i].spawnRateDieseWelle* dt;
 
-			if (enemyGrowth[i].timer.getElapsedTime().asSeconds() / rate >= 1) {
-				enemyGrowth[i].remainTime = enemyGrowth[i].timer.restart() + enemyGrowth[i].remainTime;
+			for (temp = 0; enemyGrowth[i].nextSpawn >= 1 && enemyGrowth[i].anzahlDieseWelle > 0;temp++) {
+				enemyGrowth[i].nextSpawn--;
+				enemyGrowth[i].anzahlDieseWelle--;
+			}
 
-				temp = int(enemyGrowth[i].remainTime.asSeconds() / rate);
-				enemyGrowth[i].remainTime -= sf::seconds(temp * rate);
+			for (int j = 0; j < temp; j++) {
+				AActors::create(enemyGrowth[i].type, sf::Vector2f(0.f, Randomizer::randomize(5)));
+			}
+		}
+	}
+	else
+	{
+		if (!allSpawned){
+			for (int i = 0; i < enemyGrowth.size(); i++) {
 
-				for (int j = 0; j < temp; j++) {
+				for (int j = 0; j < enemyGrowth[i].anzahlDieseWelle; j++) {
 					AActors::create(enemyGrowth[i].type, sf::Vector2f(0.f, Randomizer::randomize(5)));
 				}
 			}
+			allSpawned = true;
 		}
 	}
 
 	if (nextWaveTimer.getElapsedTime() >= timeBetweenWave || 
-		(AActors::enemies->size() == 0 && nextWaveTimer.getElapsedTime() >= timeBetweenWave - sf::seconds(20) )) {
+		(AActors::enemies->size() == 0 && nextWaveTimer.getElapsedTime() >= timeBetweenWave - sf::seconds(40) )) {
 
-		geld.addKontostand(50);
+		geld.addKontostand(25);
 
 		wellenCounter++;
 		nextWaveTimer.restart();
 
 		for (int i = 0; i < enemyGrowth.size(); i++) {
-			enemyGrowth[i].remainTime = sf::seconds(0);
-			enemyGrowth[i].timer.restart();
+			enemyGrowth[i].anzahlDieseWelle = enemyGrowth[i].startAmount * powf(1.15, wellenCounter);
+			enemyGrowth[i].spawnRateDieseWelle = enemyGrowth[i].startAmount / SPAWNTIME;
+			enemyGrowth[i].nextSpawn = 0;
 		}
 
+		allSpawned = false;
 
 	}
 

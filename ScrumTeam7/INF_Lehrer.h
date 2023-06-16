@@ -15,6 +15,12 @@ private:
 	static sf::Time maximumFireRateDiviation;
 	static sf::Texture* texture;
 
+	static sf::Font* font;
+
+	sf::Text ipp;
+	sf::Clock animationTimer;
+	static sf::Time animationTime;
+
 	char powerup;
 	enum class PowerLevel : char	{
 		OnlyMouse = 1,
@@ -34,5 +40,6 @@ public:
 	void takeDamage(float) override;
 
 	void update() override;
+	void render() override;
 };
 

@@ -10,7 +10,15 @@ Geld::Geld() {
 	text.setFont(font);
 	text.setCharacterSize(20);
 	text.setPosition(1500, 30);
-	text.setFillColor(sf::Color::Red);
+	text.setFillColor(sf::Color::White);
+
+	texture.loadFromFile("resource/Textures/Geld.png");
+
+	body.setPosition(1510, 35);
+	body.setSize( sf::Vector2f(23.f, 9.f ) * 3.f );
+	body.setOrigin(0 , body.getSize().y/2);
+	body.setTexture(&texture ,0);
+
 }
 
 Geld::~Geld(){}
@@ -34,5 +42,7 @@ void Geld::clearKontostand (){
 void Geld::render()
 {
 	text.setString(std::to_string( Kontostand));
-	GameWindow::getWindow().draw(text);
+	text.setOrigin(text.getGlobalBounds().width, text.getGlobalBounds().height / 2);
+	Window.draw(text);
+	Window.draw(body);
 }

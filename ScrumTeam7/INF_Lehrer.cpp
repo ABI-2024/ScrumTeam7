@@ -2,6 +2,7 @@
 
 #include "Randomizer.h"
 #include "AActors.h"
+#include "Window.h"
 
 // public static Variables 
 AllyType INF_Lehrer::type;
@@ -12,6 +13,8 @@ float INF_Lehrer::Health = 200;
 sf::Time INF_Lehrer::fireRate = sf::milliseconds(1500);
 sf::Time INF_Lehrer::maximumFireRateDiviation = sf::milliseconds(150);
 sf::Texture* INF_Lehrer::texture = nullptr;
+sf::Font* INF_Lehrer::font = nullptr;
+sf::Time INF_Lehrer::animationTime = sf::milliseconds(500);
 
 
 // public static Methoden
@@ -23,6 +26,9 @@ void INF_Lehrer::LoadTexture()
 		if (!texture->loadFromFile("resource/Textures/Lehrer/INF/INF-Lehrer.png")) {
 			texture->loadFromFile("resource/Textures/DefaultTexture.png");
 		}
+
+		font = new sf::Font();
+		font->loadFromFile("resource/fonts/Broken Console Bold.otf");
 	}
 
 }
@@ -31,6 +37,9 @@ void INF_Lehrer::unLoadTexture()
 {
 	delete texture;
 	texture = nullptr;
+
+	delete font;
+	font = nullptr;
 }
 
 
@@ -38,7 +47,14 @@ void INF_Lehrer::unLoadTexture()
 INF_Lehrer::INF_Lehrer(sf::Vector2f tilePosition)
 	: BaseTower(this->Health, tilePosition, texture)
 	, powerup(0), level(PowerLevel::OnlyMouse)
-{}
+{
+	ipp.setFont(*font);
+	ipp.setCharacterSize(40);
+	ipp.setString("i++");
+	ipp.setOrigin(ipp.getGlobalBounds().width/2,ipp.getGlobalBounds().height/2);
+	ipp.setFillColor( sf::Color::Green );
+	ipp.setPosition({ 400 + 150 * tilePosition.x, 150 + 150 * tilePosition.y - 60});
+}
 
 INF_Lehrer::~INF_Lehrer()
 {
@@ -104,6 +120,7 @@ void INF_Lehrer::update()
 		}
 
 		if (level != PowerLevel::OnlyMonitor && powerup >= 1) {
+			animationTimer.restart();
 			level = PowerLevel(int(level) + 1);
 			powerup = 0;
 		}
@@ -121,5 +138,15 @@ void INF_Lehrer::update()
 	if (!status.alive) {
 		AActors::destroy(this);
 	}
+}
+
+void INF_Lehrer::render()
+{
+	Window.draw(body);
+
+	if (animationTimer.getElapsedTime() <= animationTime) {
+		Window.draw(ipp);
+	}
+
 }
 

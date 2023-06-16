@@ -43,7 +43,7 @@ void Kreative::unLoadTexture()
 
 // Constructur & Destructur
 Kreative::Kreative(const sf::Vector2f& tilePosition)
-	:BaseEnemy(Health*(float)sqrt(count+1), tilePosition, texture)
+	:BaseEnemy(Health+10*count, tilePosition, texture)
 {
 	count++;
 }
