@@ -265,6 +265,9 @@ void Level_Final::endLevel(bool isVictory)
         Window.display();
     }
 
+    if (isVictory) {
+        dialogWindow();
+    }
 }
 
 Level_Final::Level_Final()
@@ -277,5 +280,4 @@ Level_Final::Level_Final()
 
 Level_Final::~Level_Final()
 {
-    dialogWindow();
 }

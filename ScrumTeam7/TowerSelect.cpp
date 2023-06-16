@@ -88,12 +88,12 @@ TowerSelect::TowerSelect()
 	this->karten[0] = new Karte(250, AllyType::Mathelehrer, &t[0], { 220.f * 0 + 600, 100.f });
 	this->karten[1] = new Karte(200, AllyType::INF_Lehrer, &t[1], { 220.f * 1 + 600, 100.f });
 	this->karten[2] = new Karte(125, AllyType::EN_Lehrer, &t[2], { 220.f * 2 + 600, 100.f });
-	this->karten[3] = new Karte(300, AllyType::DE_Lehrer, &t[3], { 220.f * 3 + 600, 100.f });
+	this->karten[3] = new Karte(250, AllyType::DE_Lehrer, &t[3], { 220.f * 3 + 600, 100.f });
 
 	this->karten[4] = new Karte(75, AllyType::TestTower, &t[4], { 220.f * 0 + 600, 250.f });
-	this->karten[5] = new Karte(400, AllyType::METAL_Lehrer, &t[5], { 220.f * 1 + 600, 250.f });
+	this->karten[5] = new Karte(350, AllyType::METAL_Lehrer, &t[5], { 220.f * 1 + 600, 250.f });
 	this->karten[6] = new Karte(75, AllyType::POWI_Lehrer, &t[6], { 220.f * 2 + 600, 250.f });
-	this->karten[7] = new Karte(150, AllyType::RELI_Lehrer, &t[7], { 220.f * 3 + 600, 250.f });
+	this->karten[7] = new Karte(100, AllyType::RELI_Lehrer, &t[7], { 220.f * 3 + 600, 250.f });
 
 	
 

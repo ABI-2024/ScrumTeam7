@@ -7,7 +7,7 @@
 
 sf::Texture* POWI_Book::texture = nullptr;
 sf::Font* POWI_Book::font = nullptr;
-sf::Time POWI_Book::animationTime = sf::milliseconds(5000);
+sf::Time POWI_Book::animationTime = sf::milliseconds(1000);
 
 void POWI_Book::LoadTexture()
 {

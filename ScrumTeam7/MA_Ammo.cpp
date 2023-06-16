@@ -10,7 +10,7 @@ AmmoType MA_Ammo::ammoType = AmmoType::Mathe;
 
 
 // static Variables private
-float MA_Ammo::damage = 50.f;
+float MA_Ammo::damage = 100.f;
 sf::Vector2f MA_Ammo::dir = sf::Vector2f(200.f, 0);
 sf::Texture* MA_Ammo::texture = nullptr;
 
