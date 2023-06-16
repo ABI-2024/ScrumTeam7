@@ -35,22 +35,22 @@ void Wellen::WellenDaten() {
 		std::getline(Datei, tmp, '0');
 	}
 	for (int i = 0; i < 2; i++) { //Ließt Wellendaten aus
+		std::getline(Datei, tmp, ';');
 		if (Datei.eof()) {
 			eof = true;
 			return;
 		}
-		std::getline(Datei, tmp, ';');
 		while (tmp.empty() == 1) {
 			std::getline(Datei, tmp, ';');
 		}
 		welleDaten[i] = stoi(tmp);
 	}
 	do { //Ließt Schülerdaten aus
+		std::getline(Datei, tmp, ';');
 		if (Datei.eof()) {
 			eof = true;
 			return;
 		}
-		std::getline(Datei, tmp, ';');
 		schuelerDaten->push_back(stoi(tmp));
 		dateiposition = Datei.tellg();
 		Datei.get(debug);
@@ -153,6 +153,10 @@ void Wellen::Wartefunktion(Geld& geld) {
 		WellenDaten();
 		SortListeSchueler();
 	}
+}
+
+bool Wellen::geteof() {
+	return this->eof;
 }
 
 

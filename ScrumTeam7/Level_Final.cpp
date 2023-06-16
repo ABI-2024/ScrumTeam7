@@ -79,6 +79,7 @@ bool Level_Final::fillText(std::string* names, sf::Text* name, sf::Text* texte, 
 
 void Level_Final::dialogWindow()
 {
+    Music::startENDMusic();
     readFile();
 
     bool dialog = true;
@@ -221,7 +222,7 @@ void Level_Final::dialogWindow()
     }
 
     background.setFillColor(sf::Color(255, 255, 255));
-
+    Music::stopENDMusic();
 }
 
 void Level_Final::endLevel(bool isVictory)
@@ -263,6 +264,7 @@ void Level_Final::endLevel(bool isVictory)
 
         Window.display();
     }
+
 }
 
 Level_Final::Level_Final()

@@ -7,8 +7,10 @@
 
 // static Attribute
 bool Music::activ = false;
+bool Music::activend = false;
 int Music::currend = 0;
 sf::Music* Music::music = nullptr;
+sf::Music* Music::musicend = nullptr;
 
 // public-Methoden
 void Music::startMusic()
@@ -32,10 +34,35 @@ void Music::startMusic()
 	music[currend].setLoop(true);
 }
 
+void Music::startENDMusic()
+{
+	Music::stopMusic(); // Stoppt music fals welche schon gespielt wird
+
+	if (!activend) {		// Wenn nicht geladen dann Music laden
+		musicend = new sf::Music;
+
+		musicend->openFromFile("resource/Sound/Music/Landing.wav");
+
+		activend = true;
+
+		setVolume();
+	}
+
+	// Start Music und spiele sie solange ab, bis sie gestoppt wird
+	musicend->play();
+}
+
 void Music::stopMusic()
 {
 	if(activ){	// wenn music geladen, dann music stoppen
 		music[currend].stop();
+	}
+}
+
+void Music::stopENDMusic()
+{
+	if (activend) {	// wenn music geladen, dann music stoppen
+		musicend->stop();
 	}
 }
 
@@ -45,10 +72,17 @@ void Music::unloadMusic()
 		delete[] music;
 		activ = false;
 	}
+	if (activend == true) {
+		delete musicend;
+		activend = false;
+	}
 }
 
 void Music::setVolume()
 {
+	if (activend) {
+		musicend->setVolume(100 * GameWindow::getSettings()->MasterVolume * GameWindow::getSettings()->MusicVolume / 10000);
+	}
 	if (activ) {
 
 		music[0].setVolume(100*GameWindow::getSettings()->MasterVolume* GameWindow::getSettings()->MusicVolume / 10000);
