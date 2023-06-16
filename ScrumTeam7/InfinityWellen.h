@@ -13,11 +13,11 @@ public:
 	EnemyType type;
 	float startAmount;
 
-	sf::Clock timer;
-	sf::Time remainTime;
+	float anzahlDieseWelle , nextSpawn;
+	float spawnRateDieseWelle;
 
 	Grow(EnemyType ntype, float startAmount)
-		:type(ntype), startAmount(startAmount)
+		:type(ntype), startAmount(startAmount), anzahlDieseWelle(0.f), spawnRateDieseWelle(0.f), nextSpawn(0)
 	{	}
 };
 
@@ -29,6 +29,7 @@ private:
 	sf::Clock nextWaveTimer;
 	sf::Time timeBetweenWave;
 
+	bool allSpawned;
 	std::vector<Grow> enemyGrowth;
 	
 public:

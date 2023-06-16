@@ -224,7 +224,7 @@ Level_1::Level_1()
 {
     timeToWin = sf::seconds(500);
 
-	backgroundTexture.loadFromFile("resource/Textures/Level/Background-Tutorial-3.png");
+	backgroundTexture.loadFromFile("resource/Textures/Level/Background_Sporthalle.png");
 	background.setTexture(&backgroundTexture,0);
 
     dialogWindow();

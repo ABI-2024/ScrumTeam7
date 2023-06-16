@@ -8,6 +8,9 @@ private:
 	int Kontostand;
 	sf::Font font;
 	sf::Text text;
+
+	sf::Texture texture;
+	sf::RectangleShape body;
 public:
 	Geld();
 	~Geld();
