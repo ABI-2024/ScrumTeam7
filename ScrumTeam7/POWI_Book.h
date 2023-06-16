@@ -10,6 +10,7 @@ private:
 
 	bool alive;
 	float health;
+	float revenue;
 	sf::RectangleShape body;
 
 public:

@@ -7,9 +7,11 @@
 Menu_Options::Menu_Options() {
 	this->open = true;
 
+	// Hintergrundtextur
 	backgroundTexture = new sf::Texture();
 	backgroundTexture->loadFromFile("resource/Textures/Menu_Options.png");
 
+	// Hintergrund
 	background.setPosition(0, 0);
 	background.setSize(sf::Vector2f(GameWindow::getMainView().getSize()));
 	background.setTexture(backgroundTexture, 0);
@@ -23,16 +25,9 @@ Menu_Options::Menu_Options() {
 	buttonTexture[1].loadFromFile("resource/Textures/Button_Middle.png");
 	buttonTexture[2].loadFromFile("resource/Textures/Button_Side2.png");
 
-	//Button-text
-	/*
-		Auflösung, Lautstärke(Musik, Sound), 
-	
-	
-	*/
+	settings = *GameWindow::getSettings(); // Aktuelle Settings
 
-
-	settings = *GameWindow::getSettings();
-
+	// Erstelle Buttons
 	buttonText = new std::string[Anzahl_Button];
 	if (settings.Fullscreen) {
 		buttonText[0] = "Auflösung: Fullscreen";
@@ -52,7 +47,8 @@ Menu_Options::Menu_Options() {
 	button[5] = new Button(font, sf::Color(34, 32, 52), "Zurück", buttonTexture, {GameWindow::getMainView().getSize().x /8  , GameWindow::getMainView().getSize().y * 15 / 16 }, {400.f, 100.f}, false);
 	button[6] = new Button(font, sf::Color(34, 32, 52), "Übernehmen", buttonTexture, {GameWindow::getMainView().getSize().x * 7/ 8  , GameWindow::getMainView().getSize().y * 15 / 16 }, {400.f, 100.f}, false);
 
-	aufloesung[0] = { 0, 0 };
+	// Voreingestellte Fenstergrößen
+	aufloesung[0] = { 0, 0 };			// Fullscreen
 	aufloesung[1] = { 960, 540 };
 	aufloesung[2] = { 1280, 720 };
 	aufloesung[3] = { 1440, 810 };
@@ -63,6 +59,7 @@ Menu_Options::Menu_Options() {
 
 Menu_Options::~Menu_Options()
 {
+	// lösche alle mit [new] erstellten Dinge
 	delete[] buttonText;
 	delete[] buttonTexture;
 
@@ -75,10 +72,12 @@ Menu_Options::~Menu_Options()
 
 void Menu_Options::buttonEvents()
 {
+	// Abfrage der Buttons 
 	for (int i = 0; i < Anzahl_Button; i++) {
 		if (button[i]->isHovered()) {
 			switch (i) {
 			case 0:
+				// Fenstergröße
 				for (int i = 1; i < 6; i++) {
 					if (settings.WindowSize == aufloesung[5]) {
 						settings.WindowSize = aufloesung[0];
@@ -101,6 +100,7 @@ void Menu_Options::buttonEvents()
 
 				break;
 			case 1:
+				// Frameratelimit
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 					if (settings.FrameRateLimit > 30) {
 						settings.FrameRateLimit -= 10;
@@ -114,7 +114,7 @@ void Menu_Options::buttonEvents()
 				button[1]->setText( "Fps-Limit: " + std::to_string(settings.FrameRateLimit));
 				break;
 			case 2:
-
+				// Lautstärke Master
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 					if (settings.MasterVolume > 0) {
 						settings.MasterVolume -= 10;
@@ -128,6 +128,7 @@ void Menu_Options::buttonEvents()
 				button[2]->setText("Master Volume: " + std::to_string(settings.MasterVolume) + "%");
 				break;
 			case 3:
+				// Lautstärke Sound
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 					if (settings.SoundVolume > 0) {
 						settings.SoundVolume -= 10;
@@ -141,6 +142,7 @@ void Menu_Options::buttonEvents()
 				button[3]->setText("Sound Volume: " + std::to_string(settings.SoundVolume) + "%");
 				break;
 			case 4:
+				// Lautstärke Music
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 					if (settings.MusicVolume > 0) {
 						settings.MusicVolume -= 10;
@@ -154,9 +156,11 @@ void Menu_Options::buttonEvents()
 				button[4]->setText("Music Volume: " + std::to_string(settings.MusicVolume) + "%");
 				break;
 			case 5:
+				// Zurück
 				this->open = false;
 				break;
 			case 6:
+				// Übernehme Settings
 				GameWindow::setSettings(settings);
 				Music::setVolume();
 				break;

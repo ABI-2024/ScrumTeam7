@@ -34,7 +34,7 @@ Shop::Shop(Geld* nGeld) {
 
 		text[i].setFont(font);
 		text[i].setCharacterSize(20);
-		text[i].setPosition(karten[i]->getPosition());
+		text[i].setPosition(karten[i]->getPosition().x+20, karten[i]->getPosition().y);
 		text[i].setFillColor(sf::Color::Red);
 		text[i].setString(std::to_string(karten[i]->getCost()));
 
@@ -87,6 +87,7 @@ void Shop::setKarten(Karte** karten)
 
 	for (int i = 0; i < 5; i++) {
 		karten[i]->setPosition({ 60.f, 150.f * i + 90 });
+		text[i].setString(std::to_string(karten[i]->getCost()));
 	}
 }
 

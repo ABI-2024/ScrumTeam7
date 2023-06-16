@@ -1,20 +1,13 @@
 // ScrumTeam7.cpp : Diese Datei enthält die Funktion "main". Hier beginnt und endet die Ausführung des Programms.
 //
 
-#include <iostream>
-#include <vector>
-#include <stdio.h>
-#include <fstream>
-
 #include "SFML/Graphics.hpp"
 #include "Window.h"
 #include "enums.h"
 
 #include "Menu.h"
-#include "TowerSelect.h"
 #include "Menu_Options.h"
 
-#include "Test_Level.h"
 #include "Level_Selector.h"
 
 #include "Music.h"
@@ -22,16 +15,21 @@
 
 int main()
 {
+    // Erstellt das Fenster
     GameWindow::openWindow();
 
+    // Setzt den View des Fensters
+    // Bei uns ist dieser Statisch muss daher nicht verändert werden
     GameWindow::getMainView().setViewport({0,0,1,1});
 
     Level_Selector* selector = nullptr;
 
-    // 
+    // Spiel Ausführung
     while (Window.isOpen()) {
+
+        // openMenu gibt einen Intergerwert zurück
         switch (Menu::openMenu()) {
-        case 1:
+        case 1: // Button Start
 
             selector = new Level_Selector();
             selector->openMenu();
@@ -39,17 +37,20 @@ int main()
             selector = nullptr;
             
             break;
-        case 2:
+        case 2: // Button Optionen
             Menu_Options::openOptions();
             break;
-        case 0: default:
+
+        case 0: default:    // Exit
             Window.close();
             break;
         }
     }
 
+    // Schlließt das Fenster
     GameWindow::closeWindow();
 
+    // Alle geladene Music wird aus dem Arbeitsspeicher gelöscht
     Music::unloadMusic();
 
     return 0;
